@@ -1,0 +1,2964 @@
+{
+ "description": "Stark World Engine Systems: world.json[\"systems\"]",
+ "type": "object",
+ "properties": {
+  "version": {
+   "description": "systems schema version (1)",
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 1,
+   "default": 1
+  },
+  "genre": {
+   "description": "which genre kit runs (game rules); every system stays available",
+   "enum": [
+    "action_rpg",
+    "platformer",
+    "shooter",
+    "survival",
+    "horror",
+    "racing",
+    "puzzle",
+    "strategy",
+    "visual_novel",
+    "custom"
+   ],
+   "default": "custom"
+  },
+  "player": {
+   "description": "gsys: the Stark World Engine Systems player plays this world; legacy: the studio engine",
+   "enum": [
+    "gsys",
+    "legacy"
+   ]
+  },
+  "view": {
+   "description": "reference-player view (default from genre / controller)",
+   "enum": [
+    "top",
+    "side",
+    "fp",
+    "grid",
+    "vn"
+   ]
+  },
+  "locale": {
+   "type": "object",
+   "properties": {
+    "languages": {
+     "description": "languages the game text uses (sharpens the child-safety checker)",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 8
+     },
+     "maxItems": 5000
+    }
+   },
+   "additionalProperties": true
+  },
+  "controller": {
+   "description": "player character controller",
+   "type": "object",
+   "properties": {
+    "type": {
+     "enum": [
+      "third_person",
+      "first_person",
+      "top_down",
+      "side_scroll",
+      "vehicle",
+      "point_click",
+      "none"
+     ],
+     "default": "top_down"
+    },
+    "speed": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 200
+    },
+    "run": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 10
+    },
+    "accel": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1000
+    },
+    "friction": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1000
+    },
+    "jump": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 200
+    },
+    "gravity": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 500
+    },
+    "coyote": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "buffer": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "cut": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "maxFall": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 500
+    },
+    "airAccel": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1000
+    },
+    "airControl": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "sens": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 0.1
+    },
+    "maxSpeed": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 500
+    },
+    "brake": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 500
+    },
+    "reverse": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 500
+    },
+    "steer": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 20
+    },
+    "grip": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 50
+    },
+    "drag": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 10
+    },
+    "boost": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 500
+    },
+    "boostTime": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 60
+    },
+    "boostCool": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 600
+    }
+   },
+   "additionalProperties": true
+  },
+  "physics": {
+   "description": "collision world",
+   "type": "object",
+   "properties": {
+    "mode": {
+     "enum": [
+      "plane",
+      "side"
+     ]
+    },
+    "gravity": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 500
+    },
+    "ground": {
+     "type": "number",
+     "minimum": -10000.0,
+     "maximum": 10000.0
+    },
+    "flat": {
+     "type": "boolean"
+    },
+    "bounds": {
+     "type": "object",
+     "properties": {
+      "x0": {
+       "type": "number",
+       "minimum": -1000000.0,
+       "maximum": 1000000.0
+      },
+      "z0": {
+       "type": "number",
+       "minimum": -1000000.0,
+       "maximum": 1000000.0
+      },
+      "x1": {
+       "type": "number",
+       "minimum": -1000000.0,
+       "maximum": 1000000.0
+      },
+      "z1": {
+       "type": "number",
+       "minimum": -1000000.0,
+       "maximum": 1000000.0
+      }
+     },
+     "additionalProperties": true
+    },
+    "tiles": {
+     "type": "object",
+     "properties": {
+      "rows": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "maxLength": 4000
+       },
+       "maxItems": 4000
+      },
+      "solid": {
+       "type": "string",
+       "maxLength": 20
+      },
+      "oneway": {
+       "type": "string",
+       "maxLength": 20
+      },
+      "cell": {
+       "type": "number",
+       "minimum": 0.1,
+       "maximum": 100
+      },
+      "ox": {
+       "type": "number",
+       "minimum": -1000000.0,
+       "maximum": 1000000.0
+      },
+      "oz": {
+       "type": "number",
+       "minimum": -1000000.0,
+       "maximum": 1000000.0
+      }
+     },
+     "additionalProperties": true
+    },
+    "boxes": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "x0": {
+        "type": "number",
+        "minimum": -1000000.0,
+        "maximum": 1000000.0
+       },
+       "z0": {
+        "type": "number",
+        "minimum": -1000000.0,
+        "maximum": 1000000.0
+       },
+       "x1": {
+        "type": "number",
+        "minimum": -1000000.0,
+        "maximum": 1000000.0
+       },
+       "z1": {
+        "type": "number",
+        "minimum": -1000000.0,
+        "maximum": 1000000.0
+       },
+       "color": {
+        "type": "string",
+        "maxLength": 20
+       },
+       "nonsolid": {
+        "type": "boolean"
+       },
+       "oneway": {
+        "type": "boolean"
+       }
+      },
+      "additionalProperties": true,
+      "required": [
+       "x0",
+       "z0",
+       "x1",
+       "z1"
+      ]
+     },
+     "maxItems": 5000
+    }
+   },
+   "additionalProperties": true
+  },
+  "zones": {
+   "description": "trigger zones (enterZone / exitZone events)",
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "x": {
+      "type": "number",
+      "minimum": -1000000.0,
+      "maximum": 1000000.0
+     },
+     "z": {
+      "type": "number",
+      "minimum": -1000000.0,
+      "maximum": 1000000.0
+     },
+     "r": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10000.0
+     },
+     "box": {
+      "type": "object",
+      "properties": {
+       "x0": {
+        "type": "number",
+        "minimum": -1000000.0,
+        "maximum": 1000000.0
+       },
+       "z0": {
+        "type": "number",
+        "minimum": -1000000.0,
+        "maximum": 1000000.0
+       },
+       "x1": {
+        "type": "number",
+        "minimum": -1000000.0,
+        "maximum": 1000000.0
+       },
+       "z1": {
+        "type": "number",
+        "minimum": -1000000.0,
+        "maximum": 1000000.0
+       }
+      },
+      "additionalProperties": true
+     },
+     "label": {
+      "type": "string",
+      "maxLength": 80
+     }
+    },
+    "additionalProperties": true,
+    "required": [
+     "id"
+    ]
+   },
+   "maxItems": 5000
+  },
+  "camera": {
+   "type": "object",
+   "properties": {
+    "rig": {
+     "enum": [
+      "follow",
+      "side",
+      "first_person",
+      "top_down",
+      "orbit",
+      "fixed"
+     ]
+    },
+    "distance": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1000
+    },
+    "height": {
+     "type": "number",
+     "minimum": -1000,
+     "maximum": 1000
+    },
+    "lag": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 100
+    },
+    "lookahead": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 100
+    },
+    "zoom": {
+     "type": "number",
+     "minimum": 0.05,
+     "maximum": 20
+    },
+    "scale": {
+     "type": "number",
+     "minimum": 1,
+     "maximum": 400
+    },
+    "yaw": {
+     "type": "number",
+     "minimum": -1000000.0,
+     "maximum": 1000000.0
+    },
+    "pitch": {
+     "type": "number",
+     "minimum": -1000000.0,
+     "maximum": 1000000.0
+    },
+    "deadzone": {
+     "type": "array",
+     "items": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+     },
+     "maxItems": 2
+    },
+    "intro": {
+     "description": "cinematic to play at start",
+     "type": "string",
+     "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+    },
+    "cinematics": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "duration": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 3600
+       },
+       "tracks": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "type": {
+           "enum": [
+            "camera",
+            "subtitle",
+            "move",
+            "say",
+            "fade",
+            "letterbox",
+            "event"
+           ]
+          },
+          "at": {
+           "type": "number",
+           "minimum": 0,
+           "maximum": 3600
+          },
+          "dur": {
+           "type": "number",
+           "minimum": 0,
+           "maximum": 3600
+          },
+          "to": {
+           "type": "number",
+           "minimum": -1000000.0,
+           "maximum": 1000000.0
+          },
+          "x": {
+           "type": "number",
+           "minimum": -1000000.0,
+           "maximum": 1000000.0
+          },
+          "y": {
+           "type": "number",
+           "minimum": -1000000.0,
+           "maximum": 1000000.0
+          },
+          "z": {
+           "type": "number",
+           "minimum": -1000000.0,
+           "maximum": 1000000.0
+          },
+          "yaw": {
+           "type": "number",
+           "minimum": -1000000.0,
+           "maximum": 1000000.0
+          },
+          "zoom": {
+           "type": "number",
+           "minimum": 0.05,
+           "maximum": 20
+          },
+          "text": {
+           "type": "string",
+           "maxLength": 300
+          },
+          "entity": {
+           "type": "string",
+           "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+          },
+          "ease": {
+           "enum": [
+            "linear",
+            "inOut",
+            "in",
+            "out"
+           ]
+          },
+          "speed": {
+           "type": "number",
+           "minimum": 0,
+           "maximum": 100
+          },
+          "event": {
+           "type": "string",
+           "maxLength": 80
+          }
+         },
+         "additionalProperties": true,
+         "required": [
+          "type"
+         ]
+        },
+        "maxItems": 500
+       }
+      },
+      "additionalProperties": true
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    }
+   },
+   "additionalProperties": true
+  },
+  "characters": {
+   "description": "cast: every character has an age group (default adult)",
+   "type": "object",
+   "additionalProperties": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "age": {
+      "description": "child | teen | adult or a number of years (default adult)"
+     },
+     "desc": {
+      "type": "string",
+      "maxLength": 2000
+     },
+     "backstory": {
+      "type": "string",
+      "maxLength": 4000
+     },
+     "bio": {
+      "type": "string",
+      "maxLength": 2000
+     },
+     "kind": {
+      "enum": [
+       "npc",
+       "enemy",
+       "animal",
+       "vehicle",
+       "player"
+      ]
+     },
+     "x": {
+      "type": "number",
+      "minimum": -100000.0,
+      "maximum": 100000.0
+     },
+     "z": {
+      "type": "number",
+      "minimum": -100000.0,
+      "maximum": 100000.0
+     },
+     "y": {
+      "type": "number",
+      "minimum": -100000.0,
+      "maximum": 100000.0
+     },
+     "level": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 99
+     },
+     "faction": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "hp": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 1000000.0
+     },
+     "ai": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "schedule": {
+      "description": "schedule id or a list of entries"
+     },
+     "dialog": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "shop": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "romanceable": {
+      "description": "adults only - the child-safety rules block it for minors",
+      "type": "boolean"
+     },
+     "hostile": {
+      "type": "boolean"
+     },
+     "team": {
+      "type": "string",
+      "maxLength": 20
+     },
+     "role": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "weapon": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "outfit": {},
+     "col": {
+      "type": "string",
+      "maxLength": 9
+     },
+     "loot": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "tags": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "maxLength": 40
+      },
+      "maxItems": 5000
+     },
+     "gold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1000000.0
+     },
+     "controller": {
+      "enum": [
+       "third_person",
+       "first_person",
+       "top_down",
+       "side_scroll",
+       "vehicle",
+       "point_click",
+       "none"
+      ]
+     },
+     "skill": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+     }
+    },
+    "additionalProperties": true
+   },
+   "propertyNames": {
+    "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+   }
+  },
+  "entities": {
+   "description": "extra entities",
+   "type": "array",
+   "items": {
+    "description": "{kind, x, z, name, ...}: things the studio object list has no type for (campfire, vehicle, exit, building, shrine, animal, board, station, resource nodes)"
+   },
+   "maxItems": 20000
+  },
+  "combat": {
+   "type": "object",
+   "properties": {
+    "weapons": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "type": {
+        "enum": [
+         "melee",
+         "ranged",
+         "hitscan"
+        ]
+       },
+       "damage": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 9999
+       },
+       "range": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1000
+       },
+       "arc": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 360
+       },
+       "cooldown": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 60
+       },
+       "knockback": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+       },
+       "stagger": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 10
+       },
+       "heavy": {
+        "type": "boolean"
+       },
+       "projectile": {
+        "type": "object",
+        "properties": {
+         "speed": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 500
+         },
+         "life": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 30
+         },
+         "radius": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+         },
+         "pierce": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+         }
+        },
+        "additionalProperties": true
+       },
+       "ammo": {
+        "type": "object",
+        "properties": {
+         "clip": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9999
+         },
+         "reserve": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999
+         },
+         "reload": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 30
+         }
+        },
+        "additionalProperties": true
+       },
+       "spread": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 90
+       },
+       "pellets": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 64
+       },
+       "dtype": {
+        "type": "string",
+        "maxLength": 30
+       }
+      },
+      "additionalProperties": true,
+      "required": [
+       "type"
+      ]
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "abilities": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "cooldown": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 600
+       },
+       "cost": {
+        "type": "object",
+        "properties": {
+         "stamina": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999
+         },
+         "mana": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999
+         }
+        },
+        "additionalProperties": true
+       },
+       "requires": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+       },
+       "effect": {
+        "type": "object",
+        "properties": {
+         "type": {
+          "enum": [
+           "damage",
+           "aoe",
+           "heal",
+           "buff",
+           "dash",
+           "projectile",
+           "shield"
+          ]
+         },
+         "amount": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999
+         },
+         "radius": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+         },
+         "duration": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 600
+         },
+         "stat": {
+          "type": "string",
+          "maxLength": 30
+         },
+         "mult": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+         },
+         "add": {
+          "type": "number",
+          "minimum": -999,
+          "maximum": 999
+         },
+         "weapon": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+         },
+         "knockback": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+         },
+         "pierce": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+         },
+         "dtype": {
+          "type": "string",
+          "maxLength": 30
+         }
+        },
+        "additionalProperties": true,
+        "required": [
+         "type"
+        ]
+       }
+      },
+      "additionalProperties": true
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "player_weapon": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+    },
+    "hit_reactions": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "stagger": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 10
+       },
+       "knockback": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+       }
+      },
+      "additionalProperties": true
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "crit": {
+     "type": "object",
+     "properties": {
+      "chance": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "mult": {
+       "type": "number",
+       "minimum": 1,
+       "maximum": 100
+      }
+     },
+     "additionalProperties": true
+    },
+    "iframes": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 10
+    },
+    "friendly_fire": {
+     "type": "boolean"
+    }
+   },
+   "additionalProperties": true
+  },
+  "ai": {
+   "type": "object",
+   "properties": {
+    "behaviors": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "type": {
+        "enum": [
+         "bt",
+         "fsm",
+         "schedule"
+        ]
+       },
+       "root": {
+        "description": "behaviour-tree node: {sel|seq: [...]}, {not}, {cool, child}, {rand, child}, {cond, v}, {act, ...}"
+       },
+       "start": {
+        "type": "string",
+        "maxLength": 40
+       },
+       "states": {
+        "type": "object",
+        "additionalProperties": {
+         "type": "object",
+         "properties": {
+          "do": {
+           "type": "string",
+           "maxLength": 40
+          },
+          "go": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "if": {
+              "type": "string",
+              "maxLength": 40
+             },
+             "to": {
+              "type": "string",
+              "maxLength": 40
+             },
+             "v": {
+              "type": "number",
+              "minimum": -1000000.0,
+              "maximum": 1000000.0
+             }
+            },
+            "additionalProperties": true
+           },
+           "maxItems": 5000
+          }
+         },
+         "additionalProperties": true
+        },
+        "propertyNames": {
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        }
+       }
+      },
+      "additionalProperties": true,
+      "required": [
+       "type"
+      ]
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "perception": {
+     "type": "object",
+     "properties": {
+      "sight": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1000
+      },
+      "fov": {
+       "type": "number",
+       "minimum": 1,
+       "maximum": 360
+      },
+      "hearing": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1000
+      },
+      "memory": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 600
+      }
+     },
+     "additionalProperties": true
+    },
+    "squads": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "members": {
+        "type": "array",
+        "items": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "maxItems": 5000
+       },
+       "leader": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+       },
+       "formation": {
+        "enum": [
+         "line",
+         "wedge",
+         "circle",
+         "column"
+        ]
+       },
+       "tactic": {
+        "enum": [
+         "flank",
+         "surround",
+         "swarm",
+         "hold"
+        ]
+       },
+       "spacing": {
+        "type": "number",
+        "minimum": 0.2,
+        "maximum": 50
+       }
+      },
+      "additionalProperties": true
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "schedules": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "from": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 24
+        },
+        "to": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 24
+        },
+        "at": {
+         "description": "{x, z} or a poi id"
+        },
+        "do": {
+         "type": "string",
+         "maxLength": 40
+        },
+        "say": {
+         "type": "string",
+         "maxLength": 200
+        }
+       },
+       "additionalProperties": true
+      },
+      "maxItems": 5000
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "pois": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "x": {
+        "type": "number",
+        "minimum": -100000.0,
+        "maximum": 100000.0
+       },
+       "z": {
+        "type": "number",
+        "minimum": -100000.0,
+        "maximum": 100000.0
+       },
+       "y": {
+        "type": "number",
+        "minimum": -100000.0,
+        "maximum": 100000.0
+       },
+       "name": {
+        "type": "string",
+        "maxLength": 80
+       }
+      },
+      "additionalProperties": true
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "capture": {
+     "type": "array",
+     "items": {},
+     "maxItems": 5000
+    }
+   },
+   "additionalProperties": true
+  },
+  "items": {
+   "description": "extends world.items",
+   "type": "object",
+   "additionalProperties": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "kind": {
+      "type": "string",
+      "maxLength": 30
+     },
+     "stack": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9999
+     },
+     "weight": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10000
+     },
+     "value": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1000000.0
+     },
+     "price": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1000000.0
+     },
+     "desc": {
+      "type": "string",
+      "maxLength": 300
+     },
+     "tags": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "maxLength": 30
+      },
+      "maxItems": 5000
+     },
+     "heal": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 9999
+     },
+     "use": {
+      "type": "object",
+      "properties": {
+       "heal": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 9999
+       },
+       "food": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+       },
+       "water": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+       },
+       "warmth": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+       },
+       "buff": {
+        "type": "object",
+        "properties": {
+         "stat": {
+          "type": "string",
+          "maxLength": 30
+         },
+         "mult": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+         },
+         "add": {
+          "type": "number",
+          "minimum": -999,
+          "maximum": 999
+         },
+         "duration": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3600
+         }
+        },
+        "additionalProperties": true
+       }
+      },
+      "additionalProperties": true
+     },
+     "equip": {
+      "type": "object",
+      "properties": {
+       "slot": {
+        "type": "string",
+        "maxLength": 20
+       },
+       "atk": {
+        "type": "number",
+        "minimum": -999,
+        "maximum": 999
+       },
+       "def": {
+        "type": "number",
+        "minimum": -999,
+        "maximum": 999
+       },
+       "hp": {
+        "type": "number",
+        "minimum": -999,
+        "maximum": 999
+       },
+       "speed": {
+        "type": "number",
+        "minimum": 0.1,
+        "maximum": 5
+       },
+       "warmth": {
+        "type": "number",
+        "minimum": -100,
+        "maximum": 100
+       },
+       "light": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+       }
+      },
+      "additionalProperties": true
+     },
+     "weapon": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "col": {
+      "type": "string",
+      "maxLength": 9
+     },
+     "gold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1000000.0
+     }
+    },
+    "additionalProperties": true,
+    "required": [
+     "name"
+    ]
+   },
+   "propertyNames": {
+    "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+   }
+  },
+  "inventory": {
+   "type": "object",
+   "properties": {
+    "slots": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 1000
+    },
+    "max_weight": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1000000.0
+    },
+    "start": {
+     "description": "item: count",
+     "type": "object",
+     "additionalProperties": {
+      "type": "number",
+      "minimum": -1000000.0,
+      "maximum": 1000000.0
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "auto_equip": {
+     "type": "boolean"
+    }
+   },
+   "additionalProperties": true
+  },
+  "recipes": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "object",
+    "properties": {
+     "in": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "number",
+       "minimum": -1000000.0,
+       "maximum": 1000000.0
+      },
+      "propertyNames": {
+       "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+      }
+     },
+     "out": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "number",
+       "minimum": -1000000.0,
+       "maximum": 1000000.0
+      },
+      "propertyNames": {
+       "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+      }
+     },
+     "station": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "time": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 3600
+     },
+     "level": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 999
+     },
+     "skill": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "additionalProperties": true
+   },
+   "propertyNames": {
+    "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+   }
+  },
+  "loot_tables": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "object",
+    "properties": {
+     "rolls": {
+      "description": "n or [min, max]"
+     },
+     "guaranteed": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "item": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "n": {
+         "type": "number",
+         "minimum": 1,
+         "maximum": 9999
+        }
+       },
+       "additionalProperties": true,
+       "required": [
+        "item"
+       ]
+      },
+      "maxItems": 5000
+     },
+     "entries": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "item": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "table": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "w": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1000000.0
+        },
+        "min": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 9999
+        },
+        "max": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 9999
+        },
+        "chance": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1
+        },
+        "minLevel": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 999
+        }
+       },
+       "additionalProperties": true
+      },
+      "maxItems": 5000
+     },
+     "gold": {
+      "type": "array",
+      "items": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1000000.0
+      },
+      "maxItems": 2
+     }
+    },
+    "additionalProperties": true
+   },
+   "propertyNames": {
+    "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+   }
+  },
+  "progression": {
+   "type": "object",
+   "properties": {
+    "xp_curve": {
+     "type": "object",
+     "properties": {
+      "base": {
+       "type": "number",
+       "minimum": 1,
+       "maximum": 1000000.0
+      },
+      "exp": {
+       "type": "number",
+       "minimum": 0.5,
+       "maximum": 4
+      }
+     },
+     "additionalProperties": true
+    },
+    "max_level": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 999
+    },
+    "points_per_level": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 99
+    },
+    "hp_per_level": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 999
+    },
+    "levels_per_atk": {
+     "type": "number",
+     "minimum": 1,
+     "maximum": 999
+    },
+    "start_points": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 999
+    },
+    "skill_trees": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string",
+        "maxLength": 80
+       },
+       "nodes": {
+        "type": "object",
+        "additionalProperties": {
+         "type": "object",
+         "properties": {
+          "name": {
+           "type": "string",
+           "maxLength": 80
+          },
+          "desc": {
+           "type": "string",
+           "maxLength": 300
+          },
+          "cost": {
+           "type": "number",
+           "minimum": 0,
+           "maximum": 99
+          },
+          "requires": {
+           "type": "array",
+           "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+           },
+           "maxItems": 5000
+          },
+          "level": {
+           "type": "number",
+           "minimum": 0,
+           "maximum": 999
+          },
+          "effect": {
+           "type": "object",
+           "properties": {
+            "stat": {
+             "type": "string",
+             "maxLength": 30
+            },
+            "add": {
+             "type": "number",
+             "minimum": -1000000.0,
+             "maximum": 1000000.0
+            },
+            "mult": {
+             "type": "number",
+             "minimum": 0,
+             "maximum": 100
+            },
+            "ability": {
+             "type": "string",
+             "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+            },
+            "perk": {
+             "type": "string",
+             "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+            }
+           },
+           "additionalProperties": true
+          }
+         },
+         "additionalProperties": true
+        },
+        "propertyNames": {
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        }
+       }
+      },
+      "additionalProperties": true
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "perks": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string",
+        "maxLength": 80
+       },
+       "desc": {
+        "type": "string",
+        "maxLength": 300
+       },
+       "auto": {
+        "type": "boolean"
+       },
+       "requires": {
+        "type": "object",
+        "properties": {
+         "level": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999
+         },
+         "quest": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+         },
+         "skill": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+         }
+        },
+        "additionalProperties": true
+       },
+       "effect": {
+        "type": "object",
+        "properties": {
+         "stat": {
+          "type": "string",
+          "maxLength": 30
+         },
+         "add": {
+          "type": "number",
+          "minimum": -1000000.0,
+          "maximum": 1000000.0
+         },
+         "mult": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+         }
+        },
+        "additionalProperties": true
+       }
+      },
+      "additionalProperties": true
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    }
+   },
+   "additionalProperties": true
+  },
+  "quests": {
+   "description": "quests in addition to the studio quests",
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "title": {
+      "type": "string",
+      "maxLength": 120
+     },
+     "desc": {
+      "type": "string",
+      "maxLength": 1000
+     },
+     "giver": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "auto": {
+      "type": "boolean"
+     },
+     "final": {
+      "type": "boolean"
+     },
+     "next": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "steps": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "type": {
+         "enum": [
+          "collect",
+          "defeat",
+          "talk",
+          "reach",
+          "escort",
+          "craft",
+          "deliver",
+          "interact",
+          "survive",
+          "wait",
+          "custom"
+         ]
+        },
+        "item": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "kind": {
+         "type": "string",
+         "maxLength": 40
+        },
+        "id": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "npc": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "count": {
+         "type": "number",
+         "minimum": 1,
+         "maximum": 9999
+        },
+        "x": {
+         "type": "number",
+         "minimum": -100000.0,
+         "maximum": 100000.0
+        },
+        "z": {
+         "type": "number",
+         "minimum": -100000.0,
+         "maximum": 100000.0
+        },
+        "r": {
+         "type": "number",
+         "minimum": 0.2,
+         "maximum": 500
+        },
+        "label": {
+         "type": "string",
+         "maxLength": 120
+        },
+        "level": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 99
+        },
+        "text": {
+         "type": "string",
+         "maxLength": 300
+        },
+        "consume": {
+         "type": "boolean"
+        },
+        "place": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "event": {
+         "type": "string",
+         "maxLength": 80
+        },
+        "seconds": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 36000
+        },
+        "recipe": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        }
+       },
+       "additionalProperties": true,
+       "required": [
+        "type"
+       ]
+      },
+      "maxItems": 40
+     },
+     "give": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "reward": {
+      "type": "object",
+      "properties": {
+       "xp": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1000000.0
+       },
+       "gold": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1000000.0
+       },
+       "items": {
+        "type": "array",
+        "items": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "maxItems": 5000
+       },
+       "item": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+       },
+       "rep": {
+        "type": "object",
+        "additionalProperties": {
+         "type": "number",
+         "minimum": -1000000.0,
+         "maximum": 1000000.0
+        },
+        "propertyNames": {
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        }
+       }
+      },
+      "additionalProperties": true
+     },
+     "fail": {
+      "type": "object",
+      "properties": {
+       "time": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 36000
+       }
+      },
+      "additionalProperties": true
+     }
+    },
+    "additionalProperties": true,
+    "required": [
+     "id"
+    ]
+   },
+   "maxItems": 5000
+  },
+  "quests_radiant": {
+   "type": "object",
+   "properties": {
+    "templates": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+       },
+       "verb": {
+        "type": "string",
+        "maxLength": 30
+       },
+       "title": {
+        "type": "string",
+        "maxLength": 160
+       },
+       "desc": {
+        "type": "string",
+        "maxLength": 600
+       },
+       "steps": {
+        "type": "array",
+        "items": {},
+        "maxItems": 5000
+       },
+       "n": {
+        "type": "array",
+        "items": {
+         "type": "number",
+         "minimum": 1,
+         "maximum": 999
+        },
+        "maxItems": 2
+       },
+       "give": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+       },
+       "needs": {
+        "type": "string",
+        "maxLength": 30
+       }
+      },
+      "additionalProperties": true,
+      "required": [
+       "id",
+       "verb"
+      ]
+     },
+     "maxItems": 5000
+    },
+    "pools": {
+     "type": "object",
+     "properties": {
+      "enemies": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "properties": {
+         "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+         },
+         "name": {
+          "type": "string",
+          "maxLength": 80
+         }
+        },
+        "additionalProperties": true,
+        "required": [
+         "id"
+        ]
+       },
+       "maxItems": 5000
+      },
+      "items": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "properties": {
+         "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+         },
+         "name": {
+          "type": "string",
+          "maxLength": 80
+         }
+        },
+        "additionalProperties": true,
+        "required": [
+         "id"
+        ]
+       },
+       "maxItems": 5000
+      },
+      "places": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "properties": {
+         "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+         },
+         "name": {
+          "type": "string",
+          "maxLength": 80
+         }
+        },
+        "additionalProperties": true,
+        "required": [
+         "id"
+        ]
+       },
+       "maxItems": 5000
+      },
+      "givers": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+       },
+       "maxItems": 5000
+      },
+      "crafts": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "properties": {
+         "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+         },
+         "name": {
+          "type": "string",
+          "maxLength": 80
+         }
+        },
+        "additionalProperties": true,
+        "required": [
+         "id"
+        ]
+       },
+       "maxItems": 5000
+      }
+     },
+     "additionalProperties": true
+    },
+    "variety": {
+     "type": "object",
+     "properties": {
+      "history": {
+       "type": "number",
+       "minimum": 1,
+       "maximum": 999
+      },
+      "template_cooldown": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 99
+      },
+      "max_same_verb": {
+       "type": "number",
+       "minimum": 1,
+       "maximum": 99
+      },
+      "verb_window": {
+       "type": "number",
+       "minimum": 1,
+       "maximum": 99
+      },
+      "place_cooldown": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 99
+      },
+      "giver_cooldown": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 99
+      },
+      "target_cooldown": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 99
+      },
+      "candidates": {
+       "type": "number",
+       "minimum": 1,
+       "maximum": 200
+      },
+      "followup_every": {
+       "type": "number",
+       "minimum": 1,
+       "maximum": 999
+      }
+     },
+     "additionalProperties": true
+    },
+    "reward": {
+     "type": "object",
+     "properties": {
+      "xp": {
+       "type": "array",
+       "items": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100000.0
+       },
+       "maxItems": 2
+      },
+      "gold": {
+       "type": "array",
+       "items": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100000.0
+       },
+       "maxItems": 2
+      }
+     },
+     "additionalProperties": true
+    },
+    "adjectives": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "maxItems": 5000
+    },
+    "reasons": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 120
+     },
+     "maxItems": 5000
+    },
+    "lost": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "maxItems": 5000
+    }
+   },
+   "additionalProperties": true
+  },
+  "dialogs": {
+   "type": "object",
+   "additionalProperties": {
+    "description": "studio dialog format + vars / rep / affinity conditions and actions"
+   },
+   "propertyNames": {
+    "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+   }
+  },
+  "dialogue": {
+   "type": "object",
+   "properties": {
+    "vars": {
+     "description": "starting dialogue variables"
+    }
+   },
+   "additionalProperties": true
+  },
+  "factions": {
+   "type": "object",
+   "additionalProperties": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "desc": {
+      "type": "string",
+      "maxLength": 1000
+     },
+     "relations": {
+      "description": "-100..100",
+      "type": "object",
+      "additionalProperties": {
+       "type": "number",
+       "minimum": -1000000.0,
+       "maximum": 1000000.0
+      },
+      "propertyNames": {
+       "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+      }
+     },
+     "members": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+      },
+      "maxItems": 5000
+     },
+     "hostile_below": {
+      "type": "number",
+      "minimum": -100,
+      "maximum": 100
+     },
+     "player": {
+      "type": "number",
+      "minimum": -100,
+      "maximum": 100
+     },
+     "ranks": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "at": {
+         "type": "number",
+         "minimum": -100,
+         "maximum": 100
+        },
+        "name": {
+         "type": "string",
+         "maxLength": 60
+        }
+       },
+       "additionalProperties": true
+      },
+      "maxItems": 5000
+     }
+    },
+    "additionalProperties": true
+   },
+   "propertyNames": {
+    "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+   }
+  },
+  "economy": {
+   "type": "object",
+   "properties": {
+    "currency": {
+     "type": "string",
+     "maxLength": 30
+    },
+    "start": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1000000000.0
+    },
+    "rep_price": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "shops": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string",
+        "maxLength": 80
+       },
+       "owner": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+       },
+       "faction": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+       },
+       "buy_mult": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+       },
+       "sell_mult": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+       },
+       "restock_hours": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100000.0
+       },
+       "dynamic": {
+        "type": "boolean"
+       },
+       "stock": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "item": {
+           "type": "string",
+           "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+          },
+          "qty": {
+           "type": "number",
+           "minimum": 0,
+           "maximum": 1000000.0
+          },
+          "price": {
+           "type": "number",
+           "minimum": 0,
+           "maximum": 1000000000.0
+          }
+         },
+         "additionalProperties": true,
+         "required": [
+          "item"
+         ]
+        },
+        "maxItems": 5000
+       }
+      },
+      "additionalProperties": true
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    }
+   },
+   "additionalProperties": true
+  },
+  "environment": {
+   "type": "object",
+   "properties": {
+    "day_length": {
+     "description": "seconds per in-game day (0 = time stands still)",
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1000000.0
+    },
+    "start_hour": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 24
+    },
+    "weather": {
+     "type": "object",
+     "properties": {
+      "start": {
+       "enum": [
+        "clear",
+        "auto",
+        "rain",
+        "storm",
+        "snow",
+        "fog",
+        "embers",
+        "pollen",
+        "bubbles",
+        "fireflies"
+       ]
+      },
+      "pattern": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "properties": {
+         "type": {
+          "enum": [
+           "clear",
+           "auto",
+           "rain",
+           "storm",
+           "snow",
+           "fog",
+           "embers",
+           "pollen",
+           "bubbles",
+           "fireflies"
+          ]
+         },
+         "w": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000.0
+         },
+         "min": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+         },
+         "max": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+         }
+        },
+        "additionalProperties": true,
+        "required": [
+         "type"
+        ]
+       },
+       "maxItems": 5000
+      },
+      "change_every": {
+       "type": "array",
+       "items": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 1000000.0
+       },
+       "maxItems": 2
+      }
+     },
+     "additionalProperties": true
+    },
+    "effects": {
+     "description": "per weather / night: {modifier: multiplier}",
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "additionalProperties": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 100
+      },
+      "propertyNames": {
+       "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+      }
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    }
+   },
+   "additionalProperties": true
+  },
+  "save": {
+   "type": "object",
+   "properties": {
+    "slots": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 99
+    },
+    "autosave_s": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 100000.0
+    }
+   },
+   "additionalProperties": true
+  },
+  "hud": {
+   "type": "object",
+   "properties": {
+    "widgets": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "type": {
+        "enum": [
+         "bar",
+         "text",
+         "icons",
+         "quests",
+         "minimap",
+         "crosshair",
+         "timer",
+         "prompt",
+         "compass",
+         "messages"
+        ]
+       },
+       "bind": {
+        "type": "string",
+        "maxLength": 60
+       },
+       "max": {
+        "description": "number or bind"
+       },
+       "text": {
+        "type": "string",
+        "maxLength": 200
+       },
+       "x": {
+        "type": "number",
+        "minimum": -4000,
+        "maximum": 4000
+       },
+       "y": {
+        "type": "number",
+        "minimum": -4000,
+        "maximum": 4000
+       },
+       "w": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 4000
+       },
+       "h": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 4000
+       },
+       "anchor": {
+        "enum": [
+         "tl",
+         "tr",
+         "bl",
+         "br",
+         "tc",
+         "bc",
+         "c",
+         "cl",
+         "cr"
+        ]
+       },
+       "color": {
+        "type": "string",
+        "maxLength": 20
+       },
+       "label": {
+        "type": "string",
+        "maxLength": 40
+       },
+       "when": {
+        "type": "string",
+        "maxLength": 60
+       }
+      },
+      "additionalProperties": true,
+      "required": [
+       "type"
+      ]
+     },
+     "maxItems": 200
+    }
+   },
+   "additionalProperties": true
+  },
+  "audio": {
+   "type": "object",
+   "properties": {
+    "events": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "cues": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "properties": {
+       "wave": {
+        "enum": [
+         "square",
+         "saw",
+         "sine",
+         "noise",
+         "triangle"
+        ]
+       },
+       "freq": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 20000
+       },
+       "slide": {
+        "type": "number",
+        "minimum": -20000,
+        "maximum": 20000
+       },
+       "dur": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 10
+       },
+       "vol": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+       },
+       "range": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 10000.0
+       }
+      },
+      "additionalProperties": true
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    },
+    "music": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string",
+      "maxLength": 120
+     },
+     "propertyNames": {
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     }
+    }
+   },
+   "additionalProperties": true
+  },
+  "input": {
+   "type": "object",
+   "properties": {
+    "abilities": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "maxItems": 9
+    },
+    "weapons": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "maxItems": 9
+    }
+   },
+   "additionalProperties": true
+  },
+  "scripts": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "entity": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "source": {
+      "type": "string",
+      "maxLength": 200000
+     },
+     "budget": {
+      "type": "number",
+      "minimum": 1000,
+      "maximum": 5000000.0
+     }
+    },
+    "additionalProperties": true,
+    "required": [
+     "id",
+     "source"
+    ]
+   },
+   "maxItems": 500
+  },
+  "graphs": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "entity": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "nodes": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "id": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "type": {
+         "type": "string",
+         "maxLength": 60
+        },
+        "params": {},
+        "x": {
+         "type": "number",
+         "minimum": -1000000.0,
+         "maximum": 1000000.0
+        },
+        "y": {
+         "type": "number",
+         "minimum": -1000000.0,
+         "maximum": 1000000.0
+        }
+       },
+       "additionalProperties": true,
+       "required": [
+        "id",
+        "type"
+       ]
+      },
+      "maxItems": 2000
+     },
+     "links": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "from": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "out": {
+         "type": "string",
+         "maxLength": 30
+        },
+        "to": {
+         "type": "string",
+         "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+        },
+        "in": {
+         "type": "string",
+         "maxLength": 30
+        }
+       },
+       "additionalProperties": true,
+       "required": [
+        "from",
+        "to"
+       ]
+      },
+      "maxItems": 8000
+     }
+    },
+    "additionalProperties": true,
+    "required": [
+     "id"
+    ]
+   },
+   "maxItems": 500
+  },
+  "streaming": {
+   "type": "object",
+   "properties": {
+    "chunk": {
+     "type": "number",
+     "minimum": 4,
+     "maximum": 4096
+    },
+    "radius": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 32
+    },
+    "keep": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 8
+    },
+    "lod": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "dist": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1000000000.0
+       },
+       "level": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9
+       }
+      },
+      "additionalProperties": true
+     },
+     "maxItems": 8
+    },
+    "budgets": {
+     "type": "object",
+     "properties": {
+      "instances": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 10000000.0
+      },
+      "per_kind": {
+       "type": "object",
+       "additionalProperties": {
+        "type": "number",
+        "minimum": -1000000.0,
+        "maximum": 1000000.0
+       },
+       "propertyNames": {
+        "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+       }
+      },
+      "active_ai": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 100000.0
+      }
+     },
+     "additionalProperties": true
+    },
+    "generator": {
+     "enum": [
+      "region"
+     ]
+    },
+    "region": {
+     "type": "object",
+     "properties": {
+      "camp": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "shrine": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      }
+     },
+     "additionalProperties": true
+    }
+   },
+   "additionalProperties": true
+  },
+  "procgen": {
+   "type": "object",
+   "properties": {
+    "names": {
+     "type": "object",
+     "properties": {
+      "first": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "maxLength": 40
+       },
+       "maxItems": 5000
+      },
+      "last": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "maxLength": 40
+       },
+       "maxItems": 5000
+      }
+     },
+     "additionalProperties": true
+    },
+    "syllables": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 12
+     },
+     "maxItems": 5000
+    },
+    "jobs": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "maxItems": 5000
+    },
+    "enemies": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "maxLength": 40
+     },
+     "maxItems": 5000
+    },
+    "loot": {
+     "type": "string",
+     "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+    }
+   },
+   "additionalProperties": true
+  },
+  "genre_data": {
+   "description": "per-genre settings (see SYSTEMS_GUIDE.md)"
+  },
+  "relationships": {
+   "description": "family / social / romantic links",
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "a": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "b": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,64}$"
+     },
+     "type": {
+      "type": "string",
+      "maxLength": 40
+     }
+    },
+    "additionalProperties": true,
+    "required": [
+     "a",
+     "b",
+     "type"
+    ]
+   },
+   "maxItems": 5000
+  },
+  "romance": {
+   "description": "romance options (adults only)"
+  },
+  "safety": {
+   "description": "informational stamp written by the export gate; never read to relax any rule"
+  }
+ },
+ "additionalProperties": true,
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "stark-systems/systems.v1.json",
+ "title": "Stark World Engine Systems world.json \"systems\" extension (version 1)"
+}

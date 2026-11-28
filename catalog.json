@@ -1,0 +1,1394 @@
+{
+  "schema_version": 1,
+  "currency": "USD",
+  "scales": [
+    {
+      "id": "individual",
+      "label": "Individual"
+    },
+    {
+      "id": "practice",
+      "label": "Practice"
+    },
+    {
+      "id": "hospital",
+      "label": "Hospital"
+    },
+    {
+      "id": "region",
+      "label": "Region"
+    },
+    {
+      "id": "nation",
+      "label": "Nation"
+    },
+    {
+      "id": "continent",
+      "label": "Continent"
+    }
+  ],
+  "scale_note": "Scale labels say who a plan is meant for. They do not change what the software is or what it is certified for.",
+  "sales": [
+    {
+      "id": "christmas-2026",
+      "name": "Christmas Sale",
+      "starts": "2026-12-19",
+      "ends": "2027-01-02",
+      "percent_off": 25,
+      "products": [
+        "stark-world-engine",
+        "gorgon-quill/pro"
+      ],
+      "subscription_discount": "first_period",
+      "note": "Dates are inclusive, in the buyer's local time on the page. The discount is applied by the checkout (itch.io sale, Stripe coupon); the page only shows it."
+    },
+    {
+      "id": "black-friday-2026",
+      "name": "Black Friday to Cyber Monday",
+      "starts": "2026-11-27",
+      "ends": "2026-12-01",
+      "percent_off": 30,
+      "products": [
+        "stark-world-engine/pro",
+        "stark-world-engine/studio",
+        "gorgon-quill/pro",
+        "gorgon-quill/early-access",
+        "gorgon-chart/solo",
+        "gorgon-chart/practice-team",
+        "gorgon-chart/clinic-team",
+        "gorgon-chart/humanitarian",
+        "gorgon-chart/founding-solo",
+        "gorgon-chart/founding-practice",
+        "stark-math/standard",
+        "stark-ledger/standard",
+        "stark-career/standard",
+        "stark-family-vault/standard",
+        "stark-classroom-hub/standard",
+        "stark-studio-creator/standard",
+        "stark-builder/standard",
+        "stark-warden/standard",
+        "stark-event-kit/standard",
+        "stark-trades/standard"
+      ],
+      "banner": "Black Friday to Cyber Monday: 30% off Stark products in the itch.io sale, November 27 to December 1",
+      "url": "https://itch.io/s/221476",
+      "note": "Dates are inclusive, in the buyer's local time on the page. The discount is applied by the itch.io sale (itch.io/s/221476, \"Black Friday to Cyber Monday: 30% off everything\": all 19 paid projects, including every product, the 4 Stark app editions and the School Licence); the page only shows it."
+    },
+    {
+      "id": "christmas-2026-covenant-solo",
+      "name": "Christmas Sale",
+      "starts": "2026-12-19",
+      "ends": "2027-01-02",
+      "percent_off": 50,
+      "products": [
+        "gorgon-chart/solo"
+      ],
+      "subscription_discount": "first_period",
+      "note": "Inside the existing Christmas window. The discount is applied by the checkout; the page only shows it."
+    }
+  ],
+  "products": [
+    {
+      "id": "gorgon-studios",
+      "name": "Stark World Engine",
+      "status": "available",
+      "version_source": "GorgonStudios/dist/release_report.json",
+      "version": "28.6",
+      "tagline": "Build the game in your head. No coding, one file to share.",
+      "summary": "A free offline game maker for beginners and classrooms. Place 3D or 2D objects, write quests and dialogue, press Play, and export the whole game as one HTML5 file anyone can open. No coding, no account, no engine to learn.",
+      "product_url": "https://ams513.itch.io/stark-world-engine",
+      "free_url": "https://ams513.itch.io/stark-world-engine-free?utm_source=storefront&utm_medium=web&utm_campaign=free_2026_11&utm_content=try_free",
+      "free_name": "Stark World Engine Free",
+      "free_note": "The whole builder: 3D and 2D, Make me a game, moods, drone mode, Pixel-Art Canvas and SFX Forge. Its HTML5 export includes the first level of your game, with a small closable \"Made with Stark World Engine\" note.",
+      "free_source": "GorgonStudios/dist/v28.6/ITCH_IO_STOREFRONT.md (Free row)",
+      "notify_url": "",
+      "image": "assets/img/studios-card-800.png",
+      "image_alt": "Stark World Engine Play mode: a small hero in a glowing night world of teal trees and lanterns",
+      "features": [
+        "Make me a game: a complete little adventure from a theme and a size, same seed, same game",
+        "3D worlds (WebGL2) and 2D platformer levels in one builder",
+        "Quests, dialogue, items, XP, enemies, bosses and up to 25 linked levels",
+        "Cinematic Drone Mode, postcards, Pixel-Art Canvas, SFX Forge and a soundtrack maker",
+        "One-file HTML5 cartridge export, playable offline"
+      ],
+      "editions": [
+        {
+          "id": "free",
+          "name": "Free",
+          "price": 0,
+          "billing": "free",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Every builder feature",
+            "HTML5 cartridges export the first level",
+            "A small \"Made with Stark World Engine\" note players can close"
+          ],
+          "checkout_url": ""
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "price": 30,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Everything in Free, and HTML5 cartridges export every level with no note",
+            "Godot 4 project export (starting scene of your first level)",
+            "UE5 project export (starting scene; UE 5.4+)"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-world-engine?utm_source=stark_site&utm_medium=store&utm_campaign=studios_285",
+          "previous_checkout_url": "https://ams513.itch.io/stark-world-engine?utm_source=storefront&utm_medium=web&utm_campaign=launch_2026_11&utm_content=pro"
+        },
+        {
+          "id": "studio",
+          "name": "Studio",
+          "price": 50,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Everything in Pro",
+            "Windows creator suite: auto video editor, OBS scene writer, phone hub, publishing helpers"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-world-engine?utm_source=stark_site&utm_medium=store&utm_campaign=studios_285",
+          "previous_checkout_url": "https://ams513.itch.io/stark-world-engine?utm_source=storefront&utm_medium=web&utm_campaign=launch_2026_11&utm_content=studio"
+        }
+      ],
+      "honest_notes": [
+        "A creative and fast-prototyping tool, not a replacement for a full engine.",
+        "Godot and UE5 exports are a starting scene of your first level; they do not re-create the gameplay.",
+        "UE5 export: the generated project was checked, but not yet run in a real Unreal Engine 5 install at release.",
+        "Works without a key. A key registers your copy and turns on the Pro and Studio exporters. Keys are checked offline.",
+        "New release: there are no reviews yet, and this page shows none."
+      ],
+      "requirements": [
+        "Windows 10/11: nothing to install, Python is included",
+        "macOS / Linux: Python 3.10 or newer",
+        "A WebGL2 browser: current Chrome, Edge or Firefox",
+        "Godot export: Godot 4.2+. UE5 export: Unreal Engine 5.4+",
+        "Studio creator suite: Windows 10/11, FFmpeg, OBS Studio 30+"
+      ],
+      "faq": [
+        {
+          "q": "Can I try it before I buy?",
+          "a": "Yes. Stark World Engine Free is a free download on itch.io: the whole builder, including 3D and 2D worlds, Make me a game, moods and drone mode. Its HTML5 export includes the first level of your game, with a small closable \"Made with Stark World Engine\" note. Pro and Studio export every level with no note."
+        },
+        {
+          "q": "Do I need internet or an account?",
+          "a": "No. Everything runs on your computer and the studio listens on 127.0.0.1 only. There is no account and no subscription; paid editions are paid once, and keys are checked offline."
+        },
+        {
+          "q": "Which computers does it run on?",
+          "a": "Windows 10/11 with nothing to install (Python is included), or macOS / Linux with Python 3.10 or newer. You also need a current Chrome, Edge or Firefox for WebGL2."
+        },
+        {
+          "q": "Can I import my own 3D models?",
+          "a": "Yes, since 28.5. Open the Assets tab and drop in a .glb (or a .gltf with its files), PBR textures or an .hdr sky. Files that need Draco or meshopt compression are refused: export them again without compression."
+        },
+        {
+          "q": "Can I sell the games I make?",
+          "a": "The games you make are yours. Do not resell or redistribute Stark World Engine itself."
+        },
+        {
+          "q": "Which edition should I get?",
+          "a": "Start with Free to build, play and share the first level. Pro to share whole HTML5 games and to continue in Godot 4 or Unreal Engine 5. Studio if you also make videos about your games."
+        }
+      ],
+      "activation": [
+        "After buying you receive one line of text that starts with GS1- (your key).",
+        "Start the studio (START_GORGON_STUDIOS.bat on Windows), open Export > Activate, paste the key and press Activate.",
+        "Or save the key as key.txt next to studio_app.py; the studio reads it when it starts.",
+        "No internet or account is needed: the key is checked on your computer. A missing or mistyped key never stops the program; it shows \"unregistered\" and keeps running."
+      ],
+      "whats_new": {
+        "version": "28.6",
+        "source": "GorgonStudios/docs_product/USER_GUIDE.md + FAQ.md, dist/v28.6/ITCH_IO_STOREFRONT.md",
+        "items": [
+          "A free download, Stark World Engine Free: the whole builder, with HTML5 export of a game's first level",
+          "A new WebGL2 renderer: PBR materials, HDRI skies, soft shadows, and water with reflections and shore foam",
+          "Import your own 3D models (.glb / .gltf), PBR textures and .hdr skies in the Assets tab",
+          "Graphics presets (Low, Medium, High, Auto), so older laptops stay smooth"
+        ]
+      },
+      "retired_editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 33,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "3D + 2D builder, quests, dialogue, items, multi-level games",
+            "Moods, drone mode, Pixel-Art Canvas, SFX Forge, soundtrack maker",
+            "One-file HTML5 cartridge export"
+          ],
+          "checkout_url": "",
+          "retired_on": "2026-11-19",
+          "previous_checkout_url": "https://ams513.itch.io/stark-world-engine?utm_source=storefront&utm_medium=web&utm_campaign=launch_2026_11&utm_content=standard"
+        }
+      ]
+    },
+    {
+      "id": "gorgon-cinema",
+      "name": "Stark IntraTheater",
+      "status": "available",
+      "version": "1.6.0",
+      "tagline": "Trivia night, movie night and history night, on your own computer. No internet needed.",
+      "summary": "A private family theater and movie studio: make your own movies with no internet, play your own videos, and explore world history, every country on Earth, science, art and music, maths and languages, plus kids' drawing, story, maths and spelling tools. Runs offline.",
+      "product_url": "https://ams513.itch.io/stark-intratheater",
+      "notify_url": "",
+      "image": "assets/img/products/cinema-cover-630.png",
+      "image_alt": "Cover art for Stark IntraTheater: A private family theater, movie studio and world explorer. Runs offline",
+      "features": [
+        "Play trivia as a family, each player at their own level",
+        "Make real movie files from clips, photos and music",
+        "Choose what kids can open, for how long and when"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 10,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Paid once on itch.io, no subscription"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-intratheater"
+        }
+      ],
+      "honest_notes": [
+        "Flags: Chrome and Edge on Windows draw flag emoji as two letters, so the flags quiz switches itself off there. Flags work in Firefox and on most phones, tablets and Macs.",
+        "Read-aloud: it uses the voices your browser or operating system provides, so how it sounds varies by device.",
+        "Reopening videos: browsers can't reopen your video files by themselves. Open the same files again and the app picks up where you left off.",
+        "Parent PIN: it is a family lock to keep little hands in Kids mode. It is not strong security.",
+        "Playing on itch: progress is saved in your browser for this page. To keep things long-term, back up from Family settings or use the offline download.",
+        "First version: there are no map borders, and video support depends on what your browser can play (MKV often won't).",
+        "Movie Studio, camera and microphone: whether recording works depends on your browser and on how the app is opened. From the offline download (index.html opened from your computer), Chrome, Edge and Firefox ask your permission. Inside the itch.io page the browser may block the camera; importing files still works there. Screen recording needs desktop Chrome, Edge or Firefox; phones and tablets don't offer it.",
+        "Movie Studio, exporting: the movie is recorded in real time, so a 3-minute movie takes about 3 minutes, and the tab needs to stay open and in front (it pauses itself if you switch away). Files are WebM (Safari saves MP4); they play in Chrome, Edge, Firefox and VLC, but some older TVs and the Windows Films & TV app may not open WebM."
+      ],
+      "requirements": [
+        "A current desktop browser: Chrome, Edge, Firefox or Safari",
+        "No install and no account; works offline once downloaded"
+      ],
+      "faq": [],
+      "activation": [],
+      "retired_editions": [
+        {
+          "id": "pro",
+          "name": "Pro",
+          "price": 66,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Planned"
+          ],
+          "checkout_url": "",
+          "retired_on": "2026-11-20",
+          "previous_checkout_url": ""
+        },
+        {
+          "id": "studio",
+          "name": "Studio",
+          "price": 99,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Planned"
+          ],
+          "checkout_url": "",
+          "retired_on": "2026-11-20",
+          "previous_checkout_url": ""
+        }
+      ],
+      "itch_source": "Stark_IntraTheater/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "1.6.0",
+        "date": "2026-11-27",
+        "source": "Stark_IntraTheater/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "See a week score and how many weeks in a row on This week",
+          "Look back over 8 weeks on the new Results page, and print it",
+          "Keep track of what you lent out, with a reminder and a calendar file",
+          "Print a pocket money statement",
+          "Export everything as CSV, and restore a backup from This week"
+        ]
+      }
+    },
+    {
+      "id": "gorgon-quill",
+      "name": "Stark Quill",
+      "status": "available",
+      "version_source": "Gorgon_Quill/dist/latest.json",
+      "version": "1.8.0",
+      "tagline": "Your novel, in plain files you own.",
+      "summary": "A free offline writing app for novelists. Every chapter is a plain text file in your Documents folder: no cloud, no lock-in. The Free edition stays free and Pro is a 12-month key. A Scrivener alternative that keeps everything local.",
+      "product_url": "https://ams513.itch.io/stark-quill",
+      "notify_url": "",
+      "image": "assets/img/quill-card-800.png",
+      "image_alt": "Stark Quill editor with a chapter list and an open chapter of a demo novel",
+      "features": [
+        "Chapters, backups and a deleted-paragraph graveyard",
+        "txt / md / html export on the free plan",
+        "Windows download includes the official python.org runtime"
+      ],
+      "editions": [
+        {
+          "id": "free",
+          "name": "Free",
+          "price": 0,
+          "billing": "free",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Writing, chapters, backups, the paragraph graveyard",
+            "txt / md / html export"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-quill?utm_source=stark_site&utm_medium=store&utm_campaign=quill_beta"
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "price": 39,
+          "billing": "year",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "docx / pdf / epub export",
+            "Continuity questions from a local AI model on your PC (needs Ollama)",
+            "Phone editing over your home network"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-quill?utm_source=stark_site&utm_medium=store&utm_campaign=quill_beta"
+        },
+        {
+          "id": "early-access",
+          "name": "Early Access",
+          "price": 10,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Early access (beta): the 1.4 beta with Pro features, 12 months from first open",
+            "Paid once; it does not renew",
+            "A $15 upgrade path to the full release is planned"
+          ],
+          "checkout_url": ""
+        }
+      ],
+      "honest_notes": [
+        "When a Pro 12-month key ends, Quill switches to Free. Your books stay readable, editable and exportable as text.",
+        "One key works on 2 devices. Keys make sharing hard, not impossible; there is no DRM that punishes buyers.",
+        "New release: there are no reviews yet, and this page shows none."
+      ],
+      "requirements": [
+        "Windows: the full download includes Python; nothing else to install",
+        "macOS / Linux / small zip: Python 3.10 or newer"
+      ],
+      "faq": [
+        {
+          "q": "Is there a free version?",
+          "a": "Yes. The Free plan covers writing, chapters, backups, the paragraph graveyard and txt / md / html export. It downloads from the Stark Quill page on itch.io."
+        },
+        {
+          "q": "Where are my books stored?",
+          "a": "As plain files in Documents\\My_Books on your own computer."
+        },
+        {
+          "q": "Does Quill need the internet?",
+          "a": "Not for writing. The Library panel is off until you turn it on, and it is the only part of Quill that goes online. Pro keys are checked offline."
+        },
+        {
+          "q": "What does Pro add?",
+          "a": "docx, pdf and epub export, continuity questions from a local AI model on your PC (needs Ollama, which you install), and editing from your phone over your home network. Lore and its continuity checks are in Free."
+        },
+        {
+          "q": "What happens if I stop paying for Pro?",
+          "a": "The app switches to Free. Nothing is deleted or locked."
+        }
+      ],
+      "activation": [
+        "Install: unzip the Windows full download and double-click install_quill.bat (no admin rights needed).",
+        "Pro keys start with GQ1. Open Quill, click Free plan at the bottom left, paste the key and press Activate. Or double-click ACTIVATE_PRO.bat in the Quill folder and paste it there. No Python needed.",
+        "A key works on 2 computers. To move it, open Licence on the old computer and press Turn Pro off on this PC, or write to support.",
+        "PRO, 12 months from itch.io needs no key: the download is already activated, and the 12 months start the first time you open it.",
+        "The key is checked offline. The device check is computed on your PC and never sent anywhere."
+      ],
+      "whats_new": {
+        "version": "1.8.0",
+        "date": "2026-11-27",
+        "source": "Gorgon_Quill/CHANGELOG.md, store build 2026-11-27",
+        "items": [
+          "Check a manuscript before you send it: layout, leftover TODOs and a rounded word count",
+          "Put your contact details on the first page of the manuscript Word and PDF files",
+          "See your writing week, keep a daily run and mark rest days",
+          "Save collections of chapters, picked by hand or by a rule",
+          "Print a one-page rescue sheet that says how to get the book back"
+        ]
+      }
+    },
+    {
+      "id": "gorgon-chart",
+      "name": "Stark Covenant",
+      "status": "available",
+      "version_source": "Gorgon_Chart/dist/latest.json",
+      "version": "1.5.0",
+      "tagline": "Patient records that stay on your own machines.",
+      "summary": "Local-first electronic health records for small practices, with no cloud or per-seat subscription. Exports HL7 v2 and FHIR R4. A clinician signs off every suggestion before it counts.",
+      "product_url": "https://ams513.itch.io/stark-covenant",
+      "notify_url": "",
+      "image": "assets/img/covenant-card-800.png",
+      "image_alt": "Stark Covenant in DEMO mode: a synthetic patient summary under the red demo banner",
+      "features": [
+        "Runs on your own machines; records stay local",
+        "Encryption through the operating system's own crypto (Windows CNG/DPAPI)",
+        "HL7 v2 and FHIR R4 export tools",
+        "Suggestions only behind clinician sign-off; no automated diagnosis"
+      ],
+      "editions": [
+        {
+          "id": "baby",
+          "name": "Baby",
+          "price": 0,
+          "billing": "free",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Free solo demo for one person"
+          ],
+          "checkout_url": "",
+          "seats": 1
+        },
+        {
+          "id": "solo",
+          "name": "Solo",
+          "price": 50,
+          "billing": "one_time",
+          "seats": 1,
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "One clinician, one licence, paid once",
+            "Encrypted vault, exports, HL7 v2 / FHIR R4, comms"
+          ],
+          "checkout_url": ""
+        },
+        {
+          "id": "practice-team",
+          "name": "Practice",
+          "price": 200,
+          "billing": "one_time",
+          "seats": 4,
+          "seats_min": 2,
+          "scales": [
+            "practice"
+          ],
+          "highlights": [
+            "2 to 4 users, one flat price, paid once",
+            "Multi-user roles for the practice",
+            "Licence kept through every 1.x release"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-covenant"
+        },
+        {
+          "id": "clinic-team",
+          "name": "Clinic",
+          "price": 500,
+          "billing": "one_time",
+          "seats": 10,
+          "seats_min": 5,
+          "scales": [
+            "practice"
+          ],
+          "highlights": [
+            "5 to 10 users, one flat price, paid once",
+            "Multi-user roles for the clinic",
+            "Licence kept through every 1.x release"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-covenant"
+        },
+        {
+          "id": "humanitarian",
+          "name": "Humanitarian",
+          "price": 50,
+          "billing": "one_time",
+          "scales": [
+            "practice",
+            "hospital",
+            "region",
+            "nation",
+            "continent"
+          ],
+          "highlights": [
+            "For humanitarian and non-profit care teams (one-time licence)"
+          ],
+          "checkout_url": "",
+          "seats": 10,
+          "contact_sales": true
+        },
+        {
+          "id": "founding-solo",
+          "name": "Founding Solo",
+          "price": 25,
+          "billing": "one_time",
+          "seats": 1,
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "One clinician, paid once",
+            "Licence kept through every 1.x release",
+            "On sale now on itch.io"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-covenant"
+        },
+        {
+          "id": "founding-practice",
+          "name": "Founding Practice",
+          "price": 99,
+          "billing": "one_time",
+          "seats": 3,
+          "scales": [
+            "practice"
+          ],
+          "highlights": [
+            "up to 3 clinicians, one flat price",
+            "Licence kept through every 1.x release",
+            "Priority consultations for founding buyers"
+          ],
+          "checkout_url": ""
+        }
+      ],
+      "compliance_notice": "Stark Covenant is not a certified EHR or medical device; your compliance review is required before real patient data.",
+      "honest_notes": [
+        "The 13 non-English languages are machine-translated and not yet reviewed by native speakers.",
+        "Not certified as an EHR (e.g. ONC) or as a medical device (e.g. FDA, CE). No HIPAA or GDPR compliance is claimed.",
+        "It does not diagnose. Any suggestion needs a clinician's sign-off.",
+        "New release: there are no reviews yet, and this page shows none."
+      ],
+      "requirements": [
+        "See the product README in the download for the exact requirements"
+      ],
+      "faq": [
+        {
+          "q": "Can I put real patient data in it today?",
+          "a": "Only after your own compliance review (privacy law, security and clinical governance where you work). It is not certified."
+        },
+        {
+          "q": "Do larger scales get certified software?",
+          "a": "No. Scale labels say who a plan is meant for; every plan runs the same uncertified software."
+        },
+        {
+          "q": "Is it a subscription?",
+          "a": "No. Each licence is paid once: no subscription and no setup fees. If you stop using Stark Covenant, your records stay readable and exportable."
+        },
+        {
+          "q": "Are there lower prices for low-income countries?",
+          "a": "Yes. Public-sector and non-profit operators in World Bank low- and lower-middle-income countries pay 50% of the listed price on every plan, and registered humanitarian organisations use the Humanitarian plan."
+        }
+      ],
+      "activation": [
+        "Follow the activation steps in the README that ships in the Stark Covenant download.",
+        "Solo plan: one clinician on one user account; multi-user roles need the Practice or Clinic plan.",
+        "Complete your compliance review before entering real patient data."
+      ],
+      "fairness_rules": [
+        "Each licence is paid once: no subscription and no setup fees.",
+        "Public-sector and non-profit operators in World Bank low- and lower-middle-income countries pay 50% of the listed price on every plan.",
+        "Registered humanitarian organisations use the Humanitarian plan ($50 one-time).",
+        "Practice covers 2 to 4 users and Clinic 5 to 10 users, each at one flat price.",
+        "If you stop using Stark Covenant, your records stay readable and exportable."
+      ],
+      "fairness_source": "Gorgon_Chart/license_guard.py FAIRNESS_RULES (verbatim)",
+      "retired_editions": [
+        {
+          "id": "individual",
+          "name": "Individual",
+          "price": 30,
+          "billing": "month",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "One practitioner, single user (2 devices)",
+            "Encrypted vault, exports, HL7 v2 / FHIR R4, comms",
+            "No multi-user roles (Clinic adds a team)"
+          ],
+          "checkout_url": "",
+          "seats": 2,
+          "retired_on": "2026-11-19",
+          "previous_checkout_url": ""
+        },
+        {
+          "id": "clinic",
+          "name": "Clinic",
+          "price": 79,
+          "billing": "month",
+          "scales": [
+            "practice"
+          ],
+          "highlights": [
+            "For a practice or small clinic"
+          ],
+          "checkout_url": "",
+          "seats": 5,
+          "retired_on": "2026-11-19",
+          "previous_checkout_url": ""
+        },
+        {
+          "id": "hospital",
+          "name": "Hospital",
+          "price": 249,
+          "billing": "month",
+          "scales": [
+            "hospital"
+          ],
+          "highlights": [
+            "For a hospital"
+          ],
+          "checkout_url": "",
+          "seats": 25,
+          "retired_on": "2026-11-19",
+          "previous_checkout_url": ""
+        },
+        {
+          "id": "hospital_plus",
+          "name": "Hospital Plus",
+          "price": 999,
+          "billing": "month",
+          "scales": [
+            "hospital",
+            "region"
+          ],
+          "highlights": [
+            "Multi-site hospital groups, up to 120 seats"
+          ],
+          "checkout_url": "",
+          "seats": 120,
+          "retired_on": "2026-11-19",
+          "previous_checkout_url": ""
+        },
+        {
+          "id": "health_network",
+          "name": "Health Network",
+          "price": 3499,
+          "billing": "month",
+          "seats": 500,
+          "scales": [
+            "region"
+          ],
+          "highlights": [
+            "Hospital networks and city health systems, up to 500 seats"
+          ],
+          "checkout_url": "",
+          "contact_sales": true,
+          "retired_on": "2026-11-19",
+          "previous_checkout_url": ""
+        },
+        {
+          "id": "regional",
+          "name": "Regional Health System",
+          "price": 8999,
+          "billing": "month",
+          "seats": 2000,
+          "scales": [
+            "region"
+          ],
+          "highlights": [
+            "Regional health systems, up to 2,000 seats"
+          ],
+          "checkout_url": "",
+          "contact_sales": true,
+          "retired_on": "2026-11-19",
+          "previous_checkout_url": ""
+        },
+        {
+          "id": "national",
+          "name": "National",
+          "price": 19999,
+          "billing": "month",
+          "seats": 10000,
+          "scales": [
+            "nation",
+            "continent"
+          ],
+          "highlights": [
+            "National and multi-country health services, up to 10,000 seats"
+          ],
+          "checkout_url": "",
+          "contact_sales": true,
+          "retired_on": "2026-11-19",
+          "previous_checkout_url": ""
+        },
+        {
+          "id": "practice",
+          "name": "Practice",
+          "price": 200,
+          "billing": "one_time",
+          "seats": 25,
+          "seats_min": 2,
+          "unit": "clinician",
+          "scales": [
+            "practice"
+          ],
+          "highlights": [
+            "2 to 25 clinicians, paid once per clinician",
+            "Multi-user roles for the practice"
+          ],
+          "checkout_url": "",
+          "quantity_min": 2,
+          "quantity_max": 25,
+          "retired_on": "2026-11-20",
+          "previous_checkout_url": ""
+        }
+      ]
+    },
+    {
+      "id": "stark-math",
+      "name": "Stark Math",
+      "status": "available",
+      "version": "1.10.0",
+      "tagline": "See the first slip in your working, and why it is wrong. Kid to Professor, offline.",
+      "summary": "Learn maths and science with Madeline, a patient teacher who shows the steps, hints one rung at a time and spots the mistake behind a wrong answer. Kid to Professor. Runs offline.",
+      "product_url": "https://ams513.itch.io/stark-math",
+      "notify_url": "",
+      "image": "assets/img/products/math-cover-630.png",
+      "image_alt": "Cover art for Stark Math: A patient maths and science tutor, from Kid to Professor. Runs offline",
+      "features": [
+        "Check your algebra line by line and see the first slip",
+        "See why an answer is wrong, not just that it is",
+        "Practise 187 maths and science skills at five levels"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 24,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Paid once on itch.io, no subscription"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-math"
+        }
+      ],
+      "honest_notes": [
+        "Read-aloud uses your browser's voices, so how Madeline sounds depends on your device; some devices have none. Her speech bubble always shows the words.",
+        "Typing maths: answers are typed as text (for example 3/4, x^2 - 5x + 6, 12.5 m/s); a keypad helps on touch screens. There is no handwriting input.",
+        "Contest result files are signed so hand edits are detected, and organisers re-score every answer. Someone who rebuilds the app could still forge a file, so for high-stakes events supervise the room as you would for a paper test.",
+        "Playing on itch: progress is saved for this page in your browser. Use backups or the offline download to keep it long-term.",
+        "First version: the skills are deep rather than exhaustive (for example, no proofs-by-induction practice yet and no 3D graphing)."
+      ],
+      "requirements": [
+        "A current desktop browser: Chrome, Edge, Firefox or Safari",
+        "No install and no account; works offline once downloaded"
+      ],
+      "faq": [],
+      "activation": [],
+      "itch_source": "Stark_Math/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "1.10.0",
+        "date": "2026-11-27",
+        "source": "Stark_Math/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "See four numbers on the home card: late, due in 7 days, reviews fading and problems owed",
+          "Set a weekly target and see this week against last week",
+          "Practise the reviews about to fade first, and repeat weekly homework",
+          "Export homework, practice, mistakes and skills as CSV, and print a progress page",
+          "Fix: a backup saved from the app now passes its own check when restored"
+        ]
+      }
+    },
+    {
+      "id": "stark-ledger",
+      "name": "Stark Ledger",
+      "status": "available",
+      "version": "1.12.0",
+      "tagline": "Turn the estimate into an invoice in one click. Books locked with your own passphrase.",
+      "summary": "Offline bookkeeping and invoicing for freelancers and small shops. Double-entry books, invoices with PDF printing, receipts, bank statement import (CSV, OFX/QFX, QIF, CAMT.053 and MT940 files) and a quarterly tax worksheet, all encrypted on your own computer.",
+      "product_url": "https://ams513.itch.io/stark-ledger",
+      "notify_url": "",
+      "image": "assets/img/products/ledger-cover-630.png",
+      "image_alt": "Cover art for Stark Ledger: Offline bookkeeping and invoicing for freelancers and small shops",
+      "features": [
+        "Turn an estimate into an invoice in one click",
+        "Chase overdue invoices with friendly, firm or final letters",
+        "Keep your books offline, locked with your own passphrase"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 19,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Paid once on itch.io, no subscription"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-ledger"
+        }
+      ],
+      "honest_notes": [
+        "Not tax advice. Stark Ledger is bookkeeping software. Schedule C mappings and the tax worksheet are guides that can be wrong for your situation; check with a tax professional.",
+        "The worksheet uses 2025 US federal figures (standard deduction, brackets, Social Security wage base). It does not cover credits, AMT, additional Medicare tax, state rules beyond a flat rate you enter, or QBI income limits.",
+        "Accrual basis: invoices count as income when issued.",
+        "US-focused: dollars, Schedule C, US quarterly dates.",
+        "No passphrase recovery. If you forget it nobody can open your data, so keep backups (the Backup page makes them in one click).",
+        "Your browser's storage belongs to that browser profile. Clearing site data deletes the books, which is why the backup exists.",
+        "Bank statement import reads files you download from your bank (CSV, OFX/QFX, QIF, CAMT.053, MT940). The readers were built from published format guides, without a real bank file, so check your first import against your bank statement. Ledger never connects to a bank."
+      ],
+      "requirements": [
+        "A current desktop browser: Chrome, Edge, Firefox or Safari",
+        "No install and no account; works offline once downloaded"
+      ],
+      "faq": [],
+      "activation": [],
+      "itch_source": "Stark_Ledger/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "1.12.0",
+        "date": "2026-11-27",
+        "source": "Stark_Ledger/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "A This week board at the top of the Dashboard",
+          "Quotes and unbilled work (follow-up message to copy, accepted quotes not invoiced, unbilled time)",
+          "Spending watch (categories running above the usual month)",
+          "What an hour earns (billed per logged hour by client)",
+          "Export and calendar (.ics file, CSV downloads, print)"
+        ]
+      }
+    },
+    {
+      "id": "stark-career",
+      "name": "Stark Career",
+      "status": "available",
+      "version": "2.10.0",
+      "tagline": "Stop sending the same resume everywhere. Tailor it to the posting, then rehearse the interview.",
+      "summary": "Import your resume, tailor it to any job in one click, practise with timed mock interviews and run your search as a weekly sprint. 12 resume templates. Offline, no accounts, no AI.",
+      "product_url": "https://ams513.itch.io/stark-career",
+      "notify_url": "",
+      "image": "assets/img/products/career-cover-630.png",
+      "image_alt": "Cover art for Stark Career: Tailor your resume to any job, practise interviews, run your search as a sprint",
+      "features": [
+        "Tailor your resume to any job posting in one click",
+        "Compare job offers on pay, commute and what matters to you",
+        "Rehearse timed interviews and score every answer on a rubric"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 12,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Paid once on itch.io, no subscription"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-career"
+        }
+      ],
+      "honest_notes": [
+        "Import is rule-based. Clean, single-column text works best; two-column PDFs can paste in a jumbled order, so always check the review step.",
+        "Tailoring and keyword matching compare words and common skill phrases. They do not understand meaning and cannot predict what any particular employer's system will do. Tailoring reorders what you wrote; it never invents experience.",
+        "Power-up rewrites are templates. Read them, fill the brackets with true numbers, and edit them so they sound like you.",
+        "Mock interviews have no speech-to-text and no automatic scoring of your answers. Recording needs a browser that allows microphone access; some browsers block it on local files. It works on itch in current Chrome, Edge and Firefox.",
+        "Character limits for LinkedIn are the commonly published ones and can change; the \"see more\" cut-off depends on the screen.",
+        "PDF: you create it with your browser's Print dialog, \"Save as PDF\". Choose Default margins and turn off Headers and footers.",
+        "Playing on itch: progress is saved for this page in your browser. Back up regularly.",
+        "Screens come in 16 languages through a language menu (machine-drafted labels; English for anything not translated)."
+      ],
+      "requirements": [
+        "A current desktop browser: Chrome, Edge, Firefox or Safari",
+        "No install and no account; works offline once downloaded"
+      ],
+      "faq": [],
+      "activation": [],
+      "itch_source": "Stark_Career/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "2.10.0",
+        "date": "2026-11-27",
+        "source": "Stark_Career/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "This week card on Home and a This week page (print, .csv, .ics)",
+          "Results counted from your own tracker",
+          "Where I look",
+          "Before day one",
+          "Stretch your savings"
+        ]
+      }
+    },
+    {
+      "id": "stark-family-vault",
+      "name": "Stark Family Vault",
+      "status": "available",
+      "version": "2.0.0",
+      "tagline": "One printed emergency binder with every plan, contact, medicine and policy. Encrypted, offline.",
+      "summary": "An offline, encrypted home for your family's important information: documents with renewal reminders, health summaries and emergency cards, contacts, estate planning checklist, and a home inventory. No account, no cloud.",
+      "product_url": "https://ams513.itch.io/stark-family-vault",
+      "notify_url": "",
+      "image": "assets/img/products/family-vault-cover-630.png",
+      "image_alt": "Cover art for Stark Family Vault: An offline, encrypted home for your family's important information",
+      "features": [
+        "Print one emergency binder with plans, contacts, medicines and policies",
+        "Keep your family's records encrypted on your computer, no cloud",
+        "See every expiry, renewal and refill date in one place"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 15,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Paid once on itch.io, no subscription"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-family-vault"
+        }
+      ],
+      "honest_notes": [
+        "If you lose your passphrase, your data is gone. There is no reset, no recovery email and no back door. We cannot see your data, so we cannot help recover it. Give a trusted person a sealed copy of the passphrase, for example through your attorney.",
+        "It cannot protect you from malware on your computer, from someone watching you type, or from a weak passphrase. Printed cards, letters and saved scan copies are not encrypted.",
+        "Your vault lives in this browser's storage on this computer. Clearing site data or reinstalling would erase it, so save a backup file now and then. The app reminds you.",
+        "Never store full account numbers, passwords or PINs here. Use a password manager for those.",
+        "This is a record-keeping tool, not legal, medical, tax or financial advice.",
+        "Works in current Chrome, Edge, Firefox and Safari. No install: unzip and open index.html, or play it on this page.",
+        "Light and dark themes, works on a phone-sized screen, and prints cleanly.",
+        "One purchase covers your whole household."
+      ],
+      "requirements": [
+        "A current desktop browser: Chrome, Edge, Firefox or Safari",
+        "No install and no account; works offline once downloaded"
+      ],
+      "faq": [],
+      "activation": [],
+      "itch_source": "Stark_Vault/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "2.0.0",
+        "date": "2026-11-27",
+        "source": "Stark_Vault/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "Home number for money kept or recovered this year (with how it is counted)",
+          "Still right? checks for emergency details",
+          "Weekly check-in count"
+        ]
+      }
+    },
+    {
+      "id": "stark-classroom-hub",
+      "name": "Stark Classroom Hub",
+      "status": "available",
+      "version": "1.9.0",
+      "tagline": "Plan the week, take the register in one tap, grade to your own standards. Nothing leaves your computer.",
+      "summary": "One offline teacher dashboard for the Stark Education Suite: roster, assignment planner, results from IntraTheater, Quill and World Engine, a grade book with rubrics, printable reports, parent summaries and a term calendar. Nothing leaves your computer.",
+      "product_url": "https://ams513.itch.io/stark-classroom-hub",
+      "notify_url": "",
+      "image": "assets/img/products/classroom-hub-cover-630.png",
+      "image_alt": "Cover art for Stark Classroom Hub: One offline teacher dashboard: roster, planner, grade book and reports",
+      "features": [
+        "Plan units and weekly lessons, then print the week",
+        "Take the register in one tap and flag low attendance",
+        "Track mastery of your own standards on a 1 to 4 scale"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 15,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Paid once on itch.io, no subscription",
+            "One licence covers one teacher on their own computers"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-classroom-hub"
+        }
+      ],
+      "honest_notes": [
+        "Works in current Chrome, Edge, Firefox and Safari. Opening Quill hand-in zips needs a browser with built-in decompression (all current ones).",
+        "The Hub does not replace a school records system. It does not send anything anywhere, so sharing a report is up to you (print it, or save the text).",
+        "Stark Math result files are signed with the event pack; the Hub reads the score but does not check that signature, so use Stark Math to verify a contest.",
+        "Browser storage can be cleared by the browser. Save a backup now and then."
+      ],
+      "requirements": [
+        "A current desktop browser: Chrome, Edge, Firefox or Safari",
+        "No install and no account; works offline once downloaded"
+      ],
+      "faq": [],
+      "activation": [],
+      "itch_source": "Stark_ClassroomHub/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "1.9.0",
+        "date": "2026-11-27",
+        "source": "Stark_ClassroomHub/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "This week card first on Home with a closed-this-week count",
+          "To-do list with weekly repeats",
+          "Good news round"
+        ]
+      }
+    },
+    {
+      "id": "stark-studio-creator",
+      "name": "Stark Studio Creator",
+      "status": "available",
+      "version": "1.7.0",
+      "tagline": "From idea to posted, on your own computer. No cloud, no AI, no subscription.",
+      "summary": "Plan, script, record, edit, caption and export in one app, with a teleprompter, noise reduction and captions timed from the player. Export YouTube, Shorts, Reels and TikTok versions in one go. Nothing is uploaded and there is no account.",
+      "product_url": "https://ams513.itch.io/stark-studio-creator",
+      "notify_url": "",
+      "image": "assets/img/products/studio-creator-cover-630.png",
+      "image_alt": "Cover art for Stark Studio Creator: Record, edit and export your videos offline. No cloud, no AI, no subscription",
+      "features": [
+        "Plan, script, record, edit, caption and export in one app",
+        "Work offline with no account, no cloud and no uploads",
+        "Export and check versions for YouTube, Shorts, Reels and TikTok"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 19,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Paid once on itch.io, no subscription"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-studio-creator"
+        }
+      ],
+      "honest_notes": [
+        "Windows first. The code is plain Python and runs elsewhere, but the OBS setup and launcher are written for Windows.",
+        "Smart crop picks one centre for the whole clip. It does not track a face, and it is not AI.",
+        "Chapters come from pauses only, so you name them yourself in the checklist copy.",
+        "Captions are burned from an .srt you provide. It does not transcribe speech.",
+        "Loudness lands within about 1 LU of -14 on normal speech; very short or very quiet clips can land a little off.",
+        "Your OBS version matters: the written scene files follow the current OBS format (30+)."
+      ],
+      "requirements": [
+        "Windows 10 or 11, Python 3.10+, ffmpeg (winget install Gyan.FFmpeg), OBS Studio for the Record tab."
+      ],
+      "faq": [],
+      "activation": [],
+      "itch_source": "Stark_Creator/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "1.7.0",
+        "date": "2026-11-27",
+        "source": "Stark_Creator/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "Set a monthly income goal and see it on This week",
+          "Tick six steps on every deal, with the next one shown on This week",
+          "Log part payments: reminders and totals use the balance",
+          "Move deals, expenses and renewals in and out as CSV, and dates out as calendar files",
+          "Print a year-end page with a CSV for your accountant (a summary, not tax advice)"
+        ]
+      }
+    },
+    {
+      "id": "stark-builder",
+      "name": "Stark Builder",
+      "status": "available",
+      "version": "1.8.0",
+      "tagline": "Walk through your tiny home in 3D before you build it.",
+      "summary": "An offline 3D planner for tiny homes, compounds and small villages: floor plans, a 3D walkthrough, a site planner with build phases, and a materials takeoff you price with your own quotes. A planning tool, not a set of building plans.",
+      "product_url": "https://ams513.itch.io/stark-builder",
+      "notify_url": "",
+      "image": "assets/img/products/builder-cover-630.png",
+      "image_alt": "Cover art for Stark Builder: An offline 3D planner for tiny homes, compounds and small villages",
+      "features": [
+        "Stack up to four floors and walk through them in 3D",
+        "Furnish rooms and mark outlets, lights and plumbing",
+        "Compare rough budgets side by side before you spend"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 25,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Paid once on itch.io, no subscription"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-builder"
+        }
+      ],
+      "honest_notes": [
+        "It does not size beams, rafters, foundations, wiring, plumbing, heating or ventilation, and it does not check codes, energy rules, fire rules, accessibility or zoning.",
+        "The materials total leaves out foundations, plumbing, electrical, heating and cooling, fixtures, finishes beyond flooring, labour, permits, delivery and tax. Quantities use simple framing rules (406 mm centres, 10% waste) and will differ from a real takeoff.",
+        "Room areas are measured to the lines you draw (wall centres, unless you draw to the inside faces).",
+        "The 3D model is a layout sketch. The roof is estimated over the outer rectangle, so L-shaped and multi-roof designs are approximated. Surfaces are flat colours, without textures.",
+        "Several floors (up to four) are supported; the plan stays a sketch, not an engineered design.",
+        "Library layouts are starting points, not engineered designs."
+      ],
+      "requirements": [
+        "Any current Chrome, Edge, Firefox or Safari with WebGL. A mouse or trackpad is best for drawing; the layout also works on a tablet or phone."
+      ],
+      "faq": [],
+      "activation": [],
+      "itch_source": "Stark_Builder/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "1.8.0",
+        "date": "2026-11-27",
+        "source": "Stark_Builder/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "This week card on the first screen with one-tap done buttons and paid-so-far and saved numbers"
+        ]
+      }
+    },
+    {
+      "id": "stark-warden",
+      "name": "Stark Warden",
+      "status": "available",
+      "version": "2.7.0",
+      "tagline": "When the collector calls, you have rights and a script (US). Nothing leaves your device.",
+      "summary": "An offline toolkit to spot scams and deceptive messages and to stand up to abusive debt collection (US). Check messages and links, track collector calls, build letters. Nothing leaves your device.",
+      "product_url": "https://ams513.itch.io/stark-warden",
+      "notify_url": "",
+      "image": "assets/img/products/warden-cover-630.png",
+      "image_alt": "Cover art for Stark Warden: Spot scams and stand up to abusive debt collection (US). Nothing leaves your device",
+      "features": [
+        "Get calm words, a breathing guide and a script to hang up",
+        "Rehearse collector calls with a coach beside every reply",
+        "Answer seven questions and get your letters, complaints and plan"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 10,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Paid once on itch.io, no subscription"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-warden"
+        }
+      ],
+      "honest_notes": [
+        "General information, not legal advice. Stark Warden is not a law firm, a credit counselor or a government agency. Using it does not create a lawyer-client relationship. Rules differ by state and by your facts. Talk to legal aid or a consumer-protection attorney (many take FDCPA cases with no upfront fee).",
+        "Check the date. Legal information is written from the federal rules as known on November 20, 2026, and was not re-checked against live websites. Rules, dollar limits and agency practices change. Student loan and medical-debt reporting rules in particular have been changing. The Sources page lists the official sites; addresses are shown as text to copy, and the app never opens them.",
+        "Time limits by state are a summary. The table has flagged rows where published sources disagree. Verify with your state attorney general before relying on it.",
+        "It cannot prove a message is safe. It spots patterns. A message with no warning signs can still be a scam, and a real one can look suspicious. It never says \"safe for sure\". Caller ID can be faked, so phone hints are hints.",
+        "Nothing is guaranteed. No tool can promise a debt will disappear, a settlement will be accepted, an item will be deleted from a credit report, or a scam will be caught. Be wary of anyone who promises that.",
+        "Vault has no recovery. If you forget the passphrase, nobody can open it.",
+        "United States only. Federal rules, with state data where marked.",
+        "Translations are machine drafts and have not been reviewed by a native speaker or a lawyer."
+      ],
+      "requirements": [
+        "A current desktop browser: Chrome, Edge, Firefox or Safari",
+        "No install and no account; works offline once downloaded"
+      ],
+      "faq": [],
+      "activation": [],
+      "itch_source": "Stark_Warden/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "2.7.0",
+        "date": "2026-11-27",
+        "source": "Stark_Warden/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "Guard desk: a This week card on Home with three numbers",
+          "Bills with a Paid button",
+          "Documents that expire",
+          "Waiting on refunds and replies",
+          "CSV export and import of seven lists"
+        ]
+      }
+    },
+    {
+      "id": "stark-event-kit",
+      "name": "Stark Event Kit",
+      "status": "available",
+      "version": "1.8.0",
+      "tagline": "Run the quiz night from one laptop. The room sees the question; only you see the answer.",
+      "summary": "Run quiz nights, trivia, buzzer rounds, game jams and tournaments offline: a projector view, a host panel, 600+ checked questions, brackets, printable sheets and certificates.",
+      "product_url": "https://ams513.itch.io/stark-event-kit",
+      "notify_url": "",
+      "image": "assets/img/products/event-kit-cover-630.png",
+      "image_alt": "Cover art for Stark Event Kit: Run quiz nights, trivia, game jams and tournaments offline",
+      "features": [
+        "Show questions on the projector and keep answers on your screen",
+        "Check guests in, seat tables and track the show live",
+        "Draw prizes in a way anyone in the room can verify"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 9,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "Paid once on itch.io, no subscription"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-event-kit"
+        }
+      ],
+      "honest_notes": [],
+      "requirements": [
+        "A current desktop browser (Chrome, Edge, Firefox or Safari). Open the projector window and the host panel in the same browser on the same computer.",
+        "No installation. Works offline once downloaded."
+      ],
+      "faq": [],
+      "activation": [],
+      "itch_source": "Stark_Events/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "1.8.0",
+        "date": "2026-11-27",
+        "source": "Stark_Events/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "Money result on the Home card",
+          "Deadlines and deposits with a calendar file",
+          "Food and access needs with a kitchen sheet",
+          "Cash-up at the door",
+          "Restore preview and save-first button"
+        ]
+      }
+    },
+    {
+      "id": "stark-trades",
+      "name": "Stark Trades",
+      "status": "available",
+      "version": "2.10.0",
+      "tagline": "Catch the expired sub license before you assign the job. No subscription, no cloud.",
+      "summary": "Run subcontractors, bids, compliance and payments the way a big contractor does, offline and encrypted. Get a hard warning before you assign a sub with an expired license or insurance, hold sub payments until the lien waiver arrives, and sell maintenance plans with set visits, bills and renewals. Screens in 16 languages.",
+      "product_url": "https://ams513.itch.io/stark-trades",
+      "notify_url": "",
+      "image": "assets/img/products/trades-cover-630.png",
+      "image_alt": "Cover art for Stark Trades: run subs, bids and payments like a big contractor",
+      "features": [
+        "Run maintenance plans with set visits, bills and renewals",
+        "Refill vans to par and track every purchase order",
+        "Catch expired sub licenses and insurance before you assign"
+      ],
+      "editions": [
+        {
+          "id": "standard",
+          "name": "Standard",
+          "price": 29,
+          "billing": "one_time",
+          "scales": [
+            "individual"
+          ],
+          "highlights": [
+            "One user, paid once"
+          ],
+          "checkout_url": "https://ams513.itch.io/stark-trades",
+          "seats": 1
+        }
+      ],
+      "honest_notes": [],
+      "requirements": [
+        "A current desktop browser (Chrome, Edge, Firefox or Safari) in a normal, not private, window.",
+        "No installation. Works offline once downloaded."
+      ],
+      "faq": [],
+      "activation": [],
+      "itch_source": "Stark_Trades/ITCH_PAGE.md",
+      "whats_new": {
+        "version": "2.10.0",
+        "date": "2026-11-27",
+        "source": "Stark_Trades/ITCH_PAGE.md changelog, store build 2026-11-27",
+        "items": [
+          "This week card with an outcome number (collected this month and year, paid after a reminder)",
+          "Bills to pay",
+          "Own license and insurance Renewals",
+          "Week calendar file (.ics) and CSV",
+          "Weekly recap"
+        ]
+      }
+    }
+  ],
+  "bundles": [
+    {
+      "id": "stark-school-licence",
+      "name": "Stark School Licence",
+      "price": 299,
+      "billing": "one_time",
+      "summary": "One school (one campus): Stark Math, Classroom Hub, IntraTheater and Quill Pro (12 months) on up to 50 school-owned devices, delivered as itch.io download keys.",
+      "items": [
+        "stark-math/standard",
+        "stark-classroom-hub/standard",
+        "gorgon-cinema/standard",
+        "gorgon-quill/pro"
+      ],
+      "checkout_url": ""
+    },
+    {
+      "id": "stark-education-bundle",
+      "name": "Stark Education Bundle",
+      "price": 62,
+      "billing": "one_time",
+      "summary": "Stark Math, Classroom Hub, IntraTheater and 12 months of Quill Pro for one person.",
+      "items": [
+        "stark-math/standard",
+        "stark-classroom-hub/standard",
+        "gorgon-cinema/standard",
+        "gorgon-quill/pro"
+      ],
+      "checkout_url": "https://itch.io/s/222195/stark-education-bundle"
+    },
+    {
+      "id": "stark-family-bundle",
+      "name": "Stark Family Bundle",
+      "price": 39,
+      "billing": "one_time",
+      "summary": "Stark Ledger, Family Vault, Career and Warden for one household.",
+      "items": [
+        "stark-ledger/standard",
+        "stark-family-vault/standard",
+        "stark-career/standard",
+        "stark-warden/standard"
+      ],
+      "checkout_url": "https://itch.io/s/222196/stark-family-bundle"
+    },
+    {
+      "id": "stark-creator-bundle",
+      "name": "Stark Creator Bundle",
+      "price": 59,
+      "billing": "one_time",
+      "summary": "Stark World Engine Pro, Studio Creator, Builder and Event Kit for one creator.",
+      "items": [
+        "stark-world-engine/pro",
+        "stark-studio-creator/standard",
+        "stark-builder/standard",
+        "stark-event-kit/standard"
+      ],
+      "checkout_url": ""
+    }
+  ]
+}

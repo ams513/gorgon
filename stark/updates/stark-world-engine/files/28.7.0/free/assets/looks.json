@@ -1,0 +1,311 @@
+{
+  "Bioluminescent Twilight": {
+    "hdri": "hdri/kloppenheim_02_puresky_1k.hdr",
+    "rot": 2.2,
+    "skyK": 0.2,
+    "sunK": 0.95,
+    "sunTint": "#9fb8ff",
+    "envK": 1.3,
+    "expo": 2,
+    "fog": "#1c2a4a",
+    "fogDen": 0.018,
+    "fogH": 0.1,
+    "fogSun": "#2c3e6a",
+    "grade": {
+      "sat": 1.12,
+      "con": 1.06,
+      "tint": [
+        0.93,
+        1,
+        1.08
+      ],
+      "lift": [
+        0.012,
+        0.02,
+        0.035
+      ],
+      "gain": [
+        1,
+        1,
+        1
+      ],
+      "vig": 0.7
+    },
+    "meadow": [
+      "#27453c",
+      "#3c5a46"
+    ],
+    "path": "#b9a990",
+    "trees": {
+      "TwistedTree_1": 2,
+      "TwistedTree_2": 2,
+      "TwistedTree_3": 1,
+      "CommonTree_3": 1,
+      "DeadTree_2": 1
+    },
+    "treeScale": 0.62,
+    "leaf": "#7fd6c0",
+    "grass": "#5aa58e",
+    "flowers": 0.15,
+    "mushrooms": 1,
+    "ferns": 0.8,
+    "bush": 0.6,
+    "wcol": "#2a7f8a",
+    "wdeep": "#062027",
+    "glow": "#7dffd2",
+    "night": 1,
+    "bloomK": 0.09,
+    "cycleFogMix": 0.35
+  },
+  "Alpine Sunset": {
+    "hdri": "hdri/kloppenheim_06_puresky_1k.hdr",
+    "rot": 1.2,
+    "skyK": 0.6,
+    "sunK": 1,
+    "sunTint": "#ffd6a8",
+    "envK": 1,
+    "expo": 1,
+    "fog": "#d9a585",
+    "fogDen": 0.0085,
+    "fogH": 0.06,
+    "fogSun": "#ffb070",
+    "grade": {
+      "sat": 1.08,
+      "con": 1.05,
+      "tint": [
+        1.04,
+        1,
+        0.95
+      ],
+      "lift": [
+        0.01,
+        0.006,
+        0.012
+      ],
+      "gain": [
+        1,
+        0.99,
+        0.97
+      ],
+      "vig": 0.5
+    },
+    "meadow": [
+      "#4f8a2c",
+      "#7fa043"
+    ],
+    "path": "#c9b08a",
+    "trees": {
+      "CommonTree_1": 3,
+      "CommonTree_2": 2,
+      "CommonTree_4": 2,
+      "Pine_1": 2,
+      "Pine_3": 1,
+      "CommonTree_5": 1
+    },
+    "treeScale": 0.72,
+    "leaf": "#ffffff",
+    "grass": "#ffffff",
+    "flowers": 1,
+    "mushrooms": 0.15,
+    "ferns": 0.4,
+    "bush": 1,
+    "wcol": "#3c8fb0",
+    "wdeep": "#0b2c3c",
+    "glow": "#ffd27a",
+    "night": 0,
+    "bloomK": 0.05,
+    "cycleFogMix": 0.35,
+    "mountains": 1,
+    "mtnCol": "#6a6470",
+    "mtnCol2": "#4a4652",
+    "mtnSnow": 0.7,
+    "shafts": 0.6,
+    "aerial": 0.6
+  },
+  "Sub-Zero Aurora": {
+    "hdri": "hdri/kloppenheim_02_puresky_1k.hdr",
+    "rot": 4,
+    "skyK": 0.24,
+    "sunK": 1,
+    "sunTint": "#b8ccff",
+    "envK": 1.3,
+    "expo": 1.9,
+    "fog": "#20304a",
+    "fogDen": 0.014,
+    "fogH": 0.08,
+    "fogSun": "#4a5f8c",
+    "aur": 1,
+    "grade": {
+      "sat": 1.02,
+      "con": 1.08,
+      "tint": [
+        0.95,
+        1,
+        1.08
+      ],
+      "lift": [
+        0.01,
+        0.015,
+        0.03
+      ],
+      "gain": [
+        1,
+        1,
+        1.02
+      ],
+      "vig": 0.6
+    },
+    "meadow": [
+      "#cfdbe6",
+      "#e9f0f6"
+    ],
+    "snow": 1,
+    "path": "#9aa3ad",
+    "trees": {
+      "Pine_1": 3,
+      "Pine_2": 2,
+      "Pine_4": 2,
+      "Pine_5": 1,
+      "DeadTree_3": 1
+    },
+    "treeScale": 0.7,
+    "leaf": "#c9dcd6",
+    "grass": "#a9b8a8",
+    "flowers": 0,
+    "mushrooms": 0,
+    "ferns": 0.1,
+    "bush": 0.3,
+    "wcol": "#5a9fc2",
+    "wdeep": "#0c2234",
+    "glow": "#9fffe0",
+    "night": 1,
+    "bloomK": 0.08,
+    "ice": 1,
+    "cycleFogMix": 0.35,
+    "mountains": 1,
+    "mtnCol": "#4b5868",
+    "mtnCol2": "#2f3946",
+    "mtnSnow": 1.0,
+    "mtnHaze": [
+      0.3,
+      0.25,
+      0.4
+    ]
+  },
+  "Crimson Citadel": {
+    "hdri": "hdri/industrial_sunset_02_puresky_1k.hdr",
+    "rot": 0.4,
+    "skyK": 0.5,
+    "sunK": 1,
+    "sunTint": "#ffb08a",
+    "envK": 0.95,
+    "expo": 1.05,
+    "fog": "#4a2c26",
+    "fogDen": 0.013,
+    "fogH": 0.07,
+    "fogSun": "#ff8a50",
+    "grade": {
+      "sat": 1.06,
+      "con": 1.1,
+      "tint": [
+        1.04,
+        0.98,
+        0.95
+      ],
+      "lift": [
+        0.012,
+        0.006,
+        0.006
+      ],
+      "gain": [
+        1.01,
+        0.98,
+        0.96
+      ],
+      "vig": 0.6
+    },
+    "meadow": [
+      "#3b342e",
+      "#4d3d32"
+    ],
+    "path": "#6a5446",
+    "rockish": 0.5,
+    "trees": {
+      "DeadTree_1": 3,
+      "DeadTree_2": 2,
+      "DeadTree_3": 2,
+      "TwistedTree_2": 1
+    },
+    "treeScale": 0.62,
+    "leaf": "#b5482e",
+    "grass": "#8a6a4a",
+    "flowers": 0.05,
+    "mushrooms": 0.2,
+    "ferns": 0,
+    "bush": 0.25,
+    "wcol": "#c0502a",
+    "wdeep": "#3a0d06",
+    "glow": "#ff7a33",
+    "night": 0.3,
+    "bloomK": 0.08,
+    "cycleFogMix": 0.15
+  },
+  "Sunken Ruins": {
+    "hdri": "hdri/kloofendal_48d_partly_cloudy_puresky_1k.hdr",
+    "rot": 2.8,
+    "skyK": 0.42,
+    "sunK": 1.05,
+    "sunTint": "#fff2dc",
+    "envK": 1,
+    "expo": 0.95,
+    "fog": "#7fb7c4",
+    "fogDen": 0.009,
+    "fogH": 0.05,
+    "fogSun": "#fff0d0",
+    "grade": {
+      "sat": 1.08,
+      "con": 1.04,
+      "tint": [
+        0.96,
+        1.02,
+        1.02
+      ],
+      "lift": [
+        0.004,
+        0.012,
+        0.014
+      ],
+      "gain": [
+        1,
+        1,
+        1
+      ],
+      "vig": 0.45
+    },
+    "meadow": [
+      "#4f7a3a",
+      "#6f8a43"
+    ],
+    "path": "#d8c49c",
+    "trees": {
+      "CommonTree_2": 2,
+      "CommonTree_3": 2,
+      "CommonTree_5": 1,
+      "TwistedTree_3": 1,
+      "Pine_2": 1
+    },
+    "treeScale": 0.7,
+    "leaf": "#ffffff",
+    "grass": "#ffffff",
+    "flowers": 0.7,
+    "mushrooms": 0.3,
+    "ferns": 1,
+    "bush": 1,
+    "wcol": "#2fa6a8",
+    "wdeep": "#04333a",
+    "glow": "#a8fff0",
+    "night": 0,
+    "bloomK": 0.05,
+    "cycleFogMix": 0.35
+  }
+}

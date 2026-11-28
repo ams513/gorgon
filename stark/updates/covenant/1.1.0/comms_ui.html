@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3C%3Fxml version=%221.0%22 encoding=%22UTF-8%22%3F%3E %3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22 width=%22128%22 height=%22128%22 role=%22img%22%3E %3Ctitle%3EStark Covenant favicon%3C/title%3E %3Cdefs%3E%3ClinearGradient id=%22fb%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%231d2c26%22/%3E%3Cstop offset=%221%22 stop-color=%22%230a0f0d%22/%3E%3C/linearGradient%3E%3CradialGradient id=%22fg%22 cx=%220.5%22 cy=%220.45%22 r=%220.6%22%3E%3Cstop offset=%220%22 stop-color=%22%2362b8d8%22 stop-opacity=%220.24%22/%3E%3Cstop offset=%221%22 stop-color=%22%2362b8d8%22 stop-opacity=%220%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width=%22128%22 height=%22128%22 rx=%2228%22 fill=%22url(%23fb)%22/%3E%3Crect width=%22128%22 height=%22128%22 rx=%2228%22 fill=%22url(%23fg)%22/%3E%3Crect x=%220.75%22 y=%220.75%22 width=%22126.5%22 height=%22126.5%22 rx=%2227.3%22 fill=%22none%22 stroke=%22%23ffffff%22 stroke-opacity=%220.07%22 stroke-width=%221.5%22/%3E%3Cg transform=%22translate(64 64) scale(1.5) translate(-64 -64)%22%3E%3Cpath d=%22M47 40 L72 40 L83 51 L83 88 L47 88 Z M72 40 L72 51 L83 51 M65 80 C56 74 53 68 56 63 C59 59 63 60 65 64 C67 60 71 59 74 63 C77 68 74 74 65 80 Z%22 fill=%22none%22 stroke=%22%2362b8d8%22 stroke-width=%228%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/g%3E %3C/svg%3E">
+<title data-t="page_title">Emergency - Stark Covenant</title>
+<style>
+:root{
+  --bg:#000;--fg:#fff;--muted:#d8d8d8;--line:#fff;--accent:#ffd400;--accent-fg:#000;
+  --sos:#c40000;--sos-fg:#fff;--ok:#7dff8a;--warn:#ffd400;--bad:#ff8080;--panel:#141414;--field:#000;
+  --radius:14px;--tap:72px;--fs:20px;
+}
+:root[data-size="xl"]{--fs:24px;--tap:84px}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--fg)}
+body{font:var(--fs)/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  padding:0 16px calc(var(--tap) + 32px + env(safe-area-inset-bottom));max-width:720px;margin:0 auto;
+  overflow-wrap:anywhere}
+h1{font-size:1.25em;margin:12px 0 4px}
+h2{font-size:1.1em;margin:20px 0 8px}
+p{margin:8px 0}
+a{color:var(--accent)}
+:focus-visible{outline:4px solid var(--accent);outline-offset:3px}
+.notice{border:3px solid var(--warn);border-radius:var(--radius);padding:10px 12px;margin:10px 0;font-weight:600}
+.notice.bad{border-color:var(--bad)}
+.notice.info{border-color:var(--muted);font-weight:400}
+.small{font-size:.8em;color:var(--muted)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.stack>*{margin:10px 0}
+button,.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:var(--tap);
+  padding:12px 16px;border:3px solid var(--line);border-radius:var(--radius);background:var(--panel);color:var(--fg);
+  font:inherit;font-weight:700;text-decoration:none;cursor:pointer;text-align:center}
+button:disabled{opacity:.45;cursor:not-allowed}
+.btn.sos{background:var(--sos);color:var(--sos-fg);border-color:#fff;min-height:calc(var(--tap)*2);font-size:1.5em}
+.btn.sos .num{font-size:1.25em;letter-spacing:.06em}
+.btn.svc{justify-content:space-between;text-align:start}
+.num{white-space:nowrap;overflow-wrap:normal}
+.btn.svc .num{font-size:1.3em;letter-spacing:.05em}
+.btn.alt{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.half{flex:1 1 140px}
+.tag{display:inline-block;border:2px solid currentColor;border-radius:8px;padding:0 6px;font-size:.7em;font-weight:700;vertical-align:middle}
+.tag.ok{color:var(--ok)}.tag.warn{color:var(--warn)}
+label{display:block;font-weight:700;margin:12px 0 4px}
+input,select,textarea{width:100%;min-height:56px;padding:10px 12px;font:inherit;color:var(--fg);background:var(--field);
+  border:3px solid var(--line);border-radius:10px}
+textarea{min-height:120px}
+input[type=checkbox]{width:32px;height:32px;min-height:0;vertical-align:middle;margin-block:0;margin-inline:0 10px;flex:0 0 32px}
+.check{display:flex;align-items:center;font-weight:600;margin:12px 0}
+.card{border:2px solid var(--muted);border-radius:var(--radius);padding:12px;margin:10px 0;background:var(--panel)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;gap:6px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));
+  background:#000;border-top:3px solid var(--line);z-index:10}
+nav.tabs button{min-height:var(--tap);padding:6px 4px;font-size:.8em;border-width:2px}
+nav.tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.view[hidden]{display:none}
+video{width:100%;max-height:40vh;background:#222;border-radius:10px}
+#remoteVideo{min-height:120px}
+#localVideo{width:40%;float:inline-end;margin-block:0 6px;margin-inline:6px 0}
+.chatlog{border:2px solid var(--muted);border-radius:10px;min-height:80px;max-height:30vh;overflow:auto;padding:8px;font-size:.9em}
+.chatlog div{margin:4px 0}
+.hl{animation:pulse 1s ease-in-out 3}
+@keyframes pulse{50%{box-shadow:0 0 0 10px var(--accent)}}
+@media (prefers-reduced-motion:reduce){.hl{animation:none;box-shadow:0 0 0 6px var(--accent)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.tr{display:block;font-weight:400;margin-top:6px}
+.num,code,.ltr{direction:ltr;unicode-bidi:isolate}
+code{font-size:.85em;word-break:break-all}
+</style>
+</head>
+<body>
+<div id="live" class="sr" aria-live="assertive"></div>
+
+<header>
+  <h1 data-t="app_title">Emergency &amp; calls</h1>
+  <p class="notice" id="topSafety"><span lang="en" dir="ltr">This does not replace calling your local emergency number directly. A connection cannot be guaranteed (no signal, no credit, no internet, network outages).</span><span class="tr" id="topSafetyTr" hidden></span></p>
+  <p class="notice bad" id="unverifiedLang" data-t="unverified_lang" hidden>This language has not been checked by a native speaker. Important words may be wrong. The safety sentence is always shown in English too.</p>
+</header>
+
+<!-- ============================================================ EMERGENCY -->
+<main>
+<section class="view" id="view-emergency" aria-labelledby="h-emergency">
+  <h2 id="h-emergency" data-t="where_title">Get help now</h2>
+
+  <div id="countryPick" class="stack" hidden>
+    <p><b data-t="pick_country_q">Where are you right now?</b> <span data-t="pick_country">Choose the country. Emergency numbers are different in every country.</span></p>
+    <label for="countrySelect" data-t="country">Country</label>
+    <select id="countrySelect"><option value="" data-t="choose_country">Choose a country...</option></select>
+    <button id="hintBtn" class="btn" hidden></button>
+    <p class="small" id="hintNote" hidden></p>
+    <p class="small" data-t="cannot_choose">Cannot choose? From a mobile phone, 112 reaches emergency services in many countries, but not all.</p>
+    <a class="btn svc" href="tel:112" id="pick112" data-ta="aria-label:pick112_aria" aria-label="Call 1 1 2 from a mobile phone, may not work in every country"><span data-t="mobile_try">Mobile phone: try</span><span class="num">112</span></a>
+  </div>
+
+  <div id="dialer" hidden>
+    <div class="row" style="justify-content:space-between">
+      <p style="margin:0"><span data-t="you_are_in">You are in:</span> <b id="countryName"></b> <span id="verifyTag"></span></p>
+      <button id="changeCountry" class="btn" style="width:auto;min-height:56px" data-t="change">Change</button>
+    </div>
+    <p class="notice bad" id="unverifiedWarn" hidden></p>
+    <p class="notice" id="noService" hidden></p>
+    <div id="sosArea" class="stack"></div>
+    <div id="svcArea" class="stack"></div>
+    <div id="fallbackArea" class="stack"></div>
+    <p class="small" id="countryNote"></p>
+    <p class="notice info"><b data-t="no_auto_q">Nothing here calls by itself.</b> <span data-t="no_auto">You press the button, your phone places the call. If this device cannot make phone calls, dial the number on any phone.</span></p>
+    <div class="card">
+      <p><b data-t="what_say">What to say:</b></p>
+      <p data-t="say1">1. Where you are (street, town, or what you can see).</p>
+      <p data-t="say2">2. What happened, and who is hurt.</p>
+      <p data-t="say3">3. Stay on the phone until they say you can hang up.</p>
+    </div>
+    <p class="small" id="sourceLine"></p>
+  </div>
+
+  <div id="voiceBox" class="stack">
+    <button id="voiceBtn" class="btn" aria-describedby="voiceNote"><span aria-hidden="true">&#127908;</span> <span data-t="voice_btn">Say "call emergency"</span></button>
+    <p class="small" id="voiceNote" data-t="voice_note">Voice only opens this screen. You still press the call button. In Chrome, your voice is sent to Google to be understood.</p>
+  </div>
+</section>
+
+<!-- ============================================================ FAMILY -->
+<section class="view" id="view-family" aria-labelledby="h-family" hidden>
+  <h2 id="h-family" data-t="family_title">Tell my family</h2>
+  <p class="notice" data-t="family_note">This opens your phone's message app with the text ready. You press Send. Nothing is sent by itself. It does not call emergency services.</p>
+  <p class="small" id="storageNote"></p>
+
+  <label for="groupSelect" data-t="who">Who should get the message?</label>
+  <select id="groupSelect"></select>
+  <label class="check"><input type="checkbox" id="shareLoc"> <span data-t="share_loc">Add my location (your phone will ask)</span></label>
+  <label for="senderName" data-t="my_name">My name (optional)</label>
+  <input id="senderName" autocomplete="name" maxlength="60">
+  <label for="alertText" data-t="message">Message</label>
+  <textarea id="alertText" maxlength="600"></textarea>
+  <div class="stack">
+    <button id="prepAlert" class="btn alt" data-t="prepare">Prepare message</button>
+    <a id="smsLink" class="btn sos" href="#" hidden><span data-t="open_sms">Open messages to send</span></a>
+    <p class="small" id="locStatus"></p>
+  </div>
+  <h2 data-t="call_family">Call one person</h2>
+  <div id="familyCalls" class="stack"></div>
+
+  <h2 data-t="manage">People and groups</h2>
+  <div id="contactList"></div>
+  <div class="card">
+    <label for="cName" data-t="name">Name</label><input id="cName" maxlength="80" autocomplete="off">
+    <label for="cPhone" data-t="phone">Phone number (with country code, e.g. +49...)</label><input id="cPhone" type="tel" dir="ltr" maxlength="20" autocomplete="off">
+    <label for="cRel" data-t="relation">Who is this? (optional)</label><input id="cRel" maxlength="40" autocomplete="off">
+    <p></p><button id="addContact" class="btn" data-t="add_person">Add person</button>
+  </div>
+  <div class="card">
+    <label for="gName" data-t="group_name">New group name</label><input id="gName" maxlength="60" autocomplete="off">
+    <p class="small" data-t="group_hint">Tick the people who belong in it:</p>
+    <div id="gMembers"></div>
+    <button id="addGroup" class="btn" data-t="add_group">Save group</button>
+  </div>
+  <div id="groupList"></div>
+</section>
+
+<!-- ============================================================ CLINICS -->
+<section class="view" id="view-clinics" aria-labelledby="h-clinics" hidden>
+  <h2 id="h-clinics" data-t="clinics_title">Partner clinics (video calls)</h2>
+  <p class="notice bad" id="partnerWarn" data-t="partner_warn">Partner clinic calls are for referrals and advice. They are not an emergency line. In an emergency call your local emergency number.</p>
+  <p id="hubStatus" class="small" role="status" data-t="not_connected">Not connected.</p>
+
+  <div id="incoming" class="card" hidden>
+    <p><b id="incomingText"></b></p>
+    <div class="row"><button id="acceptBtn" class="btn alt half" data-t="answer">Answer</button><button id="declineBtn" class="btn half" data-t="decline">Decline</button></div>
+  </div>
+
+  <div id="callPanel" class="card" hidden>
+    <p><b id="callTitle"></b> <span id="callState" class="small"></span></p>
+    <video id="localVideo" autoplay playsinline muted></video>
+    <video id="remoteVideo" autoplay playsinline></video>
+    <div class="row" style="clear:both">
+      <button id="muteBtn" class="btn half" data-t="mute">Mute</button>
+      <button id="camBtn" class="btn half" data-t="camera_off">Camera off</button>
+      <button id="hangupBtn" class="btn sos half" style="min-height:var(--tap);font-size:1em" data-t="hang_up">Hang up</button>
+    </div>
+    <h2 data-t="chat">Chat</h2>
+    <div id="chatLog" class="chatlog" aria-live="polite"></div>
+    <label for="chatInput" class="sr" data-t="message">Message</label>
+    <div class="row"><input id="chatInput" maxlength="2000" style="flex:1 1 180px" placeholder="Type a message" data-ta="placeholder:type_message"><button id="chatSend" class="btn half" style="flex:0 0 120px" data-t="send">Send</button></div>
+    <h2 data-t="send_file_title">Send a file</h2>
+    <p class="small" id="fileHint" data-t="file_hint">Send the encrypted referral bundle exported from the referral (interop) screen. Files go straight to the other clinic over the encrypted call link, not through any server.</p>
+    <label for="fileInput" class="sr" data-t="file">File</label>
+    <input id="fileInput" type="file">
+    <button id="fileSend" class="btn" data-t="send_file">Send file</button>
+    <div id="fileLog" class="small"></div>
+  </div>
+
+  <div id="directory"></div>
+
+  <details class="card">
+    <summary><b data-t="add_partner_title">Add a partner clinic or hospital</b></summary>
+    <p class="small" data-t="add_partner_hint">Only add places your clinic actually works with. There is no built-in list.</p>
+    <label for="pName" data-t="name">Name</label><input id="pName" maxlength="120">
+    <label for="pKind" data-t="type">Type</label>
+    <select id="pKind"><option value="clinic" data-t="kind_clinic">Clinic</option><option value="hospital" data-t="kind_hospital">Hospital</option><option value="telehealth" data-t="kind_telehealth">Telehealth service</option><option value="lab" data-t="kind_lab">Laboratory</option><option value="other" data-t="kind_other">Other</option></select>
+    <label for="pCountry" data-t="p_country">Country (ISO code, e.g. DE)</label><input id="pCountry" maxlength="2" autocapitalize="characters" dir="ltr">
+    <label for="pPhone" data-t="p_phone">Phone (optional)</label><input id="pPhone" type="tel" maxlength="20" dir="ltr">
+    <label for="pPeer" data-t="p_peer">Their clinic id on the call server</label><input id="pPeer" maxlength="64" autocapitalize="none" dir="ltr">
+    <label for="pUrl" data-t="p_url">Call server (leave empty = this clinic's server)</label><input id="pUrl" maxlength="300" dir="ltr" placeholder="wss://partner.example.org/comms/ws" autocapitalize="none">
+    <label for="pMyId" data-t="p_myid">Our id on their server (only if their server)</label><input id="pMyId" maxlength="64" autocapitalize="none" dir="ltr">
+    <label for="pMyKey" data-t="p_mykey">Key they gave us (only if their server)</label><input id="pMyKey" maxlength="64" dir="ltr" autocapitalize="none" autocomplete="off">
+    <label for="pNotes" data-t="notes">Notes</label><input id="pNotes" maxlength="500">
+    <p></p><button id="addPartner" class="btn" data-t="save_partner">Save partner</button>
+  </details>
+
+  <details class="card">
+    <summary><b data-t="let_call_title">Let a partner call us</b></summary>
+    <p class="small" data-t="let_call_hint">Creates an id and key on this clinic's call server. Give them to the partner over a trusted channel (in person or by phone). The key is shown once.</p>
+    <label for="newPeerId" data-t="new_peer_id">Partner id (lowercase, e.g. st-anna-clinic)</label><input id="newPeerId" maxlength="64" dir="ltr" autocapitalize="none">
+    <label for="newPeerName" data-t="new_peer_name">Partner name</label><input id="newPeerName" maxlength="120">
+    <p></p><button id="issueKey" class="btn" data-t="create_key">Create key</button>
+    <p id="issuedKey" class="small"></p>
+  </details>
+</section>
+
+<!-- ============================================================ SETTINGS -->
+<section class="view" id="view-settings" aria-labelledby="h-settings" hidden>
+  <h2 id="h-settings" data-t="settings">Settings</h2>
+  <label for="langSelect" data-t="language">Language</label>
+  <select id="langSelect"></select>
+  <label class="check"><input type="checkbox" id="showUnverifiedLang"> <span data-t="show_unverified">Show languages that are not checked yet</span></label>
+  <label class="check"><input type="checkbox" id="bigText"> <span data-t="big_text">Extra large text</span></label>
+  <label class="check"><input type="checkbox" id="voiceOn" checked> <span data-t="voice_on">Voice command button</span></label>
+
+  <h2 data-t="call_conn">Call connection (for partner calls)</h2>
+  <p class="small" id="stunNote"></p>
+  <label for="stunUrl" data-t="stun">STUN server</label><input id="stunUrl" dir="ltr" autocapitalize="none">
+  <p class="small" id="turnNote"></p>
+  <label for="turnUrl" data-t="turn">Your clinic's TURN server (turn: or turns:)</label><input id="turnUrl" dir="ltr" placeholder="turns:turn.yourclinic.org:5349" autocapitalize="none">
+  <label for="turnUser" data-t="turn_user">TURN username</label><input id="turnUser" dir="ltr" autocomplete="off" autocapitalize="none">
+  <label for="turnPass" data-t="turn_pass">TURN credential</label><input id="turnPass" dir="ltr" type="password" autocomplete="off">
+  <label for="clinicCountry" data-t="clinic_country">Clinic's country (ISO code). Staff can still change it on the emergency screen.</label><input id="clinicCountry" maxlength="2" dir="ltr" autocapitalize="characters">
+  <p></p><button id="saveSettings" class="btn" data-t="save_clinic">Save for this clinic</button>
+  <p class="small" id="settingsMsg" role="status"></p>
+  <p class="small" data-t="https_note">Camera and microphone only work on https:// pages (or on this computer at localhost). See EMERGENCY_README.md for setting up your clinic's certificate.</p>
+</section>
+</main>
+
+<nav class="tabs" role="tablist" aria-label="Sections" data-ta="aria-label:sections">
+  <button role="tab" id="tab-emergency" aria-controls="view-emergency" aria-selected="true" data-t="tab_help">Help</button>
+  <button role="tab" id="tab-family" aria-controls="view-family" aria-selected="false" data-t="tab_family">Family</button>
+  <button role="tab" id="tab-clinics" aria-controls="view-clinics" aria-selected="false" data-t="tab_clinics">Clinics</button>
+  <button role="tab" id="tab-settings" aria-controls="view-settings" aria-selected="false" data-t="tab_settings">Settings</button>
+</nav>
+
+<script>
+'use strict';
+(function () {
+const $ = (id) => document.getElementById(id);
+const API = 'api/';
+const SAFETY = 'This does not replace calling your local emergency number directly. A connection cannot be guaranteed (no signal, no credit, no internet, network outages).';
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('gcv.comms.' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('gcv.comms.' + k, JSON.stringify(v)); } catch (e) { /* private mode */ } },
+  del(k) { try { localStorage.removeItem('gcv.comms.' + k); } catch (e) { /* ignore */ } }
+};
+const say = (t) => { const l = $('live'); l.textContent = ''; setTimeout(() => { l.textContent = t; }, 30); };
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+async function api(path, body) {
+  const opt = body === undefined ? {} : {method: 'POST', headers: {'Content-Type': 'application/json', 'X-Covenant-Comms': '1'}, body: JSON.stringify(body)};
+  const r = await fetch(API + path, opt);
+  let j = null; try { j = await r.json(); } catch (e) { j = null; }
+  if (!r.ok) { const err = new Error((j && j.error) || ('HTTP ' + r.status)); err.status = r.status; err.body = j; throw err; }
+  return j;
+}
+
+// ------------------------------------------------------------------ language
+// English is built into this page, so it works with no catalog at all. Other languages come from the shared
+// Covenant catalogs (api/i18n?l=<code>, served by this module, cached on this device for offline use). A language is used only after a
+// person chose it (here, or in the main app's language picker); the browser language is never applied silently.
+// The safety sentence always stays visible in English; a draft translation is shown under it, never instead.
+const EN = {};
+document.querySelectorAll('[data-t]').forEach((el) => { EN[el.dataset.t] = el.textContent; });
+document.querySelectorAll('[data-ta]').forEach((el) => { el.dataset.ta.split(';').forEach((pair) => { const kv = pair.split(':'); EN[kv[1]] = el.getAttribute(kv[0]) || ''; }); });
+let CAT = null;            // bundle of the chosen language (null = built-in English)
+let LOCALES = store.get('locales', []);
+function fmtMsg(m, p) {
+  return String(m).replace(/''/g, '\u0000').replace(/\{([A-Za-z_][A-Za-z0-9_]*)\}/g, (x, n) => (p && p[n] != null ? String(p[n]) : '')).replace(/\u0000/g, "'");
+}
+function tr(k, en, p) { const m = CAT && CAT.m ? CAT.m['comms.' + k] : null; return fmtMsg(m != null ? m : en, p); }
+function unreviewed(k) { return !!(CAT && CAT.unreviewed && CAT.unreviewed.indexOf('comms.' + k) >= 0); }
+function cookieLang() { const m = /(?:^|;\s*)gc_lang=([^;]+)/.exec(document.cookie || ''); try { return m ? decodeURIComponent(m[1]) : null; } catch (e) { return null; } }
+function chosenLang() { return store.get('lang', null) || cookieLang() || 'en'; }
+async function loadCatalog(code) {
+  if (!code || code === 'en') return null;
+  try {
+    const r = await fetch(API + 'i18n?l=' + encodeURIComponent(code), {credentials: 'same-origin'});
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const b = await r.json();
+    store.set('cat.' + code, b);
+    if (b.locales) { LOCALES = b.locales; store.set('locales', LOCALES); }
+    return b;
+  } catch (e) { return store.get('cat.' + code, null); }
+}
+async function loadLocaleList() {
+  if (LOCALES.length) return;
+  try { const r = await fetch(API + 'i18n?list=1', {credentials: 'same-origin'}); if (r.ok) { const b = await r.json(); LOCALES = b.locales || []; store.set('locales', LOCALES); } } catch (e) { /* offline */ }
+}
+let notHttps = false;
+function applyLang() {
+  const h = document.documentElement;
+  h.lang = CAT ? CAT.intl : 'en'; h.dir = CAT ? CAT.dir : 'ltr';
+  document.querySelectorAll('[data-t]').forEach((el) => {
+    const k = el.dataset.t;
+    el.textContent = tr(k, EN[k]);
+    if (CAT && CAT.paired && CAT.paired.indexOf('comms.' + k) >= 0 && unreviewed(k) && tr(k, EN[k]) !== EN[k]) {
+      const e = document.createElement('span'); e.className = 'tr'; e.lang = 'en'; e.dir = 'ltr'; e.textContent = EN[k]; el.appendChild(e);
+    }
+  });
+  document.querySelectorAll('[data-ta]').forEach((el) => { el.dataset.ta.split(';').forEach((pair) => { const kv = pair.split(':'); el.setAttribute(kv[0], tr(kv[1], EN[kv[1]])); }); });
+  const st = tr('safety', SAFETY);
+  $('topSafetyTr').hidden = !CAT || st === SAFETY; $('topSafetyTr').textContent = st === SAFETY ? '' : st;
+  $('unverifiedLang').hidden = !CAT || CAT.status === 'reviewed' || CAT.status === 'source';
+  if (notHttps) $('fileHint').textContent += ' ' + tr('not_https', 'This page is not https, so camera and microphone are blocked.');
+}
+function fillLangs() {
+  const show = $('showUnverifiedLang').checked;
+  const cur = CAT ? CAT.locale : 'en';
+  const list = (LOCALES.length ? LOCALES : [{code: 'en', native: 'English', status: 'source'}])
+    .filter((l) => l.code === 'en' || l.code === cur || show || l.status === 'reviewed');
+  $('langSelect').innerHTML = list.map((l) => '<option value="' + esc(l.code) + '"' + (l.code === cur ? ' selected' : '') + '>' + esc(l.native) +
+    (l.status === 'source' || l.status === 'reviewed' ? '' : ' - ' + esc(tr('lang_draft', 'not checked yet'))) + '</option>').join('');
+}
+async function setLang(code) {
+  CAT = await loadCatalog(code);
+  store.set('lang', CAT ? CAT.locale : 'en');
+  applyLang(); fillLangs();
+  if (NUM) { fillCountries(); renderEmergency(); renderContacts(); renderDirectory(); hubStatus(); }
+}
+
+// ------------------------------------------------------------------ tabs
+const TABS = ['emergency', 'family', 'clinics', 'settings'];
+function showTab(name) {
+  TABS.forEach((t) => {
+    $('view-' + t).hidden = t !== name;
+    $('tab-' + t).setAttribute('aria-selected', String(t === name));
+  });
+}
+TABS.forEach((t) => { $('tab-' + t).addEventListener('click', () => showTab(t)); });
+
+// ------------------------------------------------------------------ emergency numbers
+let NUM = null, CONFIG = null;
+function svcLabel(svc) { return {general: tr('svc_general', 'Emergency'), ambulance: tr('svc_ambulance', 'Ambulance (doctor, hurt or sick)'), police: tr('svc_police', 'Police (danger, crime)'), fire: tr('svc_fire', 'Fire brigade (fire, trapped)')}[svc] || svc; }
+function svcShort(svc) { return {general: tr('svc_short_general', 'emergency'), ambulance: tr('svc_short_ambulance', 'ambulance'), police: tr('svc_short_police', 'police'), fire: tr('svc_short_fire', 'fire brigade'), fallback: tr('svc_short_fallback', 'mobile phone fallback')}[svc] || svc; }
+function cname(cc) { const e = NUM && NUM.countries[cc]; if (!e) return cc; if (CAT) { try { return new Intl.DisplayNames([CAT.intl], {type: 'region'}).of(cc) || e.name; } catch (x) { /* old browser */ } } return e.name; }
+async function loadNumbers() {
+  try { NUM = await api('numbers'); store.set('numbers', NUM); }
+  catch (e) { NUM = store.get('numbers', null); }
+  if (!NUM) { $('countryPick').hidden = false; $('hintNote').hidden = false; $('hintNote').textContent = tr('numbers_failed', 'Could not load the number list (offline?). In most countries, 112 works from a mobile phone.') + ' ' + SAFETY; return; }
+  fillCountries();
+}
+function fillCountries() {
+  const sel = $('countrySelect'), keep = sel.value;
+  while (sel.options.length > 1) sel.remove(1);
+  const opts = Object.keys(NUM.countries).map((cc) => [cc, cname(cc)]).sort((a, b) => a[1].localeCompare(b[1], CAT ? CAT.intl : 'en'))
+    .map(([cc, n]) => '<option value="' + cc + '">' + esc(n) + (NUM.countries[cc].verified ? '' : ' (' + esc(tr('not_verified', 'not verified')) + ')') + '</option>');
+  sel.insertAdjacentHTML('beforeend', opts.join(''));
+  sel.value = keep;
+}
+function browserHint() {
+  // A hint only: browser language says nothing reliable about where you are. Never applied without a tap.
+  const langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+  for (const l of langs) { const m = /^[a-z]{2,3}[-_]([A-Z]{2})$/i.exec(l || ''); if (m && NUM && NUM.countries[m[1].toUpperCase()]) return m[1].toUpperCase(); }
+  return null;
+}
+function currentCountry() {
+  const mine = store.get('country', null);
+  if (mine && NUM && NUM.countries[mine]) return {cc: mine, how: tr('how_you', 'you chose it')};
+  if (CONFIG && CONFIG.clinic_country && NUM && NUM.countries[CONFIG.clinic_country]) return {cc: CONFIG.clinic_country, how: tr('how_clinic', 'set by your clinic')};
+  return null;
+}
+function renderEmergency(highlight) {
+  const cur = NUM ? currentCountry() : null;
+  $('countryPick').hidden = !!cur;
+  $('dialer').hidden = !cur;
+  if (!cur) {
+    const h = browserHint();
+    if (h) {
+      $('hintBtn').hidden = false;
+      $('hintBtn').textContent = tr('hint_btn', 'Am I in {country}? Tap to choose it', {country: cname(h)});
+      $('hintBtn').onclick = () => chooseCountry(h);
+      $('hintNote').hidden = false;
+      $('hintNote').textContent = tr('hint_note', 'This guess comes from your browser language, which can be wrong. Only tap it if it is where you are now.');
+    }
+    return;
+  }
+  const e = NUM.countries[cur.cc];
+  $('countryName').textContent = cname(cur.cc);
+  $('verifyTag').innerHTML = e.verified ? '<span class="tag ok">' + esc(tr('official_list', 'official list')) + '</span>' : '<span class="tag warn">' + esc(tr('not_verified', 'not verified')) + '</span>';
+  $('verifyTag').title = cur.how;
+  const unv = !e.verified;
+  $('unverifiedWarn').hidden = !unv;
+  $('unverifiedWarn').textContent = unv ? tr('unverified_warn', 'Some numbers here are NOT verified (marked "?"). Check the local emergency number now: ask someone nearby, a hotel, a pharmacy, or your mobile operator. 112 is shown as a mobile phone fallback.') : '';
+  $('noService').hidden = e.gsm_112 !== 'none';
+  $('noService').textContent = tr('no_service', 'There is no public emergency phone service here. Use your station or expedition emergency plan (satellite phone, station leader).');
+  const numBtn = (svc, n, big) => {
+    const a = document.createElement('a');
+    a.className = 'btn ' + (big ? 'sos' : 'svc');
+    a.href = 'tel:' + n.number;
+    a.dataset.service = svc;
+    a.dataset.number = n.number;
+    a.setAttribute('aria-label', tr('call_aria', 'Call {service} {digits}', {service: svcShort(big ? 'general' : svc), digits: n.number.split('').join(' ')}) + (n.verified ? '' : ', ' + tr('not_verified', 'not verified')));
+    a.innerHTML = big
+      ? '<span>' + esc(tr('call_for_help', 'Call for help')) + '</span><span class="num">' + esc(n.number) + (n.verified ? '' : ' ?') + '</span>'
+      : '<span>' + esc(svcLabel(svc)) + '</span><span class="num">' + esc(n.number) + (n.verified ? '' : ' ?') + '</span>';
+    return a;
+  };
+  const sos = $('sosArea'), svcA = $('svcArea'), fb = $('fallbackArea');
+  sos.innerHTML = ''; svcA.innerHTML = ''; fb.innerHTML = '';
+  const main = (e.general && e.general[0]) ? ['general', e.general[0]] : (e.ambulance && e.ambulance[0]) ? ['ambulance', e.ambulance[0]] : null;
+  if (main) sos.appendChild(numBtn(main[0], main[1], true));
+  (e.general || []).slice(1).forEach((n) => svcA.appendChild(numBtn('general', n, false)));
+  ['ambulance', 'police', 'fire'].forEach((svc) => (e[svc] || []).forEach((n) => svcA.appendChild(numBtn(svc, n, false))));
+  const listed = [].concat(e.general || [], e.ambulance || [], e.police || [], e.fire || []).map((n) => n.number);
+  if (e.gsm_112 !== 'none' && listed.indexOf('112') < 0) {
+    const p = document.createElement('p'); p.className = 'small';
+    p.textContent = tr('fallback_112', 'If nothing else works, from a MOBILE phone try 112. Most mobile phones treat 112 as an emergency number, but here it may not reach local services. Try the numbers above first.');
+    fb.appendChild(p);
+    fb.appendChild(numBtn('fallback', {number: '112', verified: false}, false));
+    fb.lastChild.querySelector('span').textContent = tr('mobile_fallback', 'Mobile phone fallback');
+  }
+  if (!main && e.gsm_112 === 'none') {
+    const p = document.createElement('p'); p.className = 'notice'; p.textContent = tr('no_number', 'No emergency number is listed here.'); sos.appendChild(p);
+  }
+  $('countryNote').textContent = e.note || '';
+  $('sourceLine').textContent = tr('source_line', 'Source: {source}.', {source: e.source}) + ' ' + (e.verified ? tr('official_means', '"Official list" means the numbers match the list the country gave to the ITU; it is not a test call.') : '');
+  if (highlight) {
+    const sel = highlight === 'general' ? '.btn.sos' : '[data-service="' + highlight + '"]';
+    const el = document.querySelector('#dialer ' + sel) || document.querySelector('#dialer .btn.sos');
+    if (el) { el.classList.remove('hl'); void el.offsetWidth; el.classList.add('hl'); el.focus(); el.scrollIntoView({block: 'center'}); }
+    say(tr('screen_open', 'Emergency screen open. Tap the highlighted button to call.'));
+  }
+}
+function chooseCountry(cc) {
+  if (!cc) return;
+  store.set('country', cc);
+  renderEmergency();
+  say(tr('country_set', 'Country set to {country}', {country: cname(cc)}));
+}
+$('countrySelect').addEventListener('change', (ev) => chooseCountry(ev.target.value));
+$('changeCountry').addEventListener('click', () => { store.del('country'); if (CONFIG) CONFIG.clinic_country = ''; $('countrySelect').value = ''; renderEmergency(); $('countrySelect').focus(); });
+
+// ------------------------------------------------------------------ voice command (opens the screen; never dials)
+const VOICE = [
+  {re: /\b(ambulance|doctor|hurt|injured|sick)\b/i, svc: 'ambulance'},
+  {re: /\b(police|danger|robbery|thief)\b/i, svc: 'police'},
+  {re: /\b(fire|burning|smoke)\b/i, svc: 'fire'},
+  {re: /\b(emergency|help me|help|nine one one|one one two|sos)\b/i, svc: 'general'}
+];
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = null;
+function setupVoice() {
+  const on = store.get('voice', true) && (!CONFIG || CONFIG.speech_enabled !== false);
+  $('voiceOn').checked = store.get('voice', true);
+  $('voiceBox').hidden = !on;
+  if (!SR) { $('voiceBtn').disabled = true; $('voiceNote').textContent = tr('voice_unavailable', 'Voice commands are not available in this browser. Use the buttons.'); return; }
+  $('voiceBtn').onclick = () => {
+    try {
+      if (rec) { rec.abort(); rec = null; }
+      rec = new SR();
+      rec.lang = (/^en/i.test(navigator.language || '') ? navigator.language : 'en-US');
+      rec.interimResults = false; rec.maxAlternatives = 3;
+      rec.onresult = (ev) => {
+        const said = Array.from(ev.results[0]).map((a) => a.transcript).join(' | ');
+        const hit = VOICE.find((v) => v.re.test(said));
+        if (hit) { showTab('emergency'); renderEmergency(hit.svc); }
+        else say(tr('voice_heard', 'I heard: {said}. Say "call emergency".', {said: said}));
+      };
+      rec.onerror = (ev) => { say(tr('voice_error', 'Voice did not work ({error}). Use the buttons.', {error: ev.error})); };
+      rec.start();
+      say(tr('voice_listening', 'Listening. Say "call emergency".'));
+    } catch (e) { say(tr('voice_failed', 'Voice did not work. Use the buttons.')); }
+  };
+}
+$('voiceOn').addEventListener('change', (ev) => { store.set('voice', ev.target.checked); setupVoice(); });
+
+// ------------------------------------------------------------------ family alert
+let CONTACTS = {contacts: [], groups: []}, serverContacts = false;
+async function loadContacts() {
+  try { CONTACTS = await api('contacts'); serverContacts = true; }
+  catch (e) { CONTACTS = store.get('contacts', {contacts: [], groups: []}); serverContacts = false; }
+  const enc = CONFIG && CONFIG.storage && CONFIG.storage.encrypted;
+  serverContacts = serverContacts && !!enc;
+  if (!serverContacts) CONTACTS = store.get('contacts', CONTACTS && CONTACTS.contacts ? CONTACTS : {contacts: [], groups: []});
+  $('storageNote').textContent = serverContacts
+    ? tr('storage_vault', 'Your list is saved encrypted by the clinic vault.')
+    : tr('storage_device', 'The clinic vault is not available, so this list is saved only on this device (not encrypted). Anyone using this device can see it.');
+  renderContacts();
+}
+async function saveContacts() {
+  if (serverContacts) {
+    try { CONTACTS = await api('contacts', CONTACTS); renderContacts(); return; }
+    catch (e) { if (e.status !== 503) { say(tr('could_not_save', 'Could not save: {error}', {error: e.message})); return; } serverContacts = false; }
+  }
+  store.set('contacts', CONTACTS); renderContacts();
+}
+function cleanPhone(p) { p = String(p || '').replace(/[\s\-().]/g, ''); return /^\+?[0-9]{3,15}$/.test(p) ? p : null; }
+function renderContacts() {
+  const cs = CONTACTS.contacts || [], gs = CONTACTS.groups || [];
+  $('contactList').innerHTML = cs.length ? cs.map((c) => '<div class="card row" style="justify-content:space-between"><span><b>' + esc(c.name) + '</b> ' + esc(c.relation || '') + '<br><span class="small">' + esc(c.phone) + '</span></span><button class="btn" style="width:auto;min-height:56px" data-del="' + esc(c.id) + '">' + esc(tr('remove', 'Remove')) + '</button></div>').join('') : '<p class="small">' + esc(tr('no_people', 'No people yet. Add someone below.')) + '</p>';
+  $('gMembers').innerHTML = cs.map((c) => '<label class="check"><input type="checkbox" value="' + esc(c.id) + '"> ' + esc(c.name) + '</label>').join('');
+  $('groupList').innerHTML = gs.map((g) => '<div class="card row" style="justify-content:space-between"><span><b>' + esc(g.name) + '</b><br><span class="small">' + g.members.map((m) => esc((cs.find((c) => c.id === m) || {}).name || '?')).join(', ') + '</span></span><button class="btn" style="width:auto;min-height:56px" data-gdel="' + esc(g.id) + '">' + esc(tr('remove', 'Remove')) + '</button></div>').join('');
+  const opts = ['<option value="__all">' + esc(tr('everyone', 'Everyone in my list')) + '</option>'].concat(gs.map((g) => '<option value="' + esc(g.id) + '">' + esc(g.name) + '</option>'));
+  $('groupSelect').innerHTML = opts.join('');
+  renderFamilyCalls();
+}
+function selectedPeople() {
+  const v = $('groupSelect').value, cs = CONTACTS.contacts || [];
+  if (v === '__all' || !v) return cs;
+  const g = (CONTACTS.groups || []).find((x) => x.id === v);
+  return g ? cs.filter((c) => g.members.indexOf(c.id) >= 0) : [];
+}
+function renderFamilyCalls() {
+  const people = selectedPeople();
+  $('familyCalls').innerHTML = people.length ? '' : '<p class="small">' + esc(tr('nobody_group', 'Nobody in this group yet.')) + '</p>';
+  people.forEach((c) => {
+    const a = document.createElement('a'); a.className = 'btn svc'; a.href = 'tel:' + c.phone;
+    a.innerHTML = '<span>' + esc(tr('call_person', 'Call {name}', {name: c.name})) + '</span><span class="num">' + esc(c.phone) + '</span>';
+    $('familyCalls').appendChild(a);
+  });
+}
+$('groupSelect').addEventListener('change', () => { $('smsLink').hidden = true; renderFamilyCalls(); });
+$('contactList').addEventListener('click', (ev) => {
+  const id = ev.target && ev.target.dataset && ev.target.dataset.del; if (!id) return;
+  CONTACTS.contacts = CONTACTS.contacts.filter((c) => c.id !== id);
+  CONTACTS.groups.forEach((g) => { g.members = g.members.filter((m) => m !== id); });
+  saveContacts();
+});
+$('groupList').addEventListener('click', (ev) => {
+  const id = ev.target && ev.target.dataset && ev.target.dataset.gdel; if (!id) return;
+  CONTACTS.groups = CONTACTS.groups.filter((g) => g.id !== id); saveContacts();
+});
+const rid = () => Array.from(crypto.getRandomValues(new Uint8Array(6)), (b) => b.toString(16).padStart(2, '0')).join('');
+$('addContact').addEventListener('click', () => {
+  const phone = cleanPhone($('cPhone').value);
+  if (!phone) { say(tr('phone_bad_full', 'That phone number does not look right. Use digits, starting with + and the country code.')); $('cPhone').focus(); return; }
+  CONTACTS.contacts.push({id: rid(), name: $('cName').value.trim().slice(0, 80) || phone, phone: phone, relation: $('cRel').value.trim().slice(0, 40)});
+  $('cName').value = $('cPhone').value = $('cRel').value = '';
+  saveContacts(); say(tr('person_added', 'Person added'));
+});
+$('addGroup').addEventListener('click', () => {
+  const members = Array.from($('gMembers').querySelectorAll('input:checked')).map((i) => i.value);
+  const name = $('gName').value.trim().slice(0, 60);
+  if (!name || !members.length) { say(tr('group_need', 'Give the group a name and tick at least one person.')); return; }
+  CONTACTS.groups.push({id: rid(), name: name, members: members}); $('gName').value = '';
+  saveContacts(); say(tr('group_saved', 'Group saved'));
+});
+function alertText(pos) {
+  const who = $('senderName').value.trim().slice(0, 60);
+  let t = who ? tr('sms_help_name', 'HELP NEEDED - {name}.', {name: who}) : tr('sms_help', 'HELP NEEDED.');
+  if (pos) {
+    const la = pos.coords.latitude.toFixed(5), lo = pos.coords.longitude.toFixed(5), acc = Math.round(pos.coords.accuracy || 0);
+    t += ' ' + tr('sms_location', 'My location: {lat}, {lon}', {lat: la, lon: lo}) + (acc ? ' ' + tr('sms_accuracy', '(within about {m} m)', {m: acc}) : '') + ' https://www.openstreetmap.org/?mlat=' + la + '&mlon=' + lo + '#map=17/' + la + '/' + lo;
+  } else t += ' ' + tr('sms_no_location', 'Location not shared.');
+  return t + ' ' + tr('sms_call_me', 'Please call me. If I do not answer, call the emergency number where I am.');
+}
+function buildSms() {
+  const people = selectedPeople();
+  if (!people.length) { say(tr('add_people_first', 'Add people first.')); return; }
+  const body = $('alertText').value.slice(0, 600);
+  $('smsLink').href = 'sms:' + people.map((c) => c.phone).join(',') + '?&body=' + encodeURIComponent(body);
+  $('smsLink').hidden = false;
+  $('smsLink').focus();
+  say(tr('msg_ready', 'Message ready. Tap Open messages, then press Send in your messages app.'));
+}
+$('prepAlert').addEventListener('click', () => {
+  $('smsLink').hidden = true;
+  if ($('shareLoc').checked && navigator.geolocation) {
+    $('locStatus').textContent = tr('finding_location', 'Finding your location...');
+    navigator.geolocation.getCurrentPosition((pos) => {
+      $('locStatus').textContent = tr('location_added', 'Location added (accuracy about {m} m).', {m: Math.round(pos.coords.accuracy)});
+      $('alertText').value = alertText(pos); buildSms();
+    }, (err) => {
+      $('locStatus').textContent = tr('location_failed', 'Location not available ({error}). The message has no location. Say where you are in the message.', {error: err.message});
+      $('alertText').value = alertText(null); buildSms();
+    }, {enableHighAccuracy: true, timeout: 15000, maximumAge: 60000});
+  } else {
+    $('locStatus').textContent = $('shareLoc').checked ? tr('no_geo', 'This browser cannot share location.') : '';
+    if (!$('alertText').value.trim()) $('alertText').value = alertText(null);
+    buildSms();
+  }
+});
+
+// ------------------------------------------------------------------ signaling hub client (WebSocket + HMAC)
+function hexToBytes(h) { const a = new Uint8Array(h.length / 2); for (let i = 0; i < a.length; i++) a[i] = parseInt(h.substr(i * 2, 2), 16); return a; }
+async function hmacHex(keyHex, msg) {
+  const k = await crypto.subtle.importKey('raw', hexToBytes(keyHex), {name: 'HMAC', hash: 'SHA-256'}, false, ['sign']);
+  const sig = await crypto.subtle.sign('HMAC', k, new TextEncoder().encode(msg));
+  return Array.from(new Uint8Array(sig), (b) => b.toString(16).padStart(2, '0')).join('');
+}
+function wsUrl(u) {
+  if (/^wss?:\/\//.test(u)) return u;
+  return (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + u;
+}
+class Hub {
+  constructor(url, id, key, label) { this.url = wsUrl(url); this.id = id; this.key = key; this.label = label; this.ws = null; this.ready = null; this.session = null; this.handlers = []; this.retry = 0; this.stopped = false; }
+  connect() {
+    this.ready = new Promise((resolve, reject) => {
+      let ws;
+      try { ws = new WebSocket(this.url); } catch (e) { reject(e); return; }
+      this.ws = ws;
+      ws.onmessage = async (ev) => {
+        let m; try { m = JSON.parse(ev.data); } catch (e) { return; }
+        if (m.type === 'hello') {
+          try { ws.send(JSON.stringify({type: 'auth', clinic_id: this.id, mac: await hmacHex(this.key, m.proto + '|' + this.id + '|' + m.nonce)})); }
+          catch (e) { reject(e); }
+        } else if (m.type === 'welcome') { this.session = m.session; this.retry = 0; resolve(this); hubStatus(); }
+        else if (m.type === 'error' && m.code === 'auth_failed') { this.stopped = true; reject(new Error(tr('auth_failed', 'The call server did not accept our id/key.'))); }
+        else this.handlers.forEach((h) => h(m, this));
+      };
+      ws.onclose = () => {
+        this.session = null; hubStatus();
+        reject(new Error(tr('hub_unreachable', 'Call server not reachable.')));
+        if (!this.stopped && this.retry < 8) { const d = Math.min(30000, 1000 * Math.pow(2, this.retry++)); setTimeout(() => this.connect().catch(() => {}), d); }
+      };
+      ws.onerror = () => { /* onclose follows */ };
+    });
+    return this.ready;
+  }
+  send(obj) { if (this.ws && this.ws.readyState === 1 && this.session) { this.ws.send(JSON.stringify(obj)); return true; } return false; }
+  on(fn) { this.handlers.push(fn); }
+}
+const HUBS = {};
+function hubFor(url, id, key, label) {
+  const k = wsUrl(url) + '|' + id;
+  if (!HUBS[k]) { HUBS[k] = new Hub(url, id, key, label); HUBS[k].on(onSignal); HUBS[k].connect().catch((e) => { setStatus(e.message); }); }
+  return HUBS[k];
+}
+function setStatus(t) { $('hubStatus').textContent = t; }
+function hubStatus() {
+  const hs = Object.values(HUBS);
+  if (!hs.length) { setStatus(tr('not_connected', 'Not connected.')); return; }
+  setStatus(hs.map((h) => (h.label || h.id) + ': ' + (h.session ? tr('st_connected', 'connected') : tr('st_not_connected', 'not connected'))).join(' · '));
+}
+
+// ------------------------------------------------------------------ WebRTC calls
+let call = null;   // {id, hub, peer, peerSession, pc, media, local, chat, file, pending:[], role}
+function iceServers() {
+  const list = (CONFIG && CONFIG.ice_servers) ? CONFIG.ice_servers.slice() : [{urls: ['stun:stun.l.google.com:19302']}];
+  return list;
+}
+function chatLine(who, text) { const d = document.createElement('div'); d.innerHTML = '<b>' + esc(who) + ':</b> ' + esc(text); $('chatLog').appendChild(d); $('chatLog').scrollTop = 1e9; }
+function callUi(title, state) { $('callPanel').hidden = false; $('callTitle').textContent = title; $('callState').textContent = state || ''; }
+async function getMedia(kind) {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error(tr('need_https', 'Camera/microphone need an https:// page (or localhost).'));
+  return navigator.mediaDevices.getUserMedia(kind === 'audio' ? {audio: true, video: false} : {audio: true, video: {width: {ideal: 640}, height: {ideal: 480}}});
+}
+function newPc() {
+  const pc = new RTCPeerConnection({iceServers: iceServers()});
+  pc.onicecandidate = (ev) => { if (ev.candidate && call) call.hub.send({type: 'candidate', to: call.peer, to_session: call.peerSession, call_id: call.id, candidate: ev.candidate.toJSON()}); };
+  pc.ontrack = (ev) => { $('remoteVideo').srcObject = ev.streams[0]; };
+  pc.onconnectionstatechange = () => {
+    if (!call) return;
+    $('callState').textContent = pc.connectionState;
+    window.GCComms.state = pc.connectionState;
+    if (pc.connectionState === 'failed') chatLine(tr('system', 'System'), tr('conn_failed', 'Connection failed. Across strict firewalls a TURN server is needed (Settings).'));
+  };
+  pc.ondatachannel = (ev) => wireChannel(ev.channel);
+  return pc;
+}
+function wireChannel(ch) {
+  if (ch.label === 'chat') {
+    call.chat = ch;
+    ch.onmessage = (ev) => { window.GCComms.lastChat = ev.data; chatLine(call.peer, ev.data); };
+  } else if (ch.label === 'file') {
+    call.file = ch; ch.binaryType = 'arraybuffer';
+    let meta = null, parts = [], got = 0;
+    ch.onmessage = async (ev) => {
+      if (typeof ev.data === 'string') {
+        const m = JSON.parse(ev.data);
+        if (m.kind === 'meta') { meta = m; parts = []; got = 0; $('fileLog').textContent = tr('receiving', 'Receiving {name}...', {name: m.name}); }
+        else if (m.kind === 'done' && meta) {
+          const blob = new Blob(parts, {type: 'application/octet-stream'});
+          const hash = await sha256Hex(await blob.arrayBuffer());
+          const ok = hash === meta.sha256;
+          const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = meta.name; a.textContent = tr('save_file', 'Save {name} ({size} bytes)', {name: meta.name, size: blob.size});
+          const p = document.createElement('p'); p.textContent = (ok ? tr('received_ok', 'Received. Checksum matches.') : tr('received_bad', 'WARNING: checksum does not match, do not use this file.')) + ' ';
+          p.appendChild(a); $('fileLog').appendChild(p);
+          window.GCComms.lastFile = {name: meta.name, ok: ok, size: blob.size};
+          meta = null;
+        }
+      } else if (meta) { parts.push(ev.data); got += ev.data.byteLength; if (got > 52428800) { meta = null; $('fileLog').textContent = tr('file_too_big_stopped', 'File too big, stopped.'); } }
+    };
+  }
+}
+async function sha256Hex(buf) { const d = await crypto.subtle.digest('SHA-256', buf); return Array.from(new Uint8Array(d), (b) => b.toString(16).padStart(2, '0')).join(''); }
+async function startCall(partner, media) {
+  if (call) { say(tr('already_in_call', 'Already in a call.')); return; }
+  const hub = partner.signal_url ? hubFor(partner.signal_url, partner.my_id, partner.my_key, partner.name) : SELF;
+  if (!hub) { say(tr('no_hub', 'Not connected to a call server.')); return; }
+  await hub.ready;
+  const id = rid() + rid();
+  call = {id: id, hub: hub, peer: partner.peer_id, peerSession: null, media: media, pending: [], role: 'caller', name: partner.name};
+  callUi(tr('calling', 'Calling {name}', {name: partner.name || partner.peer_id}), tr('ringing', 'ringing...'));
+  if (!hub.send({type: 'ring', to: partner.peer_id, call_id: id, media: media, name: (CONFIG && CONFIG.self_hub && CONFIG.self_hub.clinic_id) || ''})) { endCall(tr('not_connected', 'Not connected.')); }
+}
+async function caller_onAccept(m) {
+  call.peerSession = m.from_session;
+  const pc = call.pc = newPc();
+  try { call.local = await getMedia(call.media); }
+  catch (e) { chatLine(tr('system', 'System'), tr('no_media', 'No camera/microphone: {error} Chat and files still work.', {error: e.message})); }
+  if (call.local) { $('localVideo').srcObject = call.local; call.local.getTracks().forEach((t) => pc.addTrack(t, call.local)); }
+  wireChannel(pc.createDataChannel('chat'));
+  wireChannel(pc.createDataChannel('file'));
+  const offer = await pc.createOffer({offerToReceiveAudio: true, offerToReceiveVideo: call.media !== 'audio'});
+  await pc.setLocalDescription(offer);
+  call.hub.send({type: 'offer', to: call.peer, to_session: call.peerSession, call_id: call.id, sdp: pc.localDescription.toJSON()});
+}
+let ringing = null;
+function onSignal(m, hub) {
+  if (m.type === 'ring') {
+    if (call || ringing) { hub.send({type: 'busy', to: m.from, to_session: m.from_session, call_id: m.call_id}); return; }
+    ringing = {m: m, hub: hub};
+    $('incoming').hidden = false;
+    $('incomingText').textContent = (m.media === 'audio' ? tr('incoming_audio', 'Incoming audio call from {from}', {from: m.from}) : tr('incoming_video', 'Incoming video call from {from}', {from: m.from})) + (hub.label ? ' ' + tr('via', '(via {hub})', {hub: hub.label}) : '');
+    showTab('clinics'); say(tr('incoming_say', 'Incoming call from {from}', {from: m.from}));
+    if (window.GCComms.autoAccept) acceptRing();
+    return;
+  }
+  if (!call || m.call_id !== call.id) { if (ringing && m.call_id === ringing.m.call_id && m.type === 'bye') { ringing = null; $('incoming').hidden = true; } return; }
+  if (m.type === 'accept' && call.role === 'caller' && !call.pc) caller_onAccept(m).catch((e) => endCall(e.message));
+  else if (m.type === 'decline' || m.type === 'busy') endCall(m.type === 'busy' ? tr('busy', 'They are busy.') : tr('declined', 'They declined.'));
+  else if (m.type === 'offer' && call.role === 'callee') callee_onOffer(m).catch((e) => endCall(e.message));
+  else if (m.type === 'answer' && call.pc) call.pc.setRemoteDescription(m.sdp).then(flushCandidates).catch((e) => endCall(e.message));
+  else if (m.type === 'candidate') {
+    if (call.pc && call.pc.remoteDescription) call.pc.addIceCandidate(m.candidate).catch(() => {});
+    else call.pending.push(m.candidate);
+  } else if (m.type === 'bye') endCall(tr('hung_up', 'The other clinic hung up.'), true);
+}
+function flushCandidates() { const p = call.pending; call.pending = []; p.forEach((c) => call.pc.addIceCandidate(c).catch(() => {})); }
+function acceptRing() {
+  if (!ringing) return;
+  const m = ringing.m, hub = ringing.hub; ringing = null; $('incoming').hidden = true;
+  call = {id: m.call_id, hub: hub, peer: m.from, peerSession: m.from_session, media: m.media, pending: [], role: 'callee', name: m.from};
+  callUi(tr('call_with', 'Call with {name}', {name: m.from}), tr('connecting', 'connecting...'));
+  hub.send({type: 'accept', to: m.from, to_session: m.from_session, call_id: m.call_id});
+}
+async function callee_onOffer(m) {
+  const pc = call.pc = newPc();
+  await pc.setRemoteDescription(m.sdp);
+  try { call.local = await getMedia(call.media); }
+  catch (e) { chatLine(tr('system', 'System'), tr('no_media', 'No camera/microphone: {error} Chat and files still work.', {error: e.message})); }
+  if (call.local) { $('localVideo').srcObject = call.local; call.local.getTracks().forEach((t) => pc.addTrack(t, call.local)); }
+  const ans = await pc.createAnswer();
+  await pc.setLocalDescription(ans);
+  call.hub.send({type: 'answer', to: call.peer, to_session: call.peerSession, call_id: call.id, sdp: pc.localDescription.toJSON()});
+  flushCandidates();
+}
+function endCall(reason, remote) {
+  if (!call) return;
+  if (!remote) call.hub.send({type: 'bye', to: call.peer, to_session: call.peerSession, call_id: call.id});
+  try { if (call.pc) call.pc.close(); } catch (e) { /* ignore */ }
+  if (call.local) call.local.getTracks().forEach((t) => t.stop());
+  call = null; window.GCComms.state = 'ended';
+  $('remoteVideo').srcObject = null; $('localVideo').srcObject = null;
+  $('callState').textContent = reason || tr('call_ended', 'Call ended.'); say(reason || tr('call_ended', 'Call ended.'));
+}
+$('acceptBtn').addEventListener('click', acceptRing);
+$('declineBtn').addEventListener('click', () => { if (!ringing) return; ringing.hub.send({type: 'decline', to: ringing.m.from, to_session: ringing.m.from_session, call_id: ringing.m.call_id}); ringing = null; $('incoming').hidden = true; });
+$('hangupBtn').addEventListener('click', () => endCall(tr('call_ended', 'Call ended.')));
+$('muteBtn').addEventListener('click', () => { if (!call || !call.local) return; const t = call.local.getAudioTracks()[0]; if (t) { t.enabled = !t.enabled; $('muteBtn').textContent = t.enabled ? tr('mute', 'Mute') : tr('unmute', 'Unmute'); } });
+$('camBtn').addEventListener('click', () => { if (!call || !call.local) return; const t = call.local.getVideoTracks()[0]; if (t) { t.enabled = !t.enabled; $('camBtn').textContent = t.enabled ? tr('camera_off', 'Camera off') : tr('camera_on', 'Camera on'); } });
+function sendChat(text) {
+  if (!call || !call.chat || call.chat.readyState !== 'open') { say(tr('chat_not_connected', 'Chat is not connected yet.')); return false; }
+  call.chat.send(String(text).slice(0, 2000)); chatLine(tr('us', 'Us'), text); return true;
+}
+$('chatSend').addEventListener('click', () => { if (sendChat($('chatInput').value)) $('chatInput').value = ''; });
+$('chatInput').addEventListener('keydown', (ev) => { if (ev.key === 'Enter') $('chatSend').click(); });
+async function sendFile(file) {
+  if (!call || !call.file || call.file.readyState !== 'open') { say(tr('not_connected_yet', 'Not connected yet.')); return; }
+  if (file.size > 52428800) { say(tr('file_too_big', 'File is too big (limit 50 MB).')); return; }
+  const buf = await file.arrayBuffer();
+  const ch = call.file;
+  ch.send(JSON.stringify({kind: 'meta', name: file.name.slice(0, 200), size: buf.byteLength, sha256: await sha256Hex(buf)}));
+  const CH = 16384;
+  for (let off = 0; off < buf.byteLength; off += CH) {
+    while (ch.bufferedAmount > 1048576) await new Promise((r) => setTimeout(r, 30));
+    ch.send(buf.slice(off, off + CH));
+  }
+  ch.send(JSON.stringify({kind: 'done'}));
+  $('fileLog').textContent = tr('sent_file', 'Sent {name} ({size} bytes).', {name: file.name, size: buf.byteLength});
+}
+$('fileSend').addEventListener('click', () => { const f = $('fileInput').files[0]; if (f) sendFile(f).catch((e) => say(tr('file_not_sent', 'File not sent: {error}', {error: e.message}))); });
+
+// ------------------------------------------------------------------ partner directory
+let DIR = {partners: []}, SELF = null;
+async function loadDirectory() {
+  try { DIR = await api('directory'); } catch (e) { DIR = store.get('directory', {partners: []}); }
+  renderDirectory();
+}
+async function saveDirectory() {
+  try { DIR = await api('directory', DIR); } catch (e) { if (e.status === 503) store.set('directory', DIR); else { say(tr('not_saved', 'Not saved: {error}', {error: e.message})); return; } }
+  renderDirectory();
+}
+function renderDirectory() {
+  const ps = DIR.partners || [];
+  const box = $('directory');
+  box.innerHTML = '<h2>' + esc(tr('our_partners', 'Our partners')) + '</h2>' + (ps.length ? '' : '<p class="small">' + esc(tr('no_partners', 'No partners yet. Add the clinics and hospitals you work with.')) + '</p>');
+  ps.forEach((p, i) => {
+    const d = document.createElement('div'); d.className = 'card';
+    d.innerHTML = '<p><b>' + esc(p.name) + '</b> <span class="small">' + esc(tr('kind_' + p.kind, EN['kind_' + p.kind] || p.kind)) + (p.country ? ' · ' + esc(p.country) : '') + (p.peer_id ? ' · ' + esc(tr('id_label', 'id')) + ' ' + esc(p.peer_id) : '') + '</span></p>' + (p.notes ? '<p class="small">' + esc(p.notes) + '</p>' : '');
+    const row = document.createElement('div'); row.className = 'row';
+    const mk = (label, fn, cls) => { const b = document.createElement('button'); b.className = 'btn half ' + (cls || ''); b.textContent = label; b.onclick = fn; row.appendChild(b); };
+    if (p.peer_id) { mk(tr('video_call', 'Video call'), () => startCall(p, 'video').catch((e) => say(e.message)), 'alt'); mk(tr('audio_call', 'Audio call'), () => startCall(p, 'audio').catch((e) => say(e.message))); }
+    if (p.phone) { const a = document.createElement('a'); a.className = 'btn half'; a.href = 'tel:' + p.phone; a.textContent = tr('phone_call', 'Phone {phone}', {phone: p.phone}); row.appendChild(a); }
+    mk(tr('remove', 'Remove'), () => { DIR.partners.splice(i, 1); saveDirectory(); });
+    d.appendChild(row); box.appendChild(d);
+  });
+}
+$('addPartner').addEventListener('click', () => {
+  const p = {name: $('pName').value.trim(), kind: $('pKind').value, country: $('pCountry').value.trim().toUpperCase(), phone: $('pPhone').value.trim(),
+    peer_id: $('pPeer').value.trim(), signal_url: $('pUrl').value.trim(), my_id: $('pMyId').value.trim(), my_key: $('pMyKey').value.trim().toLowerCase(), notes: $('pNotes').value.trim()};
+  if (!p.name) { say(tr('partner_need_name', 'Give the partner a name.')); return; }
+  if (p.phone && !cleanPhone(p.phone)) { say(tr('phone_bad', 'That phone number does not look right.')); return; }
+  DIR.partners.push(p); saveDirectory();
+  ['pName', 'pCountry', 'pPhone', 'pPeer', 'pUrl', 'pMyId', 'pMyKey', 'pNotes'].forEach((k) => { $(k).value = ''; });
+});
+$('issueKey').addEventListener('click', async () => {
+  try {
+    const r = await api('hub/add', {clinic_id: $('newPeerId').value.trim(), name: $('newPeerName').value.trim()});
+    $('issuedKey').textContent = tr('give_partner', 'Give the partner: server {server}, id {id}, key {key}. Shown once.', {server: wsUrl((CONFIG && CONFIG.self_hub.path) || '/comms/ws'), id: r.clinic_id, key: r.key});
+  } catch (e) { $('issuedKey').textContent = tr('not_created', 'Not created: {error}', {error: e.message}); }
+});
+
+// ------------------------------------------------------------------ settings
+function fillSettings() {
+  $('stunNote').textContent = CONFIG ? CONFIG.stun_note : '';
+  $('turnNote').textContent = CONFIG ? CONFIG.turn_note : '';
+  const ice = (CONFIG && CONFIG.ice_servers) || [];
+  const stun = ice.find((s) => s.urls.some((u) => /^stuns?:/.test(u)));
+  const turn = ice.find((s) => s.urls.some((u) => /^turns?:/.test(u)));
+  $('stunUrl').value = stun ? stun.urls[0] : '';
+  $('turnUrl').value = turn ? turn.urls[0] : '';
+  $('turnUser').value = turn ? (turn.username || '') : '';
+  $('turnPass').value = turn ? (turn.credential || '') : '';
+  $('clinicCountry').value = (CONFIG && CONFIG.clinic_country) || '';
+}
+$('saveSettings').addEventListener('click', async () => {
+  const ice = [];
+  if ($('stunUrl').value.trim()) ice.push({urls: [$('stunUrl').value.trim()]});
+  if ($('turnUrl').value.trim()) ice.push({urls: [$('turnUrl').value.trim()], username: $('turnUser').value, credential: $('turnPass').value});
+  try { CONFIG = await api('settings', {ice_servers: ice, clinic_country: $('clinicCountry').value.trim().toUpperCase(), speech_enabled: true}); $('settingsMsg').textContent = tr('saved', 'Saved.'); renderEmergency(); }
+  catch (e) { $('settingsMsg').textContent = tr('not_saved', 'Not saved: {error}', {error: e.message}); }
+});
+$('bigText').addEventListener('change', (ev) => { store.set('xl', ev.target.checked); document.documentElement.dataset.size = ev.target.checked ? 'xl' : ''; });
+$('showUnverifiedLang').addEventListener('change', fillLangs);
+$('langSelect').addEventListener('change', (ev) => { setLang(ev.target.value); });
+
+// ------------------------------------------------------------------ test / integration hooks (no dialing here)
+window.GCComms = {
+  state: 'idle', lastChat: null, lastFile: null, autoAccept: false,
+  connectHub: (url, id, key, label) => hubFor(url, id, key, label).ready,
+  call: (peerId, media, hub) => startCall(Object.assign({peer_id: peerId, name: peerId}, hub || {}), media || 'video'),
+  sendChat: sendChat,
+  sendBytes: (name, bytes) => sendFile(new File([bytes], name)),
+  hangup: () => endCall(tr('call_ended', 'Call ended.')),
+  openEmergency: (svc) => { showTab('emergency'); renderEmergency(svc || 'general'); }
+};
+
+// ------------------------------------------------------------------ boot
+async function boot() {
+  document.documentElement.dataset.size = store.get('xl', false) ? 'xl' : '';
+  $('bigText').checked = store.get('xl', false);
+  await loadLocaleList();
+  CAT = await loadCatalog(chosenLang());
+  applyLang(); fillLangs();
+  try { CONFIG = await api('config'); } catch (e) { CONFIG = null; }
+  if (CONFIG && CONFIG.partner_not_emergency && !CAT) $('partnerWarn').textContent = CONFIG.partner_not_emergency;
+  await loadNumbers();
+  renderEmergency();
+  setupVoice();
+  fillSettings();
+  await loadContacts();
+  await loadDirectory();
+  const noSelf = /[?&]nohub=1/.test(location.search);
+  if (CONFIG && CONFIG.self_hub && CONFIG.self_hub.key && !noSelf) SELF = hubFor(CONFIG.self_hub.path, CONFIG.self_hub.clinic_id, CONFIG.self_hub.key, tr('this_clinic', 'this clinic'));
+  if (!window.isSecureContext) { notHttps = true; $('fileHint').textContent += ' ' + tr('not_https', 'This page is not https, so camera and microphone are blocked.'); }
+  if ('serviceWorker' in navigator && window.isSecureContext) navigator.serviceWorker.register('sw.js').catch(() => {});
+  showTab('emergency');   // always open on the emergency screen
+  if (/[#&]emergency/.test(location.hash)) window.GCComms.openEmergency('general');
+  window.GCComms.ready = true;
+}
+boot().catch((e) => { say(tr('boot_failed', 'Something went wrong loading. Emergency numbers: dial your local number.') + ' ' + SAFETY); window.GCComms.bootError = String(e); });
+})();
+</script>
+</body>
+</html>

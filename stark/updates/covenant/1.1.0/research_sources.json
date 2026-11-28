@@ -1,0 +1,220 @@
+{
+  "_about": "Research Desk source catalogue (research_desk.py). Official, free, documented APIs only. 'hosts' is the outbound allow-list: the desk refuses any other host. 'min_interval_s' is the desk's own spacing between requests to that host (at or below the documented limit). 'live_check' records what a real request from this machine returned on the date given; re-run `python research_desk.py check-sources` to refresh it.",
+  "version": 1,
+  "tool_name": "StarkCovenantResearchDesk",
+  "sources": {
+    "pubmed": {
+      "name": "PubMed (NCBI E-utilities: esearch, esummary, efetch)",
+      "base": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+      "hosts": [
+        "eutils.ncbi.nlm.nih.gov"
+      ],
+      "docs": "https://www.ncbi.nlm.nih.gov/books/NBK25497/",
+      "terms": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+      "rate_limit": "3 requests/second without an API key, 10/second with one. Every request carries tool= and email= (NCBI asks for both; set the contact email in Settings).",
+      "min_interval_s": 0.4,
+      "min_interval_with_key_s": 0.12,
+      "used_for": "Living Evidence Briefs: search, publication types (incl. 'Retracted Publication'), abstracts.",
+      "live_check": {
+        "date": "2026-11-19",
+        "result": "200 OK (esearch, esummary, efetch)"
+      }
+    },
+    "europepmc": {
+      "name": "Europe PMC REST API",
+      "base": "https://www.ebi.ac.uk/europepmc/webservices/rest/",
+      "hosts": [
+        "www.ebi.ac.uk"
+      ],
+      "docs": "https://europepmc.org/RestfulWebService",
+      "terms": "https://europepmc.org/Copyright",
+      "rate_limit": "No fixed public limit; the desk keeps to 2 requests/second. Responses can be slow (19 s seen) and it answered 503 once during testing, so the desk falls back to its cache.",
+      "min_interval_s": 0.5,
+      "used_for": "Living Evidence Briefs: second literature index (adds preprints, flagged as not peer reviewed).",
+      "live_check": {
+        "date": "2026-11-19",
+        "result": "200 OK (core search); one transient 503 seen"
+      }
+    },
+    "clinicaltrials": {
+      "name": "ClinicalTrials.gov API v2",
+      "base": "https://clinicaltrials.gov/api/v2/",
+      "hosts": [
+        "clinicaltrials.gov"
+      ],
+      "docs": "https://clinicaltrials.gov/data-api/api",
+      "terms": "https://clinicaltrials.gov/about-site/terms-conditions",
+      "rate_limit": "About 50 requests/minute per IP (documented guidance); the desk spaces requests 1.3 s apart.",
+      "min_interval_s": 1.3,
+      "used_for": "Trial Finder (condition + region are sent; age and sex are checked on this computer only).",
+      "live_check": {
+        "date": "2026-11-19",
+        "result": "200 OK"
+      }
+    },
+    "who_don": {
+      "name": "WHO Disease Outbreak News (who.int OData API)",
+      "base": "https://www.who.int/api/news/diseaseoutbreaknews",
+      "hosts": [
+        "www.who.int"
+      ],
+      "docs": "https://www.who.int/emergencies/disease-outbreak-news",
+      "terms": "https://www.who.int/about/policies/publishing/copyright",
+      "rate_limit": "Not published; the desk keeps to 1 request/second.",
+      "min_interval_s": 1.0,
+      "used_for": "Triage & Relief: outbreak feed, filtered on this computer by the configured region.",
+      "live_check": {
+        "date": "2026-11-19",
+        "result": "200 OK ($orderby, $top and $select work)"
+      }
+    },
+    "who_iris": {
+      "name": "WHO IRIS (institutional repository, DSpace 7 REST API)",
+      "base": "https://iris.who.int/server/api/",
+      "hosts": [
+        "iris.who.int"
+      ],
+      "docs": "https://iris.who.int/",
+      "terms": "https://www.who.int/about/policies/publishing/copyright",
+      "rate_limit": "Not published; the desk keeps to 1 request/second.",
+      "min_interval_s": 1.0,
+      "used_for": "WHO guidance documents listed beside a brief (not counted in the certainty label).",
+      "live_check": {
+        "date": "2026-11-19",
+        "result": "200 OK (/server/api/discover/search/objects)"
+      }
+    },
+    "cdc_travel": {
+      "name": "CDC Travelers' Health notices (RSS)",
+      "base": "https://wwwnc.cdc.gov/travel/rss/notices.xml",
+      "hosts": [
+        "wwwnc.cdc.gov"
+      ],
+      "docs": "https://wwwnc.cdc.gov/travel/notices",
+      "terms": "https://www.cdc.gov/other/agencymaterials.html",
+      "rate_limit": "Static feed; the desk fetches it at most once per cache period.",
+      "min_interval_s": 1.0,
+      "used_for": "Triage & Relief: travel health notices, filtered on this computer by region.",
+      "live_check": {
+        "date": "2026-11-19",
+        "result": "200 OK (served as text/html but the body is RSS 2.0)"
+      }
+    },
+    "cdc_open_data": {
+      "name": "CDC open data (data.cdc.gov, Socrata SODA API)",
+      "base": "https://data.cdc.gov/",
+      "hosts": [
+        "data.cdc.gov"
+      ],
+      "docs": "https://dev.socrata.com/",
+      "terms": "https://www.cdc.gov/other/agencymaterials.html",
+      "rate_limit": "Throttled without an app token; not used by default.",
+      "min_interval_s": 1.0,
+      "used_for": "Not wired in. The metadata API answered 200 on 2026-11-19, but no single dataset is useful across regions, so the desk uses the travel notices feed instead.",
+      "enabled": false,
+      "live_check": {
+        "date": "2026-11-19",
+        "result": "200 OK (metadata API); not used"
+      }
+    },
+    "openfda": {
+      "name": "openFDA (drug labels, enforcement reports/recalls, adverse-event counts)",
+      "base": "https://api.fda.gov/drug/",
+      "hosts": [
+        "api.fda.gov"
+      ],
+      "docs": "https://open.fda.gov/apis/",
+      "terms": "https://open.fda.gov/terms/",
+      "rate_limit": "Without an API key: 240 requests/minute and 1,000/day per IP. openFDA's own disclaimer: do not rely on openFDA to make decisions regarding medical care.",
+      "min_interval_s": 0.3,
+      "used_for": "Drug reference: label sections quoted verbatim, recalls (watch-list alerts), FAERS reaction counts (not causation).",
+      "live_check": {
+        "date": "2026-11-19",
+        "result": "200 OK (label, enforcement, event count)"
+      }
+    },
+    "rxnav": {
+      "name": "RxNorm / RxNav REST API (NLM)",
+      "base": "https://rxnav.nlm.nih.gov/REST/",
+      "hosts": [
+        "rxnav.nlm.nih.gov"
+      ],
+      "docs": "https://lhncbc.nlm.nih.gov/RxNav/APIs/RxNormAPIs.html",
+      "terms": "https://lhncbc.nlm.nih.gov/RxNav/TermsofService.html",
+      "rate_limit": "20 requests/second per IP; the desk keeps to 5/second.",
+      "min_interval_s": 0.2,
+      "used_for": "Drug name normalisation (RxCUI) and spelling candidates. Candidates are shown, never auto-picked.",
+      "interaction_api": "RETIRED. NLM discontinued the RxNav Drug Interaction API (January 2024). A live request to /REST/interaction/list.json on 2026-11-19 returned HTTP 404. The desk does not compute interactions; it quotes the 'Drug interactions' section of the FDA label instead.",
+      "live_check": {
+        "date": "2026-11-19",
+        "result": "200 OK (rxcui, approximateTerm); interaction API 404"
+      }
+    },
+    "reliefweb": {
+      "name": "ReliefWeb API v2 (UN OCHA humanitarian reports)",
+      "base": "https://api.reliefweb.int/v2/",
+      "hosts": [
+        "api.reliefweb.int"
+      ],
+      "docs": "https://apidoc.reliefweb.int/",
+      "terms": "https://reliefweb.int/terms-conditions",
+      "rate_limit": "1,000 calls/day per appname. An APPROVED appname is required: request one at https://apidoc.reliefweb.int/parameters#appname and enter it in Settings.",
+      "min_interval_s": 1.0,
+      "used_for": "Triage & Relief: situation reports for the configured country.",
+      "requires": "approved appname",
+      "live_check": {
+        "date": "2026-11-19",
+        "result": "v1: 410 Gone ('decommissioned, use v2'); v2 without an approved appname: 403 ('You are not using an approved appname'). Not verified with a real response; the test fixture for a successful v2 answer is synthetic."
+      }
+    }
+  },
+  "triage_systems": [
+    {
+      "id": "START",
+      "name": "START - Simple Triage and Rapid Treatment (adults)",
+      "origin": "Newport Beach Fire Department and Hoag Hospital, California, 1983.",
+      "summary": "Published field-triage algorithm for adults in a mass-casualty incident. Walking wounded are directed away first; others are assessed for Respirations, Perfusion and Mental status (RPM) and sorted into Immediate (red), Delayed (yellow), Minor (green) or Expectant/Deceased (black). Only airway repositioning and direct pressure on bleeding are done during sorting.",
+      "links": [
+        "https://pubmed.ncbi.nlm.nih.gov/10159733/",
+        "https://doi.org/10.1017/S1049023X0004276X"
+      ],
+      "reference": "Benson M, Koenig KL, Schultz CH. Disaster triage: START, then SAVE - a new method of dynamic triage for victims of a catastrophic earthquake. Prehosp Disaster Med. 1996;11(2):117-24. PMID 10159733."
+    },
+    {
+      "id": "JumpSTART",
+      "name": "JumpSTART (children)",
+      "origin": "Lou E. Romig, MD, 1995 (paediatric adaptation of START).",
+      "summary": "Paediatric version of START, generally for children who appear to be about 1 to 8 years old. It uses child-specific respiratory-rate limits, a pulse check in place of capillary refill, the AVPU scale for mental status, and a trial of rescue breaths for a child who is not breathing but has a pulse.",
+      "links": [
+        "https://pubmed.ncbi.nlm.nih.gov/12141119/"
+      ],
+      "reference": "Romig LE. Pediatric triage. A system to JumpSTART your triage of young patients at MCIs. JEMS. 2002;27(7):52-8, 60-3. PMID 12141119."
+    },
+    {
+      "id": "SALT",
+      "name": "SALT - Sort, Assess, Lifesaving interventions, Treatment/Transport",
+      "origin": "Proposed national all-hazards guideline from a CDC-sponsored expert working group (Lerner EB et al., Disaster Med Public Health Prep. 2008;2 Suppl 1:S25-34, doi:10.1097/DMP.0b013e318182194e). Meets the Model Uniform Core Criteria for mass casualty triage (Disaster Med Public Health Prep. 2011;5(2):125-8, doi:10.1001/dmp.2011.41).",
+      "summary": "A global sort (walk / wave or purposeful movement / still) sets the order of individual assessment. Lifesaving interventions (bleeding control, airway, chest decompression, auto-injector antidotes) are done during assessment, then each person is assigned Immediate, Delayed, Minimal, Expectant or Dead, with explicit consideration of available resources for the Expectant category.",
+      "links": [
+        "https://pubmed.ncbi.nlm.nih.gov/18769263/",
+        "https://doi.org/10.1097/DMP.0b013e318182194e",
+        "https://doi.org/10.1001/dmp.2011.41"
+      ],
+      "reference": "Lerner EB, et al. Mass casualty triage: an evaluation of the data and development of a proposed national guideline. Disaster Med Public Health Prep. 2008;2 Suppl 1:S25-34. PMID 18769263."
+    },
+    {
+      "id": "ETAT",
+      "name": "WHO ETAT - Emergency Triage Assessment and Treatment (children, health facilities)",
+      "origin": "World Health Organization; updated guideline 'Paediatric emergency triage, assessment and treatment: care of critically-ill children' (2016).",
+      "summary": "Facility triage (not mass-casualty) for children arriving at a health facility: Emergency signs, Priority signs, or Queue, with immediate treatment of emergency signs. Included because relief clinics often receive many sick children at once.",
+      "links": [
+        "https://www.who.int/publications/i/item/9789241510219"
+      ],
+      "reference": "World Health Organization. Paediatric emergency triage, assessment and treatment: care of critically-ill children. Updated guideline, 2016."
+    }
+  ],
+  "triage_links_check": {
+    "date": "2026-11-19",
+    "result": "PubMed, doi.org and who.int links answered 200. The HHS CHEMM pages (chemm.hhs.gov/startadult.htm, startpediatric.htm, salttriage.htm, triage.htm) answered 404, so they are not used."
+  }
+}

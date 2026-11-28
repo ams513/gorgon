@@ -1,0 +1,147 @@
+STARK WORLD ENGINE END USER LICENCE AGREEMENT
+=========================================
+
+Have a lawyer review before relying on this. This is a plain-English draft, not legal advice.
+
+Licensor: Stark ("we", "us"). Product: Stark World Engine, all editions (Free, Pro, Studio),
+including the program, its keys, documents and the third-party assets bundled with it ("Studios").
+Contact and takedown notices: hello@starkforall.com.
+
+By buying, downloading, installing or using Studios you agree to this licence. If you do not agree,
+do not install it; if you already bought, ask for a refund within the refund window (see section
+12).
+
+1. A LICENCE, NOT A SALE
+
+1.1 We license Studios to you. We do not sell it to you. We keep all rights in Studios that this
+licence does not give you.
+
+1.2 This licence is personal, non-exclusive, non-transferable and non-sublicensable, and lasts as
+long as you follow it.
+
+2. WHO MAY USE IT, AND HOW MANY SEATS
+
+2.1 Free edition: one person, on computers that person owns.
+
+2.2 Pro edition: one person (you), on up to 2 computers you own, for your own projects, paid or
+unpaid.
+
+2.3 Studio edition: one business (or one person) with up to 5 seats. A seat is one named person who
+uses Studios, on a computer the business controls. Seats may be reassigned when someone leaves, but
+not more often than once every 30 days per seat.
+
+2.4 Each key or download is for the edition you bought and for the buyer it was issued to. You may
+keep backups for your own use.
+
+3. WHAT YOU MAY NOT DO
+
+You may not, and may not let anyone else:
+
+- copy, share, resell, rent, lend, sublicense, re-upload or otherwise redistribute Studios, in whole
+  or in part, in any form, except backups for your own use;
+- share, publish, sell or give away a licence key, or post a key where others can find it;
+- bypass, disable or work around the licence check, or make or use a key generator or a patched
+  copy;
+- sell or charge for access to Studios itself, or bundle it into another product or service;
+- use Studios to offer a hosted or "software as a service" version of it to others;
+- remove or change any copyright, licence, buyer-reference or watermark notice.
+
+4. NO REVERSE ENGINEERING
+
+You may not decompile, disassemble, reverse engineer or try to extract the source of the licence
+check or any non-public part of Studios, except to the extent that the law of your country allows it
+despite this clause. Where the law allows it, you may do so only as far as it permits, and you must
+first ask us for the information you need.
+
+5. WHAT YOU MAKE IS YOURS
+
+5.1 The games, worlds, pixel art, sounds, music and videos you make with Studios are yours. We claim
+no ownership of them and no share of what you earn from them. You may sell them, share them and
+publish them anywhere, including itch.io.
+
+5.2 This also covers the soundtracks and sound effects Studios generates for you on your own
+computer.
+
+5.3 Content you make with Studios may include small parts of Studios (for example the HTML5 player
+code and bundled assets). You may distribute those parts only as part of your own finished game, and
+subject to section 6.
+
+6. THIRD-PARTY AND CC0 ASSETS
+
+Studios bundles third-party assets, including CC0 (public domain dedication) models, textures and
+skies from Quaternius and Poly Haven. Those assets keep their own terms, which are listed in
+`assets/CREDITS.txt`. Nothing in this licence takes away rights you have in them under those terms,
+and nothing in this licence gives us ownership of them. Other third-party components (for example
+the Python runtime in the Windows download) are under their own licences.
+
+7. OFFLINE AND PRIVATE
+
+Studios runs offline on your computer and needs no account. The licence check is a calculation on
+your computer; it does not contact us. We do not receive your work.
+
+8. CONTENT RULES
+
+You may not use Studios to create content that sexualises minors or depicts the abuse of minors.
+Doing so ends this licence immediately. Studios refuses to export such content and exported games
+refuse to run it.
+
+9. TERMINATION
+
+9.1 We may end this licence if you materially breach it (for example sections 3 or 4, or sharing a
+key). For a breach that can be fixed we will give you 14 days' notice to fix it; for sharing or
+reselling Studios or a key, or circumventing the licence check, we may end the licence at once.
+
+9.2 You may end this licence at any time by deleting every copy of Studios.
+
+9.3 When the licence ends you must stop using Studios and delete every copy. We may withdraw the
+key. Your own games and other content stay yours and stay on your computer. Sections 1, 3 to 6, 10,
+11 and 13 survive termination.
+
+10. NO WARRANTY
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, STUDIOS IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT
+WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE, NON-INFRINGEMENT AND UNINTERRUPTED OR ERROR-FREE OPERATION. STUDIOS IS A CREATIVE AND
+PROTOTYPING TOOL, NOT A REPLACEMENT FOR A FULL GAME ENGINE. Back up your work.
+
+11. LIMIT OF LIABILITY
+
+11.1 TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE ARE NOT LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL,
+CONSEQUENTIAL OR PUNITIVE DAMAGES, OR FOR LOST DATA, PROFITS OR REVENUE.
+
+11.2 TO THE MAXIMUM EXTENT PERMITTED BY LAW, OUR TOTAL LIABILITY FOR ALL CLAIMS ABOUT STUDIOS OR
+THIS LICENCE IS LIMITED TO THE PRICE YOU PAID FOR THE EDITION (OR USD 0 FOR THE FREE EDITION, WHERE
+THE LAW ALLOWS).
+
+11.3 Nothing here limits liability that cannot be limited by law (for example for death or personal
+injury caused by negligence, or for fraud), or your statutory consumer rights.
+
+12. REFUNDS
+
+Studios: refunds within 2 days of purchase, on request. Ask through itch.io, or write to
+hello@starkforall.com with your itch.io order details. Your statutory rights in your country still
+apply. For example, EU and UK consumer rights on digital content depend on whether you agreed to
+immediate download. The full policy is the Refund Policy on our website.
+
+13. COPYRIGHT AND TAKEDOWN (DMCA)
+
+If you believe Studios, or something distributed with our name, infringes your copyright, or you
+find a copy of Studios or a key shared in breach of this licence, write to hello@starkforall.com with:
+what the work is, where it is, your contact details, and a statement that you act in good faith and
+that the information is accurate. We will review it promptly and may remove the material or withdraw
+a key. We may send takedown notices to hosts and stores for unauthorised copies of Studios.
+
+14. GOVERNING LAW
+
+This licence is governed by the law of {{GOVERNING_LAW}}, and its courts decide disputes, except
+that nothing here takes away a consumer's right to bring a claim where the law of their country of
+residence allows it.
+
+15. GENERAL
+
+This is the whole agreement about Studios. It prevails over the general Terms of Service for Studios
+if they differ. If a provision cannot be enforced, the rest stays in force. We may update this
+licence for future versions; the version that applied when you bought applies to the copy you
+bought. Questions: hello@starkforall.com.
+
+Licensed copy: unregistered-store-copy (Free edition, ref 179294ecc2f5a803a0d6)

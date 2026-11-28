@@ -1,0 +1,1753 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Architecture of Mind: Interactive Guide | Stark</title>
+<meta name="description" content="Four lenses on the mind, layers of reality, quantum cognition and what may happen to consciousness, with a quiz on your own philosophy of mind.">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://starkforall.com/explore/consciousness.html">
+<style>
+/* Family names below are aliases: every face is self-hosted (../assets/fonts) or a local system font. */
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Cormorant";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Cormorant";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Spectral";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Spectral";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Crimson Pro";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Crimson Pro";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Syne";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Sora";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";src:local("Cascadia Mono"),local("Consolas"),local("Menlo"),local("DejaVu Sans Mono")}
+@font-face{font-family:"JetBrains Mono";src:local("Cascadia Mono"),local("Consolas"),local("Menlo"),local("DejaVu Sans Mono")}
+html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.ps-site{position:relative;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.25rem;padding-block:1.25rem calc(1.5rem + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:#0c0d12;color:#d6d9e0;font:500 .875rem/1.5 Inter,system-ui,sans-serif;border-top:1px solid #23262f}.ps-site a{color:inherit;text-underline-offset:3px}.ps-site a:focus-visible{outline:2px solid #d6d9e0;outline-offset:2px}
+</style>
+<style>
+/* Architecture of Mind, consciousness philosophy explorer
+   Layout: vertical scroll, full-bleed sections, contained prose at ~68ch */
+:root {
+  --bg: #0d0f11;
+  --bg-elevated: #14161a;
+  --bg-card: #181b1f;
+  --bg-card-hover: #2a5c9a;
+  --text: #e0e2e5;
+  --text-muted: #99a1ad;
+  --text-dim: #6c7685;
+  --amber: #7a8594;
+  --amber-dim: rgba(122,133,148,0.15);
+  --violet: #9cc4ff;
+  --violet-dim: rgba(156,196,255,0.12);
+  --emerald: #7a8594;
+  --emerald-dim: rgba(122,133,148,0.12);
+  --rose: #9cc4ff;
+  --border: rgba(156,196,255,0.15);
+  --border-strong: rgba(156,196,255,0.3);
+  --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+  color-scheme: dark;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-block: 0;
+}
+
+.wide-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.15; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); line-height: 1.25; color: var(--text); }
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); line-height: 1.35; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 0.75rem;
+}
+
+p { max-width: 68ch; }
+
+a { color: var(--amber); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--violet); }
+
+/* ═══ HERO ═══ */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 4rem 1rem;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-bg canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+}
+
+.hero h1 {
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--text-muted);
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 0.3s;
+  background: none;
+  border: none;
+}
+.hero-scroll:hover { color: var(--amber); }
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--violet), transparent);
+  animation: pulse-line 2s ease-in-out infinite;
+}
+
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ═══ SECTIONS ═══ */
+section {
+  padding: 5rem 1rem;
+  position: relative;
+}
+
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, var(--violet), var(--amber));
+  margin: 0 auto 3rem;
+}
+
+/* ═══ FOUR LENSES ═══ */
+.lenses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.lens-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  cursor: default;
+}
+
+.lens-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  background: var(--bg-card);
+}
+
+.lens-icon {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.lens-card h3 {
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+
+.lens-card p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ═══ LAYERS OF REALITY (interactive nested circles) ═══ */
+.layers-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 2rem;
+}
+
+.layers-canvas-wrap {
+  position: relative;
+  width: min(500px, 90vw);
+  height: min(500px, 90vw);
+}
+
+.layers-canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.layer-info {
+  text-align: center;
+  max-width: 540px;
+  min-height: 120px;
+}
+
+.layer-info h3 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  transition: opacity 0.3s;
+}
+
+.layer-info p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin: 0 auto;
+  transition: opacity 0.3s;
+}
+
+.layer-hint {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  margin-top: 0.75rem;
+}
+
+/* ═══ FLIP CARDS ═══ */
+.flip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.flip-card {
+  perspective: 800px;
+  height: 320px;
+  cursor: pointer;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+}
+
+.flip-front {
+  background: var(--bg-elevated);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.flip-back {
+  background: var(--bg-card);
+  transform: rotateY(180deg);
+  overflow-y: auto;
+}
+
+.flip-front .flip-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.flip-front h3 {
+  color: #fff;
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.flip-front .flip-motto {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.flip-back h4 {
+  color: var(--amber);
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+}
+
+.flip-back p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.flip-back .flip-thinkers {
+  margin-top: auto;
+  padding-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.flip-hint {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  margin-top: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+/* ═══ CONSCIOUSNESS TABLE ═══ */
+.consciousness-table {
+  margin-top: 2.5rem;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.c-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.c-table thead th {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-strong);
+  font-weight: 400;
+}
+
+.c-table tbody tr {
+  cursor: pointer;
+  transition: background 0.25s;
+  border-bottom: 1px solid var(--border);
+}
+
+.c-table tbody tr:hover {
+  background: var(--bg-card);
+}
+
+.c-table tbody tr.active {
+  background: var(--bg-card-hover);
+}
+
+.c-table tbody td {
+  padding: 0.85rem 1rem;
+  color: var(--text-muted);
+  vertical-align: top;
+}
+
+.c-table tbody td:first-child {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.c-table .expand-cell {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 1rem;
+  background: var(--bg-elevated);
+}
+
+.c-table .expand-cell.open {
+  max-height: 300px;
+  padding: 1.25rem 1rem;
+}
+
+.c-table .expand-cell td {
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  margin-right: 0.4rem;
+}
+
+.tag-amber { background: var(--amber-dim); color: var(--amber); }
+.tag-violet { background: var(--violet-dim); color: var(--violet); }
+.tag-emerald { background: var(--emerald-dim); color: var(--emerald); }
+
+/* ═══ QUANTUM MIND ═══ */
+.quantum-visual {
+  margin: 2.5rem auto;
+  text-align: center;
+}
+
+.quantum-visual canvas {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.quantum-explain {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.q-block {
+  padding: 1.5rem;
+  border-left: 2px solid var(--violet);
+  background: var(--bg-elevated);
+  border-radius: 0 8px 8px 0;
+}
+
+.q-block h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.q-block p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.q-block code {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--amber);
+  background: var(--amber-dim);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+/* ═══ OBSERVER DISSOLUTION ═══ */
+.dissolution-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.dissolution-canvas {
+  position: relative;
+  width: min(600px, 90vw);
+  height: 300px;
+}
+
+.dissolution-canvas canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.dissolution-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.dissolution-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 280px;
+  height: 3px;
+  background: var(--border-strong);
+  border-radius: 2px;
+  outline: none;
+}
+
+.dissolution-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--violet);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(156,196,255,0.4);
+}
+
+.dissolution-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  min-width: 140px;
+  text-align: center;
+}
+
+.dissolution-desc {
+  text-align: center;
+  max-width: 540px;
+}
+
+.dissolution-desc p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 auto;
+  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+/* ═══ QUIZ ═══ */
+.quiz-wrap {
+  max-width: 640px;
+  margin: 2.5rem auto 0;
+}
+
+.quiz-progress {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.quiz-dot {
+  flex: 1;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  transition: background 0.4s;
+}
+
+.quiz-dot.done { background: var(--amber); }
+.quiz-dot.current { background: var(--violet); }
+
+.quiz-question {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  min-height: 3.5rem;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quiz-option {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-align: left;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.quiz-option:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+  background: var(--bg-card);
+}
+
+.quiz-option:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+}
+
+.quiz-option.selected {
+  border-color: var(--amber);
+  background: var(--amber-dim);
+  color: #fff;
+}
+
+.quiz-result {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.quiz-result h3 {
+  color: var(--amber);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.quiz-result p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 auto 1.5rem;
+  line-height: 1.65;
+}
+
+.quiz-restart {
+  background: none;
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.quiz-restart:hover {
+  border-color: var(--violet);
+  color: #fff;
+}
+
+.quiz-restart:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+}
+
+[hidden] { display: none !important; }
+
+/* ═══ FOOTER ═══ */
+.site-footer {
+  padding: 3rem 1rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--amber); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 600px) {
+  section { padding: 3.5rem 0.5rem; }
+  .flip-card { height: 360px; }
+  .dissolution-controls { flex-direction: column; }
+  .dissolution-slider { width: 220px; }
+  .c-table { font-size: 0.8rem; }
+  .c-table tbody td:first-child { white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+<!-- stark-share-meta -->
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stark">
+<meta property="og:title" content="Architecture of Mind: Interactive Guide | Stark">
+<meta property="og:description" content="Four lenses on the mind, layers of reality, quantum cognition and what may happen to consciousness, with a quiz on your own philosophy of mind.">
+<meta property="og:url" content="https://starkforall.com/explore/consciousness.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Architecture of Mind: Interactive Guide | Stark">
+<meta name="twitter:description" content="Four lenses on the mind, layers of reality, quantum cognition and what may happen to consciousness, with a quiz on your own philosophy of mind.">
+<meta property="og:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://starkforall.com/#organization", "name": "Stark", "url": "https://starkforall.com/", "logo": "https://starkforall.com/assets/brand/icon-512.png", "sameAs": ["https://ams513.itch.io/", "https://bsky.app/profile/did:plc:lhodhwljl2wi762f3t6wic7c", "https://github.com/ams513", "https://www.youtube.com/@starkforall"], "description": "Stark makes local-first software that helps people build, write and care for others on their own computers, with their work kept in their own hands."}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Stark", "item": "https://starkforall.com/"}, {"@type": "ListItem", "position": 2, "name": "Explore", "item": "https://starkforall.com/explore/index.html"}, {"@type": "ListItem", "position": 3, "name": "The Architecture of Mind: From Neurons to Nothingness", "item": "https://starkforall.com/explore/consciousness.html"}]}]}</script>
+<!-- /stark-share-meta -->
+</head>
+<body>
+<section class="hero">
+  <div class="hero-bg"><canvas id="heroCanvas"></canvas></div>
+  <div class="hero-content">
+    <div class="eyebrow">Stark Presents</div>
+    <h1>The Architecture of Mind:<br>From Neurons to <em>Nothingness</em></h1>
+    <p class="hero-subtitle">
+      What if the deepest truth about consciousness is that it cannot be captured by any framework?
+      A journey through the philosophies that tried, and the silence where they end.
+    </p>
+    <button class="hero-scroll" onclick="document.getElementById('lenses').scrollIntoView({behavior:'smooth'})">
+      Begin the descent <span class="scroll-line"></span>
+    </button>
+  </div>
+</section>
+
+<!-- ═══ FOUR LENSES ═══ -->
+<section id="lenses">
+  <div class="container">
+    <div class="section-divider"></div>
+    <div class="eyebrow">Part I</div>
+    <h2>Four Lenses on the Mind</h2>
+    <p style="color:var(--text-muted); margin-top:0.75rem;">
+      Psychology fragments consciousness into four explanatory frames. Each captures something real. None captures everything.
+    </p>
+    <div class="lenses-grid">
+      <div class="lens-card">
+        <span class="lens-icon" style="color:var(--amber);">&#9670;</span>
+        <h3>Behavioral</h3>
+        <p>Mind is what mind does. Stimulus, response, reinforcement. Watson and Skinner dissolved the inner life into observable patterns. Consciousness becomes an epiphenomenon, the steam above the engine, not the engine itself.</p>
+      </div>
+      <div class="lens-card">
+        <span class="lens-icon" style="color:var(--violet);">&#9671;</span>
+        <h3>Cognitive</h3>
+        <p>Mind as information processor. Schemas, heuristics, working memory. The computational metaphor: thought as software running on neural hardware. But who reads the output? The homunculus problem returns at every level.</p>
+      </div>
+      <div class="lens-card">
+        <span class="lens-icon" style="color:var(--emerald);">&#9674;</span>
+        <h3>Biological</h3>
+        <p>Consciousness as neural correlate. fMRI, neurotransmitters, Brodmann areas. Koch and Crick's search for the NCC, the minimal neural mechanism sufficient for any conscious percept. Precise, measurable, and strangely incomplete.</p>
+      </div>
+      <div class="lens-card">
+        <span class="lens-icon" style="color:var(--rose);">&#9672;</span>
+        <h3>Sociocultural</h3>
+        <p>Mind shaped by language, ritual, power. Vygotsky's zone of proximal development. The self as social construction. Consciousness not as private theater but as a conversation, always already embedded in a world of others.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LAYERS OF REALITY ═══ -->
+<section id="layers">
+  <div class="container">
+    <div class="section-divider"></div>
+    <div class="eyebrow">Part II</div>
+    <h2>Layers of Reality</h2>
+    <p style="color:var(--text-muted); margin-top:0.75rem;">
+      Click to descend through the nested structure of what exists. Each layer depends on the one beneath it, until the bottom falls away.
+    </p>
+    <div class="layers-wrap">
+      <div class="layers-canvas-wrap">
+        <canvas id="layersCanvas"></canvas>
+      </div>
+      <div class="layer-info" id="layerInfo">
+        <h3 id="layerTitle">Physics</h3>
+        <p id="layerDesc">The outermost shell: matter, energy, spacetime. Quarks assemble into atoms, atoms into molecules. Everything here obeys differential equations, deterministic at scale, probabilistic beneath. The ground floor of materialism.</p>
+        <div class="layer-hint">Click a ring to explore</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THE QUANTUM MIND ═══ -->
+<section id="quantum">
+  <div class="container">
+    <div class="section-divider"></div>
+    <div class="eyebrow">Part III</div>
+    <h2>The Quantum Mind</h2>
+    <p style="color:var(--text-muted); margin-top:0.75rem;">
+      Quantum decision theory borrows the mathematics of Hilbert spaces, not to claim the brain is a quantum computer,
+      but because the geometry of superposition describes how we actually make choices better than classical probability.
+    </p>
+    <div class="quantum-visual">
+      <canvas id="quantumCanvas" width="700" height="320"></canvas>
+    </div>
+    <div class="quantum-explain">
+      <div class="q-block">
+        <h4>Superposition of Belief</h4>
+        <p>Before you decide, your mental state isn't a point in probability space. It's a vector in Hilbert space, a superposition of incompatible beliefs that collapse upon measurement. Busemeyer and Bruza showed this explains the conjunction fallacy, order effects in surveys, and the disjunction effect.</p>
+      </div>
+      <div class="q-block">
+        <h4>Non-Commutativity</h4>
+        <p>Asking "Is she trustworthy?" then "Is she competent?" yields different results than the reverse order. Classical probability says order shouldn't matter. Quantum cognition says: <code>AB &#8800; BA</code>: the measurement changes the state.</p>
+      </div>
+      <div class="q-block">
+        <h4>Interference Effects</h4>
+        <p>The two-slit experiment of the mind: when you consider both options, you don't just average them. Positive and negative interference terms appear, possibilities that amplify or cancel each other, violating the sure-thing principle of Savage's expected utility theory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BEYOND MATERIALISM ═══ -->
+<section id="beyond">
+  <div class="container">
+    <div class="section-divider"></div>
+    <div class="eyebrow">Part IV</div>
+    <h2>Beyond Materialism</h2>
+    <p style="color:var(--text-muted); margin-top:0.75rem;">
+      Five frameworks for consciousness, each with a radically different answer to what is real. Click to flip.
+    </p>
+    <div class="flip-grid" id="flipGrid"></div>
+    <div class="flip-hint" style="text-align:center; margin-top:1rem;">Click any card to reveal its deeper claim</div>
+  </div>
+</section>
+
+<!-- ═══ CONSCIOUSNESS TABLE ═══ -->
+<section id="ctable">
+  <div class="wide-container">
+    <div class="section-divider"></div>
+    <div class="eyebrow">Part V</div>
+    <h2>What Happens to Consciousness?</h2>
+    <p style="color:var(--text-muted); margin-top:0.75rem; margin-bottom:2rem;">
+      Click a framework to see what it predicts about the nature of experience, the limits of reason, and what lies beyond thought.
+    </p>
+    <div class="consciousness-table">
+      <table class="c-table" id="cTable">
+        <thead>
+          <tr>
+            <th>Framework</th>
+            <th>Consciousness is...</th>
+            <th>Reason's limit</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OBSERVER DISSOLUTION ═══ -->
+<section id="dissolution">
+  <div class="container">
+    <div class="section-divider"></div>
+    <div class="eyebrow">Part VI</div>
+    <h2>The Dissolution Map</h2>
+    <p style="color:var(--text-muted); margin-top:0.75rem;">
+      Drag the slider to watch the Markov blanket, the statistical boundary between self and world, dissolve.
+      What remains when the observer merges with the observed?
+    </p>
+    <div class="dissolution-wrap">
+      <div class="dissolution-canvas">
+        <canvas id="dissolutionCanvas"></canvas>
+      </div>
+      <div class="dissolution-controls">
+        <span class="dissolution-label" id="dissLabel">Firm Boundary</span>
+        <input type="range" class="dissolution-slider" id="dissSlider" min="0" max="100" value="0">
+      </div>
+      <div class="dissolution-desc">
+        <p id="dissDesc">The observer stands apart from reality, peering through the senses. A thick Markov blanket partitions inner states from outer states. This is the default view of Western science: a subject studying an object.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUIZ ═══ -->
+<section id="quiz">
+  <div class="container">
+    <div class="section-divider"></div>
+    <div class="eyebrow">Part VII</div>
+    <h2>What's Your Philosophy?</h2>
+    <p style="color:var(--text-muted); margin-top:0.75rem; margin-bottom:2rem;">
+      Five questions to map your intuitions to a philosophical framework. There are no wrong answers, only honest ones.
+    </p>
+    <div class="quiz-wrap" id="quizWrap">
+      <div class="quiz-progress" id="quizProgress"></div>
+      <div class="quiz-question" id="quizQuestion"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-result" id="quizResult" hidden></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <p class="footer-brand">Built by Stark, tools for creators who think deeply</p>
+  <div class="footer-links">
+    <a href="https://ams513.itch.io/stark-world-engine?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=consciousness" target="_blank" rel="noopener noreferrer">Stark World Engine</a>
+    <a href="https://ams513.itch.io/stark-quill?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=consciousness" target="_blank" rel="noopener noreferrer">Stark Quill</a>
+  <p class="trust-foot" data-tc="foot"><a href="../trust.html" lang="en">Trust Center</a></p></div>
+</footer>
+
+<script>
+// ═══ HERO PARTICLE FIELD ═══
+(function() {
+  const c = document.getElementById('heroCanvas');
+  const ctx = c.getContext('2d');
+  let w, h, particles = [];
+  const PARTICLE_COUNT = 80;
+
+  function resize() {
+    w = c.width = c.offsetWidth * devicePixelRatio;
+    h = c.height = c.offsetHeight * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+
+  function init() {
+    resize();
+    particles = [];
+    var cw = c.offsetWidth, ch = c.offsetHeight;
+    for (var i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * cw,
+        y: Math.random() * ch,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.5 + 0.5,
+        alpha: Math.random() * 0.4 + 0.1
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, c.offsetWidth, c.offsetHeight);
+    var cw = c.offsetWidth, ch = c.offsetHeight;
+
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = cw;
+      if (p.x > cw) p.x = 0;
+      if (p.y < 0) p.y = ch;
+      if (p.y > ch) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(167,139,250,' + p.alpha + ')';
+      ctx.fill();
+    }
+
+    // Draw connections
+    for (var i = 0; i < particles.length; i++) {
+      for (var j = i + 1; j < particles.length; j++) {
+        var dx = particles[i].x - particles[j].x;
+        var dy = particles[i].y - particles[j].y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = 'rgba(167,139,250,' + (0.08 * (1 - dist / 120)) + ')';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', function() {
+    resize();
+  });
+
+  init();
+  draw();
+})();
+
+// ═══ LAYERS OF REALITY ═══
+(function() {
+  var canvas = document.getElementById('layersCanvas');
+  var ctx = canvas.getContext('2d');
+  var titleEl = document.getElementById('layerTitle');
+  var descEl = document.getElementById('layerDesc');
+
+  var layers = [
+    {
+      name: 'Physics',
+      color: '#10b981',
+      desc: 'The outermost shell: matter, energy, spacetime. Quarks assemble into atoms, atoms into molecules. Everything here obeys differential equations, deterministic at scale, probabilistic beneath. The ground floor of materialism.'
+    },
+    {
+      name: 'Mathematics',
+      color: '#3b82f6',
+      desc: 'The structural skeleton of physics, or is physics the skeleton of mathematics? Tegmark\'s Mathematical Universe Hypothesis: all consistent mathematical structures exist physically. The map may be the territory.'
+    },
+    {
+      name: 'Logic',
+      color: '#a78bfa',
+      desc: 'The rules that govern inference itself. But Gödel proved that any sufficiently powerful logical system contains truths it cannot prove. The system cannot fully know itself. The first crack in the foundation.'
+    },
+    {
+      name: 'Consciousness',
+      color: '#f59e0b',
+      desc: 'The Hard Problem: why is there something it is like to be you? Neural correlates locate it, functionalism describes it, but neither explains the raw fact of experience. Chalmers\' explanatory gap yawns here.'
+    },
+    {
+      name: 'Void',
+      color: '#f472b6',
+      desc: 'Beyond all frameworks. The apophatic terminus: what cannot be spoken, only indicated. Wittgenstein\'s silence. Nagarjuna\'s emptiness. The ground of being that is not a being. Where every philosophy dissolves into direct apprehension.'
+    }
+  ];
+
+  var activeLayer = 0;
+  var targetLayer = 0;
+  var animProgress = 1;
+  var size;
+
+  function resize() {
+    size = Math.min(canvas.parentElement.offsetWidth, 500);
+    canvas.width = size * devicePixelRatio;
+    canvas.height = size * devicePixelRatio;
+    canvas.style.width = size + 'px';
+    canvas.style.height = size + 'px';
+  }
+
+  function draw() {
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    ctx.clearRect(0, 0, size, size);
+    var cx = size / 2;
+    var cy = size / 2;
+    var maxR = size * 0.44;
+    var minR = size * 0.06;
+    var step = (maxR - minR) / layers.length;
+
+    for (var i = layers.length - 1; i >= 0; i--) {
+      var r = maxR - i * step;
+      var isActive = i === activeLayer;
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+
+      // Parse color to rgb for alpha
+      var col = layers[i].color;
+      var fillAlpha = isActive ? 0.25 : 0.08;
+      var strokeAlpha = isActive ? 0.9 : 0.3;
+
+      ctx.fillStyle = hexToRgba(col, fillAlpha);
+      ctx.fill();
+
+      ctx.lineWidth = isActive ? 2.5 : 1;
+      ctx.strokeStyle = hexToRgba(col, strokeAlpha);
+      ctx.stroke();
+
+      // Label
+      var labelY = cy - r + (step * 0.4);
+      ctx.font = (isActive ? '500 ' : '400 ') + (isActive ? '14px' : '11px') + ' Inter, sans-serif';
+      ctx.fillStyle = hexToRgba(col, isActive ? 1 : 0.6);
+      ctx.textAlign = 'center';
+      ctx.fillText(layers[i].name, cx, cy - r + 18);
+    }
+
+    // Center glow for void
+    var grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, minR + step * 0.5);
+    grd.addColorStop(0, 'rgba(244,114,182,0.15)');
+    grd.addColorStop(1, 'rgba(244,114,182,0)');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, size, size);
+
+    requestAnimationFrame(draw);
+  }
+
+  function hexToRgba(hex, a) {
+    var r = parseInt(hex.slice(1,3), 16);
+    var g = parseInt(hex.slice(3,5), 16);
+    var b = parseInt(hex.slice(5,7), 16);
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+  }
+
+  canvas.addEventListener('click', function(e) {
+    var rect = canvas.getBoundingClientRect();
+    var mx = e.clientX - rect.left;
+    var my = e.clientY - rect.top;
+    var cx = size / 2;
+    var cy = size / 2;
+    var dist = Math.sqrt((mx - cx) * (mx - cx) + (my - cy) * (my - cy));
+
+    var maxR = size * 0.44;
+    var minR = size * 0.06;
+    var step = (maxR - minR) / layers.length;
+
+    // Check which ring from outside in
+    for (var i = 0; i < layers.length; i++) {
+      var outerR = maxR - i * step;
+      var innerR = (i === layers.length - 1) ? 0 : maxR - (i + 1) * step;
+      if (dist <= outerR && dist >= innerR) {
+        activeLayer = i;
+        titleEl.textContent = layers[i].name;
+        descEl.textContent = layers[i].desc;
+        break;
+      }
+    }
+  });
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+// ═══ FLIP CARDS ═══
+(function() {
+  var frameworks = [
+    {
+      name: 'Materialism',
+      motto: '"Only matter is real."',
+      label: 'Ontology',
+      color: 'var(--emerald)',
+      desc: 'Consciousness is an emergent property of sufficiently complex physical systems. There is no ghost in the machine. The mind is what the brain does, and when the brain stops, the mind stops. Dennett\'s "multiple drafts" model: there is no Cartesian theater, only parallel narratives competing for dominance.',
+      thinkers: 'Democritus, Hobbes, Dennett, Churchland'
+    },
+    {
+      name: 'Idealism',
+      motto: '"Only mind is real."',
+      label: 'Ontology',
+      color: 'var(--violet)',
+      desc: 'Matter is a construction of consciousness, not the other way around. Berkeley\'s esse est percipi: to be is to be perceived. Kastrup\'s analytic idealism updates this: the physical world is what universal consciousness looks like from the outside. Your brain doesn\'t generate experience, it filters it.',
+      thinkers: 'Berkeley, Hegel, Kastrup, Hoffman'
+    },
+    {
+      name: 'Kantian Idealism',
+      motto: '"We can only know appearances."',
+      label: 'Epistemology',
+      color: 'var(--amber)',
+      desc: 'The mind doesn\'t passively receive reality, it actively structures it through the categories of understanding. Space, time, and causality are forms of intuition, not features of the thing-in-itself (Ding an sich). We are forever inside the architecture of our own cognition, unable to compare our perceptions with the unperceived.',
+      thinkers: 'Kant, Schopenhauer, Cassirer'
+    },
+    {
+      name: 'Non-Dualism',
+      motto: '"The distinction is the illusion."',
+      label: 'Metaphysics',
+      color: 'var(--rose)',
+      desc: 'Advaita Vedanta: Brahman alone is real; the apparent world is maya. Madhyamaka Buddhism: all phenomena are empty of inherent existence (sunyata), including emptiness itself. Not idealism, not materialism, the very categories of "mind" and "matter" are conventional designations with no ultimate referent.',
+      thinkers: 'Shankara, Nagarjuna, Nisargadatta, Huang Po'
+    },
+    {
+      name: 'Apophatic Philosophy',
+      motto: '"It cannot be said."',
+      label: 'Via Negativa',
+      color: 'var(--text-muted)',
+      desc: 'The deepest truth is approached only by negation. Pseudo-Dionysius: God is beyond being. Wittgenstein: "Whereof one cannot speak, thereof one must be silent." Derrida\'s différance: meaning is always deferred, never fully present. The ground of reality is not an object of knowledge but the condition of possibility for knowledge itself.',
+      thinkers: 'Pseudo-Dionysius, Eckhart, Wittgenstein, Derrida'
+    }
+  ];
+
+  var grid = document.getElementById('flipGrid');
+  frameworks.forEach(function(fw) {
+    var card = document.createElement('div');
+    card.className = 'flip-card';
+    card.setAttribute('tabindex', '0');
+    card.innerHTML =
+      '<div class="flip-inner">' +
+        '<div class="flip-front">' +
+          '<div class="flip-label">' + fw.label + '</div>' +
+          '<h3 style="color:' + fw.color + ';">' + fw.name + '</h3>' +
+          '<div class="flip-motto">' + fw.motto + '</div>' +
+        '</div>' +
+        '<div class="flip-back">' +
+          '<h4>' + fw.name + '</h4>' +
+          '<p>' + fw.desc + '</p>' +
+          '<div class="flip-thinkers">' + fw.thinkers + '</div>' +
+        '</div>' +
+      '</div>';
+    card.addEventListener('click', function() {
+      card.classList.toggle('flipped');
+    });
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.classList.toggle('flipped');
+      }
+    });
+    grid.appendChild(card);
+  });
+})();
+
+// ═══ CONSCIOUSNESS TABLE ═══
+(function() {
+  var rows = [
+    {
+      name: 'Materialism',
+      consciousness: 'An emergent property of neural complexity',
+      limit: 'Hits the Hard Problem, no explanation for qualia',
+      tags: ['amber'],
+      detail: 'The materialist says: give us enough neuroscience and we will explain everything about the mind. But even a complete map of every synapse, every neurotransmitter, every pattern of activation cannot answer why there is something it is like to see red. This is what David Chalmers called the Hard Problem. You can explain the function of pain without explaining the feeling of pain. The explanatory gap may not be a gap in our knowledge, it may be a gap in the framework itself.'
+    },
+    {
+      name: 'Idealism',
+      consciousness: 'The fundamental substrate of all reality',
+      limit: 'Cannot explain the regularity of physical law',
+      tags: ['violet'],
+      detail: 'If consciousness is primary, why does the physical world behave so consistently? Why does the apple always fall? The idealist can appeal to universal mind, shared structures of experience, or the inherent regularity of consciousness itself. But the question presses: what constrains the dream? Kastrup answers with dissociation, individual minds are alters of a universal consciousness, each experiencing their own dissociated stream. The physical is what that dissociation looks like from outside.'
+    },
+    {
+      name: 'Kantian Idealism',
+      consciousness: 'The structuring activity that makes experience possible',
+      limit: 'The noumenon is permanently inaccessible',
+      tags: ['amber', 'violet'],
+      detail: 'Kant drew a line in the sand: on this side, the phenomenal world we can know; on that side, the thing-in-itself we cannot. His twelve categories of understanding (causality, substance, unity, etc.) are the filters through which all experience must pass. This was his Copernican revolution: objects conform to the mind, not the mind to objects. The cost: we can never know if our structured experience resembles unstructured reality. Gödel later showed that even formal logic has this problem, no sufficiently rich system can prove its own consistency.'
+    },
+    {
+      name: 'Non-Dualism',
+      consciousness: 'Neither real nor unreal, the question dissolves',
+      limit: 'Communicable only through paradox and negation',
+      tags: ['emerald'],
+      detail: 'Nagarjuna\'s tetralemma: a thing is not existent, not non-existent, not both, not neither. This is not wordplay, it is a systematic deconstruction of every possible metaphysical position. Shankara\'s Advaita: the snake you see on the road is a rope, but the rope-ness doesn\'t negate the genuine experience of snake. The apparent world (vyavaharika) is real at its own level even though it is not ultimately real (paramarthika). Consciousness and matter are two descriptions of what has no description.'
+    },
+    {
+      name: 'Apophatic',
+      consciousness: 'What remains when all categories are negated',
+      limit: 'Self-undermining: even this claim says too much',
+      tags: ['violet', 'emerald'],
+      detail: 'The via negativa: not this, not that (neti neti). Every positive statement about ultimate reality is a projection of finite categories onto the infinite. Even "God exists" or "Brahman is consciousness" subtly domesticates what exceeds all domestication. Wittgenstein\'s Tractatus ends by kicking away its own ladder. The deepest apophatic move is to negate the negation itself, Eckhart\'s "I pray God to rid me of God." What remains is not nothing. It is what was always already here before thought divided it.'
+    }
+  ];
+
+  var tbody = document.querySelector('#cTable tbody');
+  rows.forEach(function(row, idx) {
+    var tr = document.createElement('tr');
+    var tagHTML = '';
+    row.tags.forEach(function(t) {
+      tagHTML += '<span class="tag tag-' + t + '">' + t.charAt(0).toUpperCase() + '</span>';
+    });
+    tr.innerHTML =
+      '<td>' + row.name + '</td>' +
+      '<td>' + row.consciousness + ' ' + tagHTML + '</td>' +
+      '<td>' + row.limit + '</td>';
+
+    var expandTr = document.createElement('tr');
+    expandTr.className = 'expand-cell';
+    expandTr.innerHTML = '<td colspan="3">' + row.detail + '</td>';
+
+    tr.addEventListener('click', function() {
+      var isOpen = expandTr.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.expand-cell').forEach(function(el) { el.classList.remove('open'); });
+      document.querySelectorAll('#cTable tbody tr.active').forEach(function(el) { el.classList.remove('active'); });
+      if (!isOpen) {
+        expandTr.classList.add('open');
+        tr.classList.add('active');
+      }
+    });
+
+    tbody.appendChild(tr);
+    tbody.appendChild(expandTr);
+  });
+})();
+
+// ═══ QUANTUM MIND VISUALIZATION ═══
+(function() {
+  var canvas = document.getElementById('quantumCanvas');
+  var ctx = canvas.getContext('2d');
+  var w = 700, h = 320;
+  var dpr = Math.min(devicePixelRatio, 2);
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = Math.min(w, window.innerWidth - 32) + 'px';
+  canvas.style.height = 'auto';
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  var time = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // Axes
+    ctx.strokeStyle = 'rgba(167,139,250,0.2)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(80, h - 40);
+    ctx.lineTo(w - 20, h - 40);
+    ctx.moveTo(80, h - 40);
+    ctx.lineTo(80, 20);
+    ctx.stroke();
+
+    // Labels
+    ctx.font = '11px Inter, sans-serif';
+    ctx.fillStyle = '#6b6889';
+    ctx.textAlign = 'center';
+    ctx.fillText('Cognitive State Space', w / 2, h - 10);
+    ctx.save();
+    ctx.translate(20, h / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('Probability Amplitude', 0, 0);
+    ctx.restore();
+
+    // Basis labels
+    ctx.fillStyle = '#a78bfa';
+    ctx.font = '500 12px Inter, sans-serif';
+    ctx.fillText('|believe⟩', 200, h - 22);
+    ctx.fillStyle = '#f59e0b';
+    ctx.fillText('|doubt⟩', 450, h - 22);
+
+    var baseline = h - 40;
+    var amp = 90;
+
+    // Wave 1: belief state
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(167,139,250,0.7)';
+    ctx.lineWidth = 2;
+    for (var x = 80; x < w - 20; x++) {
+      var t = (x - 80) / (w - 100);
+      var y = baseline - Math.abs(Math.sin((t * 3 + time * 0.5) * Math.PI)) * amp * Math.exp(-((t - 0.25) * (t - 0.25)) * 8);
+      if (x === 80) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // Wave 2: doubt state
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(245,158,11,0.7)';
+    ctx.lineWidth = 2;
+    for (var x = 80; x < w - 20; x++) {
+      var t = (x - 80) / (w - 100);
+      var y = baseline - Math.abs(Math.sin((t * 3 - time * 0.3 + 1.5) * Math.PI)) * amp * Math.exp(-((t - 0.65) * (t - 0.65)) * 8);
+      if (x === 80) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // Interference region (middle)
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(16,185,129,0.5)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 4]);
+    for (var x = 80; x < w - 20; x++) {
+      var t = (x - 80) / (w - 100);
+      var y1 = Math.abs(Math.sin((t * 3 + time * 0.5) * Math.PI)) * amp * Math.exp(-((t - 0.25) * (t - 0.25)) * 8);
+      var y2 = Math.abs(Math.sin((t * 3 - time * 0.3 + 1.5) * Math.PI)) * amp * Math.exp(-((t - 0.65) * (t - 0.65)) * 8);
+      var interference = y1 + y2 + 2 * Math.sqrt(y1 * y2) * Math.cos(time * 2 + t * 6);
+      var y = baseline - Math.max(0, interference * 0.4);
+      if (x === 80) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Legend
+    ctx.font = '10px "JetBrains Mono", monospace';
+    ctx.fillStyle = 'rgba(167,139,250,0.8)';
+    ctx.textAlign = 'left';
+    ctx.fillText('── Belief amplitude', w - 180, 30);
+    ctx.fillStyle = 'rgba(245,158,11,0.8)';
+    ctx.fillText('── Doubt amplitude', w - 180, 48);
+    ctx.fillStyle = 'rgba(16,185,129,0.6)';
+    ctx.fillText('- - Interference', w - 180, 66);
+
+    time += 0.015;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener('resize', function() {
+    canvas.style.width = Math.min(w, window.innerWidth - 32) + 'px';
+  });
+})();
+
+// ═══ OBSERVER DISSOLUTION ═══
+(function() {
+  var canvas = document.getElementById('dissolutionCanvas');
+  var ctx = canvas.getContext('2d');
+  var slider = document.getElementById('dissSlider');
+  var label = document.getElementById('dissLabel');
+  var desc = document.getElementById('dissDesc');
+
+  var W, H;
+  var dpr = Math.min(devicePixelRatio, 2);
+
+  var stages = [
+    { at: 0, label: 'Firm Boundary', desc: 'The observer stands apart from reality, peering through the senses. A thick Markov blanket partitions inner states from outer states. This is the default view of Western science: a subject studying an object.' },
+    { at: 25, label: 'Thinning Boundary', desc: 'The boundary begins to soften. Embodied cognition: the mind extends into the body, tools, environment. Clark and Chalmers\' extended mind thesis. Where does the mind end and the world begin?' },
+    { at: 50, label: 'Porous Membrane', desc: 'Enactivism: cognition is not representation but participation. The boundary becomes a conversation, a reciprocal shaping. Varela\'s autopoiesis, the system makes itself through interaction with what it is not.' },
+    { at: 75, label: 'Fading Distinction', desc: 'The Markov blanket approaches statistical transparency. Inner and outer states become indistinguishable. This is the edge of the apophatic, the place where language starts to fail and direct experience takes over.' },
+    { at: 100, label: 'Complete Dissolution', desc: 'No boundary remains. Observer and observed are a single process. Nagarjuna\'s dependent origination: nothing exists from its own side. What is left is not nothing and not something, it is prior to that distinction.' }
+  ];
+
+  function resize() {
+    W = canvas.parentElement.offsetWidth;
+    H = 300;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+  }
+
+  var particles = [];
+  var INNER_COUNT = 50;
+  var OUTER_COUNT = 50;
+
+  function initParticles() {
+    particles = [];
+    var cx = W / 2, cy = H / 2;
+    // Inner (observer) particles
+    for (var i = 0; i < INNER_COUNT; i++) {
+      var angle = Math.random() * Math.PI * 2;
+      var dist = Math.random() * 60 + 10;
+      particles.push({
+        x: cx + Math.cos(angle) * dist,
+        y: cy + Math.sin(angle) * dist,
+        baseX: cx + Math.cos(angle) * dist,
+        baseY: cy + Math.sin(angle) * dist,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        inner: true,
+        r: Math.random() * 2 + 1
+      });
+    }
+    // Outer (reality) particles
+    for (var i = 0; i < OUTER_COUNT; i++) {
+      var angle = Math.random() * Math.PI * 2;
+      var dist = Math.random() * 100 + 90;
+      particles.push({
+        x: cx + Math.cos(angle) * dist,
+        y: cy + Math.sin(angle) * dist,
+        baseX: cx + Math.cos(angle) * dist,
+        baseY: cy + Math.sin(angle) * dist,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        inner: false,
+        r: Math.random() * 2 + 1
+      });
+    }
+  }
+
+  function draw() {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+
+    var val = parseFloat(slider.value) / 100;
+    var cx = W / 2, cy = H / 2;
+
+    // The Markov blanket (boundary circle)
+    var blanketR = 80;
+    var blanketAlpha = 1 - val;
+    if (blanketAlpha > 0.02) {
+      ctx.beginPath();
+      ctx.arc(cx, cy, blanketR, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(167,139,250,' + (blanketAlpha * 0.6) + ')';
+      ctx.lineWidth = 3 * blanketAlpha;
+      ctx.setLineDash([8 * (1 - val * 0.7), 4 + val * 20]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Glow
+      var grd = ctx.createRadialGradient(cx, cy, blanketR - 10, cx, cy, blanketR + 10);
+      grd.addColorStop(0, 'rgba(167,139,250,' + (blanketAlpha * 0.08) + ')');
+      grd.addColorStop(1, 'rgba(167,139,250,0)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    // Move and draw particles
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+
+      // Dissolution effect: inner particles spread outward, outer particles spread inward
+      var targetX = p.baseX + (cx - p.baseX) * val * (p.inner ? -1.5 : 0.5);
+      var targetY = p.baseY + (cy - p.baseY) * val * (p.inner ? -1.5 : 0.5);
+
+      p.x += (targetX - p.x) * 0.03 + p.vx;
+      p.y += (targetY - p.y) * 0.03 + p.vy;
+
+      // Bounds
+      if (p.x < 20 || p.x > W - 20) p.vx *= -1;
+      if (p.y < 20 || p.y > H - 20) p.vy *= -1;
+
+      var color = p.inner
+        ? 'rgba(245,158,11,' + (0.5 + (1 - val) * 0.3) + ')'
+        : 'rgba(167,139,250,' + (0.4 + val * 0.3) + ')';
+
+      // At high dissolution, colors blend
+      if (val > 0.6) {
+        var blend = (val - 0.6) / 0.4;
+        color = 'rgba(16,185,129,' + (0.3 + blend * 0.4) + ')';
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    // Labels
+    if (blanketAlpha > 0.3) {
+      ctx.font = '500 11px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(245,158,11,' + blanketAlpha + ')';
+      ctx.fillText('Observer', cx, cy - 5);
+      ctx.fillStyle = 'rgba(167,139,250,' + blanketAlpha + ')';
+      ctx.fillText('Reality', cx, cy + blanketR + 25);
+    }
+
+    if (val > 0.8) {
+      ctx.font = '300 italic 16px "Cormorant Garamond", serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(16,185,129,' + ((val - 0.8) / 0.2) * 0.8 + ')';
+      ctx.fillText('One Process', cx, cy + 5);
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  slider.addEventListener('input', function() {
+    var val = parseFloat(slider.value);
+    // Find the closest stage
+    var closest = stages[0];
+    for (var i = 1; i < stages.length; i++) {
+      if (Math.abs(val - stages[i].at) < Math.abs(val - closest.at)) {
+        closest = stages[i];
+      }
+    }
+    label.textContent = closest.label;
+    desc.textContent = closest.desc;
+  });
+
+  window.addEventListener('resize', function() {
+    resize();
+    initParticles();
+  });
+
+  resize();
+  initParticles();
+  draw();
+})();
+
+// ═══ PHILOSOPHY QUIZ ═══
+(function() {
+  var questions = [
+    {
+      q: 'You notice a vivid red sunset. What is most real about this experience?',
+      options: [
+        { text: 'The photons hitting your retina and the neural activation patterns they produce.', scores: { mat: 2, ide: 0, kan: 0, non: 0, apo: 0 } },
+        { text: 'The subjective redness of the experience, that raw quale that no physical description captures.', scores: { mat: 0, ide: 2, kan: 0, non: 0, apo: 0 } },
+        { text: 'Your cognitive apparatus structuring light into the experience of "sunset", the sunset-in-itself may be entirely different.', scores: { mat: 0, ide: 0, kan: 2, non: 0, apo: 0 } },
+        { text: 'The question assumes a distinction between experiencer and experience that may not hold up.', scores: { mat: 0, ide: 0, kan: 0, non: 2, apo: 0 } }
+      ]
+    },
+    {
+      q: 'A neuroscientist maps your complete brain state. What has she captured?',
+      options: [
+        { text: 'Everything, the mind is the brain, and a perfect map is a perfect description.', scores: { mat: 2, ide: 0, kan: 0, non: 0, apo: 0 } },
+        { text: 'The shadow on the cave wall. The map of neural activity is a trace of consciousness, not consciousness itself.', scores: { mat: 0, ide: 2, kan: 0, non: 0, apo: 0 } },
+        { text: 'One valid representation among many possible ones, each constrained by the instruments and categories used.', scores: { mat: 0, ide: 0, kan: 2, non: 0, apo: 0 } },
+        { text: 'A useful description at one level, but the deeper nature of what produced those states eludes all frameworks.', scores: { mat: 0, ide: 0, kan: 0, non: 0, apo: 2 } }
+      ]
+    },
+    {
+      q: 'Does mathematics exist independently of the human mind?',
+      options: [
+        { text: 'Yes, mathematical truths are discovered, not invented. They would hold even without conscious beings.', scores: { mat: 1, ide: 0, kan: 0, non: 0, apo: 0 } },
+        { text: 'Mathematics is a structure within consciousness. It doesn\'t exist "out there", mind is the medium.', scores: { mat: 0, ide: 2, kan: 0, non: 0, apo: 0 } },
+        { text: 'We can\'t know. Mathematics works because our cognition is structured to find it, not because we\'ve accessed the noumenal.', scores: { mat: 0, ide: 0, kan: 2, non: 0, apo: 0 } },
+        { text: 'The question presupposes a separation between "mind" and "world" that is itself a mental construction.', scores: { mat: 0, ide: 0, kan: 0, non: 2, apo: 0 } }
+      ]
+    },
+    {
+      q: 'You experience a moment of complete stillness in meditation. All thought stops. What just happened?',
+      options: [
+        { text: 'Your default mode network temporarily reduced its activity. A neurological phenomenon, interesting but explicable.', scores: { mat: 2, ide: 0, kan: 0, non: 0, apo: 0 } },
+        { text: 'You glimpsed the ground of consciousness before it fractures into thought. Pure awareness without content.', scores: { mat: 0, ide: 1, kan: 0, non: 1, apo: 0 } },
+        { text: 'The categories of understanding momentarily relaxed. Kant would say you brushed the boundary of possible experience.', scores: { mat: 0, ide: 0, kan: 2, non: 0, apo: 0 } },
+        { text: 'Nothing happened, and that nothing is what\'s most real. Every description of it already misses it.', scores: { mat: 0, ide: 0, kan: 0, non: 0, apo: 2 } }
+      ]
+    },
+    {
+      q: 'If a perfect simulation of your brain were run on a computer, would it be conscious?',
+      options: [
+        { text: 'Yes, consciousness is substrate-independent. Function is what matters, not material.', scores: { mat: 2, ide: 0, kan: 0, non: 0, apo: 0 } },
+        { text: 'No, the simulation would process information but lack the intrinsic consciousness that the brain participates in.', scores: { mat: 0, ide: 2, kan: 0, non: 0, apo: 0 } },
+        { text: 'We cannot know, because we have no access to consciousness-in-itself, only to behavior and report.', scores: { mat: 0, ide: 0, kan: 2, non: 0, apo: 0 } },
+        { text: 'The question is malformed. "Consciousness" is not a property that something has or lacks, it\'s a way of carving up a process that is indivisible.', scores: { mat: 0, ide: 0, kan: 0, non: 1, apo: 1 } }
+      ]
+    }
+  ];
+
+  var results = {
+    mat: { name: 'Materialist', desc: 'You trust the physical. For you, the universe is matter in motion, and consciousness is what happens when matter gets complex enough to model itself. You have good company: Democritus, Dennett, the Churchlands. Your challenge: the Hard Problem. Why does neural processing feel like anything at all? The explanatory gap between objective description and subjective experience remains the great unsolved puzzle of your worldview.' },
+    ide: { name: 'Idealist', desc: 'You take consciousness seriously, as the ground floor, not the penthouse. The physical world, in your view, is not the source of mind but something mind produces or reveals. Berkeley, Hegel, Kastrup walk with you. Your challenge: the stubborn regularity of nature. If mind is fundamental, what constrains it into the precise, mathematical, shareable structure we all navigate?' },
+    kan: { name: 'Kantian', desc: 'You are epistemologically careful. You know we can never step outside our own cognitive apparatus to compare perception with reality. Kant\'s transcendental idealism is your home: the world as we know it is shaped by the categories of understanding. Your challenge: does the thing-in-itself matter if we can never access it? And can we really trust that our categories are the only possible ones?' },
+    non: { name: 'Non-Dualist', desc: 'You see through the question. The divide between mind and matter, subject and object, self and world, you suspect these are conceptual impositions on a reality that is prior to all duality. Nagarjuna, Shankara, and the Zen masters are your lineage. Your challenge: communicating this insight without betraying it. Every word reinstates the duality you\'re pointing beyond.' },
+    apo: { name: 'Apophatic Thinker', desc: 'You are drawn to the edge of language. For you, the most honest response to ultimate questions is disciplined silence, not because there is nothing to say, but because what is deepest exceeds every saying. Pseudo-Dionysius, Meister Eckhart, the later Wittgenstein. Your challenge: living in that silence without it becoming another position, another thing to defend.' }
+  };
+
+  var currentQ = 0;
+  var scores = { mat: 0, ide: 0, kan: 0, non: 0, apo: 0 };
+  var progressEl = document.getElementById('quizProgress');
+  var questionEl = document.getElementById('quizQuestion');
+  var optionsEl = document.getElementById('quizOptions');
+  var resultEl = document.getElementById('quizResult');
+
+  function renderProgress() {
+    progressEl.innerHTML = '';
+    for (var i = 0; i < questions.length; i++) {
+      var dot = document.createElement('div');
+      dot.className = 'quiz-dot';
+      if (i < currentQ) dot.className += ' done';
+      if (i === currentQ) dot.className += ' current';
+      progressEl.appendChild(dot);
+    }
+  }
+
+  function renderQuestion() {
+    if (currentQ >= questions.length) {
+      showResult();
+      return;
+    }
+    var q = questions[currentQ];
+    questionEl.textContent = q.q;
+    optionsEl.innerHTML = '';
+    // Shuffle options for variety
+    var shuffled = q.options.slice();
+    for (var i = shuffled.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
+    }
+    shuffled.forEach(function(opt) {
+      var btn = document.createElement('button');
+      btn.className = 'quiz-option';
+      btn.textContent = opt.text;
+      btn.addEventListener('click', function() {
+        Object.keys(opt.scores).forEach(function(k) {
+          scores[k] += opt.scores[k];
+        });
+        currentQ++;
+        renderProgress();
+        renderQuestion();
+      });
+      optionsEl.appendChild(btn);
+    });
+    renderProgress();
+  }
+
+  function showResult() {
+    questionEl.style.display = 'none';
+    optionsEl.style.display = 'none';
+    progressEl.innerHTML = '';
+    for (var i = 0; i < questions.length; i++) {
+      var dot = document.createElement('div');
+      dot.className = 'quiz-dot done';
+      progressEl.appendChild(dot);
+    }
+
+    var maxKey = 'mat';
+    Object.keys(scores).forEach(function(k) {
+      if (scores[k] > scores[maxKey]) maxKey = k;
+    });
+
+    var r = results[maxKey];
+    resultEl.hidden = false;
+    resultEl.innerHTML =
+      '<h3>' + r.name + '</h3>' +
+      '<p>' + r.desc + '</p>' +
+      '<button class="quiz-restart" id="quizRestart">Take it again</button>';
+
+    document.getElementById('quizRestart').addEventListener('click', function() {
+      currentQ = 0;
+      scores = { mat: 0, ide: 0, kan: 0, non: 0, apo: 0 };
+      resultEl.hidden = true;
+      questionEl.style.display = '';
+      optionsEl.style.display = '';
+      renderQuestion();
+    });
+  }
+
+  renderQuestion();
+})();
+</script>
+<nav class="ps-site" aria-label="Stark"><a href="index.html">All explorers</a><a href="../index.html">Stark</a><a href="https://ams513.itch.io/stark-world-engine?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=consciousness" rel="noopener noreferrer">Stark World Engine</a><a href="https://ams513.itch.io/stark-quill?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=consciousness" rel="noopener noreferrer">Stark Quill</a></nav>
+</body>
+</html>

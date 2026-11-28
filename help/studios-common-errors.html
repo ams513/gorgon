@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stark World Engine: Common Errors and Fixes | Stark</title>
+<meta name="description" content="Start here: the setup check runs every time the studio starts, and inside the studio you can press ? and click Fix my setup. It names the problem and...">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'sha256-n09GZ24aUVRvI5M+NloeG9888h0QVKRIGoPYsv2FTuE='; form-action 'none'; base-uri 'none'">
+<meta name="color-scheme" content="dark">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://starkforall.com/help/studios-common-errors.html">
+<script>(function(){var t=null;try{t=localStorage.getItem("stark-theme")}catch(e){}if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)})();</script>
+<style>
+:root{--bg:#000000;--surface:#0b0d10;--text:#E9EDF2;--muted:#b4bcc8;--accent:#9CC4FF;--accent-hover:#c4dbff;--gold:#9CC4FF;--gold-text:#9CC4FF;--field:#667184;--bad:#ff8a80;--on-accent:#000000;--border:#232830;--chip:#151a22;--warn-bg:#11151b;--warn-line:#7a8594;--code:#05070a;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,
+"Helvetica Neue",Arial,sans-serif}
+a{color:var(--accent)}a:hover{color:var(--accent-hover)}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex="-1"]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:8px;z-index:9;background:var(--surface);color:var(--text);padding:10px 16px;border:2px solid var(--accent);border-radius:8px}
+.skip:focus{left:16px}
+nav.crumbs a,aside.more a,.card li a{display:inline-block;min-height:24px;padding:2px 0}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header.top{border-bottom:1px solid var(--border);background:var(--surface)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;flex-wrap:wrap}
+.brand{font:600 18px/1.2 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;color:var(--text);text-decoration:none}
+.brand span{color:var(--gold-text)}
+nav.crumbs{font-size:14px;color:var(--muted);margin:24px 0 8px}
+nav.crumbs a{color:var(--muted)}
+h1{font:600 32px/1.2 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;margin:8px 0 12px}
+h2{font:600 21px/1.3 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;margin:32px 0 8px}
+.lede{font-size:18px;color:var(--muted);margin:0 0 8px}
+code{font:14px/1.4 ui-monospace,"Cascadia Mono",Consolas,monospace;background:var(--code);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+pre{background:var(--code);border:1px solid var(--border);border-radius:8px;padding:12px;overflow-x:auto}
+pre code{padding:0;background:none;overflow-wrap:normal}
+dl.faq dt{font-weight:600;margin-top:20px}dl.faq dd{margin:4px 0 0}
+.notice{background:var(--warn-bg);border-left:4px solid var(--warn-line);padding:12px 16px;border-radius:4px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px}
+.card h2{margin:0 0 4px;font-size:20px}.card p{margin:0 0 8px;color:var(--muted);font-size:15px}
+.card ul{margin:0;padding-left:18px}
+aside.more{margin:40px 0 0;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+aside.more h2{margin-top:0;font-size:18px}aside.more ul{margin:0;padding-left:18px}
+footer{margin:48px 0 0;border-top:1px solid var(--border);padding:24px 0 40px;color:var(--muted);font-size:14px}
+label{display:block;font-weight:600;margin:20px 0 6px}
+.hint{font-weight:400;color:var(--muted);font-size:14px}
+input,select,textarea{width:100%;font:inherit;color:var(--text);background:var(--surface);border:1px solid var(--field);
+border-radius:8px;padding:10px 12px}
+textarea{min-height:110px;resize:vertical}
+fieldset{border:0;padding:0;margin:20px 0 0}legend{font-weight:600;margin-bottom:6px}
+.choice{display:flex;gap:10px;align-items:center;font-weight:400;margin:2px 0;min-height:44px;cursor:pointer}.choice input{width:22px;height:22px;margin:0;flex:none;accent-color:var(--accent)}
+.req{font-weight:400;color:var(--muted)}.err{color:var(--text);background:var(--warn-bg);border-left:4px solid var(--warn-line);padding:8px 12px;border-radius:4px;margin:8px 0 0}
+[aria-invalid="true"]{border:2px solid var(--bad)}
+button{font:600 16px/1 system-ui,sans-serif;background:var(--accent);color:var(--on-accent);border:0;border-radius:8px;padding:12px 18px;min-height:44px;
+cursor:pointer;margin-top:24px}
+button.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent);margin-left:8px}
+[hidden]{display:none!important}
+</style>
+<!-- stark-share-meta -->
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stark">
+<meta property="og:title" content="Stark World Engine: Common Errors and Fixes | Stark">
+<meta property="og:description" content="Start here: the setup check runs every time the studio starts, and inside the studio you can press ? and click Fix my setup. It names the problem and...">
+<meta property="og:url" content="https://starkforall.com/help/studios-common-errors.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stark World Engine: Common Errors and Fixes | Stark">
+<meta name="twitter:description" content="Start here: the setup check runs every time the studio starts, and inside the studio you can press ? and click Fix my setup. It names the problem and...">
+<meta property="og:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://starkforall.com/#organization", "name": "Stark", "url": "https://starkforall.com/", "logo": "https://starkforall.com/assets/brand/icon-512.png", "sameAs": ["https://ams513.itch.io/", "https://bsky.app/profile/did:plc:lhodhwljl2wi762f3t6wic7c", "https://github.com/ams513", "https://www.youtube.com/@starkforall"], "description": "Stark makes local-first software that helps people build, write and care for others on their own computers, with their work kept in their own hands."}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Stark", "item": "https://starkforall.com/"}, {"@type": "ListItem", "position": 2, "name": "Help", "item": "https://starkforall.com/help/index.html"}, {"@type": "ListItem", "position": 3, "name": "Stark World Engine: Common errors and fixes", "item": "https://starkforall.com/help/studios-common-errors.html"}]}]}</script>
+<!-- /stark-share-meta -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap"><a class="brand" href="index.html">Stark <span>Help</span></a>
+<a href="../index.html">Back to the store</a></div></header>
+<main class="wrap" id="main" tabindex="-1">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Help</a> / <a href="index.html#studios">Stark World Engine</a></nav>
+<h1>Stark World Engine: Common errors and fixes</h1>
+<p class="lede">Start here: the setup check runs every time the studio starts, and inside the studio you can press <strong>?</strong> and click <strong>Fix my setup</strong>. It names the problem and the fix in plain words, and saves its report as <code>doctor.log</code>.</p>
+
+
+<dl class="faq">
+<dt>"Stark World Engine has to be extracted from the zip first"</dt>
+<dd>You started it inside the zip preview. Right-click the zip &gt; <strong>Extract All...</strong> &gt;
+<strong>Extract</strong>, then double-click <code>START_GORGON_STUDIOS.bat</code> in the new folder. On a Mac, move
+the folder out of Downloads (for example into Documents) and start again.</dd>
+
+<dt>"Stark World Engine is in Program Files..." or "This folder is read-only..."</dt>
+<dd>The studio saves your games next to itself. Press <strong>Y</strong>: it copies itself to
+<code>Documents\GorgonStudios</code> and starts from there. The original folder isn't changed.</dd>
+
+<dt>"Stark World Engine files are missing or damaged"</dt>
+<dd>Usually an antivirus quarantined a file right after unzipping. Restore it (Windows Security &gt; Virus &amp;
+threat protection &gt; Protection history), or download the zip again and extract it into a new folder, then copy
+your <code>My_Games</code> across.</dd>
+
+<dt>"All ports 8505-8520 are in use"</dt>
+<dd>Close the programs it names (often several old studio windows), or restart the PC, then start again.</dd>
+
+<dt>"No Chrome, Edge or Firefox found"</dt>
+<dd>Install a current Chrome, Edge or Firefox (all free) and start again.</dd>
+
+<dt>Windows: "This PC doesn't have it yet" (Python)</dt>
+<dd>The built-in Python folder is missing or blocked. Press <strong>Y</strong> and the launcher fetches the official
+Python from python.org into the Stark World Engine folder only, or extract the zip again into a new folder.</dd>
+
+<dt>macOS: "unidentified developer", or Python isn't installed</dt>
+<dd>Right-click <code>start_gorgon_studios.command</code> &gt; <strong>Open</strong> &gt; <strong>Open</strong>. If
+Python is missing, the launcher opens python.org for you; install it and double-click the launcher again.</dd>
+
+<dt>Linux: "Stark World Engine runs on Python 3.10 or newer"</dt>
+<dd>Install a newer Python with your package manager, then run <code>bash start_gorgon_studios.sh</code> again.</dd>
+
+<dt>The stage is black, or there is a WebGL error</dt>
+<dd>The 3D builder needs WebGL2. Use a current Chrome, Edge or Firefox, turn on hardware acceleration in the
+browser's settings, and update your graphics driver. Remote desktop sessions and some virtual machines don't provide
+WebGL2. 2D worlds still work.</dd>
+
+<dt>It's slow on an older laptop</dt>
+<dd>Press <strong>Esc</strong> in Play mode and set <strong>Graphics</strong> to <strong>Low</strong>.</dd>
+
+<dt>No sound</dt>
+<dd>Browsers block sound until you click the page. Click the stage once, check the tab isn't muted, and check
+<strong>Sound: on</strong> in the in-game menu (Esc).</dd>
+
+<dt>"Not saved: ..."</dt>
+<dd>Give the game a name, make sure the studio isn't running from inside the zip or Program Files, and if the folder
+is in OneDrive or Dropbox, move it somewhere local.</dd>
+
+<dt>"Your key (key.txt) is not valid, so the studio runs as Standard"</dt>
+<dd>Nothing is lost. See <a href="studios-activation.html">Activation and keys</a>.</dd>
+
+<dt>The Godot project looks dark or won't run</dt>
+<dd>Use Godot 4.2 or newer; its Forward+ renderer needs Vulkan or Direct3D 12. The first open compiles shaders, so
+give it a moment. Only your first level is exported, as a starting scene, by design.</dd>
+
+<dt>Unreal: the Stark menu is missing or the level is empty</dt>
+<dd>Use Unreal Engine 5.4 or newer and say yes if it asks to enable plugins. Then choose <strong>Stark World Engine &gt; Build
+level from world.json</strong>. I haven't yet run this export in a real UE5 install myself, so if it fails, please
+send me <code>Saved/Gorgon/build_report.json</code> and the Output Log.</dd>
+</dl>
+
+<h2>Still stuck?</h2><p>Write to <a href="mailto:hello@starkforall.com">hello@starkforall.com</a> with your operating system, browser and edition, what the black window (or Terminal) printed, and <code>doctor.log</code> / <code>launcher.log</code> from the studio folder if you can. Please never post your licence key in a public comment.</p>
+<aside class="more"><h2>More Stark World Engine help</h2><ul><li><a href="studios-install.html">Install on Windows, macOS and Linux</a></li><li><a href="studios-activation.html">Activation and keys</a></li><li><a href="studios-updates.html">Updates</a></li><li><a href="studios-backups.html">Backups and moving computers</a></li><li><a href="studios-refunds.html">Refunds</a></li></ul></aside>
+</main>
+<footer><div class="wrap">Questions: <a href="mailto:hello@starkforall.com">hello@starkforall.com</a>. I read every message myself and reply
+within 2 business days. <a href="feedback.html">Tell me what broke or what you'd like</a>.</div></footer>
+</body>
+</html>

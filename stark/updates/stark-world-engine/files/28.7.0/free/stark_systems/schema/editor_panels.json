@@ -1,0 +1,2920 @@
+{
+ "version": 1,
+ "panels": [
+  {
+   "id": "version",
+   "title": "Version",
+   "help": "systems schema version (1)",
+   "fields": [
+    {
+     "path": "systems.version",
+     "label": "version",
+     "type": "int",
+     "help": "systems schema version (1)"
+    }
+   ]
+  },
+  {
+   "id": "genre",
+   "title": "Genre",
+   "help": "which genre kit runs (game rules); every system stays available",
+   "fields": [
+    {
+     "path": "systems.genre",
+     "label": "genre",
+     "type": "enum",
+     "help": "which genre kit runs (game rules); every system stays available",
+     "values": [
+      "action_rpg",
+      "platformer",
+      "shooter",
+      "survival",
+      "horror",
+      "racing",
+      "puzzle",
+      "strategy",
+      "visual_novel",
+      "custom"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "player",
+   "title": "Player",
+   "help": "gsys: the Stark World Engine Systems player plays this world; legacy: the studio engine",
+   "fields": [
+    {
+     "path": "systems.player",
+     "label": "player",
+     "type": "enum",
+     "help": "gsys: the Stark World Engine Systems player plays this world; legacy: the studio engine",
+     "values": [
+      "gsys",
+      "legacy"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "view",
+   "title": "View",
+   "help": "reference-player view (default from genre / controller)",
+   "fields": [
+    {
+     "path": "systems.view",
+     "label": "view",
+     "type": "enum",
+     "help": "reference-player view (default from genre / controller)",
+     "values": [
+      "top",
+      "side",
+      "fp",
+      "grid",
+      "vn"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "locale",
+   "title": "Languages",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.locale.languages",
+     "label": "languages",
+     "type": "list",
+     "help": "languages the game text uses (sharpens the child-safety checker)",
+     "max": 5000,
+     "editor": "list"
+    }
+   ]
+  },
+  {
+   "id": "controller",
+   "title": "Controller",
+   "help": "player character controller",
+   "fields": [
+    {
+     "path": "systems.controller.type",
+     "label": "type",
+     "type": "enum",
+     "help": "",
+     "values": [
+      "third_person",
+      "first_person",
+      "top_down",
+      "side_scroll",
+      "vehicle",
+      "point_click",
+      "none"
+     ],
+     "default": "top_down"
+    },
+    {
+     "path": "systems.controller.speed",
+     "label": "speed",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 200
+    },
+    {
+     "path": "systems.controller.run",
+     "label": "run",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 10
+    },
+    {
+     "path": "systems.controller.accel",
+     "label": "accel",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1000
+    },
+    {
+     "path": "systems.controller.friction",
+     "label": "friction",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1000
+    },
+    {
+     "path": "systems.controller.jump",
+     "label": "jump",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 200
+    },
+    {
+     "path": "systems.controller.gravity",
+     "label": "gravity",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 500
+    },
+    {
+     "path": "systems.controller.coyote",
+     "label": "coyote",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1
+    },
+    {
+     "path": "systems.controller.buffer",
+     "label": "buffer",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1
+    },
+    {
+     "path": "systems.controller.cut",
+     "label": "cut",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1
+    },
+    {
+     "path": "systems.controller.maxFall",
+     "label": "maxFall",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 500
+    },
+    {
+     "path": "systems.controller.airAccel",
+     "label": "airAccel",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1000
+    },
+    {
+     "path": "systems.controller.airControl",
+     "label": "airControl",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1
+    },
+    {
+     "path": "systems.controller.sens",
+     "label": "sens",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 0.1
+    },
+    {
+     "path": "systems.controller.maxSpeed",
+     "label": "maxSpeed",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 500
+    },
+    {
+     "path": "systems.controller.brake",
+     "label": "brake",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 500
+    },
+    {
+     "path": "systems.controller.reverse",
+     "label": "reverse",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 500
+    },
+    {
+     "path": "systems.controller.steer",
+     "label": "steer",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 20
+    },
+    {
+     "path": "systems.controller.grip",
+     "label": "grip",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 50
+    },
+    {
+     "path": "systems.controller.drag",
+     "label": "drag",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 10
+    },
+    {
+     "path": "systems.controller.boost",
+     "label": "boost",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 500
+    },
+    {
+     "path": "systems.controller.boostTime",
+     "label": "boostTime",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 60
+    },
+    {
+     "path": "systems.controller.boostCool",
+     "label": "boostCool",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 600
+    }
+   ]
+  },
+  {
+   "id": "physics",
+   "title": "Physics",
+   "help": "collision world",
+   "fields": [
+    {
+     "path": "systems.physics.mode",
+     "label": "mode",
+     "type": "enum",
+     "help": "",
+     "values": [
+      "plane",
+      "side"
+     ]
+    },
+    {
+     "path": "systems.physics.gravity",
+     "label": "gravity",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 500
+    },
+    {
+     "path": "systems.physics.ground",
+     "label": "ground",
+     "type": "num",
+     "help": "",
+     "min": -10000.0,
+     "max": 10000.0
+    },
+    {
+     "path": "systems.physics.flat",
+     "label": "flat",
+     "type": "bool",
+     "help": ""
+    },
+    {
+     "path": "systems.physics.bounds.x0",
+     "label": "x0",
+     "type": "num",
+     "help": "",
+     "min": -1000000.0,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.physics.bounds.z0",
+     "label": "z0",
+     "type": "num",
+     "help": "",
+     "min": -1000000.0,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.physics.bounds.x1",
+     "label": "x1",
+     "type": "num",
+     "help": "",
+     "min": -1000000.0,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.physics.bounds.z1",
+     "label": "z1",
+     "type": "num",
+     "help": "",
+     "min": -1000000.0,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.physics.tiles.rows",
+     "label": "rows",
+     "type": "list",
+     "help": "",
+     "max": 4000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.physics.tiles.solid",
+     "label": "solid",
+     "type": "str",
+     "help": "",
+     "max": 20
+    },
+    {
+     "path": "systems.physics.tiles.oneway",
+     "label": "oneway",
+     "type": "str",
+     "help": "",
+     "max": 20
+    },
+    {
+     "path": "systems.physics.tiles.cell",
+     "label": "cell",
+     "type": "num",
+     "help": "",
+     "min": 0.1,
+     "max": 100
+    },
+    {
+     "path": "systems.physics.tiles.ox",
+     "label": "ox",
+     "type": "num",
+     "help": "",
+     "min": -1000000.0,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.physics.tiles.oz",
+     "label": "oz",
+     "type": "num",
+     "help": "",
+     "min": -1000000.0,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.physics.boxes",
+     "label": "boxes",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "x0",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "z0",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "x1",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "z1",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "color",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "nonsolid",
+       "type": "bool",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "oneway",
+       "type": "bool",
+       "values": null,
+       "help": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "zones",
+   "title": "Zones",
+   "help": "trigger zones (enterZone / exitZone events)",
+   "fields": [
+    {
+     "path": "systems.zones",
+     "label": "zones",
+     "type": "list",
+     "help": "trigger zones (enterZone / exitZone events)"
+    }
+   ]
+  },
+  {
+   "id": "camera",
+   "title": "Camera + cinematics",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.camera.rig",
+     "label": "rig",
+     "type": "enum",
+     "help": "",
+     "values": [
+      "follow",
+      "side",
+      "first_person",
+      "top_down",
+      "orbit",
+      "fixed"
+     ]
+    },
+    {
+     "path": "systems.camera.distance",
+     "label": "distance",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1000
+    },
+    {
+     "path": "systems.camera.height",
+     "label": "height",
+     "type": "num",
+     "help": "",
+     "min": -1000,
+     "max": 1000
+    },
+    {
+     "path": "systems.camera.lag",
+     "label": "lag",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 100
+    },
+    {
+     "path": "systems.camera.lookahead",
+     "label": "lookahead",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 100
+    },
+    {
+     "path": "systems.camera.zoom",
+     "label": "zoom",
+     "type": "num",
+     "help": "",
+     "min": 0.05,
+     "max": 20
+    },
+    {
+     "path": "systems.camera.scale",
+     "label": "scale",
+     "type": "num",
+     "help": "",
+     "min": 1,
+     "max": 400
+    },
+    {
+     "path": "systems.camera.yaw",
+     "label": "yaw",
+     "type": "num",
+     "help": "",
+     "min": -1000000.0,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.camera.pitch",
+     "label": "pitch",
+     "type": "num",
+     "help": "",
+     "min": -1000000.0,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.camera.deadzone",
+     "label": "deadzone",
+     "type": "list",
+     "help": "",
+     "max": 2,
+     "editor": "list"
+    },
+    {
+     "path": "systems.camera.intro",
+     "label": "intro",
+     "type": "id",
+     "help": "cinematic to play at start"
+    },
+    {
+     "path": "systems.camera.cinematics",
+     "label": "cinematics",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "duration",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "tracks",
+       "type": "list",
+       "values": null,
+       "help": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "characters",
+   "title": "Characters",
+   "help": "cast: every character has an age group (default adult)",
+   "fields": [
+    {
+     "path": "systems.characters",
+     "label": "characters",
+     "type": "map",
+     "help": "cast: every character has an age group (default adult)"
+    }
+   ]
+  },
+  {
+   "id": "entities",
+   "title": "Entities",
+   "help": "extra entities",
+   "fields": [
+    {
+     "path": "systems.entities",
+     "label": "entities",
+     "type": "list",
+     "help": "extra entities"
+    }
+   ]
+  },
+  {
+   "id": "combat",
+   "title": "Combat",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.combat.weapons",
+     "label": "weapons",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "type",
+       "type": "enum",
+       "values": [
+        "melee",
+        "ranged",
+        "hitscan"
+       ],
+       "help": ""
+      },
+      {
+       "key": "damage",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "range",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "arc",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "cooldown",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "knockback",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "stagger",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "heavy",
+       "type": "bool",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "projectile",
+       "type": "object",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "ammo",
+       "type": "object",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "spread",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "pellets",
+       "type": "int",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "dtype",
+       "type": "str",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.combat.abilities",
+     "label": "abilities",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "cooldown",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "cost",
+       "type": "object",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "requires",
+       "type": "id",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "effect",
+       "type": "object",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.combat.player_weapon",
+     "label": "player weapon",
+     "type": "id",
+     "help": ""
+    },
+    {
+     "path": "systems.combat.hit_reactions",
+     "label": "hit reactions",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "stagger",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "knockback",
+       "type": "num",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.combat.crit.chance",
+     "label": "chance",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1
+    },
+    {
+     "path": "systems.combat.crit.mult",
+     "label": "mult",
+     "type": "num",
+     "help": "",
+     "min": 1,
+     "max": 100
+    },
+    {
+     "path": "systems.combat.iframes",
+     "label": "iframes",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 10
+    },
+    {
+     "path": "systems.combat.friendly_fire",
+     "label": "friendly fire",
+     "type": "bool",
+     "help": ""
+    }
+   ]
+  },
+  {
+   "id": "ai",
+   "title": "AI",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.ai.behaviors",
+     "label": "behaviors",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "type",
+       "type": "enum",
+       "values": [
+        "bt",
+        "fsm",
+        "schedule"
+       ],
+       "help": ""
+      },
+      {
+       "key": "root",
+       "type": "any",
+       "values": null,
+       "help": "behaviour-tree node: {sel|seq: [...]}, {not}, {cool, child}, {rand, child}, {cond, v}, {act, ...}"
+      },
+      {
+       "key": "start",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "states",
+       "type": "map",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.ai.perception.sight",
+     "label": "sight",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1000
+    },
+    {
+     "path": "systems.ai.perception.fov",
+     "label": "fov",
+     "type": "num",
+     "help": "",
+     "min": 1,
+     "max": 360
+    },
+    {
+     "path": "systems.ai.perception.hearing",
+     "label": "hearing",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1000
+    },
+    {
+     "path": "systems.ai.perception.memory",
+     "label": "memory",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 600
+    },
+    {
+     "path": "systems.ai.squads",
+     "label": "squads",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "members",
+       "type": "list",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "leader",
+       "type": "id",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "formation",
+       "type": "enum",
+       "values": [
+        "line",
+        "wedge",
+        "circle",
+        "column"
+       ],
+       "help": ""
+      },
+      {
+       "key": "tactic",
+       "type": "enum",
+       "values": [
+        "flank",
+        "surround",
+        "swarm",
+        "hold"
+       ],
+       "help": ""
+      },
+      {
+       "key": "spacing",
+       "type": "num",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.ai.schedules",
+     "label": "schedules",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.ai.pois",
+     "label": "pois",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "x",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "z",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "y",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "name",
+       "type": "str",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.ai.capture",
+     "label": "capture",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "list"
+    }
+   ]
+  },
+  {
+   "id": "items",
+   "title": "Items",
+   "help": "extends world.items",
+   "fields": [
+    {
+     "path": "systems.items",
+     "label": "items",
+     "type": "map",
+     "help": "extends world.items"
+    }
+   ]
+  },
+  {
+   "id": "inventory",
+   "title": "Inventory",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.inventory.slots",
+     "label": "slots",
+     "type": "int",
+     "help": "",
+     "min": 1,
+     "max": 1000
+    },
+    {
+     "path": "systems.inventory.max_weight",
+     "label": "max weight",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.inventory.start",
+     "label": "start",
+     "type": "map",
+     "help": "item: count",
+     "max": 500,
+     "editor": "list"
+    },
+    {
+     "path": "systems.inventory.auto_equip",
+     "label": "auto equip",
+     "type": "bool",
+     "help": ""
+    }
+   ]
+  },
+  {
+   "id": "recipes",
+   "title": "Recipes",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.recipes",
+     "label": "recipes",
+     "type": "map",
+     "help": ""
+    }
+   ]
+  },
+  {
+   "id": "loot_tables",
+   "title": "Loot Tables",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.loot_tables",
+     "label": "loot tables",
+     "type": "map",
+     "help": ""
+    }
+   ]
+  },
+  {
+   "id": "progression",
+   "title": "Progression",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.progression.xp_curve.base",
+     "label": "base",
+     "type": "num",
+     "help": "",
+     "min": 1,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.progression.xp_curve.exp",
+     "label": "exp",
+     "type": "num",
+     "help": "",
+     "min": 0.5,
+     "max": 4
+    },
+    {
+     "path": "systems.progression.max_level",
+     "label": "max level",
+     "type": "int",
+     "help": "",
+     "min": 1,
+     "max": 999
+    },
+    {
+     "path": "systems.progression.points_per_level",
+     "label": "points per level",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 99
+    },
+    {
+     "path": "systems.progression.hp_per_level",
+     "label": "hp per level",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 999
+    },
+    {
+     "path": "systems.progression.levels_per_atk",
+     "label": "levels per atk",
+     "type": "num",
+     "help": "",
+     "min": 1,
+     "max": 999
+    },
+    {
+     "path": "systems.progression.start_points",
+     "label": "start points",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 999
+    },
+    {
+     "path": "systems.progression.skill_trees",
+     "label": "skill trees",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "name",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "nodes",
+       "type": "map",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.progression.perks",
+     "label": "perks",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "name",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "desc",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "auto",
+       "type": "bool",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "requires",
+       "type": "object",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "effect",
+       "type": "object",
+       "values": null,
+       "help": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quests",
+   "title": "Quests",
+   "help": "quests in addition to the studio quests",
+   "fields": [
+    {
+     "path": "systems.quests",
+     "label": "quests",
+     "type": "list",
+     "help": "quests in addition to the studio quests"
+    }
+   ]
+  },
+  {
+   "id": "quests_radiant",
+   "title": "Radiant quests",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.quests_radiant.templates",
+     "label": "templates",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "id",
+       "type": "id",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "verb",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "title",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "desc",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "steps",
+       "type": "list",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "n",
+       "type": "list",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "give",
+       "type": "id",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "needs",
+       "type": "str",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.quests_radiant.pools.enemies",
+     "label": "enemies",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "id",
+       "type": "id",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "name",
+       "type": "str",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.quests_radiant.pools.items",
+     "label": "items",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "id",
+       "type": "id",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "name",
+       "type": "str",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.quests_radiant.pools.places",
+     "label": "places",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "id",
+       "type": "id",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "name",
+       "type": "str",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.quests_radiant.pools.givers",
+     "label": "givers",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.quests_radiant.pools.crafts",
+     "label": "crafts",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "id",
+       "type": "id",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "name",
+       "type": "str",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.quests_radiant.variety.history",
+     "label": "history",
+     "type": "num",
+     "help": "",
+     "min": 1,
+     "max": 999
+    },
+    {
+     "path": "systems.quests_radiant.variety.template_cooldown",
+     "label": "template cooldown",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 99
+    },
+    {
+     "path": "systems.quests_radiant.variety.max_same_verb",
+     "label": "max same verb",
+     "type": "num",
+     "help": "",
+     "min": 1,
+     "max": 99
+    },
+    {
+     "path": "systems.quests_radiant.variety.verb_window",
+     "label": "verb window",
+     "type": "num",
+     "help": "",
+     "min": 1,
+     "max": 99
+    },
+    {
+     "path": "systems.quests_radiant.variety.place_cooldown",
+     "label": "place cooldown",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 99
+    },
+    {
+     "path": "systems.quests_radiant.variety.giver_cooldown",
+     "label": "giver cooldown",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 99
+    },
+    {
+     "path": "systems.quests_radiant.variety.target_cooldown",
+     "label": "target cooldown",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 99
+    },
+    {
+     "path": "systems.quests_radiant.variety.candidates",
+     "label": "candidates",
+     "type": "num",
+     "help": "",
+     "min": 1,
+     "max": 200
+    },
+    {
+     "path": "systems.quests_radiant.variety.followup_every",
+     "label": "followup every",
+     "type": "num",
+     "help": "",
+     "min": 1,
+     "max": 999
+    },
+    {
+     "path": "systems.quests_radiant.reward.xp",
+     "label": "xp",
+     "type": "list",
+     "help": "",
+     "max": 2,
+     "editor": "list"
+    },
+    {
+     "path": "systems.quests_radiant.reward.gold",
+     "label": "gold",
+     "type": "list",
+     "help": "",
+     "max": 2,
+     "editor": "list"
+    },
+    {
+     "path": "systems.quests_radiant.adjectives",
+     "label": "adjectives",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.quests_radiant.reasons",
+     "label": "reasons",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.quests_radiant.lost",
+     "label": "lost",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "list"
+    }
+   ]
+  },
+  {
+   "id": "dialogs",
+   "title": "Dialogs",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.dialogs",
+     "label": "dialogs",
+     "type": "map",
+     "help": ""
+    }
+   ]
+  },
+  {
+   "id": "dialogue",
+   "title": "dialogue",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.dialogue.vars",
+     "label": "vars",
+     "type": "any",
+     "help": "starting dialogue variables"
+    }
+   ]
+  },
+  {
+   "id": "factions",
+   "title": "Factions",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.factions",
+     "label": "factions",
+     "type": "map",
+     "help": ""
+    }
+   ]
+  },
+  {
+   "id": "economy",
+   "title": "Economy + shops",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.economy.currency",
+     "label": "currency",
+     "type": "str",
+     "help": "",
+     "max": 30
+    },
+    {
+     "path": "systems.economy.start",
+     "label": "start",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1000000000.0
+    },
+    {
+     "path": "systems.economy.rep_price",
+     "label": "rep price",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1
+    },
+    {
+     "path": "systems.economy.shops",
+     "label": "shops",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "name",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "owner",
+       "type": "id",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "faction",
+       "type": "id",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "buy_mult",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "sell_mult",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "restock_hours",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "dynamic",
+       "type": "bool",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "stock",
+       "type": "list",
+       "values": null,
+       "help": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "environment",
+   "title": "Day/night + weather",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.environment.day_length",
+     "label": "day length",
+     "type": "num",
+     "help": "seconds per in-game day (0 = time stands still)",
+     "min": 0,
+     "max": 1000000.0
+    },
+    {
+     "path": "systems.environment.start_hour",
+     "label": "start hour",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 24
+    },
+    {
+     "path": "systems.environment.weather.start",
+     "label": "start",
+     "type": "enum",
+     "help": "",
+     "values": [
+      "clear",
+      "auto",
+      "rain",
+      "storm",
+      "snow",
+      "fog",
+      "embers",
+      "pollen",
+      "bubbles",
+      "fireflies"
+     ]
+    },
+    {
+     "path": "systems.environment.weather.pattern",
+     "label": "pattern",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "type",
+       "type": "enum",
+       "values": [
+        "clear",
+        "auto",
+        "rain",
+        "storm",
+        "snow",
+        "fog",
+        "embers",
+        "pollen",
+        "bubbles",
+        "fireflies"
+       ],
+       "help": ""
+      },
+      {
+       "key": "w",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "min",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "max",
+       "type": "num",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.environment.weather.change_every",
+     "label": "change every",
+     "type": "list",
+     "help": "",
+     "max": 2,
+     "editor": "list"
+    },
+    {
+     "path": "systems.environment.effects",
+     "label": "effects",
+     "type": "map",
+     "help": "per weather / night: {modifier: multiplier}",
+     "max": 2000,
+     "editor": "list"
+    }
+   ]
+  },
+  {
+   "id": "save",
+   "title": "Save/load",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.save.slots",
+     "label": "slots",
+     "type": "int",
+     "help": "",
+     "min": 1,
+     "max": 99
+    },
+    {
+     "path": "systems.save.autosave_s",
+     "label": "autosave s",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 100000.0
+    }
+   ]
+  },
+  {
+   "id": "hud",
+   "title": "HUD",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.hud.widgets",
+     "label": "widgets",
+     "type": "list",
+     "help": "",
+     "max": 200,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "type",
+       "type": "enum",
+       "values": [
+        "bar",
+        "text",
+        "icons",
+        "quests",
+        "minimap",
+        "crosshair",
+        "timer",
+        "prompt",
+        "compass",
+        "messages"
+       ],
+       "help": ""
+      },
+      {
+       "key": "bind",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "max",
+       "type": "any",
+       "values": null,
+       "help": "number or bind"
+      },
+      {
+       "key": "text",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "x",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "y",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "w",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "h",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "anchor",
+       "type": "enum",
+       "values": [
+        "tl",
+        "tr",
+        "bl",
+        "br",
+        "tc",
+        "bc",
+        "c",
+        "cl",
+        "cr"
+       ],
+       "help": ""
+      },
+      {
+       "key": "color",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "label",
+       "type": "str",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "when",
+       "type": "str",
+       "values": null,
+       "help": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "audio",
+   "title": "Audio events",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.audio.events",
+     "label": "events",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.audio.cues",
+     "label": "cues",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "wave",
+       "type": "enum",
+       "values": [
+        "square",
+        "saw",
+        "sine",
+        "noise",
+        "triangle"
+       ],
+       "help": ""
+      },
+      {
+       "key": "freq",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "slide",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "dur",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "vol",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "range",
+       "type": "num",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.audio.music",
+     "label": "music",
+     "type": "map",
+     "help": "",
+     "max": 2000,
+     "editor": "list"
+    }
+   ]
+  },
+  {
+   "id": "input",
+   "title": "input",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.input.abilities",
+     "label": "abilities",
+     "type": "list",
+     "help": "",
+     "max": 9,
+     "editor": "list"
+    },
+    {
+     "path": "systems.input.weapons",
+     "label": "weapons",
+     "type": "list",
+     "help": "",
+     "max": 9,
+     "editor": "list"
+    }
+   ]
+  },
+  {
+   "id": "scripts",
+   "title": "Scripts",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.scripts",
+     "label": "scripts",
+     "type": "list",
+     "help": ""
+    }
+   ]
+  },
+  {
+   "id": "graphs",
+   "title": "Graphs",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.graphs",
+     "label": "graphs",
+     "type": "list",
+     "help": ""
+    }
+   ]
+  },
+  {
+   "id": "streaming",
+   "title": "Streaming",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.streaming.chunk",
+     "label": "chunk",
+     "type": "num",
+     "help": "",
+     "min": 4,
+     "max": 4096
+    },
+    {
+     "path": "systems.streaming.radius",
+     "label": "radius",
+     "type": "int",
+     "help": "",
+     "min": 0,
+     "max": 32
+    },
+    {
+     "path": "systems.streaming.keep",
+     "label": "keep",
+     "type": "int",
+     "help": "",
+     "min": 0,
+     "max": 8
+    },
+    {
+     "path": "systems.streaming.lod",
+     "label": "lod",
+     "type": "list",
+     "help": "",
+     "max": 8,
+     "editor": "table",
+     "columns": [
+      {
+       "key": "dist",
+       "type": "num",
+       "values": null,
+       "help": ""
+      },
+      {
+       "key": "level",
+       "type": "int",
+       "values": null,
+       "help": ""
+      }
+     ]
+    },
+    {
+     "path": "systems.streaming.budgets.instances",
+     "label": "instances",
+     "type": "int",
+     "help": "",
+     "min": 1,
+     "max": 10000000.0
+    },
+    {
+     "path": "systems.streaming.budgets.per_kind",
+     "label": "per kind",
+     "type": "map",
+     "help": "",
+     "max": 500,
+     "editor": "list"
+    },
+    {
+     "path": "systems.streaming.budgets.active_ai",
+     "label": "active ai",
+     "type": "int",
+     "help": "",
+     "min": 0,
+     "max": 100000.0
+    },
+    {
+     "path": "systems.streaming.generator",
+     "label": "generator",
+     "type": "enum",
+     "help": "",
+     "values": [
+      "region"
+     ]
+    },
+    {
+     "path": "systems.streaming.region.camp",
+     "label": "camp",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1
+    },
+    {
+     "path": "systems.streaming.region.shrine",
+     "label": "shrine",
+     "type": "num",
+     "help": "",
+     "min": 0,
+     "max": 1
+    }
+   ]
+  },
+  {
+   "id": "procgen",
+   "title": "Procedural content",
+   "help": "",
+   "fields": [
+    {
+     "path": "systems.procgen.names.first",
+     "label": "first",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.procgen.names.last",
+     "label": "last",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.procgen.syllables",
+     "label": "syllables",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.procgen.jobs",
+     "label": "jobs",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.procgen.enemies",
+     "label": "enemies",
+     "type": "list",
+     "help": "",
+     "max": 5000,
+     "editor": "list"
+    },
+    {
+     "path": "systems.procgen.loot",
+     "label": "loot",
+     "type": "id",
+     "help": ""
+    }
+   ]
+  },
+  {
+   "id": "genre_data",
+   "title": "Genre Data",
+   "help": "per-genre settings (see SYSTEMS_GUIDE.md)",
+   "fields": [
+    {
+     "path": "systems.genre_data",
+     "label": "genre data",
+     "type": "any",
+     "help": "per-genre settings (see SYSTEMS_GUIDE.md)"
+    }
+   ]
+  },
+  {
+   "id": "relationships",
+   "title": "Relationships",
+   "help": "family / social / romantic links",
+   "fields": [
+    {
+     "path": "systems.relationships",
+     "label": "relationships",
+     "type": "list",
+     "help": "family / social / romantic links"
+    }
+   ]
+  },
+  {
+   "id": "romance",
+   "title": "Romance",
+   "help": "romance options (adults only)",
+   "fields": [
+    {
+     "path": "systems.romance",
+     "label": "romance",
+     "type": "any",
+     "help": "romance options (adults only)"
+    }
+   ]
+  },
+  {
+   "id": "safety",
+   "title": "Safety",
+   "help": "informational stamp written by the export gate; never read to relax any rule",
+   "fields": [
+    {
+     "path": "systems.safety",
+     "label": "safety",
+     "type": "any",
+     "help": "informational stamp written by the export gate; never read to relax any rule"
+    }
+   ]
+  }
+ ],
+ "node_catalog": {
+  "event.start": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "code": "on('start', function (ev) {\n{>exec}\n});",
+   "desc": "When the game starts"
+  },
+  "event.update": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "code": "on('update', function (ev) {\n{>exec}\n});",
+   "desc": "Every frame (ev.dt seconds)"
+  },
+  "event.interact": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "code": "on('interact', function (ev) {\n{>exec}\n});",
+   "desc": "When the player uses this entity (or any, if the graph has no entity)"
+  },
+  "event.questStep": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "params": {
+    "quest": "string"
+   },
+   "code": "on('questStep', function (ev) { if ({quest} && ev.quest !== {quest}) return;\n{>exec}\n});",
+   "desc": "When a quest reaches a new step"
+  },
+  "event.questDone": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "params": {
+    "quest": "string"
+   },
+   "code": "on('questDone', function (ev) { if ({quest} && ev.quest !== {quest}) return;\n{>exec}\n});",
+   "desc": "When a quest is completed"
+  },
+  "event.enterZone": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "params": {
+    "zone": "string"
+   },
+   "code": "on('enterZone', function (ev) { if ({zone} && ev.zone !== {zone}) return;\n{>exec}\n});",
+   "desc": "When the player enters a trigger zone"
+  },
+  "event.damage": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "code": "on('damage', function (ev) {\n{>exec}\n});",
+   "desc": "When something takes damage"
+  },
+  "event.death": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "code": "on('death', function (ev) {\n{>exec}\n});",
+   "desc": "When something is defeated"
+  },
+  "event.collect": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "params": {
+    "item": "string"
+   },
+   "code": "on('collect', function (ev) { if ({item} && ev.item !== {item}) return;\n{>exec}\n});",
+   "desc": "When the player picks up an item"
+  },
+  "event.hour": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "params": {
+    "hour": "number"
+   },
+   "code": "on('hour', function (ev) { if ({hour} >= 0 && ev.hour !== {hour}) return;\n{>exec}\n});",
+   "desc": "When the in-game clock reaches an hour (-1 = every hour)"
+  },
+  "event.timer": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "params": {
+    "seconds": "number"
+   },
+   "code": "every({seconds}, function () { var ev = {};\n{>exec}\n});",
+   "desc": "Every N seconds"
+  },
+  "event.choice": {
+   "kind": "event",
+   "out": [
+    "exec"
+   ],
+   "params": {
+    "dialog": "string"
+   },
+   "code": "on('dialogueChoice', function (ev) { if ({dialog} && ev.dialog !== {dialog}) return;\n{>exec}\n});",
+   "desc": "When the player picks a dialogue answer"
+  },
+  "flow.if": {
+   "kind": "flow",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "true",
+    "false",
+    "next"
+   ],
+   "params": {
+    "cond": "bool"
+   },
+   "code": "if ({cond}) {\n{>true}\n} else {\n{>false}\n}\n{>next}",
+   "desc": "Branch on a condition"
+  },
+  "flow.sequence": {
+   "kind": "flow",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "a",
+    "b",
+    "c"
+   ],
+   "code": "{>a}\n{>b}\n{>c}",
+   "desc": "Run outputs in order"
+  },
+  "flow.loop": {
+   "kind": "flow",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "body",
+    "next"
+   ],
+   "params": {
+    "count": "number"
+   },
+   "code": "for (var i{id} = 0; i{id} < Math.min(1000, {count}); i{id}++) {\n{>body}\n}\n{>next}",
+   "desc": "Repeat N times (at most 1000)"
+  },
+  "flow.wait": {
+   "kind": "flow",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "seconds": "number"
+   },
+   "code": "after({seconds}, function () {\n{>next}\n});",
+   "desc": "Wait, then continue"
+  },
+  "flow.once": {
+   "kind": "flow",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "code": "if (!vars.get('__once{id}')) { vars.set('__once{id}', true);\n{>next}\n}",
+   "desc": "Only the first time"
+  },
+  "flow.chance": {
+   "kind": "flow",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "yes",
+    "no"
+   ],
+   "params": {
+    "p": "number"
+   },
+   "code": "if (rand() < {p}) {\n{>yes}\n} else {\n{>no}\n}",
+   "desc": "Random branch"
+  },
+  "ui.say": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "speaker": "string",
+    "text": "string"
+   },
+   "code": "ui.say({speaker}, {text});\n{>next}",
+   "desc": "Show a line"
+  },
+  "ui.toast": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "text": "string"
+   },
+   "code": "ui.toast({text});\n{>next}",
+   "desc": "Small message"
+  },
+  "ui.set": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "name": "string",
+    "value": "any"
+   },
+   "code": "ui.set({name}, {value});\n{>next}",
+   "desc": "Set a HUD value"
+  },
+  "inventory.give": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "item": "string",
+    "n": "number"
+   },
+   "code": "inventory.give({item}, {n});\n{>next}",
+   "desc": "Give the player items"
+  },
+  "inventory.take": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "item": "string",
+    "n": "number"
+   },
+   "code": "inventory.take({item}, {n});\n{>next}",
+   "desc": "Take items from the player"
+  },
+  "quests.start": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "quest": "string"
+   },
+   "code": "quests.start({quest});\n{>next}",
+   "desc": "Start a quest"
+  },
+  "quests.complete": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "quest": "string"
+   },
+   "code": "quests.complete({quest});\n{>next}",
+   "desc": "Complete a quest"
+  },
+  "quests.event": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "event": "string"
+   },
+   "code": "emit('questEvent', {event: {event}});\n{>next}",
+   "desc": "Advance 'custom' quest steps"
+  },
+  "entity.moveTo": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "entity": "entity",
+    "x": "number",
+    "z": "number"
+   },
+   "code": "ai.goTo({entity}, {x}, {z});\n{>next}",
+   "desc": "Walk somewhere"
+  },
+  "entity.teleport": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "entity": "entity",
+    "x": "number",
+    "z": "number"
+   },
+   "code": "(function (e) { if (e) { e.x = {x}; e.z = {z}; } })(world.find({entity}));\n{>next}",
+   "desc": "Move instantly"
+  },
+  "entity.spawn": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "kind": "string",
+    "name": "string",
+    "x": "number",
+    "z": "number"
+   },
+   "code": "world.spawn({kind: {kind}, name: {name}, x: {x}, z: {z}});\n{>next}",
+   "desc": "Create an entity"
+  },
+  "entity.setHostile": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "entity": "entity",
+    "value": "bool"
+   },
+   "code": "(function (e) { if (e) e.setHostile({value}); })(world.find({entity}));\n{>next}",
+   "desc": "Make an entity hostile or friendly (never a child)"
+  },
+  "combat.damage": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "target": "entity",
+    "amount": "number"
+   },
+   "code": "combat.damage({target}, {amount});\n{>next}",
+   "desc": "Damage a target (never a child)"
+  },
+  "combat.heal": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "target": "entity",
+    "amount": "number"
+   },
+   "code": "combat.heal({target}, {amount});\n{>next}",
+   "desc": "Heal a target"
+  },
+  "ai.setBehavior": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "entity": "entity",
+    "behavior": "string"
+   },
+   "code": "ai.setBehavior({entity}, {behavior});\n{>next}",
+   "desc": "Change AI behaviour"
+  },
+  "factions.addRep": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "faction": "string",
+    "amount": "number"
+   },
+   "code": "factions.addRep({faction}, {amount});\n{>next}",
+   "desc": "Change reputation"
+  },
+  "economy.addGold": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "amount": "number"
+   },
+   "code": "economy.add({amount});\n{>next}",
+   "desc": "Give or take gold"
+  },
+  "progression.award": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "xp": "number"
+   },
+   "code": "progression.award({xp});\n{>next}",
+   "desc": "Give XP"
+  },
+  "audio.play": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "cue": "string"
+   },
+   "code": "audio.play({cue});\n{>next}",
+   "desc": "Play a sound cue"
+  },
+  "audio.music": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "state": "string"
+   },
+   "code": "audio.music({state});\n{>next}",
+   "desc": "Switch music state"
+  },
+  "camera.shake": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "amount": "number"
+   },
+   "code": "camera.shake({amount});\n{>next}",
+   "desc": "Shake the camera"
+  },
+  "camera.cinematic": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "id": "string"
+   },
+   "code": "camera.play({id});\n{>next}",
+   "desc": "Play a cinematic"
+  },
+  "world.setWeather": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "type": "string"
+   },
+   "code": "world.setWeather({type});\n{>next}",
+   "desc": "Change the weather"
+  },
+  "vars.set": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "name": "string",
+    "value": "any"
+   },
+   "code": "vars.set({name}, {value});\n{>next}",
+   "desc": "Set a saved variable"
+  },
+  "vars.add": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "name": "string",
+    "amount": "number"
+   },
+   "code": "vars.set({name}, (+vars.get({name}) || 0) + {amount});\n{>next}",
+   "desc": "Add to a saved variable"
+  },
+  "dialogue.start": {
+   "kind": "action",
+   "in": [
+    "exec"
+   ],
+   "out": [
+    "next"
+   ],
+   "params": {
+    "dialog": "string",
+    "npc": "entity"
+   },
+   "code": "dialogue.start({dialog}, {npc});\n{>next}",
+   "desc": "Open a conversation"
+  },
+  "value.number": {
+   "kind": "data",
+   "params": {
+    "value": "number"
+   },
+   "code": "{value}"
+  },
+  "value.string": {
+   "kind": "data",
+   "params": {
+    "value": "string"
+   },
+   "code": "{value}"
+  },
+  "value.bool": {
+   "kind": "data",
+   "params": {
+    "value": "bool"
+   },
+   "code": "{value}"
+  },
+  "vars.get": {
+   "kind": "data",
+   "params": {
+    "name": "string"
+   },
+   "code": "vars.get({name})"
+  },
+  "event.field": {
+   "kind": "data",
+   "params": {
+    "field": "string"
+   },
+   "code": "(ev ? ev[{field}] : undefined)"
+  },
+  "math.add": {
+   "kind": "data",
+   "params": {
+    "a": "number",
+    "b": "number"
+   },
+   "code": "({a} + {b})"
+  },
+  "math.sub": {
+   "kind": "data",
+   "params": {
+    "a": "number",
+    "b": "number"
+   },
+   "code": "({a} - {b})"
+  },
+  "math.mul": {
+   "kind": "data",
+   "params": {
+    "a": "number",
+    "b": "number"
+   },
+   "code": "({a} * {b})"
+  },
+  "math.random": {
+   "kind": "data",
+   "params": {
+    "min": "number",
+    "max": "number"
+   },
+   "code": "randInt({min}, {max})"
+  },
+  "compare.eq": {
+   "kind": "data",
+   "params": {
+    "a": "any",
+    "b": "any"
+   },
+   "code": "({a} === {b})"
+  },
+  "compare.gte": {
+   "kind": "data",
+   "params": {
+    "a": "number",
+    "b": "number"
+   },
+   "code": "({a} >= {b})"
+  },
+  "compare.lt": {
+   "kind": "data",
+   "params": {
+    "a": "number",
+    "b": "number"
+   },
+   "code": "({a} < {b})"
+  },
+  "logic.and": {
+   "kind": "data",
+   "params": {
+    "a": "bool",
+    "b": "bool"
+   },
+   "code": "({a} && {b})"
+  },
+  "logic.or": {
+   "kind": "data",
+   "params": {
+    "a": "bool",
+    "b": "bool"
+   },
+   "code": "({a} || {b})"
+  },
+  "logic.not": {
+   "kind": "data",
+   "params": {
+    "a": "bool"
+   },
+   "code": "(!{a})"
+  },
+  "inventory.has": {
+   "kind": "data",
+   "params": {
+    "item": "string",
+    "n": "number"
+   },
+   "code": "inventory.has({item}, {n})"
+  },
+  "inventory.count": {
+   "kind": "data",
+   "params": {
+    "item": "string"
+   },
+   "code": "inventory.count({item})"
+  },
+  "quests.state": {
+   "kind": "data",
+   "params": {
+    "quest": "string"
+   },
+   "code": "quests.state({quest})"
+  },
+  "factions.rep": {
+   "kind": "data",
+   "params": {
+    "faction": "string"
+   },
+   "code": "factions.rep({faction})"
+  },
+  "world.hour": {
+   "kind": "data",
+   "code": "world.hour"
+  },
+  "world.isNight": {
+   "kind": "data",
+   "code": "world.isNight"
+  },
+  "economy.gold": {
+   "kind": "data",
+   "code": "economy.gold()"
+  },
+  "player.hp": {
+   "kind": "data",
+   "code": "world.player.hp"
+  },
+  "entity.self": {
+   "kind": "data",
+   "code": "self"
+  }
+ }
+}

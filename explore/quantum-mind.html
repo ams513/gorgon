@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quantum Architecture of Choice, Interactive | Stark</title>
+<meta name="description" content="An interactive look at the mathematics of choice, from classical behavior to quantum cognition and universal agents, with a decision-space visualizer.">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://starkforall.com/explore/quantum-mind.html">
+<style>
+/* Family names below are aliases: every face is self-hosted (../assets/fonts) or a local system font. */
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Cormorant";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Cormorant";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Spectral";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Spectral";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Crimson Pro";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Crimson Pro";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Syne";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Sora";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";src:local("Cascadia Mono"),local("Consolas"),local("Menlo"),local("DejaVu Sans Mono")}
+@font-face{font-family:"JetBrains Mono";src:local("Cascadia Mono"),local("Consolas"),local("Menlo"),local("DejaVu Sans Mono")}
+html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.ps-site{position:relative;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.25rem;padding-block:1.25rem calc(1.5rem + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:#0c0d12;color:#d6d9e0;font:500 .875rem/1.5 Inter,system-ui,sans-serif;border-top:1px solid #23262f}.ps-site a{color:inherit;text-underline-offset:3px}.ps-site a:focus-visible{outline:2px solid #d6d9e0;outline-offset:2px}
+</style>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0f1a;--bg2:#111827;--bg3:#1e293b;
+  --text:#e2e8f0;--text-dim:#94a3b8;--text-bright:#f8fafc;
+  --blue:#3b82f6;--green:#7a8594;--pink:#9cc4ff;
+  --blue-glow:rgba(59,130,246,0.3);--green-glow:rgba(122,133,148,0.2);--pink-glow:rgba(156,196,255,0.2);
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  color-scheme:dark;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+::selection{background:var(--blue);color:#fff}
+
+/* ---- GLOBAL LAYOUT ---- */
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+section{padding:80px 0;position:relative}
+h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--text-bright);margin-bottom:1rem;letter-spacing:-0.02em}
+h3{font-size:1.2rem;color:var(--blue);margin-bottom:0.5rem;font-weight:600}
+p{margin-bottom:1rem;color:var(--text-dim)}
+.accent-blue{color:var(--blue)}.accent-green{color:var(--green)}.accent-pink{color:var(--pink)}
+
+/* ---- ANIMATED GRID BACKGROUND ---- */
+.grid-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.06}
+.grid-bg svg{width:100%;height:100%}
+
+/* ---- NAV ---- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,15,26,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(59,130,246,0.1);padding:0 20px}
+nav .nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+nav .logo{font-weight:700;font-size:0.95rem;color:var(--blue);letter-spacing:0.04em}
+nav .logo span{color:var(--text-dim);font-weight:400}
+nav ul{list-style:none;display:flex;gap:24px}
+nav a{color:var(--text-dim);text-decoration:none;font-size:0.82rem;letter-spacing:0.02em;transition:color 0.2s}
+nav a:hover{color:var(--blue)}
+@media(max-width:640px){nav ul{display:none}}
+
+/* ---- HERO ---- */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
+#hero .container{position:relative;z-index:2}
+.hero-tag{display:inline-block;padding:4px 14px;border:1px solid var(--blue);border-radius:999px;font-size:0.75rem;color:var(--blue);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:24px}
+.hero-title{font-size:clamp(2.2rem,6vw,4rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:var(--text-bright);margin-bottom:20px}
+.hero-title .grad{background:linear-gradient(135deg,var(--blue),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:var(--text-dim);max-width:600px;margin:0 auto 32px}
+.hero-cta{display:inline-block;padding:12px 28px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:transform 0.2s,box-shadow 0.2s}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--blue-glow)}
+
+/* Floating particles */
+.particles{position:absolute;inset:0;overflow:hidden;z-index:1}
+.particle{position:absolute;border-radius:50%;opacity:0;animation:floatUp linear infinite}
+@keyframes floatUp{
+  0%{transform:translateY(100vh) scale(0);opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{transform:translateY(-10vh) scale(1);opacity:0}
+}
+
+/* ---- SECTION DIVIDER ---- */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);margin:0 auto;max-width:400px;opacity:0.3}
+
+/* ---- CARDS ---- */
+.card{background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:28px;margin-bottom:20px;transition:border-color 0.3s,box-shadow 0.3s}
+.card:hover{border-color:rgba(59,130,246,0.2);box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+
+/* ---- INTERACTIVE 1: DECISION SPACE ---- */
+.decision-space{position:relative;width:100%;max-width:500px;height:340px;margin:30px auto;background:radial-gradient(ellipse at center,rgba(59,130,246,0.05),transparent 70%);border-radius:16px;border:1px solid rgba(59,130,246,0.1);overflow:hidden;cursor:pointer;user-select:none}
+.ds-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:0.8rem;color:var(--text-dim);pointer-events:none}
+.ds-orb{position:absolute;border-radius:50%;transition:all 1.2s cubic-bezier(0.22,1,0.36,1);pointer-events:none}
+.ds-orb.a{width:120px;height:120px;background:radial-gradient(circle,rgba(59,130,246,0.6),rgba(59,130,246,0.1));border:2px solid var(--blue);top:110px;left:25%}
+.ds-orb.b{width:120px;height:120px;background:radial-gradient(circle,rgba(156,196,255,0.6),rgba(156,196,255,0.1));border:2px solid var(--pink);top:110px;right:25%}
+.ds-orb.c{width:100px;height:100px;background:radial-gradient(circle,rgba(122,133,148,0.5),rgba(122,133,148,0.1));border:2px solid var(--green);top:60px;left:50%;transform:translateX(-50%);opacity:0.5}
+.decision-space.collapsed .ds-orb{top:50%!important;left:50%!important;right:auto!important;transform:translate(-50%,-50%)!important;width:80px!important;height:80px!important;opacity:1!important;border-color:var(--green)!important;background:radial-gradient(circle,rgba(122,133,148,0.8),rgba(122,133,148,0.15))!important}
+.ds-text{position:absolute;font-size:0.75rem;font-weight:600;text-align:center;pointer-events:none;transition:opacity 0.6s}
+.ds-text.ta{color:var(--blue);top:94px;left:25%;transform:translateX(-50%)}
+.ds-text.tb{color:var(--pink);top:94px;right:25%;transform:translateX(50%)}
+.ds-text.tc{color:var(--green);top:40px;left:50%;transform:translateX(-50%)}
+.decision-space.collapsed .ds-text.ta,.decision-space.collapsed .ds-text.tb,.decision-space.collapsed .ds-text.tc{opacity:0}
+.ds-result{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1rem;font-weight:700;color:var(--green);opacity:0;transition:opacity 0.8s 0.4s;pointer-events:none;text-align:center}
+.decision-space.collapsed .ds-result{opacity:1}
+.ds-wave{position:absolute;inset:0;pointer-events:none;opacity:0.15}
+.ds-wave svg{width:100%;height:100%}
+
+/* ---- INTERACTIVE 2: LAYERS OF AGENCY ---- */
+.layers-wrap{position:relative;max-width:600px;margin:30px auto}
+.layer-bar{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:10px;cursor:pointer;transition:background 0.3s,border-color 0.3s;border:1px solid transparent;margin-bottom:6px;user-select:none}
+.layer-bar:hover{background:var(--bg2);border-color:rgba(255,255,255,0.05)}
+.layer-bar.active{background:var(--bg2);border-color:var(--blue)}
+.layer-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;border:2px solid var(--text-dim);color:var(--text-dim);transition:all 0.3s}
+.layer-bar.active .layer-num{border-color:var(--blue);color:var(--blue);box-shadow:0 0 12px var(--blue-glow)}
+.layer-name{font-weight:600;font-size:0.95rem;color:var(--text-dim);transition:color 0.3s}
+.layer-bar.active .layer-name{color:var(--text-bright)}
+.layer-detail{max-height:0;overflow:hidden;transition:max-height 0.5s ease,padding 0.3s;padding:0 18px;font-size:0.88rem;color:var(--text-dim);line-height:1.6}
+.layer-detail.open{max-height:300px;padding:12px 18px 16px}
+
+/* ---- INTERACTIVE 3: FRAMEWORK COMPARATOR ---- */
+.fw-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.fw-tab{padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:var(--text-dim);font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:inherit}
+.fw-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.fw-panel{display:none;animation:fadeIn 0.4s ease}
+.fw-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fw-scenario{background:var(--bg3);border-radius:10px;padding:20px;margin-bottom:16px;border-left:3px solid var(--blue)}
+.fw-scenario h4{color:var(--text-bright);margin-bottom:8px;font-size:1rem}
+.fw-eq{font-family:'Courier New',monospace;color:var(--green);background:rgba(122,133,148,0.08);padding:10px 14px;border-radius:6px;margin:10px 0;font-size:0.85rem;overflow-x:auto}
+
+/* ---- INTERACTIVE 4: MARKOV BLANKET ---- */
+.markov-wrap{position:relative;width:100%;max-width:500px;height:360px;margin:30px auto}
+.markov-svg{width:100%;height:100%}
+.markov-node{transition:all 0.3s}
+.markov-pulse{animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:0.4;r:4}50%{opacity:1;r:7}}
+.markov-flow{stroke-dasharray:8 4;animation:dashFlow 1.5s linear infinite}
+@keyframes dashFlow{to{stroke-dashoffset:-24}}
+
+/* ---- INTERACTIVE 5: QUIZ ---- */
+.quiz-wrap{max-width:600px;margin:0 auto}
+.quiz-q{background:var(--bg2);border-radius:12px;padding:28px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.06)}
+.quiz-q h4{color:var(--text-bright);margin-bottom:14px;font-size:1rem}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{padding:10px 16px;border:1px solid rgba(255,255,255,0.1);border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:0.88rem;color:var(--text-dim);background:transparent}
+.quiz-opt:hover{border-color:var(--blue);color:var(--text-bright)}
+.quiz-opt.selected{border-color:var(--blue);background:rgba(59,130,246,0.1);color:var(--blue)}
+.quiz-submit{margin-top:20px;padding:12px 32px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:inherit}
+.quiz-submit:hover{box-shadow:0 4px 20px var(--blue-glow);transform:translateY(-1px)}
+.quiz-submit:disabled{opacity:0.4;cursor:not-allowed;transform:none;box-shadow:none}
+.quiz-result{display:none;text-align:center;padding:40px;background:var(--bg2);border-radius:16px;border:1px solid var(--blue)}
+.quiz-result h3{font-size:1.5rem;color:var(--text-bright);margin-bottom:8px}
+.quiz-result .type-badge{display:inline-block;padding:6px 20px;border-radius:999px;font-size:0.85rem;font-weight:700;margin-bottom:16px}
+.quiz-result p{color:var(--text-dim);font-size:0.95rem}
+
+/* ---- FOOTER ---- */
+footer{padding:40px 20px;text-align:center;border-top:1px solid rgba(255,255,255,0.05)}
+footer p{font-size:0.8rem;color:var(--text-dim);margin-bottom:6px}
+footer a{color:var(--blue);text-decoration:none;transition:color 0.2s}
+footer a:hover{color:var(--pink)}
+
+/* ---- SCROLL ANIMATIONS ---- */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:640px){
+  section{padding:50px 0}
+  .card-grid{grid-template-columns:1fr}
+  .decision-space{height:280px}
+  .ds-orb.a,.ds-orb.b{width:90px!important;height:90px!important}
+  .ds-orb.c{width:70px!important;height:70px!important}
+  .fw-tabs{gap:5px}
+  .fw-tab{padding:6px 10px;font-size:0.75rem}
+}
+</style>
+<!-- stark-share-meta -->
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stark">
+<meta property="og:title" content="Quantum Architecture of Choice, Interactive | Stark">
+<meta property="og:description" content="An interactive look at the mathematics of choice, from classical behavior to quantum cognition and universal agents, with a decision-space visualizer.">
+<meta property="og:url" content="https://starkforall.com/explore/quantum-mind.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quantum Architecture of Choice, Interactive | Stark">
+<meta name="twitter:description" content="An interactive look at the mathematics of choice, from classical behavior to quantum cognition and universal agents, with a decision-space visualizer.">
+<meta property="og:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://starkforall.com/#organization", "name": "Stark", "url": "https://starkforall.com/", "logo": "https://starkforall.com/assets/brand/icon-512.png", "sameAs": ["https://ams513.itch.io/", "https://bsky.app/profile/did:plc:lhodhwljl2wi762f3t6wic7c", "https://github.com/ams513", "https://www.youtube.com/@starkforall"], "description": "Stark makes local-first software that helps people build, write and care for others on their own computers, with their work kept in their own hands."}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Stark", "item": "https://starkforall.com/"}, {"@type": "ListItem", "position": 2, "name": "Explore", "item": "https://starkforall.com/explore/index.html"}, {"@type": "ListItem", "position": 3, "name": "The Quantum Architecture of Choice", "item": "https://starkforall.com/explore/quantum-mind.html"}]}]}</script>
+<!-- /stark-share-meta -->
+</head>
+<body>
+<!-- Subtle grid background -->
+<div class="grid-bg">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(59,130,246,0.4)" stroke-width="0.5"/>
+</pattern></defs>
+<rect width="100%" height="100%" fill="url(#grid)"/>
+</svg>
+</div>
+
+<!-- NAV -->
+<nav>
+<div class="nav-inner">
+  <div class="logo">PROTOCOL <span>STARK</span></div>
+  <ul>
+    <li><a href="#classical">Classical</a></li>
+    <li><a href="#quantum">Quantum</a></li>
+    <li><a href="#universal">Universal</a></li>
+    <li><a href="#beyond">Beyond</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+  </ul>
+</div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+<div class="particles" id="particles"></div>
+<div class="container">
+  <div class="hero-tag">Quantum Decision Theory</div>
+  <h1 class="hero-title">The <span class="grad">Quantum Architecture</span> of Choice</h1>
+  <p class="hero-sub">From neurons to Hilbert spaces to the edge of spacetime, a map of every framework that claims to explain why you do what you do.</p>
+  <a href="#classical" class="hero-cta">Begin the Descent</a>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DECISION SPACE VISUALIZER -->
+<section id="decision-viz">
+<div class="container reveal">
+  <h2>Decision Space Visualizer</h2>
+  <p>Click the field below. Three competing possibilities exist in superposition, until observation collapses them into a single outcome.</p>
+  <div class="decision-space" id="decisionSpace">
+    <div class="ds-wave">
+      <svg viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,170 Q125,80 250,170 T500,170" fill="none" stroke="rgba(59,130,246,0.15)" stroke-width="1.5">
+          <animate attributeName="d" values="M0,170 Q125,80 250,170 T500,170;M0,170 Q125,260 250,170 T500,170;M0,170 Q125,80 250,170 T500,170" dur="4s" repeatCount="indefinite"/>
+        </path>
+        <path d="M0,170 Q125,100 250,170 T500,170" fill="none" stroke="rgba(236,72,153,0.1)" stroke-width="1">
+          <animate attributeName="d" values="M0,170 Q125,100 250,170 T500,170;M0,170 Q125,240 250,170 T500,170;M0,170 Q125,100 250,170 T500,170" dur="3.2s" repeatCount="indefinite"/>
+        </path>
+      </svg>
+    </div>
+    <div class="ds-orb a"></div>
+    <div class="ds-orb b"></div>
+    <div class="ds-orb c"></div>
+    <span class="ds-text ta">|A&#10217;</span>
+    <span class="ds-text tb">|B&#10217;</span>
+    <span class="ds-text tc">|A+B&#10217;</span>
+    <div class="ds-result">Collapsed<br><span style="font-size:0.8rem;color:var(--text-dim)">The wave function resolved</span></div>
+    <div class="ds-label">Click to collapse the superposition</div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 1: CLASSICAL BEHAVIOR -->
+<section id="classical">
+<div class="container reveal">
+  <h2>I. Classical Behavior</h2>
+  <p>Before quantum cognition, there was the ABC model, the bedrock of behavioral psychology. Every action is a chain: <strong class="accent-blue">Antecedent</strong> triggers <strong class="accent-green">Behavior</strong>, which produces a <strong class="accent-pink">Consequence</strong> that feeds back into the loop.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Operant Conditioning</h3>
+      <p>Skinner's framework: reinforcement strengthens behavior, punishment weakens it. The environment sculpts the agent. No internal states needed, just stimulus and response frequencies.</p>
+      <div class="fw-eq">P(B|S) = f(reinforcement_history)</div>
+    </div>
+    <div class="card">
+      <h3>Bounded Rationality</h3>
+      <p>Simon's insight: humans don't maximize utility, they <em>satisfice</em>. The agent uses heuristics, truncates search trees, and settles for "good enough." Rational, but within limits.</p>
+      <div class="fw-eq">U(x) &approx; argmax{U | cost(search) &lt; threshold}</div>
+    </div>
+    <div class="card">
+      <h3>Prospect Theory</h3>
+      <p>Kahneman and Tversky's Nobel contribution: losses loom larger than gains. The value function is concave above a reference point and convex below it. Decisions are relative, not absolute.</p>
+      <div class="fw-eq">V(x) = x^&alpha; if x &ge; 0, -&lambda;(-x)^&beta; if x &lt; 0</div>
+    </div>
+  </div>
+  <p style="margin-top:16px">These frameworks capture enormous predictive power. But they all share an assumption: that the decision state is <em>definite</em> before it is measured. Quantum cognition challenges exactly this.</p>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 2: QUANTUM MIND -->
+<section id="quantum">
+<div class="container reveal">
+  <h2>II. The Quantum Mind</h2>
+  <p>In the 2000s, researchers noticed something odd: human judgment violates classical probability. Conjunction fallacies, order effects, disjunction effects, patterns that <em>cannot</em> arise from any classical probability distribution. But they arise naturally from quantum probability.</p>
+  <div class="card" style="border-left:3px solid var(--blue)">
+    <h3>Hilbert Space Model of Cognition</h3>
+    <p>Instead of placing beliefs on a classical probability simplex, map them onto a Hilbert space. A person's cognitive state is a <strong>state vector</strong> |&psi;&#10217;. A question is a <strong>projector</strong>. The probability of a "yes" answer is:</p>
+    <div class="fw-eq">P(yes) = &#10216;&psi;| P_yes |&psi;&#10217; = ||P_yes |&psi;&#10217;||&sup2;</div>
+    <p>Crucially, projectors don't commute: <code style="color:var(--pink)">P_A P_B &ne; P_B P_A</code>. The order in which you ask questions <em>changes the answer</em>: exactly as observed in human surveys.</p>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>POVMs</h3>
+      <p>Positive Operator-Valued Measures generalize projectors. They allow "fuzzy" measurements, partial observations that don't fully collapse the state. Perfect for modeling ambiguous social judgments.</p>
+    </div>
+    <div class="card">
+      <h3>Interference</h3>
+      <p>The Linda Problem's conjunction fallacy: P(feminist &amp; bank teller) > P(bank teller). Classically impossible. But in quantum probability, the cross-term interference between "feminist" and "bank teller" amplitudes adds probability mass to the conjunction.</p>
+    </div>
+  </div>
+
+  <!-- FRAMEWORK COMPARATOR -->
+  <div style="margin-top:40px">
+    <h3 style="color:var(--text-bright);font-size:1.1rem;margin-bottom:16px">Framework Comparator</h3>
+    <p>See the same decision, "Should I take this job offer?", through five lenses.</p>
+    <div class="fw-tabs" id="fwTabs">
+      <button class="fw-tab active" data-fw="behavioral">Behavioral</button>
+      <button class="fw-tab" data-fw="cognitive">Cognitive</button>
+      <button class="fw-tab" data-fw="quantum">Quantum</button>
+      <button class="fw-tab" data-fw="algorithmic">Algorithmic</button>
+      <button class="fw-tab" data-fw="pregeometric">Pre-Geometric</button>
+    </div>
+    <div class="fw-panel active" data-fw="behavioral">
+      <div class="fw-scenario">
+        <h4>Behavioral View</h4>
+        <p>The decision is a function of reinforcement history. Past job switches that led to positive outcomes (higher salary, praise) increased the probability of "accept." Past negative outcomes (social disruption, regret) decreased it. The agent's internal states are a black box.</p>
+        <div class="fw-eq">P(accept) = &Sigma; w_i &middot; R_i(past_switches)</div>
+      </div>
+    </div>
+    <div class="fw-panel" data-fw="cognitive">
+      <div class="fw-scenario" style="border-color:var(--green)">
+        <h4>Cognitive View</h4>
+        <p>The agent builds a mental model: a decision tree with nodes for salary, culture, commute, growth. Each branch has a subjective utility weighted by estimated probability. Bounded rationality means the tree is pruned. System 1 (fast heuristics) pre-filters; System 2 (slow deliberation) evaluates the shortlist.</p>
+        <div class="fw-eq">U(accept) = &Sigma; p_i &middot; u(outcome_i) - cost(deliberation)</div>
+      </div>
+    </div>
+    <div class="fw-panel" data-fw="quantum">
+      <div class="fw-scenario" style="border-color:var(--pink)">
+        <h4>Quantum View</h4>
+        <p>Before deliberation, the agent is in a superposition of "accept" and "reject." Thinking about salary projects the state onto one basis; thinking about family projects it onto another. These bases are <em>incompatible</em>: they don't share eigenstates. The order of consideration creates interference that biases the final measurement (the decision).</p>
+        <div class="fw-eq">|&psi;&#10217; = &alpha;|accept&#10217; + &beta;|reject&#10217;, |&alpha;|&sup2; + |&beta;|&sup2; = 1</div>
+      </div>
+    </div>
+    <div class="fw-panel" data-fw="algorithmic">
+      <div class="fw-scenario" style="border-color:#9cc4ff">
+        <h4>Algorithmic View (AIXI)</h4>
+        <p>The optimal agent compresses all past observations into the shortest program that predicts them (Kolmogorov complexity), then acts to maximize expected future reward over all computable environments, weighted by their algorithmic probability. The job decision is a single step in an infinite-horizon optimization.</p>
+        <div class="fw-eq">a* = argmax_a &Sigma;_e 2^(-K(e)) &middot; V(a, e)</div>
+      </div>
+    </div>
+    <div class="fw-panel" data-fw="pregeometric">
+      <div class="fw-scenario" style="border-color:#7a8594">
+        <h4>Pre-Geometric View</h4>
+        <p>There is no "agent" and no "job." Both are patterns in the Ruliad, the entangled limit of all possible computations. What appears as a "decision" is a particular foliation of rulial space, a cross-section where observer and environment momentarily crystallize. Constructor theory asks: which transformations are <em>possible</em>, regardless of dynamics?</p>
+        <div class="fw-eq">{agent, environment} &sub; Ruliad / ~observer</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 3: UNIVERSAL AGENCY -->
+<section id="universal">
+<div class="container reveal">
+  <h2>III. Universal Agency</h2>
+  <p>What if we could build the <em>mathematically optimal</em> agent? Marcus Hutter's AIXI is exactly that, a formal definition of perfect intelligence that is also perfectly uncomputable.</p>
+  <div class="card" style="border-left:3px solid var(--green)">
+    <h3>AIXI: The Platonic Agent</h3>
+    <p>AIXI combines Solomonoff induction (the optimal predictor) with sequential decision theory (the optimal actor). At each time step, it:</p>
+    <p>1. Enumerates <em>all</em> computable hypotheses about the environment.<br>
+    2. Weights each by <strong>2<sup>-K(h)</sup></strong>: shorter programs are more probable.<br>
+    3. Selects the action maximizing expected lifetime reward across all hypotheses.</p>
+    <div class="fw-eq">a*_t = argmax_{a_t} &Sigma;_{e_t} ... &Sigma;_{e_m} [&Sigma;_{k} 2^{-K(q_k)} &middot; &Sigma;_{i=t}^{m} r_i]</div>
+    <p>AIXI is the ceiling of intelligence: no agent in any computable environment can do better. Its uncomputability is the price of universality.</p>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Kolmogorov Complexity</h3>
+      <p>The length of the shortest program that produces a string. It's the mathematical formalization of "simplicity", and it's uncomputable. We can only approximate it, which is what compression algorithms (and human intuition) do.</p>
+    </div>
+    <div class="card">
+      <h3>Solomonoff Induction</h3>
+      <p>The optimal way to predict the next bit of a sequence: weight every consistent program by its algorithmic probability. It converges on the true distribution faster than any other predictor. It's also uncomputable, a recurring theme.</p>
+    </div>
+    <div class="card">
+      <h3>Computable Approximations</h3>
+      <p>AIXItl truncates the horizon and limits program length. MC-AIXI uses Monte Carlo tree search. These lose optimality guarantees but become runnable. Modern LLMs can be seen as massively parallel, approximate Solomonoff predictors.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 4: BEYOND SPACETIME -->
+<section id="beyond">
+<div class="container reveal">
+  <h2>IV. Beyond Spacetime</h2>
+  <p>The deepest frameworks dissolve the boundary between agent and environment entirely. Here, "choice" is not something an agent <em>does</em>: it's a pattern that the universe <em>exhibits</em>.</p>
+
+  <!-- LAYERS OF AGENCY -->
+  <div style="margin-bottom:40px">
+    <h3 style="color:var(--text-bright);font-size:1.1rem;margin-bottom:16px">Layers of Agency</h3>
+    <p>Click each layer to descend from familiar neuroscience into increasingly alien territory.</p>
+    <div class="layers-wrap" id="layersWrap">
+      <div class="layer-bar active" data-layer="0">
+        <div class="layer-num">1</div>
+        <div class="layer-name">Neurons &amp; Circuits</div>
+      </div>
+      <div class="layer-detail open" data-layer="0">
+        Spike trains, synaptic weights, dopamine prediction errors. The hardware. Billions of neurons firing in patterns that somehow produce the sensation of choosing. At this level, "decision" means a population of neurons reaching a threshold.
+      </div>
+      <div class="layer-bar" data-layer="1">
+        <div class="layer-num">2</div>
+        <div class="layer-name">Psychology &amp; Heuristics</div>
+      </div>
+      <div class="layer-detail" data-layer="1">
+        Prospect theory, anchoring, framing effects. The software running on the neural hardware. Useful, predictive, but incomplete, these models describe <em>deviations</em> from rationality without explaining why the deviations have the specific structure they do.
+      </div>
+      <div class="layer-bar" data-layer="2">
+        <div class="layer-num">3</div>
+        <div class="layer-name">Quantum Cognition</div>
+      </div>
+      <div class="layer-detail" data-layer="2">
+        Hilbert spaces, non-commuting observables, interference. Not "quantum woo", a rigorous mathematical framework that explains the <em>structure</em> of cognitive biases. Order effects and conjunction fallacies fall out naturally from the geometry of the state space.
+      </div>
+      <div class="layer-bar" data-layer="3">
+        <div class="layer-num">4</div>
+        <div class="layer-name">Algorithmic Agents</div>
+      </div>
+      <div class="layer-detail" data-layer="3">
+        AIXI, Kolmogorov complexity, Solomonoff induction. Here the agent is defined purely by its computational relationship to its environment. No neurons, no psychology, just a program that compresses observations and maximizes reward. Intelligence as compression.
+      </div>
+      <div class="layer-bar" data-layer="4">
+        <div class="layer-num">5</div>
+        <div class="layer-name">Holographic Screens</div>
+      </div>
+      <div class="layer-detail" data-layer="4">
+        The holographic principle: all information in a volume of space is encoded on its boundary. Markov blankets formalize the boundary between agent and environment. The "agent" is whatever is inside the blanket; the "world" is outside. The blanket <em>is</em> the interface, perception and action are boundary conditions, not internal states.
+      </div>
+      <div class="layer-bar" data-layer="5">
+        <div class="layer-num">6</div>
+        <div class="layer-name">The Ruliad</div>
+      </div>
+      <div class="layer-detail" data-layer="5">
+        Wolfram's Ruliad: the entangled limit of all possible computations. Every possible universe, every possible observer, every possible decision, all woven into a single irreducible structure. What we call "physics" is a particular sampling of the Ruliad by an observer with bounded computational resources. Agency itself dissolves into rulial geometry.
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKOV BLANKET DIAGRAM -->
+  <div style="margin-top:40px">
+    <h3 style="color:var(--text-bright);font-size:1.1rem;margin-bottom:8px">Animated Markov Blanket</h3>
+    <p>The boundary between self and world. Sensory states flow in; active states flow out. Internal states are shielded from the environment, they can only "see" the world through the blanket.</p>
+    <div class="markov-wrap">
+      <svg class="markov-svg" viewBox="0 0 500 360" xmlns="http://www.w3.org/2000/svg">
+        <!-- Environment ring -->
+        <ellipse cx="250" cy="180" rx="220" ry="160" fill="none" stroke="rgba(59,130,246,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+        <text x="250" y="30" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="system-ui">ENVIRONMENT</text>
+
+        <!-- Markov blanket -->
+        <ellipse cx="250" cy="180" rx="130" ry="100" fill="rgba(59,130,246,0.04)" stroke="var(--blue)" stroke-width="2" stroke-dasharray="6 3" opacity="0.6">
+          <animate attributeName="stroke-dashoffset" values="0;-18" dur="2s" repeatCount="indefinite"/>
+        </ellipse>
+        <text x="250" y="82" text-anchor="middle" fill="#3b82f6" font-size="11" font-weight="600" font-family="system-ui">MARKOV BLANKET</text>
+
+        <!-- Internal states -->
+        <circle cx="250" cy="180" r="50" fill="rgba(34,197,94,0.08)" stroke="var(--green)" stroke-width="1.5"/>
+        <text x="250" y="176" text-anchor="middle" fill="#7a8594" font-size="11" font-weight="600" font-family="system-ui">INTERNAL</text>
+        <text x="250" y="192" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="system-ui">states</text>
+
+        <!-- Sensory nodes (left) -->
+        <circle cx="145" cy="145" r="18" fill="rgba(236,72,153,0.1)" stroke="var(--pink)" stroke-width="1.5"/>
+        <text x="145" y="149" text-anchor="middle" fill="#9cc4ff" font-size="9" font-weight="600" font-family="system-ui">S</text>
+        <circle cx="135" cy="210" r="18" fill="rgba(236,72,153,0.1)" stroke="var(--pink)" stroke-width="1.5"/>
+        <text x="135" y="214" text-anchor="middle" fill="#9cc4ff" font-size="9" font-weight="600" font-family="system-ui">S</text>
+
+        <!-- Active nodes (right) -->
+        <circle cx="355" cy="145" r="18" fill="rgba(251,191,36,0.1)" stroke="#7a8594" stroke-width="1.5"/>
+        <text x="355" y="149" text-anchor="middle" fill="#7a8594" font-size="9" font-weight="600" font-family="system-ui">A</text>
+        <circle cx="365" cy="210" r="18" fill="rgba(251,191,36,0.1)" stroke="#7a8594" stroke-width="1.5"/>
+        <text x="365" y="214" text-anchor="middle" fill="#7a8594" font-size="9" font-weight="600" font-family="system-ui">A</text>
+
+        <!-- Flow arrows: Environment -> Sensory -->
+        <line x1="60" y1="130" x2="127" y2="140" stroke="var(--pink)" stroke-width="1.5" class="markov-flow" opacity="0.6"/>
+        <line x1="50" y1="215" x2="117" y2="212" stroke="var(--pink)" stroke-width="1.5" class="markov-flow" opacity="0.6"/>
+
+        <!-- Flow arrows: Sensory -> Internal -->
+        <line x1="162" y1="150" x2="205" y2="168" stroke="var(--pink)" stroke-width="1" class="markov-flow" opacity="0.4"/>
+        <line x1="152" y1="207" x2="205" y2="192" stroke="var(--pink)" stroke-width="1" class="markov-flow" opacity="0.4"/>
+
+        <!-- Flow arrows: Internal -> Active -->
+        <line x1="295" y1="168" x2="338" y2="150" stroke="#7a8594" stroke-width="1" class="markov-flow" opacity="0.4"/>
+        <line x1="295" y1="192" x2="348" y2="207" stroke="#7a8594" stroke-width="1" class="markov-flow" opacity="0.4"/>
+
+        <!-- Flow arrows: Active -> Environment -->
+        <line x1="373" y1="140" x2="440" y2="130" stroke="#7a8594" stroke-width="1.5" class="markov-flow" opacity="0.6"/>
+        <line x1="383" y1="212" x2="450" y2="215" stroke="#7a8594" stroke-width="1.5" class="markov-flow" opacity="0.6"/>
+
+        <!-- Env nodes -->
+        <circle cx="50" cy="130" r="6" fill="rgba(59,130,246,0.3)" class="markov-pulse"/>
+        <circle cx="40" cy="215" r="6" fill="rgba(59,130,246,0.3)" class="markov-pulse" style="animation-delay:0.5s"/>
+        <circle cx="450" cy="130" r="6" fill="rgba(59,130,246,0.3)" class="markov-pulse" style="animation-delay:1s"/>
+        <circle cx="460" cy="215" r="6" fill="rgba(59,130,246,0.3)" class="markov-pulse" style="animation-delay:1.5s"/>
+
+        <!-- Labels -->
+        <text x="90" y="115" text-anchor="middle" fill="#9cc4ff" font-size="10" font-family="system-ui" opacity="0.7">sensory</text>
+        <text x="410" y="115" text-anchor="middle" fill="#7a8594" font-size="10" font-family="system-ui" opacity="0.7">active</text>
+
+        <!-- Constructor theory annotation -->
+        <text x="250" y="310" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui" font-style="italic">
+          "The boundary is the agent.", Karl Friston
+        </text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card-grid" style="margin-top:20px">
+    <div class="card">
+      <h3>Constructor Theory</h3>
+      <p>David Deutsch's framework shifts physics from dynamics to <em>possibility</em>. Instead of asking "what happens next?", it asks "which transformations are possible and which are impossible?" An agent is a constructor: a system that can cause a transformation and retain the ability to cause it again.</p>
+    </div>
+    <div class="card">
+      <h3>The Ruliad</h3>
+      <p>Stephen Wolfram's ultimate structure: the entangled limit of all possible computations applied to all possible initial conditions. Physics, mathematics, and consciousness are different samplings of this single object. Observer-reality boundaries are foliations of rulial space.</p>
+    </div>
+    <div class="card">
+      <h3>Holographic Principle</h3>
+      <p>All information in a 3D volume can be described by data on its 2D boundary. The Markov blanket of an agent <em>is</em> the agent, a holographic screen encoding everything the internal states need. Consciousness may be a boundary phenomenon.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 5: QUIZ -->
+<section id="quiz">
+<div class="container reveal">
+  <h2>V. What Kind of Agent Are You?</h2>
+  <p>Five questions. Five agent types. Where do you fall on the spectrum from classical reinforcement learner to non-dual pattern in the Ruliad?</p>
+  <div class="quiz-wrap" id="quizWrap">
+    <div class="quiz-q" data-q="0">
+      <h4>1. When making a big decision, you typically:</h4>
+      <div class="quiz-opts">
+        <div class="quiz-opt" data-v="0">List pros and cons, pick the winner</div>
+        <div class="quiz-opt" data-v="1">Build a mental model and simulate outcomes</div>
+        <div class="quiz-opt" data-v="2">Notice the answer depends on what you think about first</div>
+        <div class="quiz-opt" data-v="3">Try to find the simplest explanation that predicts everything</div>
+        <div class="quiz-opt" data-v="4">Realize the "decision" and the "decider" are the same process</div>
+      </div>
+    </div>
+    <div class="quiz-q" data-q="1">
+      <h4>2. What is consciousness?</h4>
+      <div class="quiz-opts">
+        <div class="quiz-opt" data-v="0">An emergent behavior from neural reinforcement patterns</div>
+        <div class="quiz-opt" data-v="1">An internal world-model that includes a model of itself</div>
+        <div class="quiz-opt" data-v="2">A measurement process that collapses cognitive superpositions</div>
+        <div class="quiz-opt" data-v="3">The shortest program that predicts its own output</div>
+        <div class="quiz-opt" data-v="4">A particular cross-section of the Ruliad</div>
+      </div>
+    </div>
+    <div class="quiz-q" data-q="2">
+      <h4>3. Free will is:</h4>
+      <div class="quiz-opts">
+        <div class="quiz-opt" data-v="0">An illusion, you are your reinforcement history</div>
+        <div class="quiz-opt" data-v="1">Compatibilist, your model-based deliberation is "you"</div>
+        <div class="quiz-opt" data-v="2">Undetermined until measured, genuine indeterminacy exists</div>
+        <div class="quiz-opt" data-v="3">A computational concept: the agent's output is uncomputable from outside</div>
+        <div class="quiz-opt" data-v="4">A category error, there's no separate "will" to be free</div>
+      </div>
+    </div>
+    <div class="quiz-q" data-q="3">
+      <h4>4. The relationship between mind and reality is:</h4>
+      <div class="quiz-opts">
+        <div class="quiz-opt" data-v="0">Reality shapes behavior through consequences</div>
+        <div class="quiz-opt" data-v="1">The mind builds models of reality; they interact</div>
+        <div class="quiz-opt" data-v="2">Mind and reality are complementary observables</div>
+        <div class="quiz-opt" data-v="3">Reality is a hypothesis weighted by its complexity</div>
+        <div class="quiz-opt" data-v="4">There is no boundary, both are patterns in the same structure</div>
+      </div>
+    </div>
+    <div class="quiz-q" data-q="4">
+      <h4>5. What would change your mind about everything?</h4>
+      <div class="quiz-opts">
+        <div class="quiz-opt" data-v="0">Overwhelming counter-evidence from experiments</div>
+        <div class="quiz-opt" data-v="1">A more elegant model that explains more with less</div>
+        <div class="quiz-opt" data-v="2">Discovering that measurement order changes physical reality</div>
+        <div class="quiz-opt" data-v="3">A proof that my current framework has higher Kolmogorov complexity than an alternative</div>
+        <div class="quiz-opt" data-v="4">Seeing that "my mind" and "everything" were never separate</div>
+      </div>
+    </div>
+    <button class="quiz-submit" id="quizSubmit" disabled>Reveal Your Agent Type</button>
+    <div class="quiz-result" id="quizResult">
+      <div class="type-badge" id="typeBadge"></div>
+      <h3 id="typeName"></h3>
+      <p id="typeDesc"></p>
+      <p style="margin-top:16px;font-size:0.82rem;color:var(--text-dim)"><em>Share your result, the architecture of choice starts with understanding your own.</em></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:10px">Built by <strong style="color:var(--blue)">Stark</strong>: tools for creators</p>
+  <p>
+    <a href="https://ams513.itch.io/stark-world-engine?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=quantum-mind" target="_blank" rel="noopener noreferrer">Stark World Engine</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://ams513.itch.io/stark-quill?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=quantum-mind" target="_blank" rel="noopener noreferrer">Stark Quill</a>
+  </p>
+  <p style="margin-top:12px;font-size:0.7rem;color:rgba(148,163,184,0.5)">&copy; 2026 Stark. All frameworks are models; some are useful.</p>
+<p class="trust-foot" data-tc="foot"><a href="../trust.html" lang="en">Trust Center</a></p></footer>
+
+<script>
+(function(){
+  'use strict';
+
+  // ---- PARTICLES ----
+  const pc = document.getElementById('particles');
+  if(pc){
+    const colors = ['#3b82f6','#22c55e','#ec4899'];
+    for(let i=0;i<30;i++){
+      const p = document.createElement('div');
+      p.className='particle';
+      const size = Math.random()*4+2;
+      p.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;background:${colors[i%3]};animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*6}s`;
+      pc.appendChild(p);
+    }
+  }
+
+  // ---- SCROLL REVEAL ----
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+  },{threshold:0.1});
+  reveals.forEach(r=>observer.observe(r));
+
+  // ---- DECISION SPACE ----
+  const ds = document.getElementById('decisionSpace');
+  if(ds){
+    let collapsed = false;
+    ds.addEventListener('click',()=>{
+      collapsed = !collapsed;
+      ds.classList.toggle('collapsed', collapsed);
+      const lbl = ds.querySelector('.ds-label');
+      if(lbl) lbl.textContent = collapsed ? 'Click to restore superposition' : 'Click to collapse the superposition';
+    });
+  }
+
+  // ---- LAYERS OF AGENCY ----
+  const layersWrap = document.getElementById('layersWrap');
+  if(layersWrap){
+    const bars = layersWrap.querySelectorAll('.layer-bar');
+    const details = layersWrap.querySelectorAll('.layer-detail');
+    bars.forEach(bar=>{
+      bar.addEventListener('click',()=>{
+        const idx = bar.dataset.layer;
+        bars.forEach(b=>b.classList.toggle('active', b.dataset.layer===idx));
+        details.forEach(d=>d.classList.toggle('open', d.dataset.layer===idx));
+      });
+    });
+  }
+
+  // ---- FRAMEWORK COMPARATOR ----
+  const fwTabs = document.getElementById('fwTabs');
+  if(fwTabs){
+    const tabs = fwTabs.querySelectorAll('.fw-tab');
+    const panels = document.querySelectorAll('.fw-panel');
+    tabs.forEach(tab=>{
+      tab.addEventListener('click',()=>{
+        const fw = tab.dataset.fw;
+        tabs.forEach(t=>t.classList.toggle('active', t===tab));
+        panels.forEach(p=>p.classList.toggle('active', p.dataset.fw===fw));
+      });
+    });
+  }
+
+  // ---- QUIZ ----
+  const quizWrap = document.getElementById('quizWrap');
+  const quizSubmit = document.getElementById('quizSubmit');
+  const quizResult = document.getElementById('quizResult');
+  if(quizWrap && quizSubmit){
+    const answers = [null,null,null,null,null];
+    const opts = quizWrap.querySelectorAll('.quiz-opt');
+    opts.forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        const q = parseInt(opt.closest('.quiz-q').dataset.q);
+        const v = parseInt(opt.dataset.v);
+        answers[q] = v;
+        opt.closest('.quiz-opts').querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('selected'));
+        opt.classList.add('selected');
+        quizSubmit.disabled = answers.includes(null);
+      });
+    });
+
+    const types = [
+      {name:'Classical Agent',badge:'bg:var(--text-dim)',color:'#94a3b8',desc:'You trust data, evidence, and reinforcement. The world shapes you, and you shape it back through measured responses. Your strength: empirical rigor. Your blind spot: the possibility that the measurement changes the thing measured.'},
+      {name:'Cognitive Agent',badge:'bg:var(--green)',color:'#22c55e',desc:'You build models. Internal simulations, decision trees, mental maps, your mind is a prediction engine that includes a model of itself. Your strength: systematic deliberation. Your blind spot: the frame of the model constrains what you can see.'},
+      {name:'Quantum Agent',badge:'bg:var(--blue)',color:'#3b82f6',desc:'You intuit that context changes content. The order of questions matters, superpositions are real, and measurement is creative. Your strength: comfort with genuine indeterminacy. Your blind spot: not everything that feels uncertain is quantum.'},
+      {name:'Universal Agent',badge:'bg:var(--pink)',color:'#ec4899',desc:'You seek the shortest description that predicts the most. Compression is intelligence. Simplicity is truth. Your strength: Occam\'s razor as a formal principle. Your blind spot: the assumption that all relevant structure is computable.'},
+      {name:'Non-Dual Agent',badge:'bg:#a855f7',color:'#a855f7',desc:'You see through the agent-environment boundary. Observer and observed are patterns in the same field. Your strength: freedom from false dichotomies. Your blind spot: the risk of dissolving distinctions that are locally useful.'}
+    ];
+
+    quizSubmit.addEventListener('click',()=>{
+      const counts = [0,0,0,0,0];
+      answers.forEach(a=>{ if(a!==null) counts[a]++ });
+      let maxIdx = 0;
+      counts.forEach((c,i)=>{ if(c>counts[maxIdx]) maxIdx=i });
+      const t = types[maxIdx];
+      const badge = document.getElementById('typeBadge');
+      const tname = document.getElementById('typeName');
+      const tdesc = document.getElementById('typeDesc');
+      badge.textContent = 'Your Type';
+      badge.style.background = t.color;
+      badge.style.color = '#fff';
+      tname.textContent = t.name;
+      tname.style.color = t.color;
+      tdesc.textContent = t.desc;
+      quizWrap.querySelectorAll('.quiz-q').forEach(q=>q.style.display='none');
+      quizSubmit.style.display='none';
+      quizResult.style.display='block';
+    });
+  }
+
+  // ---- SMOOTH NAV OFFSET ----
+  document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+})();
+</script>
+<nav class="ps-site" aria-label="Stark"><a href="index.html">All explorers</a><a href="../index.html">Stark</a><a href="https://ams513.itch.io/stark-world-engine?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=quantum-mind" rel="noopener noreferrer">Stark World Engine</a><a href="https://ams513.itch.io/stark-quill?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=quantum-mind" rel="noopener noreferrer">Stark Quill</a></nav>
+</body>
+</html>

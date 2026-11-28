@@ -1,0 +1,46 @@
+---
+title: "The Salt Lantern"
+lang: en
+---
+
+# 01 The Harbour at Low Tide
+
+The tide had gone out so far that the old pier stood on its stilts like a heron, and Mara Vell walked beneath it with the lantern held low.
+
+Nobody in Port Weald lit the salt lantern any more. Her grandmother had, every night of the winter storms, and the fishing boats had found their way home by its green-white flame. Now it hung in the kitchen, polished and cold, a thing for visitors to ask about.
+
+"You'll catch your death," said Tobin from the sea wall. He had a scarf wound three times round his neck and his hands pushed deep in his coat.
+
+"Then I'll catch it with a light on," Mara said, and struck the match.
+
+The flame did not catch at first. It sputtered, the way her grandmother said it always did when the sea was listening, and then it rose: a slow, pale green, the colour of the water over sand on a summer morning.
+
+Far out past the breakwater, something answered.
+
+# 02 A Light That Answers
+
+It was not a boat. Boats had masthead lights, red to port and green to starboard, and this was neither. It was the same pale green as the lantern, and it blinked twice, then held steady.
+
+Tobin came down the steps without a word. He stood beside her on the wet sand with his hands still in his pockets, and for a while neither of them said anything at all.
+
+"Do that again," he said at last.
+
+Mara lifted the lantern and swung it, slowly, left to right, the way her grandmother used to on the bad nights. Out past the breakwater the light swung too. Left to right. Then it went out.
+
+"Someone's having us on," Tobin said. "Kids on the point with a torch."
+
+"Kids on the point don't have that colour."
+
+He didn't argue. He looked at the lantern, and then at her, and she could see him deciding whether to say the sensible thing. In the end he only pulled his scarf up over his chin.
+
+"The tide turns at six," he said. "If you're going to wave that about, do it from the pier."
+
+# 03 The Keeper's Logbook
+
+The logbook was in the attic, under the Christmas decorations, exactly where her mother had said it would not be.
+
+It was smaller than Mara remembered, bound in oilcloth gone soft at the corners. Her grandmother's handwriting filled it from the first page to the last: dates, wind, the state of the tide, and beside some nights a single word in the margin. Lit. Lit. Lit. Answered.
+
+Mara turned back through the years. Answered appeared nine times. The last was dated the winter before she was born.
+
+Under it, in a different pen, her grandmother had written: Don't let it go dark again.

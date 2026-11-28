@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mocap Model Self-Test</title>
+<style>
+  :root { --bg: #15161c; --fg: #e6e6ec; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); font: 13px system-ui, sans-serif; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c" width="480" height="480"></canvas>
+<script src="../runtime/stark_anim.js"></script>
+<script src="../preview/skin_view.js"></script>
+<script src="stark_mocap.js"></script>
+<script>
+/* Feeds rendered frames of a rigged character to the real MediaPipe Pose Landmarker and scores the result against
+   the character's true joints. Driven by tests (CDP): GS_SELFTEST.run({...}) -> {take, metrics}. */
+(function () {
+  'use strict';
+  var PAIRS = [['left_shoulder', 'upperarm_l'], ['right_shoulder', 'upperarm_r'], ['left_elbow', 'lowerarm_l'], ['right_elbow', 'lowerarm_r'],
+    ['left_wrist', 'hand_l'], ['right_wrist', 'hand_r'], ['left_hip', 'thigh_l'], ['right_hip', 'thigh_r'], ['left_knee', 'calf_l'], ['right_knee', 'calf_r'],
+    ['left_ankle', 'foot_l'], ['right_ankle', 'foot_r']];
+  window.GS_SELFTEST = {
+    run: function (o) {
+      var cv = document.getElementById('c'), V, est, t0 = performance.now();
+      cv.width = o.width || 480; cv.height = o.height || 480;
+      return StarkSkinView.create(cv, {model: o.model, dist: o.dist || 3.6, camYaw: o.camYaw || 0, camPitch: o.camPitch == null ? 0.05 : o.camPitch}).then(function (v) {
+        V = v; V.rootMotion = false; V.anim.useRootMotion = false; V.follow = false; V.cam.target = o.target || [0, 0.95, 0]; // a webcam does not move
+        (o.clips || []).forEach(function (c) { V.anim.addClip(c); });
+        V.anim.play(o.play, {loop: true}); V.anim.update(0, V.world); V.draw();
+        est = new StarkMocap.MediaPipeEstimator(o.modelBase, {delegate: o.delegate || 'CPU', face: !!o.face});
+        return est.load();
+      }).then(function () {
+        var loadMs = performance.now() - t0, frames = [], err = [], hits = 0, n = o.frames || 30, fps = o.fps || 15, ts = 1, calib = [];
+        if (o.calibrate) { // the performer (here: the character) holds the T-pose first
+          V.anim.play(o.calibrate, {loop: true});
+          for (var c = 0; c < 8; c++) {
+            V.render(1 / fps); var cd = est.detect(cv, ts); ts += 1000 / fps;
+            if (cd.worldLandmarks) { cd.t = +(c * 1000 / fps).toFixed(2); calib.push(cd); }
+          }
+          V.anim.play(o.play, {loop: true});
+        }
+        for (var k = 0; k < n; k++) {
+          V.render(1 / fps);
+          var det = est.detect(cv, ts); ts += 1000 / fps;
+          var truth = {}; PAIRS.forEach(function (p) { truth[p[0]] = V.project(V.jointWorld(p[1])); });
+          var sh = [(truth.left_shoulder[0] + truth.right_shoulder[0]) / 2, (truth.left_shoulder[1] + truth.right_shoulder[1]) / 2];
+          var hp = [(truth.left_hip[0] + truth.right_hip[0]) / 2, (truth.left_hip[1] + truth.right_hip[1]) / 2], torso = Math.hypot(sh[0] - hp[0], sh[1] - hp[1]);
+          if (det.landmarks) {
+            hits++;
+            PAIRS.forEach(function (p) { var l = det.landmarks[StarkMocap.LANDMARKS.indexOf(p[0])], g = truth[p[0]]; err.push(Math.hypot(l.x - g[0], l.y - g[1]) / torso); });
+          }
+          det.t = +(k * 1000 / fps).toFixed(2); frames.push(det);
+        }
+        err.sort(function (a, b) { return a - b; });
+        var pck = err.filter(function (e) { return e < 0.2; }).length / Math.max(1, err.length);
+        return {take: {format: 'stark-mocap-take', version: 1, fps: fps, source: 'mediapipe-render', name: o.play + '_mediapipe',
+                       image: {width: cv.width, height: cv.height, mirrored: false}, frames: frames, calibration: calib},
+          metrics: {model_load_ms: Math.round(loadMs), frames: n, detected: hits, median_err_torso: err.length ? err[Math.floor(err.length / 2)] : null,
+            p90_err_torso: err.length ? err[Math.floor(err.length * 0.9)] : null, pck_0_2: pck, face_loaded: !!est.face, face_error: est.faceError || null,
+            ms_per_frame: Math.round((performance.now() - t0 - loadMs) / n)}};
+      });
+    },
+    // live webcam smoke test: a few seconds of camera -> landmarks only (no frame is kept, drawn or saved)
+    live: function (o) {
+      var video = document.createElement('video'), s = new StarkMocap.Session({rig: o.rig, modelBase: o.modelBase}), t0 = performance.now();
+      return s.useMediaPipe({delegate: o.delegate || 'CPU', face: !!o.face}).then(function () {
+        return navigator.mediaDevices.enumerateDevices();
+      }).then(function (devs) {
+        var cams = devs.filter(function (d) { return d.kind === 'videoinput'; }), pick = cams.filter(function (d) { return o.label && d.label.indexOf(o.label) >= 0; })[0];
+        var v = {width: 640, height: 480}; if (pick) v.deviceId = {exact: pick.deviceId};
+        return navigator.mediaDevices.getUserMedia({audio: false, video: v});
+      }).then(function (st) { video.srcObject = st; video.muted = true; return video.play().then(function () { return st; }); }).then(function (st) {
+        s.image = {width: video.videoWidth, height: video.videoHeight, mirrored: false}; s.record('live_smoke');
+        return new Promise(function (ok) {
+          var end = performance.now() + (o.seconds || 3) * 1000;
+          (function step() {
+            if (performance.now() >= end) { st.getTracks().forEach(function (t) { t.stop(); }); ok(); return; }
+            if (video.readyState >= 2) s.process(s.estimator.detect(video, performance.now()));
+            setTimeout(step, 33);
+          })();
+        });
+      }).then(function () {
+        var take = s.stop();
+        return {take: take, metrics: {frames: s.stats.frames, detected: s.stats.detected, width: s.image.width, height: s.image.height, seconds: (performance.now() - t0) / 1000}};
+      });
+    }
+  };
+})();
+</script>
+</body>
+</html>

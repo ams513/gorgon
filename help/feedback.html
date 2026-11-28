@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Send Feedback on Stark Products | Stark</title>
+<meta name="description" content="Tell me what broke or what you would like in Stark World Engine, Stark Quill or Stark Covenant. Nothing is sent from this page.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'sha256-n09GZ24aUVRvI5M+NloeG9888h0QVKRIGoPYsv2FTuE=' 'sha256-akyNNANqnckgbMofMD2dZJFPbUFW7Gin2QPBn/aTE78='; form-action 'none'; base-uri 'none'">
+<meta name="color-scheme" content="dark">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://starkforall.com/help/feedback.html">
+<script>(function(){var t=null;try{t=localStorage.getItem("stark-theme")}catch(e){}if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)})();</script>
+<style>
+:root{--bg:#000000;--surface:#0b0d10;--text:#E9EDF2;--muted:#b4bcc8;--accent:#9CC4FF;--accent-hover:#c4dbff;--gold:#9CC4FF;--gold-text:#9CC4FF;--field:#667184;--bad:#ff8a80;--on-accent:#000000;--border:#232830;--chip:#151a22;--warn-bg:#11151b;--warn-line:#7a8594;--code:#05070a;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,
+"Helvetica Neue",Arial,sans-serif}
+a{color:var(--accent)}a:hover{color:var(--accent-hover)}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex="-1"]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:8px;z-index:9;background:var(--surface);color:var(--text);padding:10px 16px;border:2px solid var(--accent);border-radius:8px}
+.skip:focus{left:16px}
+nav.crumbs a,aside.more a,.card li a{display:inline-block;min-height:24px;padding:2px 0}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header.top{border-bottom:1px solid var(--border);background:var(--surface)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;flex-wrap:wrap}
+.brand{font:600 18px/1.2 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;color:var(--text);text-decoration:none}
+.brand span{color:var(--gold-text)}
+nav.crumbs{font-size:14px;color:var(--muted);margin:24px 0 8px}
+nav.crumbs a{color:var(--muted)}
+h1{font:600 32px/1.2 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;margin:8px 0 12px}
+h2{font:600 21px/1.3 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;margin:32px 0 8px}
+.lede{font-size:18px;color:var(--muted);margin:0 0 8px}
+code{font:14px/1.4 ui-monospace,"Cascadia Mono",Consolas,monospace;background:var(--code);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+pre{background:var(--code);border:1px solid var(--border);border-radius:8px;padding:12px;overflow-x:auto}
+pre code{padding:0;background:none;overflow-wrap:normal}
+dl.faq dt{font-weight:600;margin-top:20px}dl.faq dd{margin:4px 0 0}
+.notice{background:var(--warn-bg);border-left:4px solid var(--warn-line);padding:12px 16px;border-radius:4px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px}
+.card h2{margin:0 0 4px;font-size:20px}.card p{margin:0 0 8px;color:var(--muted);font-size:15px}
+.card ul{margin:0;padding-left:18px}
+aside.more{margin:40px 0 0;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+aside.more h2{margin-top:0;font-size:18px}aside.more ul{margin:0;padding-left:18px}
+footer{margin:48px 0 0;border-top:1px solid var(--border);padding:24px 0 40px;color:var(--muted);font-size:14px}
+label{display:block;font-weight:600;margin:20px 0 6px}
+.hint{font-weight:400;color:var(--muted);font-size:14px}
+input,select,textarea{width:100%;font:inherit;color:var(--text);background:var(--surface);border:1px solid var(--field);
+border-radius:8px;padding:10px 12px}
+textarea{min-height:110px;resize:vertical}
+fieldset{border:0;padding:0;margin:20px 0 0}legend{font-weight:600;margin-bottom:6px}
+.choice{display:flex;gap:10px;align-items:center;font-weight:400;margin:2px 0;min-height:44px;cursor:pointer}.choice input{width:22px;height:22px;margin:0;flex:none;accent-color:var(--accent)}
+.req{font-weight:400;color:var(--muted)}.err{color:var(--text);background:var(--warn-bg);border-left:4px solid var(--warn-line);padding:8px 12px;border-radius:4px;margin:8px 0 0}
+[aria-invalid="true"]{border:2px solid var(--bad)}
+button{font:600 16px/1 system-ui,sans-serif;background:var(--accent);color:var(--on-accent);border:0;border-radius:8px;padding:12px 18px;min-height:44px;
+cursor:pointer;margin-top:24px}
+button.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent);margin-left:8px}
+[hidden]{display:none!important}
+</style>
+<!-- stark-share-meta -->
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stark">
+<meta property="og:title" content="Send Feedback on Stark Products | Stark">
+<meta property="og:description" content="Tell me what broke or what you would like in Stark World Engine, Stark Quill or Stark Covenant. Nothing is sent from this page.">
+<meta property="og:url" content="https://starkforall.com/help/feedback.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Send Feedback on Stark Products | Stark">
+<meta name="twitter:description" content="Tell me what broke or what you would like in Stark World Engine, Stark Quill or Stark Covenant. Nothing is sent from this page.">
+<meta property="og:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://starkforall.com/#organization", "name": "Stark", "url": "https://starkforall.com/", "logo": "https://starkforall.com/assets/brand/icon-512.png", "sameAs": ["https://ams513.itch.io/", "https://bsky.app/profile/did:plc:lhodhwljl2wi762f3t6wic7c", "https://github.com/ams513", "https://www.youtube.com/@starkforall"], "description": "Stark makes local-first software that helps people build, write and care for others on their own computers, with their work kept in their own hands."}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Stark", "item": "https://starkforall.com/"}, {"@type": "ListItem", "position": 2, "name": "Help", "item": "https://starkforall.com/help/index.html"}, {"@type": "ListItem", "position": 3, "name": "Tell me what broke, or what you'd like", "item": "https://starkforall.com/help/feedback.html"}]}]}</script>
+<!-- /stark-share-meta -->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap"><a class="brand" href="index.html">Stark <span>Help</span></a>
+<a href="../index.html">Back to the store</a></div></header>
+<main class="wrap" id="main" tabindex="-1">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Help</a> / Feedback</nav>
+<h1>Tell me what broke, or what you'd like</h1>
+<p class="lede">It's early and it's mostly just me, so I'd really like to hear what breaks or feels off. This page
+doesn't send anything anywhere. Fill it in, press <strong>Make my message</strong>, then paste the text into an email
+to <a href="mailto:hello@starkforall.com">hello@starkforall.com</a> or a comment on the product's itch.io page.</p>
+
+<form id="fb" action="#" novalidate>
+<label for="product">Which product? <span class="req">(required)</span></label>
+<select id="product" required aria-describedby="product-err phi">
+<option value="">Choose one</option>
+<option>Stark World Engine</option><option>Stark Quill</option><option>Stark Covenant</option>
+<option>The Stark store</option>
+</select>
+<p id="product-err" class="err" hidden>Choose the product this is about.</p>
+<p id="phi" class="notice" hidden>Stark Covenant: please leave out every patient detail (names, dates of birth,
+record numbers, notes). Describe the screen and the steps instead.</p>
+
+<label for="version">Version and computer <span class="hint">(About shows the version; for example "1.3.0 beta 1,
+Windows 11")</span></label>
+<input id="version" autocomplete="off">
+
+<fieldset><legend>What kind of message is it?</legend>
+<label class="choice"><input type="radio" name="kind" value="Problem" checked> Something broke or went wrong</label>
+<label class="choice"><input type="radio" name="kind" value="Request"> An idea or something I'd like added</label>
+<label class="choice"><input type="radio" name="kind" value="Question"> A question</label>
+<label class="choice"><input type="radio" name="kind" value="Praise"> Something I liked</label>
+</fieldset>
+
+<label for="what">In your own words <span class="req">(required)</span> <span class="hint">(what happened, or what you'd like)</span></label>
+<textarea id="what" required aria-describedby="what-err"></textarea>
+<p id="what-err" class="err" hidden>Write a few words about what happened or what you'd like.</p>
+
+<label for="doing">What were you doing just before? <span class="hint">(optional)</span></label>
+<textarea id="doing"></textarea>
+
+<label for="expected">What did you expect to happen? <span class="hint">(optional)</span></label>
+<input id="expected" autocomplete="off">
+
+<p class="hint">Please don't include passwords, licence keys, payment details, patient information or your book. If
+you'd like a reply, send it by email; I answer from hello@starkforall.com.</p>
+<button type="submit">Make my message</button>
+</form>
+
+<div id="out" hidden>
+<h2 id="out-h" tabindex="-1">Your message</h2>
+<p>Copy this and paste it into an email to <a href="mailto:hello@starkforall.com">hello@starkforall.com</a>, or into a comment on the itch.io
+page.</p>
+<label for="msg">Your message, ready to copy</label>
+<textarea id="msg" readonly rows="8"></textarea>
+<button type="button" id="copy">Copy</button><button type="button" class="ghost" id="again">Start again</button>
+<p id="copied" class="hint" role="status"></p>
+</div>
+
+<script>
+(function(){
+var f=document.getElementById('fb'),p=document.getElementById('product'),phi=document.getElementById('phi');
+function v(id){return (document.getElementById(id).value||'').replace(/\s+/g,' ').trim()}
+function dot(s){return s&&!/[.!?]$/.test(s)?s+'.':s}
+p.addEventListener('change',function(){phi.hidden=p.value!=='Stark Covenant'});
+f.addEventListener('submit',function(e){
+  e.preventDefault();
+  var bad=[];[['product',!p.value],['what',!v('what')]].forEach(function(x){var el=document.getElementById(x[0]),
+    er=document.getElementById(x[0]+'-err');el.setAttribute('aria-invalid',x[1]?'true':'false');er.hidden=!x[1];if(x[1])bad.push(el)});
+  if(bad.length){bad[0].focus();return}
+  var kind=(f.querySelector('input[name=kind]:checked')||{}).value||'Problem';
+  var lines=[dot(p.value+(v('version')?' '+v('version'):'')), kind+': '+dot(v('what'))];
+  if(v('doing'))lines.push('I was doing this: '+dot(v('doing')));
+  if(v('expected'))lines.push('I expected: '+dot(v('expected')));
+  document.getElementById('msg').value=lines.join('\n');
+  document.getElementById('out').hidden=false;f.hidden=true;document.getElementById('out-h').focus();
+});
+document.getElementById('copy').addEventListener('click',function(){
+  var m=document.getElementById('msg');m.select();
+  var c=document.getElementById('copied');function done(){c.textContent='Copied. Thank you for taking the time.'}
+  try{navigator.clipboard.writeText(m.value).then(done,function(){document.execCommand('copy');done()})}
+  catch(e){document.execCommand('copy');done()}
+});
+document.getElementById('again').addEventListener('click',function(){
+  f.reset();phi.hidden=true;f.hidden=false;document.getElementById('out').hidden=true;
+  document.getElementById('copied').textContent='';p.focus()});
+})();
+</script>
+
+</main>
+<footer><div class="wrap">Questions: <a href="mailto:hello@starkforall.com">hello@starkforall.com</a>. I read every message myself and reply
+within 2 business days. <a href="feedback.html">Tell me what broke or what you'd like</a>.</div></footer>
+</body>
+</html>

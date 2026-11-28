@@ -1,0 +1,89 @@
+Stark World Engine - bundled art credits
+All bundled art is CC0 1.0 (public domain dedication): free to use, including in games you sell.
+Thank you to these artists.
+
+Stylized Nature MegaKit [Standard]
+  by: Quaternius
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://quaternius.itch.io/stylized-nature-megakit
+  files: CommonTree 1, CommonTree 2, CommonTree 3, CommonTree 4, CommonTree 5, Pine 1, Pine 2, Pine 3, Pine 4, Pine 5, TwistedTree 1, TwistedTree 2, TwistedTree 3, DeadTree 1, DeadTree 2, DeadTree 3, Bush Common, Bush Common Flowers, Fern 1, Plant 1 Big, Plant 7, Plant 7 Big, Grass Common Short, Grass Common Tall, Grass Wispy Short, Grass Wispy Tall, Flower 3 Group, Flower 4 Group, Flower 3 Single, Clover 1, Clover 2, Mushroom Common, Mushroom Laetiporus, Rock Medium 1, Rock Medium 2, Rock Medium 3, Pebble Round 1, Pebble Round 2, Pebble Round 3, Pebble Square 1, Pebble Square 2, RockPath Round Small 1, RockPath Round Small 2, RockPath Round Small 3, RockPath Round Wide, RockPath Square Wide, Petal 1, Petal 2
+
+Medieval Village MegaKit [Standard]
+  by: Quaternius
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://quaternius.itch.io/medieval-village-megakit
+  files: Wall Plaster Straight, Wall Plaster Straight Base, Wall Plaster Door Round, Wall Plaster Door Flat, Wall Plaster Window Wide Round, Wall Plaster Window Thin Round, Wall Plaster Window Wide Flat, Wall Plaster WoodGrid, Wall UnevenBrick Straight, Wall UnevenBrick Door Round, Wall UnevenBrick Window Wide Round, Wall UnevenBrick Window Thin Round, Wall Arch, Corner Exterior Wood, Corner Exterior Brick, Corner ExteriorWide Wood, Corner ExteriorWide Brick, Floor WoodDark, Floor Brick, Floor UnevenBrick, Roof RoundTiles 4x4, Roof RoundTiles 4x6, Roof RoundTiles 6x6, Roof RoundTiles 6x8, Roof RoundTiles 4x8, Roof Front Brick4, Roof Front Brick6, Roof Front Brick8, Roof Tower RoundTiles, Roof Dormer RoundTile, Roof Log, Prop Chimney, Prop Chimney2, Prop Crate, Prop Wagon, Prop WoodenFence Single, Prop WoodenFence Extension1, Prop WoodenFence Extension2, Prop MetalFence Simple, Prop MetalFence Ornament, Prop Vine1, Prop Vine2, Prop Vine4, Prop Vine5, Prop Support, Prop Brick1, Prop Brick2, Prop Brick3, Prop ExteriorBorder Straight1, Prop ExteriorBorder Corner, Door 1 Round, Door 2 Round, Door 1 Flat, Door 4 Flat, DoorFrame Round Brick, DoorFrame Flat WoodDark, Window Wide Round1, Window Thin Round1, Window Wide Flat1, WindowShutters Wide Round Open, WindowShutters Thin Round Open, WindowShutters Wide Flat Closed, Stairs Exterior Straight, Stairs Exterior Platform, Stairs Exterior Sides, Balcony Simple Straight, Balcony Cross Straight, Overhang Plaster Long, Overhang Plaster Short, Overhang Roof Plaster
+
+Poly Haven HDRI skies
+  by: Greg Zaal (Original), Jarod Guest (Sky edits)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/kloppenheim_06_puresky
+  files: Kloppenheim 06 (Pure Sky)
+
+Poly Haven HDRI skies
+  by: Greg Zaal (Original), Jarod Guest (Sky edits)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/kloppenheim_02_puresky
+  files: Kloppenheim 02 (Pure Sky)
+
+Poly Haven HDRI skies
+  by: Jarod Guest (Sky Edits), Sergej Majboroda (Original)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/industrial_sunset_02_puresky
+  files: Industrial Sunset 02 (Pure Sky)
+
+Poly Haven HDRI skies
+  by: Greg Zaal (Original), Jarod Guest (Sky edits)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky
+  files: Kloofendal 48d Partly Cloudy (Pure Sky)
+
+Poly Haven PBR textures
+  by: Rob Tuytel (Photography, Processing), Rico Cilliers (Minor adjustment)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/forest_ground_04
+  files: Forest Ground 04
+
+Poly Haven PBR textures
+  by: Amal Kumar (All)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/rocky_terrain_02
+  files: Rocky Terrain 02
+
+Poly Haven PBR textures
+  by: Rob Tuytel (All)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/coast_sand_01
+  files: Coast Sand 01
+
+Poly Haven PBR textures
+  by: Rob Tuytel (All)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/snow_02
+  files: Snow 02
+
+Poly Haven PBR textures
+  by: Charlotte Baglioni (All)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/bark_willow_02
+  files: Bark Willow 02
+
+Poly Haven PBR textures
+  by: Rob Tuytel (All)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/castle_brick_07
+  files: Castle Brick 07
+
+Poly Haven PBR textures
+  by: Rob Tuytel (All)
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://polyhaven.com/a/roof_tiles_14
+  files: Roof Tiles 14
+
+Quaternius characters (dressed by Stark World Engine character_forge)
+  by: Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge
+  licence: CC0 1.0  https://creativecommons.org/publicdomain/zero/1.0/
+  source: https://quaternius.itch.io/universal-base-characters
+  files: Male Adventurer, Male Farmer, Male Baker, Male Elder, Male Guard, Male Merchant, Male Bandit, Female Adventurer, Female Farmer, Female Baker, Female Elder, Female Guard, Female Merchant, Female Bandit
+
+Animation clips: Quaternius Universal Animation Library [Standard], CC0 1.0, https://quaternius.itch.io/universal-animation-library

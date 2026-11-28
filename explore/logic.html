@@ -1,0 +1,1365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beyond True and False: Logic Explorer | Stark</title>
+<meta name="description" content="Build truth tables, watch the liar paradox flip, and switch off the rules of classical logic to see which formal systems remain.">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://starkforall.com/explore/logic.html">
+<style>
+/* Family names below are aliases: every face is self-hosted (../assets/fonts) or a local system font. */
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Cormorant";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Cormorant";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Spectral";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Spectral";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Crimson Pro";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Crimson Pro";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Syne";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Sora";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";src:local("Cascadia Mono"),local("Consolas"),local("Menlo"),local("DejaVu Sans Mono")}
+@font-face{font-family:"JetBrains Mono";src:local("Cascadia Mono"),local("Consolas"),local("Menlo"),local("DejaVu Sans Mono")}
+html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.ps-site{position:relative;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.25rem;padding-block:1.25rem calc(1.5rem + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:#0c0d12;color:#d6d9e0;font:500 .875rem/1.5 Inter,system-ui,sans-serif;border-top:1px solid #23262f}.ps-site a{color:inherit;text-underline-offset:3px}.ps-site a:focus-visible{outline:2px solid #d6d9e0;outline-offset:2px}
+</style>
+<style>
+/* Single dark-theme design: logic on blackboards */
+:root {
+  color-scheme: dark;
+
+  --bg: #111827;
+  --bg-deep: #0b1120;
+  --surface: #1a2332;
+  --surface-raised: #243044;
+  --surface-int: #2e3d54;
+  --border: #2e3d54;
+  --border-bright: #3d5068;
+
+  --text: #dde4ee;
+  --text-sec: #8c9bb5;
+  --text-dim: #5a6a84;
+
+  --truth: #60a5fa;
+  --valid: #7a8594;
+  --paradox: #9cc4ff;
+  --caution: #7a8594;
+  --synth: #9cc4ff;
+
+  --font-logic: 'Menlo', 'Cascadia Code', 'Fira Code', 'Consolas', 'Liberation Mono', monospace;
+  --font-body: -apple-system, 'Segoe UI', system-ui, Roboto, Helvetica, Arial, sans-serif;
+
+  --gap-xs: 0.25rem;
+  --gap-sm: 0.5rem;
+  --gap-md: 1rem;
+  --gap-lg: 1.5rem;
+  --gap-xl: 2.5rem;
+  --gap-2xl: 4rem;
+  --gap-3xl: 6rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg-deep);
+}
+::selection { background: rgba(96,165,250,0.3); color: #fff; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+a { color: var(--truth); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible, input:focus-visible,
+[role="button"]:focus-visible { outline: 2px solid var(--truth); outline-offset: 2px; }
+h1, h2, h3, h4 { text-wrap: balance; }
+
+/* Layout spine */
+.hero { position: relative; overflow: hidden; padding: var(--gap-3xl) 0 var(--gap-2xl); text-align: center; }
+.hero-canvas { position: absolute; inset: 0; pointer-events: none; }
+.hero-inner { position: relative; max-width: 50rem; margin: 0 auto; }
+.hero-eyebrow {
+  font-family: var(--font-logic);
+  font-size: 0.8125rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0 0 var(--gap-md);
+}
+.hero h1 {
+  font-family: var(--font-logic);
+  font-size: clamp(2rem, 5.5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--gap-sm);
+  color: var(--text);
+}
+.hero h1 .hl-g { color: var(--valid); }
+.hero h1 .hl-r { color: var(--paradox); }
+.hero-sub {
+  font-family: var(--font-logic);
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  color: var(--text-sec);
+  margin: 0 0 var(--gap-lg);
+}
+.hero-desc {
+  max-width: 36rem;
+  margin: 0 auto var(--gap-xl);
+  color: var(--text-sec);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.hero-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap-xs) var(--gap-md);
+}
+.hero-nav a {
+  font-family: var(--font-logic);
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  padding: var(--gap-xs) var(--gap-sm);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hero-nav a:hover { color: var(--text); border-color: var(--text-dim); text-decoration: none; }
+
+/* Sections */
+.section {
+  padding-block: var(--gap-2xl);
+  border-top: 1px solid var(--border);
+}
+.section-inner {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+.section-num {
+  font-family: var(--font-logic);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: var(--gap-sm);
+}
+.section-inner > h2 {
+  font-family: var(--font-logic);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 0 0 var(--gap-lg);
+  letter-spacing: -0.01em;
+}
+.section-inner > h3, .content-block > h3 {
+  font-family: var(--font-logic);
+  font-size: 1.1875rem;
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 0 0 var(--gap-md);
+  color: var(--text);
+}
+.content-block { margin-top: var(--gap-xl); }
+.content-block p, .section-inner > p { margin: 0 0 var(--gap-md); }
+.lead { font-size: 1.125rem; color: var(--text-sec); }
+
+/* Law cards */
+.law-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-md);
+  margin: var(--gap-lg) 0;
+}
+.law-card {
+  flex: 1 1 10rem;
+  padding: var(--gap-lg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-align: center;
+  background: var(--surface);
+}
+.law-symbol {
+  display: block;
+  font-family: var(--font-logic);
+  font-size: 1.375rem;
+  color: var(--valid);
+  margin-bottom: var(--gap-sm);
+}
+.law-name {
+  display: block;
+  font-family: var(--font-logic);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* Interactive panel shared */
+.panel {
+  margin-top: var(--gap-xl);
+  padding: var(--gap-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.panel h3 {
+  font-family: var(--font-logic);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin: 0 0 var(--gap-xs);
+}
+.panel-hint { font-size: 0.875rem; color: var(--text-sec); margin: 0 0 var(--gap-lg); }
+
+/* Logic Playground */
+.formula-bar {
+  font-family: var(--font-logic);
+  font-size: 1.25rem;
+  min-height: 2.75rem;
+  padding: var(--gap-sm) var(--gap-md);
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--valid);
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+}
+.formula-bar.error { color: var(--paradox); }
+.formula-bar .cursor { animation: blink 1s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--gap-xs); margin-top: var(--gap-sm); }
+.sym-btn, .act-btn {
+  font-family: var(--font-logic);
+  font-size: 0.9375rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--surface-raised);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.sym-btn:hover { background: var(--surface-int); border-color: var(--border-bright); }
+.act-btn { font-family: var(--font-body); }
+.act-btn.primary { background: var(--valid); color: #0a1628; border-color: var(--valid); font-weight: 600; }
+.act-btn.primary:hover { background: #7a8594; }
+.act-btn.secondary { color: var(--text-sec); }
+.act-btn.secondary:hover { background: var(--surface-int); }
+.tt-wrap { overflow-x: auto; margin-top: var(--gap-md); }
+.truth-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-logic);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+.truth-table th {
+  padding: 0.4rem 1rem;
+  text-align: center;
+  border-bottom: 2px solid var(--border-bright);
+  color: var(--text-sec);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.truth-table td {
+  padding: 0.35rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.truth-table tr:last-child td { border-bottom: none; }
+.tt-true { color: var(--valid); }
+.tt-false { color: var(--paradox); }
+.truth-table .result-col { font-weight: 600; }
+
+/* Liar Paradox Visualizer */
+.liar-box {
+  text-align: center;
+  padding: var(--gap-xl) var(--gap-md);
+}
+.liar-stmt {
+  font-family: var(--font-logic);
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+  font-style: italic;
+  transition: color 0.6s ease;
+  margin-bottom: var(--gap-md);
+}
+.liar-truth-label {
+  display: inline-block;
+  font-family: var(--font-logic);
+  font-size: 0.8125rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: var(--gap-xs) var(--gap-md);
+  border-radius: 3px;
+  transition: background 0.6s, color 0.6s;
+  margin-bottom: var(--gap-lg);
+}
+.liar-chain {
+  font-size: 0.9375rem;
+  color: var(--text-sec);
+  min-height: 3rem;
+  transition: opacity 0.3s;
+  line-height: 1.5;
+}
+.liar-chain .step-arrow { color: var(--text-dim); }
+.liar-controls { margin-top: var(--gap-md); }
+
+/* Paradox Generator */
+.pdx-input-row { display: flex; gap: var(--gap-sm); margin-bottom: var(--gap-md); }
+.pdx-input {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.pdx-input:focus { border-color: var(--truth); }
+.pdx-input::placeholder { color: var(--text-dim); }
+.pdx-result { min-height: 2rem; }
+.pdx-meter {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap-sm);
+  font-family: var(--font-logic);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.pdx-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  max-width: 12rem;
+}
+.pdx-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s, background 0.4s;
+}
+.pdx-desc { font-size: 0.9375rem; color: var(--text-sec); margin-top: var(--gap-sm); }
+.pdx-type { font-family: var(--font-logic); font-size: 0.875rem; margin-top: var(--gap-xs); }
+
+/* Russell notation */
+.notation-block {
+  margin: var(--gap-md) 0;
+  padding: var(--gap-md) var(--gap-lg);
+  background: var(--bg-deep);
+  border-left: 3px solid var(--paradox);
+  border-radius: 0 4px 4px 0;
+  font-family: var(--font-logic);
+  font-size: 1rem;
+  line-height: 1.8;
+  overflow-x: auto;
+}
+.notation-block .sym { color: var(--truth); }
+.notation-block .err { color: var(--paradox); }
+
+/* Explosion demo */
+.explosion-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-md);
+  margin: var(--gap-lg) 0;
+}
+.explosion-col {
+  padding: var(--gap-lg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+.explosion-col h4 {
+  font-family: var(--font-logic);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0 0 var(--gap-md);
+}
+.explosion-col.classical h4 { color: var(--paradox); }
+.explosion-col.para h4 { color: var(--synth); }
+.proof-step {
+  font-family: var(--font-logic);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--text-sec);
+  padding: var(--gap-xs) 0;
+}
+.proof-step.struck { text-decoration: line-through; color: var(--text-dim); }
+.proof-step.blocked { color: var(--paradox); font-weight: 600; }
+.proof-step.ok { color: var(--synth); }
+
+/* Catuṣkoṭi grid */
+.catuskoti {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin: var(--gap-lg) 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.catuskoti-cell {
+  padding: var(--gap-lg);
+  text-align: center;
+  background: var(--surface);
+}
+.catuskoti-cell .ck-label {
+  display: block;
+  font-family: var(--font-logic);
+  font-size: 1.125rem;
+  margin-bottom: var(--gap-xs);
+}
+.catuskoti-cell .ck-desc {
+  font-size: 0.8125rem;
+  color: var(--text-sec);
+}
+.ck-true .ck-label { color: var(--valid); }
+.ck-false .ck-label { color: var(--paradox); }
+.ck-both .ck-label { color: var(--synth); }
+.ck-neither .ck-label { color: var(--truth); }
+
+/* Structural rules panel */
+.rules-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-lg);
+}
+.rule-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-md);
+  padding: var(--gap-md);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: var(--gap-sm);
+  transition: border-color 0.2s, opacity 0.3s;
+}
+.rule-item.off { opacity: 0.5; border-color: transparent; }
+.rule-item.off .rule-notation { text-decoration: line-through; }
+.toggle-track {
+  position: relative;
+  width: 2.5rem;
+  height: 1.375rem;
+  flex-shrink: 0;
+  background: var(--surface-int);
+  border-radius: 0.6875rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.toggle-track.on { background: var(--valid); }
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.125rem;
+  height: 1.125rem;
+  background: var(--text);
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+.toggle-track.on .toggle-thumb { transform: translateX(1.125rem); }
+.rule-info { flex: 1; }
+.rule-label {
+  font-family: var(--font-logic);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: var(--gap-xs);
+}
+.rule-notation {
+  font-family: var(--font-logic);
+  font-size: 0.8125rem;
+  color: var(--text-sec);
+  transition: text-decoration 0.2s;
+}
+.rules-result-box {
+  padding: var(--gap-lg);
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.rr-system {
+  font-family: var(--font-logic);
+  font-size: 1.25rem;
+  margin-bottom: var(--gap-sm);
+  transition: color 0.3s;
+}
+.rr-desc { font-size: 0.9375rem; color: var(--text-sec); line-height: 1.6; }
+.rr-example {
+  margin-top: var(--gap-md);
+  padding: var(--gap-sm) var(--gap-md);
+  background: var(--surface);
+  border-radius: 4px;
+  font-family: var(--font-logic);
+  font-size: 0.8125rem;
+  color: var(--text-sec);
+}
+
+/* Quiz */
+.quiz-progress {
+  display: flex;
+  gap: var(--gap-xs);
+  margin-bottom: var(--gap-xl);
+}
+.quiz-dot {
+  width: 2rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background 0.3s;
+}
+.quiz-dot.done { background: var(--synth); }
+.quiz-dot.current { background: var(--text); }
+.quiz-q {
+  font-family: var(--font-logic);
+  font-size: 1.125rem;
+  line-height: 1.5;
+  margin-bottom: var(--gap-lg);
+}
+.quiz-opts { display: flex; flex-direction: column; gap: var(--gap-sm); }
+.quiz-opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  padding: var(--gap-md) var(--gap-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.quiz-opt:hover { border-color: var(--synth); background: var(--surface-raised); }
+.quiz-result-card {
+  text-align: center;
+  padding: var(--gap-xl) 0;
+}
+.qr-type {
+  font-family: var(--font-logic);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: var(--gap-sm);
+}
+.qr-name {
+  font-family: var(--font-logic);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 400;
+  margin-bottom: var(--gap-md);
+}
+.qr-desc { max-width: 32rem; margin: 0 auto var(--gap-lg); color: var(--text-sec); }
+.qr-restart {
+  font-family: var(--font-logic);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: var(--gap-sm) var(--gap-lg);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.qr-restart:hover { border-color: var(--text-dim); color: var(--text-sec); }
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: var(--gap-xl) 0 var(--gap-lg);
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--text-dim);
+}
+.site-footer a { color: var(--text-sec); }
+.footer-brand {
+  font-family: var(--font-logic);
+  letter-spacing: 0.08em;
+}
+.footer-links { margin-top: var(--gap-sm); display: flex; gap: var(--gap-md); justify-content: center; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .explosion-row { grid-template-columns: 1fr; }
+  .rules-layout { grid-template-columns: 1fr; }
+  .hero { padding: var(--gap-2xl) 0 var(--gap-xl); }
+  .section { padding-block: var(--gap-xl); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+<!-- stark-share-meta -->
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stark">
+<meta property="og:title" content="Beyond True and False: Logic Explorer | Stark">
+<meta property="og:description" content="Build truth tables, watch the liar paradox flip, and switch off the rules of classical logic to see which formal systems remain.">
+<meta property="og:url" content="https://starkforall.com/explore/logic.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Beyond True and False: Logic Explorer | Stark">
+<meta name="twitter:description" content="Build truth tables, watch the liar paradox flip, and switch off the rules of classical logic to see which formal systems remain.">
+<meta property="og:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://starkforall.com/#organization", "name": "Stark", "url": "https://starkforall.com/", "logo": "https://starkforall.com/assets/brand/icon-512.png", "sameAs": ["https://ams513.itch.io/", "https://bsky.app/profile/did:plc:lhodhwljl2wi762f3t6wic7c", "https://github.com/ams513", "https://www.youtube.com/@starkforall"], "description": "Stark makes local-first software that helps people build, write and care for others on their own computers, with their work kept in their own hands."}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Stark", "item": "https://starkforall.com/"}, {"@type": "ListItem", "position": 2, "name": "Explore", "item": "https://starkforall.com/explore/index.html"}, {"@type": "ListItem", "position": 3, "name": "Beyond True and False", "item": "https://starkforall.com/explore/logic.html"}]}]}</script>
+<!-- /stark-share-meta -->
+</head>
+<body>
+<header class="hero">
+  <canvas class="hero-canvas" id="bgCanvas"></canvas>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Stark</p>
+    <h1>Beyond <span class="hl-g">True</span> and <span class="hl-r">False</span></h1>
+    <p class="hero-sub">The Limits of Logic</p>
+    <p class="hero-desc">Every system of reasoning has a breaking point. From Aristotle's bedrock to paradoxes that shatter it, from logics that accept contradiction to frameworks where identity itself fails. This is what happens at the edge.</p>
+    <nav class="hero-nav">
+      <a href="#classical">Classical</a>
+      <a href="#cracks">The Cracks</a>
+      <a href="#paraconsistent">Paraconsistent</a>
+      <a href="#substructural">Substructural</a>
+      <a href="#quiz">The Quiz</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ========== I. CLASSICAL LOGIC ========== -->
+<section class="section" id="classical">
+<div class="section-inner">
+  <span class="section-num">I</span>
+  <h2>Classical Logic</h2>
+  <p class="lead">Two truth values. Three laws. The foundation of Western reasoning for over two thousand years.</p>
+  <p>Classical logic runs on a strict binary: every well-formed proposition is either true or false, never both, never neither. From Aristotle's syllogisms to the transistors in your phone, the same three laws hold the whole structure together.</p>
+
+  <div class="law-cards">
+    <div class="law-card">
+      <span class="law-symbol">A = A</span>
+      <span class="law-name">Identity</span>
+    </div>
+    <div class="law-card">
+      <span class="law-symbol">&not;(P &and; &not;P)</span>
+      <span class="law-name">Non-Contradiction</span>
+    </div>
+    <div class="law-card">
+      <span class="law-symbol">P &or; &not;P</span>
+      <span class="law-name">Excluded Middle</span>
+    </div>
+  </div>
+
+  <p>Everything in classical logic follows from these. Modus ponens, contraposition, proof by contradiction, De Morgan's laws, all built on the same bedrock. It works, beautifully and reliably, until it doesn't.</p>
+
+  <div class="panel" id="playground">
+    <h3>Logic Playground</h3>
+    <p class="panel-hint">Build a proposition with P, Q, and logical connectives. Hit Evaluate to see its truth table.</p>
+    <div class="formula-bar" id="formulaBar"><span class="cursor">|</span></div>
+    <div class="btn-row">
+      <button class="sym-btn" onclick="addSym('P')">P</button>
+      <button class="sym-btn" onclick="addSym('Q')">Q</button>
+      <button class="sym-btn" onclick="addSym(' ∧ ')">&and;</button>
+      <button class="sym-btn" onclick="addSym(' ∨ ')">&or;</button>
+      <button class="sym-btn" onclick="addSym('¬')">&not;</button>
+      <button class="sym-btn" onclick="addSym(' → ')">&rarr;</button>
+      <button class="sym-btn" onclick="addSym(' ↔ ')">&harr;</button>
+      <button class="sym-btn" onclick="addSym('(')">(</button>
+      <button class="sym-btn" onclick="addSym(')')">)</button>
+    </div>
+    <div class="btn-row">
+      <button class="act-btn secondary" onclick="clearFormula()">Clear</button>
+      <button class="act-btn secondary" onclick="backspace()">Back</button>
+      <button class="act-btn primary" onclick="evalFormula()">Evaluate</button>
+    </div>
+    <div id="ttOut"></div>
+  </div>
+</div>
+</section>
+
+<!-- ========== II. THE CRACKS ========== -->
+<section class="section" id="cracks">
+<div class="section-inner">
+  <span class="section-num">II</span>
+  <h2>The Cracks</h2>
+  <p class="lead">Classical logic is powerful. It is also incomplete, and in places, self-undermining.</p>
+
+  <div class="content-block">
+    <h3>G&ouml;del's Incompleteness</h3>
+    <p>In 1931, Kurt G&ouml;del proved that any formal system strong enough to do basic arithmetic will contain true statements it cannot prove. The first theorem shattered the dream of a complete mathematics. The second went further: such a system cannot even prove its own consistency.</p>
+    <p>This isn't a failure of ingenuity. G&ouml;del showed it's structural. No matter how many axioms you add, new unprovable truths appear. Logic has built-in blind spots, not because we haven't looked hard enough, but because no system powerful enough to describe itself can fully know itself.</p>
+  </div>
+
+  <div class="content-block">
+    <h3>The Liar Paradox</h3>
+    <p>"This statement is false." If it's true, then what it claims holds, it's false. If it's false, then its claim fails, it's true. The evaluation never settles. It oscillates forever, a logical perpetual motion machine that has haunted philosophy since Eubulides of Miletus stated it around 400 BCE.</p>
+
+    <div class="panel" id="liarViz">
+      <div class="liar-box">
+        <div class="liar-stmt" id="liarStmt">"This statement is false"</div>
+        <div class="liar-truth-label" id="liarLabel">TRUE</div>
+        <div class="liar-chain" id="liarChain"></div>
+        <div class="liar-controls">
+          <button class="act-btn secondary" id="liarToggle" onclick="toggleLiar()">Pause</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3>Russell's Paradox</h3>
+    <p>In 1901, Bertrand Russell asked a question that nearly derailed the foundations of mathematics. Consider the set of all sets that don't contain themselves. Call it R.</p>
+    <div class="notation-block">
+      <span class="sym">R</span> = { x | x &notin; x }<br>
+      Does <span class="sym">R</span> &isin; <span class="sym">R</span>?<br>
+      If yes &rarr; by definition, <span class="err">R &notin; R</span><br>
+      If no &rarr; by definition, <span class="err">R &isin; R</span>
+    </div>
+    <p>Naive set theory allows you to form this set. The paradox forced a complete rebuild of the foundations. Zermelo-Fraenkel set theory, type theory, and Russell's own <em>Principia Mathematica</em> were all responses to this single question.</p>
+  </div>
+
+  <div class="panel" id="paradoxGen">
+    <h3>Paradox Generator</h3>
+    <p class="panel-hint">Type a statement. The analyzer checks for self-reference, negation loops, and paradoxical structure.</p>
+    <div class="pdx-input-row">
+      <input type="text" class="pdx-input" id="pdxInput" placeholder="This statement is false..." onkeydown="if(event.key==='Enter')analyzePdx()">
+      <button class="act-btn primary" onclick="analyzePdx()" style="background:var(--truth);border-color:var(--truth)">Analyze</button>
+    </div>
+    <div class="pdx-result" id="pdxResult"></div>
+  </div>
+</div>
+</section>
+
+<!-- ========== III. PARACONSISTENT WORLDS ========== -->
+<section class="section" id="paraconsistent">
+<div class="section-inner">
+  <span class="section-num">III</span>
+  <h2>Paraconsistent Worlds</h2>
+  <p class="lead">What if, instead of running from contradictions, we let some through?</p>
+
+  <div class="content-block">
+    <h3>True Contradictions</h3>
+    <p>Graham Priest, the most prominent advocate of dialetheism, argues that some statements are genuinely both true and false. The Liar Paradox isn't a bug, it's a window into the actual structure of truth. In Priest's logic LP, a contradiction doesn't destroy the system. The key insight: reject the explosion principle.</p>
+  </div>
+
+  <div class="content-block">
+    <h3>Defusing Explosion</h3>
+    <p>In classical logic, a single contradiction lets you prove anything. This is the principle of explosion: <em>ex contradictione quodlibet</em>. Paraconsistent logic blocks the deduction at step 4, keeping contradictions contained.</p>
+    <div class="explosion-row">
+      <div class="explosion-col classical">
+        <h4>Classical (Explosion)</h4>
+        <div class="proof-step">1. P &and; &not;P &nbsp;&nbsp;&nbsp;<span style="color:var(--text-dim)">(assume)</span></div>
+        <div class="proof-step">2. P &nbsp;&nbsp;&nbsp;<span style="color:var(--text-dim)">(from 1)</span></div>
+        <div class="proof-step">3. P &or; Q &nbsp;&nbsp;&nbsp;<span style="color:var(--text-dim)">(from 2)</span></div>
+        <div class="proof-step">4. &not;P &nbsp;&nbsp;&nbsp;<span style="color:var(--text-dim)">(from 1)</span></div>
+        <div class="proof-step blocked">5. Q &nbsp;&nbsp;&nbsp;(from 3, 4, anything follows)</div>
+      </div>
+      <div class="explosion-col para">
+        <h4>Paraconsistent</h4>
+        <div class="proof-step">1. P &and; &not;P &nbsp;&nbsp;&nbsp;<span style="color:var(--text-dim)">(assume)</span></div>
+        <div class="proof-step">2. P &nbsp;&nbsp;&nbsp;<span style="color:var(--text-dim)">(from 1)</span></div>
+        <div class="proof-step">3. P &or; Q &nbsp;&nbsp;&nbsp;<span style="color:var(--text-dim)">(from 2)</span></div>
+        <div class="proof-step">4. &not;P &nbsp;&nbsp;&nbsp;<span style="color:var(--text-dim)">(from 1)</span></div>
+        <div class="proof-step ok">5. &ndash; &nbsp;&nbsp;(disjunctive syllogism blocked)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3>The Catu&#x1e63;ko&#x1e6d;i</h3>
+    <p>Buddhist logicians arrived here two millennia before Priest. The Catu&#x1e63;ko&#x1e6d;i (four corners), central to N&#x101;g&#x101;rjuna's M&#x16b;lamadhyamakak&#x101;rik&#x101;, holds that a proposition admits four positions. Western logic collapses them to two.</p>
+    <div class="catuskoti">
+      <div class="catuskoti-cell ck-true">
+        <span class="ck-label">True</span>
+        <span class="ck-desc">The statement holds</span>
+      </div>
+      <div class="catuskoti-cell ck-false">
+        <span class="ck-label">False</span>
+        <span class="ck-desc">The statement fails</span>
+      </div>
+      <div class="catuskoti-cell ck-both">
+        <span class="ck-label">Both</span>
+        <span class="ck-desc">True and false together</span>
+      </div>
+      <div class="catuskoti-cell ck-neither">
+        <span class="ck-label">Neither</span>
+        <span class="ck-desc">Transcends the categories</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3>The Extremes</h3>
+    <p><strong>Trivialism</strong> takes paraconsistency to its logical endpoint: everything is true. Every proposition, every contradiction, every absurdity. It's the singularity of logic, a system where inference collapses because there's nothing left to distinguish.</p>
+    <p><strong>Ultra-intuitionism</strong> runs the other way. Alexander Yessenin-Volpin argued that even standard arithmetic outruns meaningful reasoning. There's a largest number we can actually reach, and beyond it mathematics is empty formalism. Where trivialism says everything is true, ultra-intuitionism says almost nothing is.</p>
+  </div>
+</div>
+</section>
+
+<!-- ========== IV. SUBSTRUCTURAL COLLAPSE ========== -->
+<section class="section" id="substructural">
+<div class="section-inner">
+  <span class="section-num">IV</span>
+  <h2>Substructural Collapse</h2>
+  <p class="lead">What if the problem isn't truth values at all, but the rules of inference themselves?</p>
+  <p>Classical and even paraconsistent logics keep three structural rules that most people never question. Substructural logics ask: what happens if we drop them?</p>
+
+  <div class="panel" id="rulesPanel">
+    <h3>Break the Rules</h3>
+    <p class="panel-hint">Toggle structural rules on and off. Watch how the landscape of valid reasoning changes.</p>
+    <div class="rules-layout">
+      <div class="rules-toggles">
+        <div class="rule-item" id="rule-ref">
+          <div class="toggle-track on" id="tog-ref" tabindex="0" role="switch" aria-checked="true" aria-label="Toggle reflexivity" onclick="flipRule('ref')" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();flipRule('ref')}">
+            <div class="toggle-thumb"></div>
+          </div>
+          <div class="rule-info">
+            <div class="rule-label">Reflexivity</div>
+            <div class="rule-notation">A &vdash; A</div>
+          </div>
+        </div>
+        <div class="rule-item" id="rule-con">
+          <div class="toggle-track on" id="tog-con" tabindex="0" role="switch" aria-checked="true" aria-label="Toggle contraction" onclick="flipRule('con')" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();flipRule('con')}">
+            <div class="toggle-thumb"></div>
+          </div>
+          <div class="rule-info">
+            <div class="rule-label">Contraction</div>
+            <div class="rule-notation">A, A &vdash; B &rArr; A &vdash; B</div>
+          </div>
+        </div>
+        <div class="rule-item" id="rule-wkn">
+          <div class="toggle-track on" id="tog-wkn" tabindex="0" role="switch" aria-checked="true" aria-label="Toggle weakening" onclick="flipRule('wkn')" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();flipRule('wkn')}">
+            <div class="toggle-thumb"></div>
+          </div>
+          <div class="rule-info">
+            <div class="rule-label">Weakening</div>
+            <div class="rule-notation">A &vdash; B &rArr; A, C &vdash; B</div>
+          </div>
+        </div>
+      </div>
+      <div class="rules-result-box" id="rulesResult"></div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3>Schr&ouml;dinger Logic</h3>
+    <p>When reflexivity fails, a thing is no longer necessarily identical to itself. This isn't metaphor. Erwin Schr&ouml;dinger observed that quantum particles genuinely lack self-identity, two electrons in the same state aren't "two things that happen to be alike" but literally indistinguishable in a way classical logic can't express. Non-reflexive logics formalize this: <em>A &nvdash; A</em> becomes a feature, not a bug.</p>
+  </div>
+
+  <div class="content-block">
+    <h3>Linear Logic</h3>
+    <p>Jean-Yves Girard's linear logic (1987) treats propositions as resources. You can't copy a premise or throw one away; each must be used exactly once. This turns logic into something like a conservation law. It has deep connections to concurrency in computer science, quantum computing, and game semantics. Where classical logic asks "is this true?", linear logic asks "can this be done with what we have?"</p>
+  </div>
+</div>
+</section>
+
+<!-- ========== V. WHAT LOGIC ARE YOU? ========== -->
+<section class="section" id="quiz">
+<div class="section-inner">
+  <span class="section-num">V</span>
+  <h2>What Logic Are You?</h2>
+  <p class="lead">Five questions. Four possible logics. Find out where your reasoning lives.</p>
+  <div class="panel" id="quizBox"></div>
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-brand">Built by Stark</div>
+  <div class="footer-links">
+    <a href="https://ams513.itch.io/stark-world-engine?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=logic" target="_blank" rel="noopener noreferrer">Stark World Engine</a>
+  <p class="trust-foot" data-tc="foot"><a href="../trust.html" lang="en">Trust Center</a></p></div>
+</footer>
+
+<script>
+/* ===== CANVAS BACKGROUND ===== */
+(function() {
+  var canvas = document.getElementById('bgCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var syms = ['∧','∨','¬','→','↔','∀','∃','⊢','⊥','⊤','∈','∅','λ','⊗','⊕'];
+  var particles = [];
+  var COUNT = 30;
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize() {
+    canvas.width = canvas.parentElement.offsetWidth;
+    canvas.height = canvas.parentElement.offsetHeight;
+  }
+  function spawn(full) {
+    return {
+      x: Math.random() * canvas.width,
+      y: full ? Math.random() * canvas.height : canvas.height + 20,
+      s: syms[Math.floor(Math.random() * syms.length)],
+      sz: 14 + Math.random() * 18,
+      a: 0.03 + Math.random() * 0.05,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: -0.12 - Math.random() * 0.25
+    };
+  }
+  for (var i = 0; i < COUNT; i++) particles.push(spawn(true));
+  resize();
+  window.addEventListener('resize', resize);
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var j = 0; j < particles.length; j++) {
+      var p = particles[j];
+      ctx.font = p.sz + 'px monospace';
+      ctx.fillStyle = 'rgba(148,163,184,' + p.a + ')';
+      ctx.fillText(p.s, p.x, p.y);
+      if (!reducedMotion) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.y < -p.sz) particles[j] = spawn(false);
+      }
+    }
+    if (!reducedMotion) requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ===== LOGIC PLAYGROUND ===== */
+var formula = '';
+var formulaBar = document.getElementById('formulaBar');
+
+function renderFormula() {
+  formulaBar.classList.remove('error');
+  formulaBar.innerHTML = (formula || '') + '<span class="cursor">|</span>';
+}
+function addSym(s) { formula += s; renderFormula(); }
+function clearFormula() { formula = ''; renderFormula(); document.getElementById('ttOut').innerHTML = ''; }
+function backspace() {
+  if (!formula) return;
+  /* remove last meaningful token */
+  var trimmed = formula.replace(/\s+$/, '');
+  var last = trimmed.length - 1;
+  var ch = trimmed[last];
+  if (' ∧∨→↔'.indexOf(ch) > -1) {
+    /* operator might have surrounding spaces */
+    formula = formula.replace(/\s*.\s*$/, '');
+  } else {
+    formula = formula.slice(0, -1);
+  }
+  renderFormula();
+}
+
+function tokenize(str) {
+  var t = [], i = 0;
+  while (i < str.length) {
+    var c = str[i];
+    if (c === ' ') { i++; continue; }
+    if (c === 'P' || c === 'Q') { t.push({t:'var',v:c}); i++; }
+    else if (c === '¬') { t.push({t:'not'}); i++; }
+    else if (c === '∧') { t.push({t:'and'}); i++; }
+    else if (c === '∨') { t.push({t:'or'}); i++; }
+    else if (c === '→') { t.push({t:'imp'}); i++; }
+    else if (c === '↔') { t.push({t:'iff'}); i++; }
+    else if (c === '(') { t.push({t:'lp'}); i++; }
+    else if (c === ')') { t.push({t:'rp'}); i++; }
+    else { throw new Error('Unknown symbol: ' + c); }
+  }
+  return t;
+}
+
+function parse(tokens) {
+  var pos = 0;
+  function peek() { return tokens[pos]; }
+  function eat() { return tokens[pos++]; }
+  function pIff() {
+    var l = pImp();
+    while (peek() && peek().t === 'iff') { eat(); l = {t:'iff',l:l,r:pImp()}; }
+    return l;
+  }
+  function pImp() {
+    var l = pOr();
+    while (peek() && peek().t === 'imp') { eat(); l = {t:'imp',l:l,r:pOr()}; }
+    return l;
+  }
+  function pOr() {
+    var l = pAnd();
+    while (peek() && peek().t === 'or') { eat(); l = {t:'or',l:l,r:pAnd()}; }
+    return l;
+  }
+  function pAnd() {
+    var l = pNot();
+    while (peek() && peek().t === 'and') { eat(); l = {t:'and',l:l,r:pNot()}; }
+    return l;
+  }
+  function pNot() {
+    if (peek() && peek().t === 'not') { eat(); return {t:'not',o:pNot()}; }
+    return pAtom();
+  }
+  function pAtom() {
+    var tk = peek();
+    if (!tk) throw new Error('Unexpected end of expression');
+    if (tk.t === 'var') { eat(); return {t:'var',n:tk.v}; }
+    if (tk.t === 'lp') {
+      eat();
+      var e = pIff();
+      if (!peek() || peek().t !== 'rp') throw new Error('Missing closing parenthesis');
+      eat();
+      return e;
+    }
+    throw new Error('Expected variable or (');
+  }
+  var ast = pIff();
+  if (pos < tokens.length) throw new Error('Unexpected token after expression');
+  return ast;
+}
+
+function ev(n, e) {
+  switch(n.t) {
+    case 'var': return e[n.n];
+    case 'not': return !ev(n.o, e);
+    case 'and': return ev(n.l, e) && ev(n.r, e);
+    case 'or':  return ev(n.l, e) || ev(n.r, e);
+    case 'imp': return !ev(n.l, e) || ev(n.r, e);
+    case 'iff': return ev(n.l, e) === ev(n.r, e);
+  }
+}
+
+function getVars(n) {
+  if (n.t === 'var') return [n.n];
+  if (n.t === 'not') return getVars(n.o);
+  return getVars(n.l).concat(getVars(n.r));
+}
+
+function evalFormula() {
+  if (!formula.trim()) return;
+  try {
+    var tokens = tokenize(formula);
+    var ast = parse(tokens);
+    var varSet = {};
+    getVars(ast).forEach(function(v){ varSet[v] = true; });
+    var vars = Object.keys(varSet).sort();
+    if (vars.length === 0) vars = ['P'];
+
+    var rows = [];
+    var combos = 1 << vars.length;
+    for (var i = 0; i < combos; i++) {
+      var env = {};
+      for (var j = 0; j < vars.length; j++) {
+        env[vars[j]] = !!(i >> (vars.length - 1 - j) & 1);
+      }
+      rows.push({ env: env, result: ev(ast, env) });
+    }
+
+    /* render table */
+    var html = '<div class="tt-wrap"><table class="truth-table"><thead><tr>';
+    vars.forEach(function(v) { html += '<th>' + v + '</th>'; });
+    html += '<th>' + formula.trim().replace(/</g,'&lt;') + '</th></tr></thead><tbody>';
+    rows.forEach(function(r) {
+      html += '<tr>';
+      vars.forEach(function(v) {
+        var val = r.env[v];
+        html += '<td class="' + (val ? 'tt-true' : 'tt-false') + '">' + (val ? 'T' : 'F') + '</td>';
+      });
+      var rc = r.result;
+      html += '<td class="result-col ' + (rc ? 'tt-true' : 'tt-false') + '">' + (rc ? 'T' : 'F') + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    document.getElementById('ttOut').innerHTML = html;
+  } catch(e) {
+    formulaBar.classList.add('error');
+    formulaBar.innerHTML = e.message;
+    setTimeout(renderFormula, 2000);
+  }
+}
+
+/* ===== LIAR PARADOX VISUALIZER ===== */
+var liarRunning = true;
+var liarPhase = 0;
+var liarStmt = document.getElementById('liarStmt');
+var liarLabel = document.getElementById('liarLabel');
+var liarChain = document.getElementById('liarChain');
+var liarSteps = [
+  { label: 'TRUE', color: 'var(--valid)', bg: 'rgba(74,222,128,0.12)',
+    chain: '<span class="step-arrow">→</span> If true, then "is false" holds → the statement is <strong style="color:var(--paradox)">false</strong>' },
+  { label: 'FALSE', color: 'var(--paradox)', bg: 'rgba(248,113,113,0.12)',
+    chain: '<span class="step-arrow">→</span> If false, then "is false" fails → the statement is <strong style="color:var(--valid)">true</strong>' }
+];
+
+function liarTick() {
+  if (!liarRunning) return;
+  var step = liarSteps[liarPhase % 2];
+  liarStmt.style.color = step.color;
+  liarLabel.textContent = step.label;
+  liarLabel.style.background = step.bg;
+  liarLabel.style.color = step.color;
+  liarChain.innerHTML = step.chain;
+  liarPhase++;
+}
+liarTick();
+var liarInterval = setInterval(liarTick, 2200);
+
+function toggleLiar() {
+  liarRunning = !liarRunning;
+  document.getElementById('liarToggle').textContent = liarRunning ? 'Pause' : 'Resume';
+  if (liarRunning) liarTick();
+}
+
+/* ===== PARADOX GENERATOR ===== */
+function analyzePdx() {
+  var input = document.getElementById('pdxInput').value.trim();
+  var out = document.getElementById('pdxResult');
+  if (!input) { out.innerHTML = ''; return; }
+
+  var lower = input.toLowerCase();
+  var selfRef = /\b(this\s+(statement|sentence|proposition|claim|assertion)|itself|i\s+am)\b/i.test(input);
+  var negation = /\b(not|false|isn'?t|doesn'?t|never|no\s|un\w{2,}|im(?:possible|provable)|wrong|untrue|lie[sd]?|lying|deny|denies)\b/i.test(input);
+  var truthPred = /\b(true|truth|false|falsehood|valid|invalid|provable|unprovable|decidable)\b/i.test(input);
+  var setPat = /\b(set|collection|class|group)\s+(of\s+)?(all|every)/i.test(input) || /\bcontains?\s+(itself|themselves)/i.test(input);
+  var totality = /\b(all|every|everything|nothing|nobody|no\s+one|always|never)\b/i.test(input);
+
+  var score = 0;
+  var flags = [];
+  if (selfRef) { score += 3; flags.push('Self-referential'); }
+  if (negation) { score += 2; flags.push('Contains negation'); }
+  if (truthPred) { score += 2; flags.push('References truth/falsity'); }
+  if (setPat) { score += 3; flags.push('Set-theoretic structure'); }
+  if (totality && selfRef) { score += 1; flags.push('Universal scope'); }
+
+  var level, levelColor, pct, typeText, desc;
+  if (score >= 7) {
+    level = 'CRITICAL'; levelColor = 'var(--paradox)'; pct = 100;
+    typeText = setPat ? 'Russell-type' : 'Liar-type';
+    desc = 'This statement has the structure of a genuine paradox. Self-reference combined with ' +
+           (setPat ? 'set membership creates a Russell-class antinomy.' : 'a truth predicate and negation creates a Liar-class antinomy.');
+  } else if (score >= 5) {
+    level = 'HIGH'; levelColor = 'var(--caution)'; pct = 75;
+    typeText = selfRef && truthPred ? 'Curry-type' : 'Proto-paradox';
+    desc = 'Strong paradoxical potential. The ingredients for a genuine antinomy are present, though the phrasing may need tightening to close the loop.';
+  } else if (score >= 3) {
+    level = 'MEDIUM'; levelColor = 'var(--truth)'; pct = 45;
+    typeText = selfRef ? 'Self-referential' : 'Semantic tension';
+    desc = 'Some paradoxical features, but the full self-referential loop isn\'t closed. ' +
+           (selfRef ? 'Try adding a truth predicate or negation.' : 'Try making the statement refer to itself.');
+  } else {
+    level = 'LOW'; levelColor = 'var(--text-dim)'; pct = 15;
+    typeText = 'Non-paradoxical';
+    desc = 'No significant paradoxical structure detected. To build a paradox, you typically need self-reference combined with negation or a truth predicate.';
+  }
+
+  var html = '<div class="pdx-meter"><span style="color:' + levelColor + '">' + level + '</span>' +
+    '<div class="pdx-bar"><div class="pdx-bar-fill" style="width:' + pct + '%;background:' + levelColor + '"></div></div></div>';
+  if (flags.length) {
+    html += '<div class="pdx-type" style="color:' + levelColor + '">' + typeText + ' – ' + flags.join(', ') + '</div>';
+  }
+  html += '<div class="pdx-desc">' + desc + '</div>';
+  out.innerHTML = html;
+}
+
+/* ===== BREAK THE RULES ===== */
+var rules = { ref: true, con: true, wkn: true };
+var systems = {
+  'TTT': { name: 'Classical Logic', color: 'var(--valid)',
+    desc: 'All structural rules hold. Identity, duplication, and irrelevance are all permitted. This is the logic you learned in school.',
+    ex: 'A ⊢ A ✔ &nbsp; A, A ⊢ B = A ⊢ B ✔ &nbsp; A ⊢ B ⇒ A, C ⊢ B ✔' },
+  'FTT': { name: 'Non-Reflexive Logic', color: 'var(--truth)',
+    desc: 'Identity fails. A is not necessarily A. Schrödinger logic lives here: quantum particles that lack self-identity, objects whose individuality dissolves.',
+    ex: 'A ⊬ A &nbsp; (a thing need not be identical to itself)' },
+  'TFT': { name: 'Affine Logic', color: 'var(--truth)',
+    desc: 'You can discard premises but not duplicate them. Each assumption is at most a one-use resource. Used in some models of quantum computation.',
+    ex: 'A, A ⊢ B ≠ A ⊢ B &nbsp; (can\'t reuse A)' },
+  'TTF': { name: 'Relevant Logic', color: 'var(--caution)',
+    desc: 'Every premise must actually matter to the conclusion. No smuggling in irrelevant assumptions. Anderson and Belnap\'s logic of entailment.',
+    ex: 'A ⊢ B ⇏ A, C ⊢ B &nbsp; (C must be relevant)' },
+  'TFF': { name: 'Linear Logic', color: 'var(--synth)',
+    desc: 'Girard\'s resource logic. Premises are consumed exactly once, no duplication, no waste. Propositions behave like physical resources, not eternal truths.',
+    ex: 'Each premise used exactly once. ¥A = unlimited A (explicitly marked).' },
+  'FTF': { name: 'Non-Reflexive Relevant', color: 'var(--paradox)',
+    desc: 'Identity fails and irrelevance is forbidden. A thing need not be itself, and every premise must earn its place. Deep substructural territory.',
+    ex: 'A ⊬ A, and every premise must connect to the conclusion.' },
+  'FFT': { name: 'Non-Reflexive Affine', color: 'var(--paradox)',
+    desc: 'No identity, no duplication. You can drop premises but not reuse them, and nothing is guaranteed to be itself. Approaches the limits of coherent reasoning.',
+    ex: 'No premise reuse, no self-identity, but unused premises are permitted.' },
+  'FFF': { name: 'Minimal Substructural', color: 'var(--paradox)',
+    desc: 'Every structural rule broken. No identity, no duplication, no irrelevance. The most austere framework in which deduction is still recognizable.',
+    ex: 'All bets are off. Only the logical connectives themselves remain.' }
+};
+
+function flipRule(r) {
+  rules[r] = !rules[r];
+  var tog = document.getElementById('tog-' + r);
+  var item = document.getElementById('rule-' + r);
+  if (rules[r]) { tog.classList.add('on'); tog.setAttribute('aria-checked','true'); item.classList.remove('off'); }
+  else { tog.classList.remove('on'); tog.setAttribute('aria-checked','false'); item.classList.add('off'); }
+  updateRules();
+}
+
+function updateRules() {
+  var key = (rules.ref ? 'T' : 'F') + (rules.con ? 'T' : 'F') + (rules.wkn ? 'T' : 'F');
+  var sys = systems[key];
+  var box = document.getElementById('rulesResult');
+  box.innerHTML = '<div class="rr-system" style="color:' + sys.color + '">' + sys.name + '</div>' +
+    '<div class="rr-desc">' + sys.desc + '</div>' +
+    '<div class="rr-example">' + sys.ex + '</div>';
+}
+updateRules();
+
+/* ===== QUIZ ===== */
+var quizData = [
+  { q: '"A cat is either on the mat or not on the mat." Your reaction?',
+    opts: [
+      { text: 'Obviously true. That\'s just how things are.', type: 'classical' },
+      { text: 'True, but only if we can actually check.', type: 'intuitionistic' },
+      { text: 'Could be both, what if the cat is half on and half off?', type: 'paraconsistent' },
+      { text: 'Depends entirely on what "on" means in this context.', type: 'substructural' }
+    ]
+  },
+  { q: 'Can a statement be both true and false at the same time?',
+    opts: [
+      { text: 'Never. That\'s the whole point of logic.', type: 'classical' },
+      { text: 'Not in principle, but we can\'t always determine which.', type: 'intuitionistic' },
+      { text: 'Yes. The Liar Paradox is genuinely both.', type: 'paraconsistent' },
+      { text: 'The question assumes "true" and "false" are the only options.', type: 'substructural' }
+    ]
+  },
+  { q: 'If you can prove something can\'t be false, have you proved it\'s true?',
+    opts: [
+      { text: 'Yes. Double negation elimination is valid.', type: 'classical' },
+      { text: 'No. You need to construct the proof directly.', type: 'intuitionistic' },
+      { text: 'Maybe, but what if "false" isn\'t what you think it is?', type: 'paraconsistent' },
+      { text: 'Only if you haven\'t used any premise more than once.', type: 'substructural' }
+    ]
+  },
+  { q: 'The barber shaves everyone who doesn\'t shave themselves. Who shaves the barber?',
+    opts: [
+      { text: 'The scenario is impossible, there is no such barber.', type: 'classical' },
+      { text: 'We shouldn\'t have defined the barber that way.', type: 'intuitionistic' },
+      { text: 'The barber both does and doesn\'t shave himself.', type: 'paraconsistent' },
+      { text: 'The word "everyone" is doing too much structural work.', type: 'substructural' }
+    ]
+  },
+  { q: 'What should a logical system do when it encounters a paradox?',
+    opts: [
+      { text: 'Eliminate it. Paradoxes prove the system has an error.', type: 'classical' },
+      { text: 'Restrict what can be expressed to prevent it from forming.', type: 'intuitionistic' },
+      { text: 'Accept it. Some genuine truths are contradictory.', type: 'paraconsistent' },
+      { text: 'Revise the structural rules so the paradox can\'t be derived.', type: 'substructural' }
+    ]
+  }
+];
+
+var qIdx = 0;
+var scores = { classical: 0, intuitionistic: 0, paraconsistent: 0, substructural: 0 };
+var quizBox = document.getElementById('quizBox');
+
+function renderQ() {
+  if (qIdx >= quizData.length) { showResult(); return; }
+  var q = quizData[qIdx];
+  var html = '<div class="quiz-progress">';
+  for (var i = 0; i < quizData.length; i++) {
+    html += '<div class="quiz-dot ' + (i < qIdx ? 'done' : (i === qIdx ? 'current' : '')) + '"></div>';
+  }
+  html += '</div><div class="quiz-q">' + q.q + '</div><div class="quiz-opts">';
+  /* shuffle options */
+  var order = [0,1,2,3];
+  for (var k = order.length - 1; k > 0; k--) {
+    var j = Math.floor(Math.random() * (k + 1));
+    var tmp = order[k]; order[k] = order[j]; order[j] = tmp;
+  }
+  order.forEach(function(idx) {
+    var o = q.opts[idx];
+    html += '<button class="quiz-opt" onclick="pickAnswer(\'' + o.type + '\')">' + o.text + '</button>';
+  });
+  html += '</div>';
+  quizBox.innerHTML = html;
+}
+
+function pickAnswer(type) {
+  scores[type]++;
+  qIdx++;
+  renderQ();
+}
+
+var resultProfiles = {
+  classical: {
+    title: 'The Rationalist',
+    color: 'var(--valid)',
+    desc: 'You trust the foundations. For you, logic is the bedrock of reason, and the laws of thought are non-negotiable. Contradictions are errors to be fixed, not features to be embraced. Aristotle, Frege, and most working mathematicians stand with you.'
+  },
+  intuitionistic: {
+    title: 'The Constructivist',
+    color: 'var(--caution)',
+    desc: 'You don\'t trust what you can\'t build. Proof isn\'t about eliminating alternatives, it\'s about constructing truth directly. If you can\'t exhibit it, you can\'t claim it. L.E.J. Brouwer, Per Martin-Löf, and the type theorists are your people.'
+  },
+  paraconsistent: {
+    title: 'The Dialectician',
+    color: 'var(--synth)',
+    desc: 'You see contradictions as signals, not disasters. Some truths resist neat categorization, and you\'d rather have a logic that can handle the mess than one that pretends it isn\'t there. Graham Priest and the dialetheists would buy you a drink.'
+  },
+  substructural: {
+    title: 'The Architect',
+    color: 'var(--truth)',
+    desc: 'You question the rules themselves. While others debate truth values, you\'re redesigning the inference engine. The deepest assumptions are the ones most worth examining. Jean-Yves Girard and the linear logicians are your people.'
+  }
+};
+
+function showResult() {
+  var best = 'classical', bestScore = 0;
+  for (var k in scores) {
+    if (scores[k] > bestScore) { bestScore = scores[k]; best = k; }
+  }
+  var p = resultProfiles[best];
+  var html = '<div class="quiz-progress">';
+  for (var i = 0; i < quizData.length; i++) html += '<div class="quiz-dot done"></div>';
+  html += '</div>';
+  html += '<div class="quiz-result-card">';
+  html += '<div class="qr-type">Your logic is</div>';
+  html += '<div class="qr-name" style="color:' + p.color + '">' + p.title + '</div>';
+  html += '<div class="qr-desc">' + p.desc + '</div>';
+  html += '<button class="qr-restart" onclick="restartQuiz()">Take it again</button>';
+  html += '</div>';
+  quizBox.innerHTML = html;
+}
+
+function restartQuiz() {
+  qIdx = 0;
+  scores = { classical: 0, intuitionistic: 0, paraconsistent: 0, substructural: 0 };
+  renderQ();
+}
+
+renderQ();
+</script>
+<nav class="ps-site" aria-label="Stark"><a href="index.html">All explorers</a><a href="../index.html">Stark</a><a href="https://ams513.itch.io/stark-world-engine?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=logic" rel="noopener noreferrer">Stark World Engine</a><a href="https://ams513.itch.io/stark-quill?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=logic" rel="noopener noreferrer">Stark Quill</a></nav>
+</body>
+</html>

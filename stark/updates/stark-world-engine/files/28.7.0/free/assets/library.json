@@ -1,0 +1,4629 @@
+{
+ "version": 1,
+ "about": "Stark World Engine asset library manifest. Every model is a glTF 2.0 binary (.glb) whose textures are separate image files referenced by relative URI (shared between models). Paths are relative to the folder that holds this file. Units: metres, +Y up, glTF forward (+Z).",
+ "fields": {
+  "id": "stable asset id (used in world.json objects as {\"t\":\"asset\",\"asset\":id})",
+  "name": "display name",
+  "kind": "model | hdri | material | prefab | character",
+  "category": "tree, bush, grass, flower, rock, wall, roof, prop, character, ...",
+  "file": "path of the .glb / .hdr (prefab: none, see parts)",
+  "licence": "SPDX-like licence name",
+  "licence_url": "licence text",
+  "credit": "who made it",
+  "source_url": "where it was downloaded",
+  "sha256": "of the shipped file",
+  "scale": "uniform scale to apply in a world (1 = file units are metres)",
+  "pivot": "bottom-center | center | origin: where the model origin sits",
+  "bounds": "[[minx,miny,minz],[maxx,maxy,maxz]]",
+  "pbr": "material maps by role: albedo, normal, orm (R=AO,G=roughness,B=metal), roughness, metallic, ao, emissive",
+  "parts": "prefab only: [{asset, pos:[x,y,z], rotY (radians)}]"
+ },
+ "assets": [
+  {
+   "id": "nature/CommonTree_1",
+   "name": "CommonTree 1",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "broadleaf",
+    "nature"
+   ],
+   "file": "models/nature/CommonTree_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -2.194,
+     -0.243,
+     -2.225
+    ],
+    [
+     2.117,
+     7.022,
+     2.353
+    ]
+   ],
+   "tris": 6265,
+   "bytes": 494444,
+   "sha256": "7768836b2d8a291050c67e3a81e0c4aa1e9df648fd308edd8849629868e99452"
+  },
+  {
+   "id": "nature/CommonTree_2",
+   "name": "CommonTree 2",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "broadleaf",
+    "nature"
+   ],
+   "file": "models/nature/CommonTree_2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -2.223,
+     -0.243,
+     -1.851
+    ],
+    [
+     2.241,
+     7.4,
+     2.424
+    ]
+   ],
+   "tris": 5648,
+   "bytes": 425888,
+   "sha256": "f82c1a15c5002ee21d605558f4ff23ae3e6c9ffca33260ac18b340329da1ad90"
+  },
+  {
+   "id": "nature/CommonTree_3",
+   "name": "CommonTree 3",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "broadleaf",
+    "nature"
+   ],
+   "file": "models/nature/CommonTree_3.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -1.986,
+     -0.243,
+     -2.061
+    ],
+    [
+     2.076,
+     9.182,
+     2.18
+    ]
+   ],
+   "tris": 3505,
+   "bytes": 299844,
+   "sha256": "5c1cc7907ab5e1caaac8529a815028fe79c78592e62d511dafe94fe28a6a884a"
+  },
+  {
+   "id": "nature/CommonTree_4",
+   "name": "CommonTree 4",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "broadleaf",
+    "nature"
+   ],
+   "file": "models/nature/CommonTree_4.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -1.797,
+     -0.243,
+     -2.08
+    ],
+    [
+     2.028,
+     9.196,
+     1.676
+    ]
+   ],
+   "tris": 4066,
+   "bytes": 310460,
+   "sha256": "649ea808be425f8f918514ff47d96d67de05c61d1badf4fa11a83d7d891957bd"
+  },
+  {
+   "id": "nature/CommonTree_5",
+   "name": "CommonTree 5",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "broadleaf",
+    "nature"
+   ],
+   "file": "models/nature/CommonTree_5.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -1.912,
+     -0.243,
+     -2.162
+    ],
+    [
+     1.759,
+     6.763,
+     2.057
+    ]
+   ],
+   "tris": 3182,
+   "bytes": 255852,
+   "sha256": "3ce6ed2f961e97440b8a0bc2cfb99b15bccbec802f815ce1020a1f2aa95e2140"
+  },
+  {
+   "id": "nature/Pine_1",
+   "name": "Pine 1",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "conifer",
+    "nature"
+   ],
+   "file": "models/nature/Pine_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -2.449,
+     -0.235,
+     -2.477
+    ],
+    [
+     2.496,
+     7.082,
+     2.061
+    ]
+   ],
+   "tris": 3947,
+   "bytes": 278336,
+   "sha256": "a415ad52db167d175285db5d76f0b66ca88e35a27ebd766887932523002083d7"
+  },
+  {
+   "id": "nature/Pine_2",
+   "name": "Pine 2",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "conifer",
+    "nature"
+   ],
+   "file": "models/nature/Pine_2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -2.892,
+     -0.235,
+     -2.694
+    ],
+    [
+     2.836,
+     7.141,
+     2.528
+    ]
+   ],
+   "tris": 3648,
+   "bytes": 261180,
+   "sha256": "76706ecc098280401dd49e04947d2a78e09c5167acbce1b4f1d575bc3e94c6d7"
+  },
+  {
+   "id": "nature/Pine_3",
+   "name": "Pine 3",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "conifer",
+    "nature"
+   ],
+   "file": "models/nature/Pine_3.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -2.114,
+     -0.235,
+     -2.292
+    ],
+    [
+     1.498,
+     7.157,
+     1.703
+    ]
+   ],
+   "tris": 4964,
+   "bytes": 348128,
+   "sha256": "66d953e4a27fde7f71bdb72ef72f9092c4f5a1b723441ad1dd1bff40a8e2d267"
+  },
+  {
+   "id": "nature/Pine_4",
+   "name": "Pine 4",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "conifer",
+    "nature"
+   ],
+   "file": "models/nature/Pine_4.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -2.872,
+     -0.235,
+     -2.946
+    ],
+    [
+     2.93,
+     10.001,
+     2.425
+    ]
+   ],
+   "tris": 3370,
+   "bytes": 257688,
+   "sha256": "d8bf7a0b1bf6980a5173f6b3b0a6493ff44dfc24c595218bb386e7ea56ab03de"
+  },
+  {
+   "id": "nature/Pine_5",
+   "name": "Pine 5",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "conifer",
+    "nature"
+   ],
+   "file": "models/nature/Pine_5.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -2.988,
+     -0.235,
+     -3.778
+    ],
+    [
+     3.432,
+     8.489,
+     2.444
+    ]
+   ],
+   "tris": 1646,
+   "bytes": 123824,
+   "sha256": "5a0049a80210a5236d92aeb33e40f9a6c0bc59c4646b26a63e4e20f0c2cacae9"
+  },
+  {
+   "id": "nature/TwistedTree_1",
+   "name": "TwistedTree 1",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "ancient",
+    "nature"
+   ],
+   "file": "models/nature/TwistedTree_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -2.174,
+     -0.201,
+     -6.727
+    ],
+    [
+     11.342,
+     16.524,
+     4.823
+    ]
+   ],
+   "tris": 9564,
+   "bytes": 735276,
+   "sha256": "31637227b8b7a3c90739053aa26e136fbc05ad2306deccf55e804118692213a4"
+  },
+  {
+   "id": "nature/TwistedTree_2",
+   "name": "TwistedTree 2",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "ancient",
+    "nature"
+   ],
+   "file": "models/nature/TwistedTree_2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -6.62,
+     -0.201,
+     -5.541
+    ],
+    [
+     3.943,
+     18.748,
+     3.662
+    ]
+   ],
+   "tris": 9134,
+   "bytes": 701156,
+   "sha256": "699ecd1e3264b0081dc23869b61a95df13da4f851e0441f75f40db2b8bda27e5"
+  },
+  {
+   "id": "nature/TwistedTree_3",
+   "name": "TwistedTree 3",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "ancient",
+    "nature"
+   ],
+   "file": "models/nature/TwistedTree_3.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -4.49,
+     -0.201,
+     -6.52
+    ],
+    [
+     6.867,
+     15.871,
+     4.986
+    ]
+   ],
+   "tris": 10089,
+   "bytes": 773996,
+   "sha256": "4361f2d358cd8af0cb59c30b50b5db7984d7719908be18522d2b3912c0923803"
+  },
+  {
+   "id": "nature/DeadTree_1",
+   "name": "DeadTree 1",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "dead",
+    "nature"
+   ],
+   "file": "models/nature/DeadTree_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -2.592,
+     -0.336,
+     -2.903
+    ],
+    [
+     3.557,
+     9.16,
+     2.845
+    ]
+   ],
+   "tris": 6169,
+   "bytes": 424372,
+   "sha256": "b8fcfb17dd870e48a3eabacdb6e8d788f8094fc25570871c164472edda44e093"
+  },
+  {
+   "id": "nature/DeadTree_2",
+   "name": "DeadTree 2",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "dead",
+    "nature"
+   ],
+   "file": "models/nature/DeadTree_2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -2.332,
+     -0.336,
+     -2.523
+    ],
+    [
+     4.397,
+     11.153,
+     3.856
+    ]
+   ],
+   "tris": 6557,
+   "bytes": 455456,
+   "sha256": "0d35e6bd9662c2bc056fc74a7dc49fb979912e7b327525e53fcb70611f8372f2"
+  },
+  {
+   "id": "nature/DeadTree_3",
+   "name": "DeadTree 3",
+   "kind": "model",
+   "category": "tree",
+   "tags": [
+    "dead",
+    "nature"
+   ],
+   "file": "models/nature/DeadTree_3.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -3.848,
+     -0.336,
+     -3.387
+    ],
+    [
+     2.54,
+     12.945,
+     3.043
+    ]
+   ],
+   "tris": 5802,
+   "bytes": 417372,
+   "sha256": "f71bf485c0a1afabbfc4700563a20ac468ad5b1da851ae01a108d8de2f2edacf"
+  },
+  {
+   "id": "nature/Bush_Common",
+   "name": "Bush Common",
+   "kind": "model",
+   "category": "bush",
+   "tags": [
+    "leafy",
+    "nature"
+   ],
+   "file": "models/nature/Bush_Common.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.923,
+     -0.235,
+     -0.974
+    ],
+    [
+     0.991,
+     1.347,
+     0.991
+    ]
+   ],
+   "tris": 900,
+   "bytes": 93356,
+   "sha256": "2b3552d508e9a76fccb0e8dc2f3dccc0e4c933209c0427f55e98591642db9e10"
+  },
+  {
+   "id": "nature/Bush_Common_Flowers",
+   "name": "Bush Common Flowers",
+   "kind": "model",
+   "category": "bush",
+   "tags": [
+    "flowers",
+    "nature"
+   ],
+   "file": "models/nature/Bush_Common_Flowers.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.923,
+     -0.235,
+     -0.974
+    ],
+    [
+     0.991,
+     1.347,
+     0.991
+    ]
+   ],
+   "tris": 1368,
+   "bytes": 131632,
+   "sha256": "64a8a1286af1758104dacf6a82abb7d61ce74a4551aaa643be862e89b4e56c55"
+  },
+  {
+   "id": "nature/Fern_1",
+   "name": "Fern 1",
+   "kind": "model",
+   "category": "plant",
+   "tags": [
+    "fern",
+    "nature"
+   ],
+   "file": "models/nature/Fern_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -1.381,
+     -0.077,
+     -1.279
+    ],
+    [
+     1.446,
+     0.763,
+     1.374
+    ]
+   ],
+   "tris": 288,
+   "bytes": 12976,
+   "sha256": "94186a5d7513e2f6a24888bf9ac5000344038310a58270d15ffa3af38b1017ce"
+  },
+  {
+   "id": "nature/Plant_1_Big",
+   "name": "Plant 1 Big",
+   "kind": "model",
+   "category": "plant",
+   "tags": [
+    "leafy",
+    "nature"
+   ],
+   "file": "models/nature/Plant_1_Big.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.871,
+     -0.035,
+     -1.036
+    ],
+    [
+     0.935,
+     2.313,
+     0.918
+    ]
+   ],
+   "tris": 360,
+   "bytes": 18100,
+   "sha256": "9cc477b35c6e1b5d002d6e229af0f87faa3b68878edd63509e5d4c5b52a7bb72"
+  },
+  {
+   "id": "nature/Plant_7",
+   "name": "Plant 7",
+   "kind": "model",
+   "category": "plant",
+   "tags": [
+    "leafy",
+    "nature"
+   ],
+   "file": "models/nature/Plant_7.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.448,
+     0.079,
+     -0.464
+    ],
+    [
+     0.6,
+     0.329,
+     0.498
+    ]
+   ],
+   "tris": 48,
+   "bytes": 3384,
+   "sha256": "66ae88e445087a783d115cc4bdc8625e3f3a763191b3fd3eff47caebbbeafe1b"
+  },
+  {
+   "id": "nature/Plant_7_Big",
+   "name": "Plant 7 Big",
+   "kind": "model",
+   "category": "plant",
+   "tags": [
+    "leafy",
+    "nature"
+   ],
+   "file": "models/nature/Plant_7_Big.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.701,
+     0.05,
+     -0.851
+    ],
+    [
+     0.61,
+     0.304,
+     0.512
+    ]
+   ],
+   "tris": 112,
+   "bytes": 6080,
+   "sha256": "77281b9779a64a0da37295055fef34d26bdbc321cfae2b9d35c925ea9ff5ccb6"
+  },
+  {
+   "id": "nature/Grass_Common_Short",
+   "name": "Grass Common Short",
+   "kind": "model",
+   "category": "grass",
+   "tags": [
+    "short",
+    "nature"
+   ],
+   "file": "models/nature/Grass_Common_Short.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.356,
+     -0.022,
+     -0.479
+    ],
+    [
+     0.283,
+     1.312,
+     0.258
+    ]
+   ],
+   "tris": 155,
+   "bytes": 8544,
+   "sha256": "67bbca4ff437206ea504687cf903cce99735b9e15f505c97d295cee0327dd8d2"
+  },
+  {
+   "id": "nature/Grass_Common_Tall",
+   "name": "Grass Common Tall",
+   "kind": "model",
+   "category": "grass",
+   "tags": [
+    "tall",
+    "nature"
+   ],
+   "file": "models/nature/Grass_Common_Tall.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.404,
+     -0.031,
+     -0.479
+    ],
+    [
+     0.492,
+     1.841,
+     0.514
+    ]
+   ],
+   "tris": 326,
+   "bytes": 15568,
+   "sha256": "375f6499cc57601d1897391162402a661f4bce43b53b8114e73d8836d585dfaf"
+  },
+  {
+   "id": "nature/Grass_Wispy_Short",
+   "name": "Grass Wispy Short",
+   "kind": "model",
+   "category": "grass",
+   "tags": [
+    "wispy",
+    "nature"
+   ],
+   "file": "models/nature/Grass_Wispy_Short.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.728,
+     -0.086,
+     -0.583
+    ],
+    [
+     0.594,
+     0.986,
+     0.627
+    ]
+   ],
+   "tris": 494,
+   "bytes": 26816,
+   "sha256": "791d0d6863c6146506d996cc6496ea367dec0eb20d9962707d726783f1380161"
+  },
+  {
+   "id": "nature/Grass_Wispy_Tall",
+   "name": "Grass Wispy Tall",
+   "kind": "model",
+   "category": "grass",
+   "tags": [
+    "wispy",
+    "nature"
+   ],
+   "file": "models/nature/Grass_Wispy_Tall.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.739,
+     -0.036,
+     -0.819
+    ],
+    [
+     0.801,
+     1.636,
+     0.775
+    ]
+   ],
+   "tris": 622,
+   "bytes": 30984,
+   "sha256": "37b726ca3d1e9b4852aba8ca29667ed608985dce8f722df9f27b904e91287fed"
+  },
+  {
+   "id": "nature/Flower_3_Group",
+   "name": "Flower 3 Group",
+   "kind": "model",
+   "category": "flower",
+   "tags": [
+    "group",
+    "nature"
+   ],
+   "file": "models/nature/Flower_3_Group.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.614,
+     -0.035,
+     -0.802
+    ],
+    [
+     0.875,
+     2.02,
+     0.789
+    ]
+   ],
+   "tris": 755,
+   "bytes": 30464,
+   "sha256": "c189953bbdd2b7d7bfa089ba349168006b20b6205ee019b4e846bc6871309b32"
+  },
+  {
+   "id": "nature/Flower_4_Group",
+   "name": "Flower 4 Group",
+   "kind": "model",
+   "category": "flower",
+   "tags": [
+    "group",
+    "nature"
+   ],
+   "file": "models/nature/Flower_4_Group.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.931,
+     -0.057,
+     -0.636
+    ],
+    [
+     0.849,
+     2.43,
+     0.731
+    ]
+   ],
+   "tris": 1690,
+   "bytes": 64928,
+   "sha256": "de0280a856e2458acf972efe12cc89c37749a09aa69322c7791a44bf8c4a9cc7"
+  },
+  {
+   "id": "nature/Flower_3_Single",
+   "name": "Flower 3 Single",
+   "kind": "model",
+   "category": "flower",
+   "tags": [
+    "single",
+    "nature"
+   ],
+   "file": "models/nature/Flower_3_Single.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.481,
+     -0.018,
+     -0.521
+    ],
+    [
+     0.426,
+     2.05,
+     0.357
+    ]
+   ],
+   "tris": 285,
+   "bytes": 13484,
+   "sha256": "75f3882ea8ea9cf7b64ee4c8de156a17b2cd35a0475dbc482bd99ef3bc306a83"
+  },
+  {
+   "id": "nature/Clover_1",
+   "name": "Clover 1",
+   "kind": "model",
+   "category": "plant",
+   "tags": [
+    "clover",
+    "nature"
+   ],
+   "file": "models/nature/Clover_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.502,
+     -0.013,
+     -0.4
+    ],
+    [
+     0.294,
+     1.132,
+     0.364
+    ]
+   ],
+   "tris": 379,
+   "bytes": 14500,
+   "sha256": "1f08181906f301c497e81e387417603bdc8a1b2b7e020b9ee50cae90d327d4fc"
+  },
+  {
+   "id": "nature/Clover_2",
+   "name": "Clover 2",
+   "kind": "model",
+   "category": "plant",
+   "tags": [
+    "clover",
+    "nature"
+   ],
+   "file": "models/nature/Clover_2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.502,
+     -0.002,
+     -0.472
+    ],
+    [
+     0.349,
+     1.261,
+     0.364
+    ]
+   ],
+   "tris": 615,
+   "bytes": 22556,
+   "sha256": "19b9891ef1225a317f143949cc4fa36d754f13ad861d0918bf43e08c865aa09a"
+  },
+  {
+   "id": "nature/Mushroom_Common",
+   "name": "Mushroom Common",
+   "kind": "model",
+   "category": "mushroom",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Mushroom_Common.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.333,
+     -0.017,
+     -0.445
+    ],
+    [
+     0.23,
+     0.446,
+     0.334
+    ]
+   ],
+   "tris": 880,
+   "bytes": 24384,
+   "sha256": "cfa0f67419d4b9f3faa72088dbfc32db771a5762a4350e5a0259d12d66a5133d"
+  },
+  {
+   "id": "nature/Mushroom_Laetiporus",
+   "name": "Mushroom Laetiporus",
+   "kind": "model",
+   "category": "mushroom",
+   "tags": [
+    "shelf",
+    "nature"
+   ],
+   "file": "models/nature/Mushroom_Laetiporus.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.65,
+     -0.16,
+     -0.328
+    ],
+    [
+     0.716,
+     0.607,
+     0.775
+    ]
+   ],
+   "tris": 3216,
+   "bytes": 78440,
+   "sha256": "e627ce65702128ae194f79eeed82e5c291ba036b365ec973bad50132430a6ae7"
+  },
+  {
+   "id": "nature/Rock_Medium_1",
+   "name": "Rock Medium 1",
+   "kind": "model",
+   "category": "rock",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Rock_Medium_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -1.727,
+     -0.271,
+     -1.15
+    ],
+    [
+     1.498,
+     1.989,
+     1.839
+    ]
+   ],
+   "tris": 342,
+   "bytes": 14636,
+   "sha256": "bf4d49bbd256415a8aed2360a74c82de7591daf10cd1d0a61f4652521cc1d9aa"
+  },
+  {
+   "id": "nature/Rock_Medium_2",
+   "name": "Rock Medium 2",
+   "kind": "model",
+   "category": "rock",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Rock_Medium_2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -1.714,
+     -0.051,
+     -1.159
+    ],
+    [
+     1.335,
+     1.848,
+     1.32
+    ]
+   ],
+   "tris": 244,
+   "bytes": 10776,
+   "sha256": "a9cf3b6cc86b4fb1dfe90a6ed3f087553f7c573270829f7ba7660a19914b9f85"
+  },
+  {
+   "id": "nature/Rock_Medium_3",
+   "name": "Rock Medium 3",
+   "kind": "model",
+   "category": "rock",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Rock_Medium_3.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -1.824,
+     -0.316,
+     -0.89
+    ],
+    [
+     1.596,
+     2.001,
+     2.586
+    ]
+   ],
+   "tris": 522,
+   "bytes": 21476,
+   "sha256": "5cbe191260f67410d10d5187052b62c93f57801bd097e12b6e82bf096f09e04a"
+  },
+  {
+   "id": "nature/Pebble_Round_1",
+   "name": "Pebble Round 1",
+   "kind": "model",
+   "category": "pebble",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Pebble_Round_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.22,
+     -0.008,
+     -0.16
+    ],
+    [
+     0.28,
+     0.088,
+     0.207
+    ]
+   ],
+   "tris": 136,
+   "bytes": 11524,
+   "sha256": "b8a1666f5c48513ac20f229c6f6f9d6870acbdc4961679ac80f7e2920732b506"
+  },
+  {
+   "id": "nature/Pebble_Round_2",
+   "name": "Pebble Round 2",
+   "kind": "model",
+   "category": "pebble",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Pebble_Round_2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.215,
+     -0.003,
+     -0.222
+    ],
+    [
+     0.234,
+     0.091,
+     0.189
+    ]
+   ],
+   "tris": 114,
+   "bytes": 8832,
+   "sha256": "28cde90eba817e7e246b923f0456201b788aba974917e5a5261b3ad0f865c447"
+  },
+  {
+   "id": "nature/Pebble_Round_3",
+   "name": "Pebble Round 3",
+   "kind": "model",
+   "category": "pebble",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Pebble_Round_3.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.227,
+     -0.002,
+     -0.221
+    ],
+    [
+     0.223,
+     0.097,
+     0.263
+    ]
+   ],
+   "tris": 128,
+   "bytes": 9940,
+   "sha256": "9939783cc469bd9a33e6e74a2b460886b491359066b79a5d87273f3a33897512"
+  },
+  {
+   "id": "nature/Pebble_Square_1",
+   "name": "Pebble Square 1",
+   "kind": "model",
+   "category": "pebble",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Pebble_Square_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.233,
+     -0.002,
+     -0.202
+    ],
+    [
+     0.201,
+     0.128,
+     0.238
+    ]
+   ],
+   "tris": 104,
+   "bytes": 8900,
+   "sha256": "ca07c63685c1607a44dbb8a03236cdf755b81c1282f6d466b86e655155febe2c"
+  },
+  {
+   "id": "nature/Pebble_Square_2",
+   "name": "Pebble Square 2",
+   "kind": "model",
+   "category": "pebble",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Pebble_Square_2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.201,
+     -0.005,
+     -0.119
+    ],
+    [
+     0.19,
+     0.135,
+     0.161
+    ]
+   ],
+   "tris": 78,
+   "bytes": 7012,
+   "sha256": "80010c51386118834ee60b97f6e0f6347ada62a4e2d21313f7bf7dcc14e9be75"
+  },
+  {
+   "id": "nature/RockPath_Round_Small_1",
+   "name": "RockPath Round Small 1",
+   "kind": "model",
+   "category": "path",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/RockPath_Round_Small_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.538,
+     -0.009,
+     -0.703
+    ],
+    [
+     0.518,
+     0.104,
+     0.773
+    ]
+   ],
+   "tris": 998,
+   "bytes": 72520,
+   "sha256": "71c79a13776cdf4250daf2eef5e833f72fdd8d74f474aa048366251dd58ea7ad"
+  },
+  {
+   "id": "nature/RockPath_Round_Small_2",
+   "name": "RockPath Round Small 2",
+   "kind": "model",
+   "category": "path",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/RockPath_Round_Small_2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.56,
+     -0.008,
+     -0.759
+    ],
+    [
+     0.579,
+     0.097,
+     0.595
+    ]
+   ],
+   "tris": 1126,
+   "bytes": 80584,
+   "sha256": "6ca136f4fb90bef345a47fcb0ec833b6bfc5e5fb4337f4ba166e7769651531e1"
+  },
+  {
+   "id": "nature/RockPath_Round_Small_3",
+   "name": "RockPath Round Small 3",
+   "kind": "model",
+   "category": "path",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/RockPath_Round_Small_3.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.587,
+     -0.008,
+     -0.69
+    ],
+    [
+     0.592,
+     0.101,
+     0.6
+    ]
+   ],
+   "tris": 1002,
+   "bytes": 72224,
+   "sha256": "f657e0aefc1ebdb05b6f58d4411ac8484b9a03231724b80434682165549b0482"
+  },
+  {
+   "id": "nature/RockPath_Round_Wide",
+   "name": "RockPath Round Wide",
+   "kind": "model",
+   "category": "path",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/RockPath_Round_Wide.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -1.048,
+     -0.009,
+     -1.126
+    ],
+    [
+     1.063,
+     0.104,
+     1.003
+    ]
+   ],
+   "tris": 3500,
+   "bytes": 249068,
+   "sha256": "c59620dbb02b31289eb3215e96de65ee789f38a84c9fed14dba9618d0ae979a3"
+  },
+  {
+   "id": "nature/RockPath_Square_Wide",
+   "name": "RockPath Square Wide",
+   "kind": "model",
+   "category": "path",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/RockPath_Square_Wide.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -1.024,
+     -0.01,
+     -1.0
+    ],
+    [
+     1.028,
+     0.166,
+     0.987
+    ]
+   ],
+   "tris": 2256,
+   "bytes": 165700,
+   "sha256": "8a68d37c6cd6c2e7e4f4a93d9ddff091bc1e4177c634fab121f0fc4931be15a8"
+  },
+  {
+   "id": "nature/Petal_1",
+   "name": "Petal 1",
+   "kind": "model",
+   "category": "petal",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Petal_1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.257,
+     0.0,
+     -0.229
+    ],
+    [
+     0.203,
+     0.244,
+     0.226
+    ]
+   ],
+   "tris": 13,
+   "bytes": 1896,
+   "sha256": "e2d31ba77283748faacae5fc4be227a48ac1c6bb2a69c2a62b8101eae02af176"
+  },
+  {
+   "id": "nature/Petal_2",
+   "name": "Petal 2",
+   "kind": "model",
+   "category": "petal",
+   "tags": [
+    "nature"
+   ],
+   "file": "models/nature/Petal_2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/stylized-nature-megakit",
+   "pack": "Stylized Nature MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "bounds": [
+    [
+     -0.321,
+     0.0,
+     -0.329
+    ],
+    [
+     0.353,
+     0.236,
+     0.302
+    ]
+   ],
+   "tris": 15,
+   "bytes": 1956,
+   "sha256": "d6033fee3b7b5bb95b7c763cc81b7b07eb374499f3cb85a86f11b440de015236"
+  },
+  {
+   "id": "village/Wall_Plaster_Straight",
+   "name": "Wall Plaster Straight",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_Plaster_Straight.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.002,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 86,
+   "bytes": 7568,
+   "sha256": "bcde2524267b2ed6b3fb2f5b99ec58b967d10bd75869bf5fdf03b53361faaba9"
+  },
+  {
+   "id": "village/Wall_Plaster_Straight_Base",
+   "name": "Wall Plaster Straight Base",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_Plaster_Straight_Base.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 64,
+   "bytes": 7236,
+   "sha256": "6fc9317ca2ba9cfd899b06add96f36672d7c23c494fff35167890d17cff1adcc"
+  },
+  {
+   "id": "village/Wall_Plaster_Door_Round",
+   "name": "Wall Plaster Door Round",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_Plaster_Door_Round.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 137,
+   "bytes": 11164,
+   "sha256": "c862e1978d55609ab2127e160d4d4b3b4f6a9d1a150ae35e5a5c1523e5c9412f"
+  },
+  {
+   "id": "village/Wall_Plaster_Door_Flat",
+   "name": "Wall Plaster Door Flat",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_Plaster_Door_Flat.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 92,
+   "bytes": 9452,
+   "sha256": "8049ac7d9655efff511ebb2ba2248f17d5db0475d836bdf0600fb8726bfac42c"
+  },
+  {
+   "id": "village/Wall_Plaster_Window_Wide_Round",
+   "name": "Wall Plaster Window Wide Round",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_Plaster_Window_Wide_Round.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 124,
+   "bytes": 9404,
+   "sha256": "41f8347eaa1777c5b6bb296b321c54293e07a3f12b60adef726f2d4044535ac5"
+  },
+  {
+   "id": "village/Wall_Plaster_Window_Thin_Round",
+   "name": "Wall Plaster Window Thin Round",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_Plaster_Window_Thin_Round.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 166,
+   "bytes": 11784,
+   "sha256": "d5148a605c213c3edc087334363f86c5c7baaf13ad153fd95079711124af702c"
+  },
+  {
+   "id": "village/Wall_Plaster_Window_Wide_Flat",
+   "name": "Wall Plaster Window Wide Flat",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_Plaster_Window_Wide_Flat.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 96,
+   "bytes": 8336,
+   "sha256": "d620c23f14a2840cc62012ba97807daea169c16e6a6dcbb7c3ec39de91b01490"
+  },
+  {
+   "id": "village/Wall_Plaster_WoodGrid",
+   "name": "Wall Plaster WoodGrid",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_Plaster_WoodGrid.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 248,
+   "bytes": 16884,
+   "sha256": "eabe9cb65fe3a4e90eac63d684c85f2e886b1ae1338998c8b4cea946da7c49c6"
+  },
+  {
+   "id": "village/Wall_UnevenBrick_Straight",
+   "name": "Wall UnevenBrick Straight",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_UnevenBrick_Straight.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 56,
+   "bytes": 6684,
+   "sha256": "3a057e2a53016c0bef753dc36ac192e6654106bf5e11fb57ab165dd12a28d705"
+  },
+  {
+   "id": "village/Wall_UnevenBrick_Door_Round",
+   "name": "Wall UnevenBrick Door Round",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_UnevenBrick_Door_Round.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 136,
+   "bytes": 9300,
+   "sha256": "3d87f2ad43cedf83c8932ddc73d87db8b233756fa1d31b8b157ebda649ebba1a"
+  },
+  {
+   "id": "village/Wall_UnevenBrick_Window_Wide_Round",
+   "name": "Wall UnevenBrick Window Wide Round",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_UnevenBrick_Window_Wide_Round.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 116,
+   "bytes": 8796,
+   "sha256": "8b8684cd69a63f6c579f91116620f66107e9cbab043529a34df95395d04e4f22"
+  },
+  {
+   "id": "village/Wall_UnevenBrick_Window_Thin_Round",
+   "name": "Wall UnevenBrick Window Thin Round",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_UnevenBrick_Window_Thin_Round.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.314
+    ],
+    [
+     1.0,
+     3.123,
+     0.092
+    ]
+   ],
+   "tris": 158,
+   "bytes": 10172,
+   "sha256": "e30738db6b509fcea107fee18e404b59250beeab6a7301dc0a95cbe887879278"
+  },
+  {
+   "id": "village/Wall_Arch",
+   "name": "Wall Arch",
+   "kind": "model",
+   "category": "wall",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Wall_Arch.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.0,
+     -0.0
+    ],
+    [
+     1.0,
+     3.0,
+     0.064
+    ]
+   ],
+   "tris": 196,
+   "bytes": 11080,
+   "sha256": "08f9583a97e294769362af7c55b83cb8c8507f9d2e24b5ccda2d400505d2fc0b"
+  },
+  {
+   "id": "village/Corner_Exterior_Wood",
+   "name": "Corner Exterior Wood",
+   "kind": "model",
+   "category": "corner",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Corner_Exterior_Wood.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.105,
+     -0.0,
+     -0.12
+    ],
+    [
+     0.105,
+     3.0,
+     0.12
+    ]
+   ],
+   "tris": 12,
+   "bytes": 2468,
+   "sha256": "2b3051bde5ca6cf6074126fb67dda4c56385a37669f75218b4991b81211c4beb"
+  },
+  {
+   "id": "village/Corner_Exterior_Brick",
+   "name": "Corner Exterior Brick",
+   "kind": "model",
+   "category": "corner",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Corner_Exterior_Brick.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.353,
+     -0.007,
+     -0.199
+    ],
+    [
+     0.178,
+     3.009,
+     0.377
+    ]
+   ],
+   "tris": 3102,
+   "bytes": 97820,
+   "sha256": "80963bd9dd299219337258c712d7b00469834c060375007fcaab7403f61c0564"
+  },
+  {
+   "id": "village/Corner_ExteriorWide_Wood",
+   "name": "Corner ExteriorWide Wood",
+   "kind": "model",
+   "category": "corner",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Corner_ExteriorWide_Wood.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.145,
+     -0.0,
+     -0.166
+    ],
+    [
+     0.145,
+     3.0,
+     0.166
+    ]
+   ],
+   "tris": 36,
+   "bytes": 3388,
+   "sha256": "54bc66b85228ca7736af25f40f143b4aed29bf707e80093f80e3a33a33ac3ed1"
+  },
+  {
+   "id": "village/Corner_ExteriorWide_Brick",
+   "name": "Corner ExteriorWide Brick",
+   "kind": "model",
+   "category": "corner",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Corner_ExteriorWide_Brick.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.49,
+     -0.019,
+     -0.222
+    ],
+    [
+     0.222,
+     3.024,
+     0.534
+    ]
+   ],
+   "tris": 2882,
+   "bytes": 90900,
+   "sha256": "7b9360fc7c35dcc0da06ef956d2913b7352f5afae70562f9274c726bba9fa746"
+  },
+  {
+   "id": "village/Floor_WoodDark",
+   "name": "Floor WoodDark",
+   "kind": "model",
+   "category": "floor",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Floor_WoodDark.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.01,
+     -1.0
+    ],
+    [
+     1.0,
+     0.01,
+     1.0
+    ]
+   ],
+   "tris": 32,
+   "bytes": 3804,
+   "sha256": "38310681be47c243873f232ba4c5fef869fd6d47f9738747b86b06627fdc9ee4"
+  },
+  {
+   "id": "village/Floor_Brick",
+   "name": "Floor Brick",
+   "kind": "model",
+   "category": "floor",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Floor_Brick.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.01,
+     -1.0
+    ],
+    [
+     1.0,
+     0.01,
+     1.0
+    ]
+   ],
+   "tris": 4,
+   "bytes": 1816,
+   "sha256": "922fd2f19d28c7c2c816ff28c7c76202afb295712b7ffbf0c422136d1c5f6933"
+  },
+  {
+   "id": "village/Floor_UnevenBrick",
+   "name": "Floor UnevenBrick",
+   "kind": "model",
+   "category": "floor",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Floor_UnevenBrick.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.01,
+     -1.0
+    ],
+    [
+     1.0,
+     0.01,
+     1.0
+    ]
+   ],
+   "tris": 4,
+   "bytes": 1848,
+   "sha256": "17de50ebb7622bd6aa1e2ad73f270c10cd7ee38b8a98c3c238ee82d1f3d64898"
+  },
+  {
+   "id": "village/Roof_RoundTiles_4x4",
+   "name": "Roof RoundTiles 4x4",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_RoundTiles_4x4.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -2.757,
+     -0.516,
+     -2.74
+    ],
+    [
+     2.757,
+     3.734,
+     2.822
+    ]
+   ],
+   "tris": 1996,
+   "bytes": 91028,
+   "sha256": "0609d385dbfefadc7ffaaf447b352e078a8128915d659eb841054f764e13d85c"
+  },
+  {
+   "id": "village/Roof_RoundTiles_4x6",
+   "name": "Roof RoundTiles 4x6",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_RoundTiles_4x6.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -2.757,
+     -0.516,
+     -3.786
+    ],
+    [
+     2.757,
+     3.718,
+     3.786
+    ]
+   ],
+   "tris": 2520,
+   "bytes": 109792,
+   "sha256": "a22ab26a50e7fdcb208c6b23b240a7d6f747d67406549f0a6c56164741832fc7"
+  },
+  {
+   "id": "village/Roof_RoundTiles_6x6",
+   "name": "Roof RoundTiles 6x6",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_RoundTiles_6x6.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -4.125,
+     -0.782,
+     -3.938
+    ],
+    [
+     4.125,
+     4.89,
+     4.094
+    ]
+   ],
+   "tris": 3244,
+   "bytes": 140760,
+   "sha256": "318ac0107c5cbe4e83147d6658ab2ee3c5041ab9764714fee642efd6e60c0b30"
+  },
+  {
+   "id": "village/Roof_RoundTiles_6x8",
+   "name": "Roof RoundTiles 6x8",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_RoundTiles_6x8.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -4.125,
+     -0.782,
+     -4.829
+    ],
+    [
+     4.125,
+     4.89,
+     4.854
+    ]
+   ],
+   "tris": 3796,
+   "bytes": 157640,
+   "sha256": "6ba792bc5bbe1163793ce82cbdc64b6e5b01cbcc7672b870bae436adf9c5d436"
+  },
+  {
+   "id": "village/Roof_RoundTiles_4x8",
+   "name": "Roof RoundTiles 4x8",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_RoundTiles_4x8.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -2.757,
+     -0.516,
+     -4.829
+    ],
+    [
+     2.757,
+     3.713,
+     4.854
+    ]
+   ],
+   "tris": 3116,
+   "bytes": 132504,
+   "sha256": "578e4d366a8663fd09c2169e0dea319f1f5c74459e8469332af8acf8b8ee2dae"
+  },
+  {
+   "id": "village/Roof_Front_Brick4",
+   "name": "Roof Front Brick4",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_Front_Brick4.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -2.184,
+     -0.132,
+     -0.335
+    ],
+    [
+     2.216,
+     2.937,
+     0.794
+    ]
+   ],
+   "tris": 252,
+   "bytes": 16128,
+   "sha256": "aba4fa3931b62c40c9948cffd143fe95f2af3bd134cd3da6c113c877fe1d8d18"
+  },
+  {
+   "id": "village/Roof_Front_Brick6",
+   "name": "Roof Front Brick6",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_Front_Brick6.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -3.347,
+     -0.132,
+     -0.335
+    ],
+    [
+     3.348,
+     4.384,
+     0.794
+    ]
+   ],
+   "tris": 328,
+   "bytes": 21576,
+   "sha256": "6805e2a164b260d03e0208470dda1286b30ac351c5f86ba7fa9edc73f423b89f"
+  },
+  {
+   "id": "village/Roof_Front_Brick8",
+   "name": "Roof Front Brick8",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_Front_Brick8.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -4.255,
+     -0.132,
+     -0.335
+    ],
+    [
+     4.256,
+     5.314,
+     0.794
+    ]
+   ],
+   "tris": 364,
+   "bytes": 24608,
+   "sha256": "7db5a2a223020a30fd82f99266b5478b109608eec066ea16f8d5a28b6e1c8d46"
+  },
+  {
+   "id": "village/Roof_Tower_RoundTiles",
+   "name": "Roof Tower RoundTiles",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_Tower_RoundTiles.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -2.825,
+     -0.572,
+     -2.714
+    ],
+    [
+     2.825,
+     6.789,
+     2.714
+    ]
+   ],
+   "tris": 4024,
+   "bytes": 172712,
+   "sha256": "7dc108f5bba7ec2bd08d15d3a4aebaee8c00f80e8dd3563c0da8ad429810564b"
+  },
+  {
+   "id": "village/Roof_Dormer_RoundTile",
+   "name": "Roof Dormer RoundTile",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_Dormer_RoundTile.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.066,
+     0.03,
+     -1.22
+    ],
+    [
+     1.9,
+     2.703,
+     1.22
+    ]
+   ],
+   "tris": 904,
+   "bytes": 55036,
+   "sha256": "0fcf0962d31779f7e08eeffa5d8dac24517f2300010b219203c4dde72063b120"
+  },
+  {
+   "id": "village/Roof_Log",
+   "name": "Roof Log",
+   "kind": "model",
+   "category": "roof",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Roof_Log.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.586,
+     3.849,
+     -5.348
+    ],
+    [
+     0.563,
+     5.236,
+     5.348
+    ]
+   ],
+   "tris": 164,
+   "bytes": 8232,
+   "sha256": "fe9ae9428585fe9aff20f228c74c4a137511179b59a3c4e2c7ccee018156c04a"
+  },
+  {
+   "id": "village/Prop_Chimney",
+   "name": "Prop Chimney",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Chimney.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.5,
+     0.0,
+     -0.5
+    ],
+    [
+     0.446,
+     3.178,
+     0.5
+    ]
+   ],
+   "tris": 618,
+   "bytes": 23304,
+   "sha256": "cbc06a75dc52366c7b56f53e722a18e7345aaf6696e134519cf092a55725ae4b"
+  },
+  {
+   "id": "village/Prop_Chimney2",
+   "name": "Prop Chimney2",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Chimney2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.5,
+     0.0,
+     -0.494
+    ],
+    [
+     0.446,
+     3.0,
+     0.494
+    ]
+   ],
+   "tris": 130,
+   "bytes": 6324,
+   "sha256": "cb7dced0a6b198c8cd722642c30def92607952d1a7c982e9cd9a5515d6ee7b83"
+  },
+  {
+   "id": "village/Prop_Crate",
+   "name": "Prop Crate",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Crate.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.542,
+     0.003,
+     -0.542
+    ],
+    [
+     0.542,
+     1.063,
+     0.542
+    ]
+   ],
+   "tris": 230,
+   "bytes": 17728,
+   "sha256": "90af3e4e7ec8fc24610eebae90d933c48aac77f552ed6f6a042fb8e67b093aeb"
+  },
+  {
+   "id": "village/Prop_Wagon",
+   "name": "Prop Wagon",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Wagon.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.979,
+     0.003,
+     -3.15
+    ],
+    [
+     0.972,
+     1.532,
+     0.874
+    ]
+   ],
+   "tris": 1672,
+   "bytes": 86264,
+   "sha256": "4dae2b359c14b114e0e2ea480f51d4a71cf22b563b18aab0956862331e60bf78"
+  },
+  {
+   "id": "village/Prop_WoodenFence_Single",
+   "name": "Prop WoodenFence Single",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_WoodenFence_Single.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.031,
+     -0.028,
+     -0.06
+    ],
+    [
+     1.033,
+     0.81,
+     0.06
+    ]
+   ],
+   "tris": 40,
+   "bytes": 4432,
+   "sha256": "a03cbb9eb54898d3f7641ba4f3916dc6f787004aa981dea8790ffd2bc35e583e"
+  },
+  {
+   "id": "village/Prop_WoodenFence_Extension1",
+   "name": "Prop WoodenFence Extension1",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_WoodenFence_Extension1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.012,
+     -0.028,
+     -0.055
+    ],
+    [
+     1.033,
+     0.81,
+     0.055
+    ]
+   ],
+   "tris": 32,
+   "bytes": 3876,
+   "sha256": "ec354b4805a5afc78eb15d2421d18e8368862b54d4b1c55c74f72d7982cd90a0"
+  },
+  {
+   "id": "village/Prop_WoodenFence_Extension2",
+   "name": "Prop WoodenFence Extension2",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_WoodenFence_Extension2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.994,
+     -0.028,
+     -0.055
+    ],
+    [
+     1.033,
+     0.81,
+     0.055
+    ]
+   ],
+   "tris": 28,
+   "bytes": 3596,
+   "sha256": "c54074acd4616cf5fd880560b2b9759385fc745156eab59fc71043af50deb2a1"
+  },
+  {
+   "id": "village/Prop_MetalFence_Simple",
+   "name": "Prop MetalFence Simple",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_MetalFence_Simple.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.97,
+     -0.0,
+     -0.078
+    ],
+    [
+     0.979,
+     2.868,
+     0.078
+    ]
+   ],
+   "tris": 2744,
+   "bytes": 104960,
+   "sha256": "c65190fa88349cbc9203b2ba6125618589424b8f5c98217b8ad181bedf45d330"
+  },
+  {
+   "id": "village/Prop_MetalFence_Ornament",
+   "name": "Prop MetalFence Ornament",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_MetalFence_Ornament.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.973,
+     -0.0,
+     -0.078
+    ],
+    [
+     0.979,
+     2.852,
+     0.078
+    ]
+   ],
+   "tris": 3988,
+   "bytes": 152364,
+   "sha256": "ab5b3a15bfa5e0ba48ba030ed120e8b6d759448d7aa6eb5c6cc750e638486962"
+  },
+  {
+   "id": "village/Prop_Vine1",
+   "name": "Prop Vine1",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Vine1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.783,
+     -2.121,
+     -0.045
+    ],
+    [
+     0.753,
+     0.482,
+     0.174
+    ]
+   ],
+   "tris": 82,
+   "bytes": 7032,
+   "sha256": "b93dbf40c7c62d6bb5afe5a51cec062d489a52fcbb0c8e0bbe5f604c155d0eb5"
+  },
+  {
+   "id": "village/Prop_Vine2",
+   "name": "Prop Vine2",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Vine2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.494,
+     -2.121,
+     -0.045
+    ],
+    [
+     0.892,
+     0.482,
+     0.169
+    ]
+   ],
+   "tris": 45,
+   "bytes": 4536,
+   "sha256": "e60bd82f92be3459a567b92b18558c904a5e0c4eb82d0f1d415ef59999af5a1d"
+  },
+  {
+   "id": "village/Prop_Vine4",
+   "name": "Prop Vine4",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Vine4.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.718,
+     -1.014,
+     -0.027
+    ],
+    [
+     0.298,
+     0.574,
+     0.123
+    ]
+   ],
+   "tris": 31,
+   "bytes": 3584,
+   "sha256": "97d802d904b33e458bc747d4716f6d8dde897fac1aed1a9800fbb11413b4d48a"
+  },
+  {
+   "id": "village/Prop_Vine5",
+   "name": "Prop Vine5",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Vine5.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.318,
+     -1.955,
+     -1.024
+    ],
+    [
+     0.983,
+     1.031,
+     0.102
+    ]
+   ],
+   "tris": 117,
+   "bytes": 8072,
+   "sha256": "db27e011a248eecba68d3a0e62e2b40858dad03d2a6c342da2c3c9b2d76c66ad"
+  },
+  {
+   "id": "village/Prop_Support",
+   "name": "Prop Support",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Support.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.099,
+     1.211,
+     -0.118
+    ],
+    [
+     0.099,
+     2.92,
+     1.918
+    ]
+   ],
+   "tris": 16,
+   "bytes": 2736,
+   "sha256": "ed89e69615f426ddb3ad8f88bd75b3ed791d89c7c2334d146f27c62253dbc58d"
+  },
+  {
+   "id": "village/Prop_Brick1",
+   "name": "Prop Brick1",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Brick1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.168,
+     -0.11,
+     -0.125
+    ],
+    [
+     0.178,
+     0.098,
+     0.125
+    ]
+   ],
+   "tris": 108,
+   "bytes": 4880,
+   "sha256": "b0bb7b09929902030e89eac7b0ca84d7c220b26d1064e346835704aafc70c130"
+  },
+  {
+   "id": "village/Prop_Brick2",
+   "name": "Prop Brick2",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Brick2.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.19,
+     -0.112,
+     -0.108
+    ],
+    [
+     0.205,
+     0.133,
+     0.109
+    ]
+   ],
+   "tris": 94,
+   "bytes": 4640,
+   "sha256": "6db98ba6154bb0cd91d293be60820c17be4999e68bee6be5028e8c2b443fd8e6"
+  },
+  {
+   "id": "village/Prop_Brick3",
+   "name": "Prop Brick3",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_Brick3.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.183,
+     -0.115,
+     -0.109
+    ],
+    [
+     0.198,
+     0.135,
+     0.107
+    ]
+   ],
+   "tris": 126,
+   "bytes": 5508,
+   "sha256": "23b983d45852a9cb654357c028aa2da47a7afdc95e1c2ed43072d09a682c34a3"
+  },
+  {
+   "id": "village/Prop_ExteriorBorder_Straight1",
+   "name": "Prop ExteriorBorder Straight1",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_ExteriorBorder_Straight1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.0
+    ],
+    [
+     1.0,
+     0.134,
+     0.7
+    ]
+   ],
+   "tris": 16,
+   "bytes": 2584,
+   "sha256": "d5c89a5142441e8374bc475d63f971a687c9e2795b82819d5bb72a8dc82a6a2f"
+  },
+  {
+   "id": "village/Prop_ExteriorBorder_Corner",
+   "name": "Prop ExteriorBorder Corner",
+   "kind": "model",
+   "category": "prop",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Prop_ExteriorBorder_Corner.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.7,
+     0.0,
+     -0.0
+    ],
+    [
+     0.0,
+     0.134,
+     0.7
+    ]
+   ],
+   "tris": 18,
+   "bytes": 2808,
+   "sha256": "c6a1c44008128326546d5d3aa8793b39724657c84865e7cc34df7999a586c84e"
+  },
+  {
+   "id": "village/Door_1_Round",
+   "name": "Door 1 Round",
+   "kind": "model",
+   "category": "door",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Door_1_Round.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.046,
+     0.033,
+     -0.058
+    ],
+    [
+     1.074,
+     2.351,
+     0.063
+    ]
+   ],
+   "tris": 470,
+   "bytes": 30112,
+   "sha256": "a6c4580e66681709eb6e89800c3ac20ed41f0ba2831e494683925936cecce725"
+  },
+  {
+   "id": "village/Door_2_Round",
+   "name": "Door 2 Round",
+   "kind": "model",
+   "category": "door",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Door_2_Round.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.043,
+     0.028,
+     -0.134
+    ],
+    [
+     1.073,
+     2.356,
+     0.127
+    ]
+   ],
+   "tris": 6188,
+   "bytes": 178640,
+   "sha256": "954c0253cbeb444ef7e0d64ee3f48e886c90c724e93af7029b425ae6ba525137"
+  },
+  {
+   "id": "village/Door_1_Flat",
+   "name": "Door 1 Flat",
+   "kind": "model",
+   "category": "door",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Door_1_Flat.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.046,
+     0.035,
+     -0.058
+    ],
+    [
+     1.072,
+     2.135,
+     0.063
+    ]
+   ],
+   "tris": 314,
+   "bytes": 22900,
+   "sha256": "b38fe00ba604b80f15415dfe65dbfce2dd2f23a898569c42dccfb9d7f3b576ce"
+  },
+  {
+   "id": "village/Door_4_Flat",
+   "name": "Door 4 Flat",
+   "kind": "model",
+   "category": "door",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Door_4_Flat.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.046,
+     0.035,
+     -0.118
+    ],
+    [
+     1.072,
+     2.127,
+     0.092
+    ]
+   ],
+   "tris": 1044,
+   "bytes": 58548,
+   "sha256": "47e58c0d63d9ca38ceeed8f8516f167f25b3498303196a399cbd07149dfcde2e"
+  },
+  {
+   "id": "village/DoorFrame_Round_Brick",
+   "name": "DoorFrame Round Brick",
+   "kind": "model",
+   "category": "door",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/DoorFrame_Round_Brick.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.804,
+     -0.002,
+     -0.295
+    ],
+    [
+     0.799,
+     2.584,
+     0.182
+    ]
+   ],
+   "tris": 2046,
+   "bytes": 65628,
+   "sha256": "5a4ed9b1aa7d45aff4626405bf5053ff5ef25e82bfd6a7f8a6651301b550f047"
+  },
+  {
+   "id": "village/DoorFrame_Flat_WoodDark",
+   "name": "DoorFrame Flat WoodDark",
+   "kind": "model",
+   "category": "door",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/DoorFrame_Flat_WoodDark.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.786,
+     -0.009,
+     -0.243
+    ],
+    [
+     0.788,
+     2.304,
+     0.145
+    ]
+   ],
+   "tris": 56,
+   "bytes": 5428,
+   "sha256": "f644e21ecca6f3184e06f3608ff295ae831cf6fa9d1077cea7a87abe11cf2809"
+  },
+  {
+   "id": "village/Window_Wide_Round1",
+   "name": "Window Wide Round1",
+   "kind": "model",
+   "category": "window",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Window_Wide_Round1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.682,
+     1.016,
+     -0.252
+    ],
+    [
+     0.682,
+     2.742,
+     0.277
+    ]
+   ],
+   "tris": 354,
+   "bytes": 20468,
+   "sha256": "de184485668dcbef8afad187357cf9241d7dddeb41a4b44af2740615ccb57315"
+  },
+  {
+   "id": "village/Window_Thin_Round1",
+   "name": "Window Thin Round1",
+   "kind": "model",
+   "category": "window",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Window_Thin_Round1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.444,
+     1.016,
+     -0.252
+    ],
+    [
+     0.444,
+     2.621,
+     0.092
+    ]
+   ],
+   "tris": 418,
+   "bytes": 23768,
+   "sha256": "bbd1cfd50996488f4cc490bc471302753e3d4d46482a944cea4ea9bdd0bc8e31"
+  },
+  {
+   "id": "village/Window_Wide_Flat1",
+   "name": "Window Wide Flat1",
+   "kind": "model",
+   "category": "window",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Window_Wide_Flat1.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.804,
+     0.944,
+     -0.267
+    ],
+    [
+     0.804,
+     2.524,
+     0.417
+    ]
+   ],
+   "tris": 160,
+   "bytes": 13692,
+   "sha256": "e0e9aa23c5188c02452e9f3d0489637d35f207de559400bb1abc22c99ce2642d"
+  },
+  {
+   "id": "village/WindowShutters_Wide_Round_Open",
+   "name": "WindowShutters Wide Round Open",
+   "kind": "model",
+   "category": "window",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/WindowShutters_Wide_Round_Open.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.2,
+     1.093,
+     0.091
+    ],
+    [
+     1.104,
+     2.74,
+     0.563
+    ]
+   ],
+   "tris": 136,
+   "bytes": 11032,
+   "sha256": "f7380e6fa0ac96e09044e39f23948b9f614ccd137ee2c8df9708b5c54bb2df4a"
+  },
+  {
+   "id": "village/WindowShutters_Thin_Round_Open",
+   "name": "WindowShutters Thin Round Open",
+   "kind": "model",
+   "category": "window",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/WindowShutters_Thin_Round_Open.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.82,
+     1.093,
+     0.059
+    ],
+    [
+     0.787,
+     2.612,
+     0.436
+    ]
+   ],
+   "tris": 112,
+   "bytes": 9360,
+   "sha256": "a013963fe5afdc8b57e1a2d690be7dc9340ea2385f4e0bad6191b5cd80ecc0e9"
+  },
+  {
+   "id": "village/WindowShutters_Wide_Flat_Closed",
+   "name": "WindowShutters Wide Flat Closed",
+   "kind": "model",
+   "category": "window",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/WindowShutters_Wide_Flat_Closed.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -0.673,
+     1.093,
+     0.152
+    ],
+    [
+     0.673,
+     2.517,
+     0.288
+    ]
+   ],
+   "tris": 120,
+   "bytes": 10044,
+   "sha256": "5f07bbdc51607b59b10b5b6984dd7e7b208bc7d72b2fbf1d21d33968225c56fc"
+  },
+  {
+   "id": "village/Stairs_Exterior_Straight",
+   "name": "Stairs Exterior Straight",
+   "kind": "model",
+   "category": "stairs",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Stairs_Exterior_Straight.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.204,
+     -1.077
+    ],
+    [
+     1.0,
+     1.0,
+     1.001
+    ]
+   ],
+   "tris": 62,
+   "bytes": 6944,
+   "sha256": "22fc10dae20b636dbbf3c2b0f99b80baffdab743f17b0da615ea15efab997b17"
+  },
+  {
+   "id": "village/Stairs_Exterior_Platform",
+   "name": "Stairs Exterior Platform",
+   "kind": "model",
+   "category": "stairs",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Stairs_Exterior_Platform.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.0,
+     -1.001
+    ],
+    [
+     1.0,
+     1.0,
+     1.001
+    ]
+   ],
+   "tris": 32,
+   "bytes": 4976,
+   "sha256": "ebe58dab4cf190aa1cac3f446a95705e5fb8eb81ebdbff6c85b4460dbed05fbf"
+  },
+  {
+   "id": "village/Stairs_Exterior_Sides",
+   "name": "Stairs Exterior Sides",
+   "kind": "model",
+   "category": "stairs",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Stairs_Exterior_Sides.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.0,
+     -1.0
+    ],
+    [
+     1.0,
+     1.0,
+     1.0
+    ]
+   ],
+   "tris": 16,
+   "bytes": 2688,
+   "sha256": "87ac4aaa4eb7da8d51579c96b1f848edcf9c835209fb0653947eb00146caf081"
+  },
+  {
+   "id": "village/Balcony_Simple_Straight",
+   "name": "Balcony Simple Straight",
+   "kind": "model",
+   "category": "balcony",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Balcony_Simple_Straight.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.105,
+     0.898
+    ],
+    [
+     1.0,
+     1.125,
+     1.104
+    ]
+   ],
+   "tris": 1120,
+   "bytes": 63648,
+   "sha256": "c0614cd7e6280337939e35cdc58bb1b8a2f04ef53d60b302bc6e8c6bc838d754"
+  },
+  {
+   "id": "village/Balcony_Cross_Straight",
+   "name": "Balcony Cross Straight",
+   "kind": "model",
+   "category": "balcony",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Balcony_Cross_Straight.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.105,
+     0.898
+    ],
+    [
+     1.0,
+     1.125,
+     1.104
+    ]
+   ],
+   "tris": 132,
+   "bytes": 10488,
+   "sha256": "f64463ae3a663786026910dea3ed82c17b07dbaf74c3dabab3b5e612926fb5c7"
+  },
+  {
+   "id": "village/Overhang_Plaster_Long",
+   "name": "Overhang Plaster Long",
+   "kind": "model",
+   "category": "overhang",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Overhang_Plaster_Long.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.2
+    ],
+    [
+     1.0,
+     3.028,
+     2.0
+    ]
+   ],
+   "tris": 204,
+   "bytes": 12352,
+   "sha256": "79dfd95df113cf3e944d8d7872156bafaa5dd9330f3596ae8239d9e2de4e5cad"
+  },
+  {
+   "id": "village/Overhang_Plaster_Short",
+   "name": "Overhang Plaster Short",
+   "kind": "model",
+   "category": "overhang",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Overhang_Plaster_Short.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     0.0,
+     -0.2
+    ],
+    [
+     1.0,
+     3.123,
+     1.123
+    ]
+   ],
+   "tris": 222,
+   "bytes": 12492,
+   "sha256": "15235527adea53a9793ac0c590ec39abaa70c3682443dcb2b7606ef017f4a19a"
+  },
+  {
+   "id": "village/Overhang_Roof_Plaster",
+   "name": "Overhang Roof Plaster",
+   "kind": "model",
+   "category": "overhang",
+   "tags": [
+    "village",
+    "medieval"
+   ],
+   "file": "models/village/Overhang_Roof_Plaster.glb",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius",
+   "source_url": "https://quaternius.itch.io/medieval-village-megakit",
+   "pack": "Medieval Village MegaKit [Standard]",
+   "scale": 1,
+   "pivot": "origin",
+   "bounds": [
+    [
+     -1.0,
+     -0.324,
+     -1.022
+    ],
+    [
+     1.0,
+     -0.059,
+     1.0
+    ]
+   ],
+   "tris": 38,
+   "bytes": 5376,
+   "sha256": "e9260f74894779ead9fd1fc57adf97491deaf1aa74581c32274e3d86d599e834"
+  },
+  {
+   "id": "hdri/kloppenheim_06_puresky",
+   "name": "Kloppenheim 06 (Pure Sky)",
+   "kind": "hdri",
+   "category": "sky",
+   "file": "hdri/kloppenheim_06_puresky_1k.hdr",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Greg Zaal (Original), Jarod Guest (Sky edits)",
+   "source_url": "https://polyhaven.com/a/kloppenheim_06_puresky",
+   "download_url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kloppenheim_06_puresky_1k.hdr",
+   "sha256": "206c67e3a1b992282821cf06662bdd69bbb4915c1c4444a66338a40d6a7d4e34",
+   "bytes": 1173154
+  },
+  {
+   "id": "hdri/kloppenheim_02_puresky",
+   "name": "Kloppenheim 02 (Pure Sky)",
+   "kind": "hdri",
+   "category": "sky",
+   "file": "hdri/kloppenheim_02_puresky_1k.hdr",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Greg Zaal (Original), Jarod Guest (Sky edits)",
+   "source_url": "https://polyhaven.com/a/kloppenheim_02_puresky",
+   "download_url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kloppenheim_02_puresky_1k.hdr",
+   "sha256": "2b94f1046750f91616b1442236edd233142608c8452f76b4c427a4c2901b352b",
+   "bytes": 1393622
+  },
+  {
+   "id": "hdri/industrial_sunset_02_puresky",
+   "name": "Industrial Sunset 02 (Pure Sky)",
+   "kind": "hdri",
+   "category": "sky",
+   "file": "hdri/industrial_sunset_02_puresky_1k.hdr",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Jarod Guest (Sky Edits), Sergej Majboroda (Original)",
+   "source_url": "https://polyhaven.com/a/industrial_sunset_02_puresky",
+   "download_url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/industrial_sunset_02_puresky_1k.hdr",
+   "sha256": "0b92b0a2ea3b2489ec9bb7170960c3a10e5e68567d9a3d9622970fd06caf649f",
+   "bytes": 1075650
+  },
+  {
+   "id": "hdri/kloofendal_48d_partly_cloudy_puresky",
+   "name": "Kloofendal 48d Partly Cloudy (Pure Sky)",
+   "kind": "hdri",
+   "category": "sky",
+   "file": "hdri/kloofendal_48d_partly_cloudy_puresky_1k.hdr",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Greg Zaal (Original), Jarod Guest (Sky edits)",
+   "source_url": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky",
+   "download_url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kloofendal_48d_partly_cloudy_puresky_1k.hdr",
+   "sha256": "fd94c84997b8a3c353b62c2125a9b44e19509956986a126e472684432a02d798",
+   "bytes": 1435119
+  },
+  {
+   "id": "material/forest_ground_04",
+   "name": "Forest Ground 04",
+   "kind": "material",
+   "category": "ground",
+   "file": "ground/forest_ground_04/forest_ground_04_diff_1k.jpg",
+   "pbr": {
+    "albedo": "ground/forest_ground_04/forest_ground_04_diff_1k.jpg",
+    "normal": "ground/forest_ground_04/forest_ground_04_nor_gl_1k.jpg",
+    "arm": "ground/forest_ground_04/forest_ground_04_arm_1k.jpg"
+   },
+   "pbr_note": "arm = R ambient occlusion, G roughness, B metal (glTF ORM order); normal is OpenGL (+Y)",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Rob Tuytel (Photography, Processing), Rico Cilliers (Minor adjustment)",
+   "source_url": "https://polyhaven.com/a/forest_ground_04",
+   "tile_m": 2.0
+  },
+  {
+   "id": "material/rocky_terrain_02",
+   "name": "Rocky Terrain 02",
+   "kind": "material",
+   "category": "ground",
+   "file": "ground/rocky_terrain_02/rocky_terrain_02_diff_1k.jpg",
+   "pbr": {
+    "albedo": "ground/rocky_terrain_02/rocky_terrain_02_diff_1k.jpg",
+    "normal": "ground/rocky_terrain_02/rocky_terrain_02_nor_gl_1k.jpg",
+    "arm": "ground/rocky_terrain_02/rocky_terrain_02_arm_1k.jpg"
+   },
+   "pbr_note": "arm = R ambient occlusion, G roughness, B metal (glTF ORM order); normal is OpenGL (+Y)",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Amal Kumar (All)",
+   "source_url": "https://polyhaven.com/a/rocky_terrain_02",
+   "tile_m": 2.0
+  },
+  {
+   "id": "material/coast_sand_01",
+   "name": "Coast Sand 01",
+   "kind": "material",
+   "category": "ground",
+   "file": "ground/coast_sand_01/coast_sand_01_diff_1k.jpg",
+   "pbr": {
+    "albedo": "ground/coast_sand_01/coast_sand_01_diff_1k.jpg",
+    "normal": "ground/coast_sand_01/coast_sand_01_nor_gl_1k.jpg",
+    "arm": "ground/coast_sand_01/coast_sand_01_arm_1k.jpg"
+   },
+   "pbr_note": "arm = R ambient occlusion, G roughness, B metal (glTF ORM order); normal is OpenGL (+Y)",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Rob Tuytel (All)",
+   "source_url": "https://polyhaven.com/a/coast_sand_01",
+   "tile_m": 2.0
+  },
+  {
+   "id": "material/snow_02",
+   "name": "Snow 02",
+   "kind": "material",
+   "category": "ground",
+   "file": "ground/snow_02/snow_02_diff_1k.jpg",
+   "pbr": {
+    "albedo": "ground/snow_02/snow_02_diff_1k.jpg",
+    "normal": "ground/snow_02/snow_02_nor_gl_1k.jpg",
+    "arm": "ground/snow_02/snow_02_arm_1k.jpg"
+   },
+   "pbr_note": "arm = R ambient occlusion, G roughness, B metal (glTF ORM order); normal is OpenGL (+Y)",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Rob Tuytel (All)",
+   "source_url": "https://polyhaven.com/a/snow_02",
+   "tile_m": 2.0
+  },
+  {
+   "id": "material/bark_willow_02",
+   "name": "Bark Willow 02",
+   "kind": "material",
+   "category": "surface",
+   "file": "ground/bark_willow_02/bark_willow_02_diff_1k.jpg",
+   "pbr": {
+    "albedo": "ground/bark_willow_02/bark_willow_02_diff_1k.jpg",
+    "normal": "ground/bark_willow_02/bark_willow_02_nor_gl_1k.jpg",
+    "arm": "ground/bark_willow_02/bark_willow_02_arm_1k.jpg"
+   },
+   "pbr_note": "arm = R ambient occlusion, G roughness, B metal (glTF ORM order); normal is OpenGL (+Y)",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Charlotte Baglioni (All)",
+   "source_url": "https://polyhaven.com/a/bark_willow_02",
+   "tile_m": 2.0
+  },
+  {
+   "id": "material/castle_brick_07",
+   "name": "Castle Brick 07",
+   "kind": "material",
+   "category": "surface",
+   "file": "ground/castle_brick_07/castle_brick_07_diff_1k.jpg",
+   "pbr": {
+    "albedo": "ground/castle_brick_07/castle_brick_07_diff_1k.jpg",
+    "normal": "ground/castle_brick_07/castle_brick_07_nor_gl_1k.jpg",
+    "arm": "ground/castle_brick_07/castle_brick_07_arm_1k.jpg"
+   },
+   "pbr_note": "arm = R ambient occlusion, G roughness, B metal (glTF ORM order); normal is OpenGL (+Y)",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Rob Tuytel (All)",
+   "source_url": "https://polyhaven.com/a/castle_brick_07",
+   "tile_m": 2.0
+  },
+  {
+   "id": "material/roof_tiles_14",
+   "name": "Roof Tiles 14",
+   "kind": "material",
+   "category": "surface",
+   "file": "ground/roof_tiles_14/roof_tiles_14_diff_1k.jpg",
+   "pbr": {
+    "albedo": "ground/roof_tiles_14/roof_tiles_14_diff_1k.jpg",
+    "normal": "ground/roof_tiles_14/roof_tiles_14_nor_gl_1k.jpg",
+    "arm": "ground/roof_tiles_14/roof_tiles_14_arm_1k.jpg"
+   },
+   "pbr_note": "arm = R ambient occlusion, G roughness, B metal (glTF ORM order); normal is OpenGL (+Y)",
+   "licence": "CC0 1.0",
+   "licence_url": "https://polyhaven.com/license",
+   "credit": "Rob Tuytel (All)",
+   "source_url": "https://polyhaven.com/a/roof_tiles_14",
+   "tile_m": 2.0
+  },
+  {
+   "id": "characters/male_adventurer",
+   "name": "Male Adventurer",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/male_adventurer.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.82,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/male_farmer",
+   "name": "Male Farmer",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/male_farmer.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.82,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/male_baker",
+   "name": "Male Baker",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/male_baker.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.82,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/male_elder",
+   "name": "Male Elder",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/male_elder.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.82,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/male_guard",
+   "name": "Male Guard",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/male_guard.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.82,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/male_merchant",
+   "name": "Male Merchant",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/male_merchant.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.82,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/male_bandit",
+   "name": "Male Bandit",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/male_bandit.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.82,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/female_adventurer",
+   "name": "Female Adventurer",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/female_adventurer.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.775,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/female_farmer",
+   "name": "Female Farmer",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/female_farmer.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.775,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/female_baker",
+   "name": "Female Baker",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/female_baker.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.775,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/female_elder",
+   "name": "Female Elder",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/female_elder.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.775,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/female_guard",
+   "name": "Female Guard",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/female_guard.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.775,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/female_merchant",
+   "name": "Female Merchant",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/female_merchant.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.775,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  },
+  {
+   "id": "characters/female_bandit",
+   "name": "Female Bandit",
+   "kind": "character",
+   "category": "human",
+   "file": "models/characters/female_bandit.gltf",
+   "licence": "CC0 1.0",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "credit": "Quaternius (Universal Base Characters, Universal Animation Library); outfits painted by Stark World Engine character_forge",
+   "source_url": "https://quaternius.itch.io/universal-base-characters",
+   "anim_source_url": "https://quaternius.itch.io/universal-animation-library",
+   "scale": 1,
+   "pivot": "bottom-center",
+   "height_m": 1.775,
+   "clips": [
+    "Idle_Loop",
+    "Walk_Loop",
+    "Jog_Fwd_Loop",
+    "Sprint_Loop",
+    "Sword_Attack",
+    "Sword_Idle",
+    "Hit_Chest",
+    "Death01",
+    "Jump_Start",
+    "Jump_Loop",
+    "Jump_Land",
+    "Roll",
+    "Spell_Simple_Shoot",
+    "Interact",
+    "Idle_Talking_Loop",
+    "Sitting_Idle_Loop",
+    "Idle_Torch_Loop",
+    "Dance_Loop",
+    "PickUp_Table",
+    "Fixing_Kneeling",
+    "Punch_Jab"
+   ],
+   "rig": "Quaternius humanoid (65 joints)"
+  }
+ ]
+}

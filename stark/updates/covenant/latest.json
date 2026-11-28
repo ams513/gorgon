@@ -1,0 +1,399 @@
+{
+ "app_files": [
+  {
+   "path": "assets/covenant-icons.svg",
+   "sha256": "6e72162c8d59e13f7cfd56e69f7cc8deaff634e1c53852f1fc9e159b9c313f64",
+   "size": 3659
+  },
+  {
+   "path": "assets/covenant-practice.js",
+   "sha256": "17ebccc20cc7ebd4607f466e0be997df5cc616a895f55502af4bb12e4ce0a777",
+   "size": 107802
+  },
+  {
+   "path": "assets/covenant-ui.css",
+   "sha256": "f953493ad2cf9a3a66f22fa9a23b03b300a5bd9283e785918bc7710319248e30",
+   "size": 23867
+  },
+  {
+   "path": "assets/gorgon-covenant.ico",
+   "sha256": "59b55d6ca9985bd77fc77c0a395ce3b237e77a0bde18ae356102a280a60bb374",
+   "size": 7903
+  },
+  {
+   "path": "assets/gorgon-covenant-favicon.svg",
+   "sha256": "a4ae0037f0dbbd603abca69f40fe8616283cd6d0c8329f70bc0108c571af7a80",
+   "size": 1086
+  },
+  {
+   "path": "assets/gorgon-covenant-lockup-dark.svg",
+   "sha256": "da4c7b9751098a9acb91a11fd4beece74a9f21d5eb72c3211c0d9bab2beddcd9",
+   "size": 3600
+  },
+  {
+   "path": "assets/gorgon-covenant-lockup-light.svg",
+   "sha256": "64be6c0ad6b3c475b13c6f9ef91f08dff8e8a47ba3b965f12076b28ec98f075e",
+   "size": 3600
+  },
+  {
+   "path": "assets/stark-covenant.ico",
+   "sha256": "59b55d6ca9985bd77fc77c0a395ce3b237e77a0bde18ae356102a280a60bb374",
+   "size": 7903
+  },
+  {
+   "path": "assets/stark-covenant-favicon.svg",
+   "sha256": "a4ae0037f0dbbd603abca69f40fe8616283cd6d0c8329f70bc0108c571af7a80",
+   "size": 1086
+  },
+  {
+   "path": "assets/stark-covenant-lockup-dark.svg",
+   "sha256": "da4c7b9751098a9acb91a11fd4beece74a9f21d5eb72c3211c0d9bab2beddcd9",
+   "size": 3600
+  },
+  {
+   "path": "assets/stark-covenant-lockup-light.svg",
+   "sha256": "64be6c0ad6b3c475b13c6f9ef91f08dff8e8a47ba3b965f12076b28ec98f075e",
+   "size": 3600
+  },
+  {
+   "path": "auto_updater.py",
+   "sha256": "ac1b351b450903352ef57727dadf7c2b38b2c434236e8307b06c0d909b072638",
+   "size": 24835
+  },
+  {
+   "path": "care_suite.py",
+   "sha256": "2056501477e413f213d0112b8a1b5b93c294130e7c7cd621abcec415113ad37b",
+   "size": 98538
+  },
+  {
+   "path": "CHANNEL",
+   "sha256": "f379ccb92b9116442dc65bdc35648a85d3786b34779db7f704a901fa07b00cb6",
+   "size": 6
+  },
+  {
+   "path": "clinic_app.py",
+   "sha256": "50f1f59d8a9f81e459463bf090894098fedeefeb26a3cdbe1782a0585dbb8806",
+   "size": 260513
+  },
+  {
+   "path": "comms_ui.html",
+   "sha256": "b206699194ab26c575fa0ceab5a41bfcdce1326ca0220d555d31b258f0abff00",
+   "size": 62872
+  },
+  {
+   "path": "compliance/checklist_AU_Privacy_Act.md",
+   "sha256": "162ca7fb8e2517f4c32157f064c98817760fb23b2c923d87f60d00be5592cc83",
+   "size": 2699
+  },
+  {
+   "path": "compliance/checklist_BR_LGPD.md",
+   "sha256": "f379fc2478ad0308f54ad239630241ad82057ab9e41b2708761a6862d0905367",
+   "size": 2884
+  },
+  {
+   "path": "compliance/checklist_CA_PIPEDA_PHIPA.md",
+   "sha256": "3c3deadb1971bff6eb683b091be288392674aa5554aa478c0739dff9bae749b3",
+   "size": 3307
+  },
+  {
+   "path": "compliance/checklist_EU_UK_GDPR.md",
+   "sha256": "4e9a15b16653b5046c221d6ed349767378b33df01466ad920de2fbc05e2f3a23",
+   "size": 4334
+  },
+  {
+   "path": "compliance/checklist_IN_DPDP.md",
+   "sha256": "f08cb7c0d95da0d3da113c3cb9f1dc292e60b7afb23510250b1b10f0ed9c1a0b",
+   "size": 3017
+  },
+  {
+   "path": "compliance/checklist_US_HIPAA.md",
+   "sha256": "de805d096b28e140fefea3a6d749e693de8051f703280e1afbaf021f1f278f7f",
+   "size": 6154
+  },
+  {
+   "path": "compliance/INTEGRATION.md",
+   "sha256": "e50503f5c0d209683a6496aea4624a0df55d7d2bfc8521cc7f2d3d09e8355c2f",
+   "size": 6118
+  },
+  {
+   "path": "compliance/README.md",
+   "sha256": "bc448e31abaafd3af4237c04397e690ccf075e9e2b1244405be74bf589fa2f6d",
+   "size": 6133
+  },
+  {
+   "path": "compliance/templates/breach_response_runbook.md",
+   "sha256": "6d9989b3434d574d9c632429363640c96889d9d3c6aa2362cb8073a8430d3248",
+   "size": 3319
+  },
+  {
+   "path": "compliance/templates/business_associate_agreement.md",
+   "sha256": "7cce1e6e9ae8b55719d4b9558fbf3ca7eab4c1bda6019081fb60ab174edacb89",
+   "size": 3118
+  },
+  {
+   "path": "compliance/templates/consent_form_patient.md",
+   "sha256": "a025b762b41184a31a892b4228a2dbef75c925eadbb2012ba8e4a918b5f37c1a",
+   "size": 3076
+  },
+  {
+   "path": "compliance/templates/consent_form_staff.md",
+   "sha256": "f07e0a7b1c3db7966e469ea52fd734b1eaae0cbf0a78a4a71dddd9efe4bd8e30",
+   "size": 1516
+  },
+  {
+   "path": "compliance/templates/data_processing_agreement.md",
+   "sha256": "c9f0295e5d90bff1fefb7f5fd2f9ccf127fac96b1efd1407e3e19169c65c0ccb",
+   "size": 2502
+  },
+  {
+   "path": "compliance/templates/dpia_template.md",
+   "sha256": "b649bb2e9d8d1a69c8c2373a19e0fd2982039e6e1246a8ac9ca22a98db83e9f8",
+   "size": 3864
+  },
+  {
+   "path": "compliance/templates/privacy_notice.md",
+   "sha256": "7af454cbef234ee3e0195074b7c4bc3ef30c940f528e9175551302e58be66de9",
+   "size": 4331
+  },
+  {
+   "path": "consent_center.py",
+   "sha256": "0b7e198c93fe80d081b4830e19a9465bae27eeef6d6979f04731d5932621d922",
+   "size": 81068
+  },
+  {
+   "path": "coverage_navigator.py",
+   "sha256": "1eb6b2234ed9758c65857851a8190693d88fd610e8ddb2ff9cfbe5778ccc8654",
+   "size": 62391
+  },
+  {
+   "path": "emergency_comms.py",
+   "sha256": "6d963ae598df979def00506952f8feb09723700fec1f619a79533f1421e5c13c",
+   "size": 61035
+  },
+  {
+   "path": "emergency_numbers.json",
+   "sha256": "9e8a802b68abbf193d42be05e91178dafa43ccd7e5f711971e40657ce4b841d3",
+   "size": 214967
+  },
+  {
+   "path": "i18n.py",
+   "sha256": "003a8be4b888fac70552b8f642d0003fcd0abe722b66c4522b99b32f847cea19",
+   "size": 53765
+  },
+  {
+   "path": "i18n/ar.json",
+   "sha256": "f21a89803a05922d6eab99cec670d4c21eb06ba8b20ae9d93d4a1d0b90385060",
+   "size": 146593
+  },
+  {
+   "path": "i18n/bn.json",
+   "sha256": "8432bd3b241684fa39b1433ecb934280d87f5e40c025c8ca986e90b9108c481d",
+   "size": 202541
+  },
+  {
+   "path": "i18n/build_catalog.py",
+   "sha256": "43699ab14d971319a2ffa57ebc711444118d82f75aaab2c5f4c92205b0775292",
+   "size": 5019
+  },
+  {
+   "path": "i18n/de.json",
+   "sha256": "3b10c90060ac45f0b5e734a36b0ed22ca0945be1eb887355b5a81addda0d5300",
+   "size": 123834
+  },
+  {
+   "path": "i18n/en.json",
+   "sha256": "f180dc8fed7ac15f04a2c9efe5ef32f8bdf452ee68eaf7deb61dfec2d0d941cc",
+   "size": 111975
+  },
+  {
+   "path": "i18n/es.json",
+   "sha256": "e62e9afbe0190fe32aeb056eaabfff7d7996420396aae798e6ceb24dc92498b7",
+   "size": 120855
+  },
+  {
+   "path": "i18n/fr.json",
+   "sha256": "5f23086c8cb17458cb17d571902e5b1d070f06af0d05dbeaa6e44399ed6395d5",
+   "size": 125095
+  },
+  {
+   "path": "i18n/hi.json",
+   "sha256": "f15ad1edefec5279bf73e9697bf0538881df46602b12d2448ccbdee6097f41d0",
+   "size": 198937
+  },
+  {
+   "path": "i18n/id.json",
+   "sha256": "d550695517f18c6ab05a747f55198d2071545f0f92b5c819c0264cfc4e07c6fe",
+   "size": 116545
+  },
+  {
+   "path": "i18n/ja.json",
+   "sha256": "e070b45ba853560243f40d7bc84c4fceb240101ef6d6933d595022feac5a8e06",
+   "size": 132210
+  },
+  {
+   "path": "i18n/pt-BR.json",
+   "sha256": "543c8abf58d656cab86dce8410299aaf209922e3e5b1a54d04a45f54f5323789",
+   "size": 120379
+  },
+  {
+   "path": "i18n/ru.json",
+   "sha256": "bd3d342b2ea921192947068c81770e25defe5618bcdadc2775bc7091e16b13b7",
+   "size": 169588
+  },
+  {
+   "path": "i18n/sw.json",
+   "sha256": "02106081414c635e70260adf9395bd10318bf199a90d9ca181d67e83bbec656c",
+   "size": 119135
+  },
+  {
+   "path": "i18n/ur.json",
+   "sha256": "59184d01efb41867373d7a998b6c8257e951c6f4bfd40afa9258d4e6fccb7753",
+   "size": 152586
+  },
+  {
+   "path": "i18n/zh-Hans.json",
+   "sha256": "921ce71df748ea464e47b117d440f9a89885e1dd557fce905c2e8d78863f37b6",
+   "size": 109383
+  },
+  {
+   "path": "install_chart.bat",
+   "sha256": "b59bae215740a441f2342293d9edba22792e79e322808ba9c06156d84b9c963b",
+   "size": 6601
+  },
+  {
+   "path": "interop_bridge.py",
+   "sha256": "30728659ec2c51bfad9081c379117921fc8611c428a7c0e09defcb0335ae1e0a",
+   "size": 78044
+  },
+  {
+   "path": "LICENSE",
+   "sha256": "9d41036f777216fc4ab14e2933b978849ccaf25eec919a9e1998e7f87a63432e",
+   "size": 820
+  },
+  {
+   "path": "license_guard.py",
+   "sha256": "54eb087896ba263e485b31b6b4c87133728368dd803af541796b48cb7e5a74a5",
+   "size": 39686
+  },
+  {
+   "path": "medical_library.py",
+   "sha256": "68075ad13ffbcfdba9e615e3b953d608acfac14a70a86188068a96829d0928e5",
+   "size": 41628
+  },
+  {
+   "path": "nutrition_planner.py",
+   "sha256": "e41625112ec7e0e521680fea4db488217221be9c2415b68e03e34dbaad2ffc6f",
+   "size": 75632
+  },
+  {
+   "path": "optical_airgap.py",
+   "sha256": "3172be3b34b431d393046407e0656b5e8879adbc73c8d2e4370c93cee4003a77",
+   "size": 134653
+  },
+  {
+   "path": "ot_shaper.py",
+   "sha256": "7615a59ffd28a0c4f64b185c6af31b43515812eb817573a9cb8bae97c0cd91a7",
+   "size": 103689
+  },
+  {
+   "path": "persona_ai.py",
+   "sha256": "35bd55037624b355a15b986d8e09aa795e94428020113de1021b34485c2d1e2b",
+   "size": 50132
+  },
+  {
+   "path": "polyglot_engine.py",
+   "sha256": "0b27639db46237eef52a2a2233defe5cdb7803e6e2228db67de7dd98a9d569c9",
+   "size": 100787
+  },
+  {
+   "path": "practice_suite.py",
+   "sha256": "0e7ce8272e19fa3e8cdb955c8207316113e8756b51594831241b5034541a2df9",
+   "size": 155231
+  },
+  {
+   "path": "README.md",
+   "sha256": "39c366d6bcbc36fb91ecfc0fd20c69fd4f47b7f645beabb7ad25680f1e6747f5",
+   "size": 37458
+  },
+  {
+   "path": "regional.py",
+   "sha256": "19088807613b1d745ebf0f34a4c55387f17a848a1e1a43410e0fd1dc186196b3",
+   "size": 26584
+  },
+  {
+   "path": "research_desk.py",
+   "sha256": "7d9135ed65e2fa7a1abbab4cab2a7bc3ec4733dac3a01267c2a3e87e013333a9",
+   "size": 163291
+  },
+  {
+   "path": "research_sources.json",
+   "sha256": "9bd4bbd25b5f2a47e413b4dca75004e87efeee3ef68c0a289bd31ec976c34507",
+   "size": 12031
+  },
+  {
+   "path": "security_vault.py",
+   "sha256": "5d3855d0c011ca58815a764b65c405975dc3606ee434ea82cd2591cb971cd9bd",
+   "size": 53282
+  },
+  {
+   "path": "self_learner.py",
+   "sha256": "35935111ed35d3c972c000cd92d92b9dfa1bc2c9eadf6c01fe970b7e63f741cc",
+   "size": 43413
+  },
+  {
+   "path": "START_GORGON_COVENANT.bat",
+   "sha256": "dace98b892cf5ddf161ae2f41e00b3b55e068004233b1da8a8868d5a4a1ee2e9",
+   "size": 1151
+  },
+  {
+   "path": "START_STARK_COVENANT.bat",
+   "sha256": "dace98b892cf5ddf161ae2f41e00b3b55e068004233b1da8a8868d5a4a1ee2e9",
+   "size": 1151
+  },
+  {
+   "path": "start_stark_covenant.sh",
+   "sha256": "85032ca76e89c3afe0092aad040e62115242a7ffc05642a08c705935e6980e63",
+   "size": 582
+  },
+  {
+   "path": "WORLDWIDE.md",
+   "sha256": "169c3c192d4bc3d6c73642f03a68785a592b1b5d22b69863586522fb3eba3fb9",
+   "size": 17264
+  }
+ ],
+ "base_url": "https://ams513.github.io/stark/updates/covenant/1.1.0/",
+ "channel": "stable",
+ "feed_url": "https://ams513.github.io/stark/updates/covenant/latest.json",
+ "files": [
+  {
+   "name": "StarkCovenant_v1.1.0.zip",
+   "sha256": "4b771840500a2af3cec87424532a6b7069e1c75a4a9593c653e3861497d69847",
+   "size": 1207943
+  },
+  {
+   "name": "StarkCovenant_v1.1.0_windows_full.zip",
+   "sha256": "3e229efc384a639a346e6eb5d766e0abbba077604f5817965c46a6ab076e6ba6",
+   "size": 12343632
+  }
+ ],
+ "gate": {
+  "passed": true,
+  "property_cases": 1285000,
+  "report_sha256": "751f5d74d30b2226155962b069c21de05066bfa7e43ae4d17ca64ee19037c60f",
+  "seed": 20261121,
+  "total_s": 129.02
+ },
+ "id": "gorgon_chart",
+ "legacy_feed_url": "https://ams513.github.io/gorgon/updates/covenant/latest.json",
+ "notice": "Not a certified EHR or medical device; no HIPAA/GDPR compliance claim; your compliance review is required before real patient data.",
+ "product": "Stark Covenant",
+ "released": "2026-11-21",
+ "revoked": [],
+ "runtime": {
+  "python": "3.12.10",
+  "sha256": "4acbed6dd1c744b0376e3b1cf57ce906f9dc9e95e68824584c8099a63025a3c3",
+  "url": "https://www.python.org/ftp/python/3.12.10/python-3.12.10-embed-amd64.zip"
+ },
+ "sig": "wyaplZTknQVXrGVFUftQLIhnhnTIFTPupTqT9y-ONPCA7__F_4p22exqe_T75Zw-iPksVNXpbKODabDSWrhsCQ",
+ "version": "1.1.0"
+}

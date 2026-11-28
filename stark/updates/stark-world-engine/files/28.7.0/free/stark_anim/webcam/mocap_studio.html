@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stark World Engine Motion Capture</title>
+<style>
+  :root { --bg: #14151b; --panel: #1d1f28; --line: #2c2f3b; --fg: #e9e9ef; --mute: #9da3b4; --accent: #7fd1b9; --rec: #ff5d5d; }
+  @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --bg: #f4f4f7; --panel: #ffffff; --line: #d9dbe3; --fg: #1b1c22; --mute: #5d6273; --accent: #1f8f72; } }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.4 system-ui, sans-serif; }
+  header { padding: 12px 16px; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+  header h1 { font-size: 17px; margin: 0; }
+  header .privacy { color: var(--mute); font-size: 12px; }
+  main { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px 16px; }
+  @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; position: relative; }
+  .stage { position: relative; aspect-ratio: 4 / 3; background: #000; }
+  .stage video, .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .mirror { transform: scaleX(-1); }
+  #count { position: absolute; inset: 0; display: grid; place-items: center; font-size: 96px; font-weight: 700; color: #fff; text-shadow: 0 2px 12px #000; pointer-events: none; }
+  #recdot { position: absolute; top: 10px; left: 10px; width: 14px; height: 14px; border-radius: 50%; background: var(--rec); display: none; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; border-top: 1px solid var(--line); }
+  button { background: transparent; color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font: inherit; cursor: pointer; }
+  button.primary { background: var(--accent); color: #0d1b16; border-color: transparent; }
+  button:disabled { opacity: 0.45; cursor: default; }
+  label.tog { display: flex; align-items: center; gap: 6px; color: var(--mute); }
+  #status { padding: 8px 12px; color: var(--mute); font-size: 12px; min-height: 2.4em; }
+  #takes { list-style: none; margin: 0; padding: 0 10px 10px; }
+  #takes li { display: flex; justify-content: space-between; gap: 8px; padding: 6px 0; border-top: 1px solid var(--line); font-size: 13px; }
+  #takes li span { color: var(--mute); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Motion capture</h1>
+  <span class="privacy">Your camera stays on this PC: frames are analysed in this tab and only body-pose numbers are kept, never images or video.</span>
+</header>
+<main>
+  <section class="panel">
+    <div class="stage"><video id="video" class="mirror" muted playsinline></video><canvas id="overlay" class="mirror"></canvas><div id="recdot"></div><div id="count"></div></div>
+    <div class="bar">
+      <button id="cam" class="primary">Start camera</button>
+      <button id="cal" disabled title="Stand in a T-pose for 2 seconds (improves hips and legs)">Calibrate T-pose</button>
+      <button id="rec" disabled>Record</button>
+      <button id="stop" disabled>Stop</button>
+      <label class="tog"><input type="checkbox" id="face"> Face (mouth + expressions)</label>
+      <label class="tog"><input type="file" id="replay" accept=".json" hidden><button id="replayBtn" type="button">Replay a take file</button></label>
+    </div>
+    <div id="status">Models: checking...</div>
+  </section>
+  <section class="panel">
+    <div class="stage"><canvas id="view"></canvas></div>
+    <ul id="takes"></ul>
+  </section>
+</main>
+<script src="../runtime/stark_anim.js"></script>
+<script src="../preview/skin_view.js"></script>
+<script src="stark_mocap.js"></script>
+<script>
+(function () {
+  'use strict';
+  var q = new URLSearchParams(location.search);
+  var base = q.get('base') || '../';                 // studio serves stark_anim/ here
+  var modelBase = q.get('models') || base + 'models/';
+  var character = q.get('character') || '../../assets/models/characters/male_adventurer.gltf';
+  var api = q.get('api') || '/api/anim/take';
+  var $ = function (id) { return document.getElementById(id); };
+  var status = function (s) { $('status').textContent = s; };
+  var session, view, rig, video = $('video'), ov = $('overlay'), octx = ov.getContext('2d');
+
+  function drawLandmarks(fr) {
+    ov.width = video.videoWidth || 640; ov.height = video.videoHeight || 480; octx.clearRect(0, 0, ov.width, ov.height);
+    if (!fr || !fr.landmarks) return;
+    var L = fr.landmarks, w = ov.width, h = ov.height;
+    octx.lineWidth = 3; octx.strokeStyle = '#7fd1b9'; octx.fillStyle = '#ffffff';
+    StarkMocap.CONNECTIONS.forEach(function (c) { var a = L[c[0]], b = L[c[1]]; if ((a.visibility || 1) < 0.5 || (b.visibility || 1) < 0.5) return;
+      octx.beginPath(); octx.moveTo(a.x * w, a.y * h); octx.lineTo(b.x * w, b.y * h); octx.stroke(); });
+    L.forEach(function (p) { if ((p.visibility || 1) < 0.5) return; octx.beginPath(); octx.arc(p.x * w, p.y * h, 3, 0, 6.3); octx.fill(); });
+  }
+  function showPose(pose) {
+    if (!view) return; var A = view.anim; A.pose.copy(pose);
+    A.globals = StarkAnim.computeGlobals(A.sk, A.pose, A.globals); A.jointMatrices = StarkAnim.jointMatrices(A.sk, A.globals, A.jointMatrices); view.draw();
+  }
+  function addTake(take, saved) {
+    var li = document.createElement('li'), secs = take.frames.length > 1 ? (take.frames[take.frames.length - 1].t - take.frames[0].t) / 1000 : 0;
+    li.innerHTML = '<b></b><span></span>'; li.firstChild.textContent = take.name; li.lastChild.textContent = secs.toFixed(1) + ' s, ' + take.frames.length + ' frames' + (saved ? ' - saved' : '');
+    $('takes').prepend(li);
+  }
+  function save(take) {
+    return fetch(api, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(take)}).then(function (r) {
+      if (!r.ok) throw new Error('studio said ' + r.status); return r.json();
+    }).then(function (res) { addTake(take, true); status('Saved "' + take.name + '" as a clip in your animation library' + (res && res.clip ? ' (' + res.clip + ')' : '') + '.'); })
+      .catch(function () { // no studio API: hand the creator the file instead
+        var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(take)], {type: 'application/json'}));
+        a.download = take.name + '.take.json'; a.click(); addTake(take, false); status('Studio not reachable: the take was downloaded as a file (landmark numbers only).');
+      });
+  }
+
+  fetch(base + 'data/stark_humanoid.rig.json').then(function (r) { return r.json(); }).then(function (r) {
+    rig = r; session = new StarkMocap.Session({rig: rig, modelBase: modelBase});
+    session.onPose = function (pose, fr) { drawLandmarks(fr); showPose(pose); };
+    session.onFrame = function (_, fr) { drawLandmarks(fr); };
+    var c = $('view'); c.width = 640; c.height = 480;
+    return StarkSkinView.create(c, {model: character, dist: 3.2, camYaw: 0, camPitch: 0.1}).then(function (v) { view = v; v.follow = false; v.cam.target = [0, 0.95, 0]; v.anim.update(0, v.world); v.draw(); });
+  }).then(function () {
+    return fetch(modelBase + 'manifest.json').then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(function () { status('Ready. Models are local (MediaPipe, Apache-2.0). Start the camera, or replay a take file.'); })
+      .catch(function () { status('The mocap models are not installed (python -m stark_anim models status). You can still replay take files.'); $('cam').disabled = true; });
+  }).catch(function (e) { status('Could not start: ' + e.message); });
+
+  $('cam').onclick = function () {
+    $('cam').disabled = true; status('Loading the pose model...');
+    session.useMediaPipe({face: $('face').checked}).then(function () { status('Asking for the camera...'); return session.startCamera(video); })
+      .then(function () { $('rec').disabled = $('cal').disabled = false; status('Camera on. Step back until your whole body is in view.'); })
+      .catch(function (e) { $('cam').disabled = false; status('Camera or model failed: ' + e.message); });
+  };
+  $('cal').onclick = function () {
+    status('Hold a T-pose (arms out, feet together)...');
+    session.calibrate(2).then(function (r) { status(r.calibrated ? 'Calibrated on ' + r.frames + ' frames (hips and legs).' : 'No body seen - calibration skipped.'); });
+  };
+  $('rec').onclick = function () {
+    var n = 3; $('rec').disabled = true;
+    (function tick() {
+      $('count').textContent = n || '';
+      if (n === 0) { session.record(); $('recdot').style.display = 'block'; $('stop').disabled = false; status('Recording...'); return; }
+      n--; setTimeout(tick, 1000);
+    })();
+  };
+  $('stop').onclick = function () {
+    var take = session.stop(); $('recdot').style.display = 'none'; $('stop').disabled = true; $('rec').disabled = false;
+    if (take && take.frames.length) save(take); else status('Nothing recorded (no body was detected).');
+  };
+  $('replayBtn').onclick = function () { $('replay').click(); };
+  $('replay').onchange = function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    f.text().then(function (t) {
+      var take = JSON.parse(t); if (take.format !== 'stark-mocap-take' && take.format !== 'gorgon-mocap-take') throw new Error('not a mocap take');
+      session.useReplay(take); var k = 0, t0 = performance.now(); status('Replaying "' + (take.name || f.name) + '"...');
+      (function step() { if (k >= take.frames.length) { status('Replay finished.'); return; } var fr = take.frames[k++];
+        session.process(fr); setTimeout(step, k < take.frames.length ? Math.max(0, take.frames[k].t - fr.t) : 0); })();
+    }).catch(function (err) { status('Replay failed: ' + err.message); });
+  };
+})();
+</script>
+</body>
+</html>

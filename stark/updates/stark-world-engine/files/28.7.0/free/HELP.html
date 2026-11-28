@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stark World Engine Help</title>
+<style>
+:root{--bg:#f7f8f6;--panel:#ffffff;--ink:#1d2421;--mute:#5d6b65;--line:#dfe5e1;--acc:#16806a;--acc-soft:#e3f3ee;--code:#eef2ef;--mark:#ffe58a;--shadow:0 1px 2px rgba(0,0,0,.05),0 4px 16px rgba(0,0,0,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1412;--panel:#161d1a;--ink:#e6ece9;--mute:#97a6a0;--line:#26302c;--acc:#5fd3b5;--acc-soft:#173029;--code:#1e2824;--mark:#6b5a12;--shadow:none}}
+:root[data-theme="dark"]{--bg:#0f1412;--panel:#161d1a;--ink:#e6ece9;--mute:#97a6a0;--line:#26302c;--acc:#5fd3b5;--acc-soft:#173029;--code:#1e2824;--mark:#6b5a12;--shadow:none}
+*{box-sizing:border-box}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--acc)}
+header{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+.brand{font-weight:700;letter-spacing:.2px;white-space:nowrap;color:var(--ink);text-decoration:none}
+.brand span{color:var(--acc)}
+#menu{display:none}
+.search{position:relative;flex:1;min-width:0;max-width:520px;margin-left:auto}
+.search input{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+.search input:focus{outline:2px solid var(--acc);outline-offset:-1px}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--mute)}
+#results{position:absolute;left:0;right:0;top:calc(100% + 6px);background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);max-height:70vh;overflow:auto;display:none}
+#results a{display:block;padding:10px 14px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none}
+#results a:last-child{border-bottom:0}
+#results a:hover,#results a.sel{background:var(--acc-soft)}
+#results .rt{font-weight:600}#results .rd{font-size:12px;color:var(--acc);text-transform:uppercase;letter-spacing:.5px}
+#results .rs{font-size:13px;color:var(--mute)}
+#results .none{padding:12px 14px;color:var(--mute)}
+mark{background:var(--mark);color:inherit;border-radius:2px}
+button.icon{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);max-width:1200px;margin:0 auto}
+nav{position:sticky;top:57px;align-self:start;height:calc(100vh - 57px);overflow:auto;padding:18px 12px 40px 16px;border-right:1px solid var(--line)}
+nav ul{list-style:none;margin:0;padding:0}
+nav a{display:block;text-decoration:none;color:var(--mute);padding:3px 8px;border-radius:6px;font-size:14px}
+nav a:hover{color:var(--ink);background:var(--acc-soft)}
+nav a.doc{color:var(--ink);font-weight:600;font-size:15px;margin-top:10px}
+nav a.doc.on{background:var(--acc-soft);color:var(--acc)}
+nav li ul{display:none;margin:2px 0 6px 8px;border-left:1px solid var(--line)}
+nav li.open ul{display:block}
+main{padding:28px 40px 80px;min-width:0;overflow-wrap:break-word}
+article{display:none;max-width:780px}
+article.on{display:block}
+h1{font-size:2rem;line-height:1.2;margin:0 0 16px}
+h2{font-size:1.4rem;margin:36px 0 10px;padding-top:4px}
+h3{font-size:1.12rem;margin:26px 0 8px}
+h4{font-size:1rem;margin:20px 0 6px}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+code{background:var(--code);padding:1px 6px;border-radius:5px;font:.9em ui-monospace,Consolas,monospace;overflow-wrap:anywhere}
+pre code{overflow-wrap:normal}
+pre{background:var(--code);padding:12px 14px;border-radius:10px;overflow:auto}
+pre code{padding:0;background:none}
+blockquote{margin:16px 0;padding:10px 16px;border-left:4px solid var(--acc);background:var(--acc-soft);border-radius:0 10px 10px 0}
+blockquote p{margin:0}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--code)}
+li{margin:3px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:48px;padding-top:18px;border-top:1px solid var(--line)}
+.pager a{text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:var(--panel)}
+.pager a:hover{border-color:var(--acc)}
+.pager small{display:block;color:var(--mute)}
+.flash{animation:fl 1.6s ease-out}
+@keyframes fl{0%{background:var(--mark)}100%{background:transparent}}
+footer{color:var(--mute);font-size:13px;margin-top:40px}
+@media (max-width:860px){
+ .layout{grid-template-columns:minmax(0,1fr)}
+ header{gap:8px;padding:10px 12px}
+ #menu{display:inline-block}
+ nav{display:none;position:fixed;top:57px;left:0;right:0;bottom:0;background:var(--panel);z-index:9;border:0;height:auto}
+ body.navopen nav{display:block}
+ main{padding:20px 16px 60px}
+ .brand small{display:none}
+ h1{font-size:1.6rem}
+}
+@media print{header,nav,.pager{display:none}.layout{display:block}article{display:block!important;page-break-after:always}}
+</style>
+</head>
+<body>
+<header>
+ <button class="icon" id="menu" aria-label="Contents">&#9776;</button>
+ <a class="brand" href="#quickstart">Stark World Engine <span>Studios</span> <small>Help</small></a>
+ <div class="search">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+  <input id="q" type="search" placeholder="Search help  (press / )" autocomplete="off" aria-label="Search help">
+  <div id="results" role="listbox"></div>
+ </div>
+ <button class="icon" id="theme" title="Light / dark" aria-label="Toggle light or dark theme">&#9681;</button>
+</header>
+<div class="layout">
+<nav id="nav"><ul>
+<li><a class="doc" href="#quickstart">Quickstart</a><ul><li><a href="#quickstart--step-1-unzip">Step 1: Unzip</a></li><li><a href="#quickstart--step-2-start-the-studio">Step 2: Start the studio</a></li><li><a href="#quickstart--step-3-play-a-starter-game-1-minute">Step 3: Play a starter game (1 minute)</a></li><li><a href="#quickstart--step-4-let-the-studio-make-you-a-game-1-minute">Step 4: Let the studio make you a game (1 minute)</a></li><li><a href="#quickstart--step-5-make-your-own-3-minutes">Step 5: Make your own (3 minutes)</a></li><li><a href="#quickstart--step-6-optional-activate-your-key">Step 6 (optional): Activate your key</a></li><li><a href="#quickstart--step-7-optional-share-your-game">Step 7 (optional): Share your game</a></li><li><a href="#quickstart--studio-edition-the-creator-suite">Studio edition: the creator suite</a></li></ul></li>
+<li><a class="doc" href="#user-guide">User Guide</a><ul><li><a href="#user-guide--1-what-stark-world-engine-is-and-isnt">1. What Stark World Engine is (and isn't)</a></li><li><a href="#user-guide--2-starting-the-studio">2. Starting the studio</a></li><li><a href="#user-guide--3-the-studio-screen">3. The studio screen</a></li><li><a href="#user-guide--4-make-me-a-game">4. Make me a game</a></li><li><a href="#user-guide--5-building-3d-worlds">5. Building 3D worlds</a></li><li><a href="#user-guide--6-building-2d-worlds">6. Building 2D worlds</a></li><li><a href="#user-guide--7-moods-weather-and-the-world-tab">7. Moods, weather and the World tab</a></li><li><a href="#user-guide--8-quests-people-items-xp-enemies-and-campaigns">8. Quests, people, items, XP, enemies and campaigns</a></li><li><a href="#user-guide--9-the-look">9. The look</a></li><li><a href="#user-guide--10-playing-your-game">10. Playing your game</a></li><li><a href="#user-guide--11-saving-undo-and-backups">11. Saving, undo and backups</a></li><li><a href="#user-guide--12-shortcuts-while-building">12. Shortcuts while building</a></li><li><a href="#user-guide--13-templates-and-starter-games">13. Templates and starter games</a></li><li><a href="#user-guide--14-pixel-art-canvas">14. Pixel Art Canvas</a></li><li><a href="#user-guide--15-sfx-forge">15. SFX Forge</a></li><li><a href="#user-guide--16-music-and-sound">16. Music and sound</a></li><li><a href="#user-guide--17-exporting">17. Exporting</a></li><li><a href="#user-guide--18-activation-and-your-license">18. Activation and your license</a></li><li><a href="#user-guide--19-the-creator-suite-studio-edition-windows">19. The creator suite (Studio edition, Windows)</a></li><li><a href="#user-guide--20-where-things-live">20. Where things live</a></li><li><a href="#user-guide--21-privacy-in-one-paragraph">21. Privacy in one paragraph</a></li></ul></li>
+<li><a class="doc" href="#tutorials">Tutorials</a><ul><li><a href="#tutorials--tutorial-1-your-first-adventure-in-10-minutes">Tutorial 1: Your first adventure in 10 minutes</a></li><li><a href="#tutorials--tutorial-2-a-3-level-campaign-with-a-boss">Tutorial 2: A 3-level campaign with a boss</a></li><li><a href="#tutorials--tutorial-3-a-cozy-collect-a-thon">Tutorial 3: A cozy collect-a-thon</a></li><li><a href="#tutorials--tutorial-4-make-a-trailer-of-your-game-with-the-auto-editor">Tutorial 4: Make a trailer of your game with the auto editor</a></li><li><a href="#tutorials--tutorial-5-export-to-godot">Tutorial 5: Export to Godot</a></li></ul></li>
+<li><a class="doc" href="#faq">FAQ</a><ul><li><a href="#faq--the-basics">The basics</a></li><li><a href="#faq--editions-and-licensing">Editions and licensing</a></li><li><a href="#faq--building-and-playing">Building and playing</a></li><li><a href="#faq--exporting-and-sharing">Exporting and sharing</a></li><li><a href="#faq--creator-suite-studio">Creator suite (Studio)</a></li></ul></li>
+<li><a class="doc" href="#troubleshooting">Troubleshooting</a><ul><li><a href="#troubleshooting--starting-the-studio">Starting the studio</a></li><li><a href="#troubleshooting--browser-and-graphics-webgl2">Browser and graphics (WebGL2)</a></li><li><a href="#troubleshooting--saving-and-files">Saving and files</a></li><li><a href="#troubleshooting--playing">Playing</a></li><li><a href="#troubleshooting--license-keys">License keys</a></li><li><a href="#troubleshooting--antivirus-and-security-warnings">Antivirus and security warnings</a></li><li><a href="#troubleshooting--creator-suite-studio-edition">Creator suite (Studio edition)</a></li><li><a href="#troubleshooting--still-stuck">Still stuck?</a></li></ul></li>
+<li><a class="doc" href="#video-scripts">Video Scripts</a><ul><li><a href="#video-scripts--video-1-your-first-game-in-60-seconds-about-60-s">Video 1: "Your first game in 60 seconds" (about 60 s)</a></li><li><a href="#video-scripts--video-2-pixel-hero--custom-sounds-for-a-2d-platformer-about-75-s">Video 2: "Pixel hero + custom sounds for a 2D platformer" (about 75 s)</a></li><li><a href="#video-scripts--video-3-from-browser-to-godot-4-about-85-s-pro--studio">Video 3: "From browser to Godot 4" (about 85 s, Pro / Studio)</a></li></ul></li>
+</ul></nav>
+<main id="main">
+<article id="quickstart" data-title="Quickstart"><h1 id="quickstart--quickstart-your-first-playable-game-in-5-minutes">Quickstart: your first playable game in 5 minutes</h1>
+<p><em>Build a game. Share it as one file. One install, endless ideas.</em></p>
+<p>Stark World Engine is a game builder that runs in your web browser, but <strong>everything stays on your own computer</strong>. No account, no subscription, no internet needed. A small program on your computer serves the studio to your browser, and only your computer can reach it.</p>
+<p><strong>On Steam?</strong> Press Play in your Steam library; your games are in <code>Documents\Stark World Engine\My_Games</code>. Skip Step 1 below. If something is missing or damaged, use Steam &gt; Stark World Engine &gt; Properties &gt; Installed Files &gt; Verify integrity of game files.</p>
+<p><strong>Stark World Engine Free</strong> has the whole builder; its HTML5 cartridges export the first level and show a small closable "Made with Stark World Engine" note. Pro and Studio come activated (the key is already in the folder; nothing is e-mailed) and export every level.</p>
+<p>You need:</p>
+<ul>
+<li><strong>A current browser with WebGL2</strong>: Chrome, Edge or Firefox (Safari 15+ also has WebGL2).</li>
+<li><strong>Windows 10 / 11:</strong> nothing else. Python is built into the download.</li>
+<li><strong>macOS and Linux:</strong> Python 3.10 or newer (free, from python.org or your package manager).</li>
+</ul>
+<hr>
+<h2 id="quickstart--step-1-unzip">Step 1: Unzip</h2>
+<p>Unzip the download (for example <code>Stark_World_Engine_Pro_v28.7.zip</code>) somewhere you own: your Desktop or Documents folder is fine. You get one folder. Keep everything in that folder together.</p>
+<blockquote><p>Tip: don't run it from inside the zip preview. On Windows, right-click the zip &gt; <strong>Extract All...</strong> first. Avoid <code>C:\Program Files</code> and cloud-synced folders (OneDrive, Dropbox): the studio needs to save your games there.</p></blockquote>
+<h2 id="quickstart--step-2-start-the-studio">Step 2: Start the studio</h2>
+<h3 id="quickstart--windows-10--11">Windows 10 / 11</h3>
+<p>Double-click <strong><code>START_STARK_WORLD_ENGINE.bat</code></strong> in the folder.</p>
+<ul>
+<li>A small black window opens. It finds the built-in Python, runs a quick <strong>setup check</strong>, then starts the studio and opens your browser. Leave the black window open while you work; close it when you're done.</li>
+<li>If Windows shows <strong>"Windows protected your PC"</strong>, click <strong>More info &gt; Run anyway</strong> (see <a href="#troubleshooting--windows-says-windows-protected-your-pc-smartscreen">Troubleshooting</a>).</li>
+<li>If the setup check finds a problem, it says exactly what to do. For example, if the folder can't be written to, press <strong>Y</strong> and it copies itself to your Documents folder and starts from there.</li>
+</ul>
+<h3 id="quickstart--macos">macOS</h3>
+<ol>
+<li>If you don't have Python 3.10 or newer: go to <strong>python.org &gt; Downloads</strong>, download the macOS installer and click through it.</li>
+<li>Double-click <strong><code>start_stark_world_engine.command</code></strong> in the folder. The first time, macOS may refuse because it isn't from the App Store: right-click the file &gt; <strong>Open</strong> &gt; <strong>Open</strong>.</li>
+<li>A Terminal window opens, runs the setup check and starts the studio. Leave it open while you work.</li>
+</ol>
+<p>(If the launcher can't find Python, it opens python.org for you and tells you what to do.)</p>
+<h3 id="quickstart--linux">Linux</h3>
+<p>Most distributions already have Python 3. Check in a terminal with <code>python3 --version</code>; if it's below 3.10, install a newer one (for example <code>sudo apt install python3</code>). Then, in a terminal in the folder:</p>
+<pre><code>bash start_stark_world_engine.sh</code></pre>
+<p>Your browser opens at an address like <strong>http://127.0.0.1:8505</strong> (or the next free number up to 8520). The address <code>127.0.0.1</code> means "this computer only".</p>
+<blockquote><p>If the browser doesn't open by itself, copy the address printed in the black/terminal window into your browser. Something not right? Press <strong>?</strong> in the studio and click <strong>Fix my setup</strong>.</p></blockquote>
+<h2 id="quickstart--step-3-play-a-starter-game-1-minute">Step 3: Play a starter game (1 minute)</h2>
+<p>The studio comes with three starter games in the drop-down at the top. On your first visit a short tour offers <strong>Play a starter game now</strong>.</p>
+<ul>
+<li><strong>Firefly Fen</strong> (3D): a glowing swamp with villagers, quests and a boss.</li>
+<li><strong>Summit Snack Run</strong> (3D): a sunset mountain adventure.</li>
+<li><strong>Lantern Leap</strong> (2D): a platformer through sunken ruins.</li>
+</ul>
+<p>Pick one, then click <strong>▶ Play</strong> at the top (or press <strong>Ctrl+Enter</strong>).</p>
+<ul>
+<li><strong>3D controls:</strong> WASD to move, Space to jump, J or click to attack, E to talk or open chests, drag the mouse to look around.</li>
+<li><strong>2D controls:</strong> A/D to move, Space to jump, stomp enemies, reach the flag.</li>
+<li><strong>Everywhere:</strong> <strong>L</strong> quest log, <strong>I</strong> bag, <strong>H</strong> drink a potion, <strong>Esc</strong> menu (three save slots and options).</li>
+</ul>
+<p>Click <strong>Build</strong> (or press <strong>Ctrl+Enter</strong> again) to go back to editing. Press <strong>?</strong> to see every shortcut.</p>
+<h2 id="quickstart--step-4-let-the-studio-make-you-a-game-1-minute">Step 4: Let the studio make you a game (1 minute)</h2>
+<ol>
+<li>Click <strong>Make me a game</strong> at the top left.</li>
+<li>Pick a theme (for example <strong>Frozen Kingdom</strong>) and a size: <strong>Snack</strong> is one level, about 15 minutes of play.</li>
+<li>Click <strong>Make it and play!</strong></li>
+</ol>
+<p>You're dropped straight into a complete little adventure with people to talk to, quests, monsters and a boss. It's saved in your games list, and you can change anything in it.</p>
+<h2 id="quickstart--step-5-make-your-own-3-minutes">Step 5: Make your own (3 minutes)</h2>
+<ol>
+<li>Click <strong>New 3D world</strong>.</li>
+<li>Type a name in the <strong>Name</strong> box (for example "My First Island").</li>
+<li>Click a <strong>Living World Mood</strong> along the top, for example <strong>Sub-Zero Aurora</strong>. The whole world relights instantly.</li>
+<li>In the <strong>Tools</strong> tab on the right, pick <strong>Tree</strong> and click on the ground a few times. Then pick <strong>Crystal</strong> and place 5 crystals: these are what the player collects. Add one or two <strong>Slime</strong> creatures for a bit of danger.</li>
+<li>Click <strong>Save</strong> (the studio also autosaves a few seconds after each change).</li>
+<li>Click <strong>▶ Play</strong>. Collect every crystal to see "World complete!".</li>
+</ol>
+<p><strong>You just made a playable game.</strong> Ready for more? Place a <strong>Person</strong>, then open the <strong>Quests</strong> tab and click <strong>Fetch</strong>: your person now has a quest and dialogue. See <a href="#user-guide--8-quests-people-items-xp-enemies-and-campaigns">Quests, people, items</a>.</p>
+<h2 id="quickstart--step-6-optional-activate-your-key">Step 6 (optional): Activate your key</h2>
+<p>Your copy works fully without a key. A key registers your copy and, on the <strong>Pro</strong> and <strong>Studio</strong> editions, unlocks the <strong>Godot 4</strong> and <strong>UE5</strong> project exporters.</p>
+<ol>
+<li>After buying you receive one line of text that starts with <code>GS1-</code>.</li>
+<li>In the studio, open the <strong>Export</strong> tab on the right.</li>
+<li>Paste the whole key into the <strong>Activate</strong> box and click <strong>Activate</strong>.</li>
+</ol>
+<p>Or: save the key as a file called <code>key.txt</code> in the same folder as <code>studio_app.py</code>. The studio reads it when it starts.</p>
+<p>Activation is checked on your computer only. Nothing is sent anywhere.</p>
+<h2 id="quickstart--step-7-optional-share-your-game">Step 7 (optional): Share your game</h2>
+<p>Open the <strong>Export</strong> tab and click <strong>HTML5 cartridge</strong>. Stark World Engine writes one <code>.html</code> file into <code>My_Games/&lt;your game&gt;/export/</code>. Double-click it and your whole game (levels, quests, saves and all) runs in any modern browser, offline. Send it to a friend or upload it to itch.io (see <a href="#user-guide--17-exporting">Exporting</a>).</p>
+<h2 id="quickstart--studio-edition-the-creator-suite">Studio edition: the creator suite</h2>
+<p>Bought the Studio edition? Double-click <strong><code>SETUP_STARK_WORLD_ENGINE.bat</code></strong> for a 5-minute guided setup of OBS, your camera and mic, the phone remote and your first auto-edited clip. See <a href="#user-guide--19-the-creator-suite-studio-edition-windows">The creator suite</a>.</p>
+<hr>
+<p><strong>Next:</strong> the <a href="#user-guide">User Guide</a> explains every feature, and <a href="#tutorials">Tutorials</a> walks you through five complete projects. Something not working? See <a href="#troubleshooting">Troubleshooting</a>.</p></article>
+<article id="user-guide" data-title="User Guide"><h1 id="user-guide--stark-world-engine-user-guide">Stark World Engine User Guide</h1>
+<p>Welcome! This guide covers every part of Stark World Engine in short, friendly sections. You don't need to read it in order: jump to what you need.</p>
+<p><strong>Version:</strong> 28.7 · <strong>Editions:</strong> Free, Pro, Studio</p>
+<hr>
+<h3 id="user-guide--whats-new-in-287">What's new in 28.7</h3>
+<p>All of this is in <strong>every edition</strong>, Free included. Everything players use runs inside the one-file HTML5 game you export.</p>
+<ul>
+<li><strong>Variables and on-screen counters:</strong> named numbers such as <em>coins</em> or <em>lives</em>, changed by a new THEN block and shown in the corner while playing. See 8.11.</li>
+<li><strong>More WHEN and IF lines:</strong> <em>every few seconds</em> (repeats), <em>the player presses a key</em>, <em>a variable reaches a value</em>, and an IF line for a variable or a <em>random chance</em>. See 8.12.</li>
+<li><strong>Touch controls and gamepads:</strong> exported games get an on-screen joystick and buttons on phones and tablets, and play with a gamepad. See 10.2.</li>
+<li><strong>Read text aloud:</strong> players can have conversations and subtitles read by a voice built into their computer. See 10.2.</li>
+<li><strong>Tune Maker:</strong> a step grid for melody and drums. The tune plays in Play mode <strong>and inside the exported game</strong>. See 16.</li>
+<li><strong>Guided tutorials:</strong> six short lessons in the new <strong>Learn</strong> tab that tick themselves off as you work. See 13.1.</li>
+<li><strong>Remix:</strong> open a game someone shared (its <code>.html</code> file or <code>world.json</code>) as a new game you can look inside and change. See 13.2.</li>
+<li><strong>Copy, paste, duplicate and snap to grid</strong> while building. See 5.</li>
+<li><strong>itch.io zip:</strong> one click makes a zip ready to upload to itch.io. See 17.</li>
+<li><strong>Watch panel:</strong> while you test in Play mode, see your variables, flags, quests and the triggers that fired. See 10.3.</li>
+</ul>
+<h3 id="user-guide--new-in-286">New in 28.6</h3>
+<p>All of this is in <strong>every edition</strong>, Free included, and runs inside the one-file HTML5 cartridge you export.</p>
+<ul>
+<li><strong>Logic tab (when / then blocks):</strong> make things happen without scripting. See 8.8.</li>
+<li><strong>Cutscenes:</strong> a timeline of camera moves, lines of text, walking people, sounds and fades. See 8.9.</li>
+<li><strong>Behaviours and shops:</strong> people can patrol, follow, run away or fight at your side; enemies can patrol a path, guard a post or run when hurt; a person can run a shop that buys and sells. See 8.10.</li>
+<li><strong>Three new templates:</strong> <em>The Missing Bell</em> (a mystery village), <em>Cinder Crypt</em> (a dungeon crawl) and <em>Pennant Run</em> (a time trial). See section 13.</li>
+<li><strong>For your players:</strong> remappable keys, a colour-blind palette, subtitles, slow mode, 10 built-in achievements (plus your own) and a local high-score table. See 10.1.</li>
+</ul>
+<hr>
+<h2 id="user-guide--1-what-stark-world-engine-is-and-isnt">1. What Stark World Engine is (and isn't)</h2>
+<p>Stark World Engine is an <strong>offline game builder</strong> for 3D and 2D adventure games that runs in your browser, plus (in the Studio edition) a <strong>creator suite</strong> that helps you film, edit and publish videos about your games.</p>
+<ul>
+<li><strong>It runs on your computer.</strong> The studio listens on <code>127.0.0.1</code> (this computer only). No account, no cloud, no subscription. Nothing you make is uploaded anywhere.</li>
+<li><strong>It makes stylized games.</strong> Worlds use bundled CC0 models and textures (or your own glTF imports) with PBR lighting, HDRI skies, fog and weather moods. It runs in a browser; it is not a replacement for a full engine.</li>
+<li><strong>Games can be real adventures.</strong> Quests, people to talk to, items and equipment, experience and levels, enemies and bosses, several levels in a row and three save slots all run inside the game you export.</li>
+<li><strong>It is a fast way to start.</strong> When you want a full engine, the Pro and Studio editions export your world to <strong>Godot 4</strong> or <strong>Unreal Engine 5</strong> as a starting scene you can keep building on.</li>
+</ul>
+<h3 id="user-guide--whats-in-each-edition">What's in each edition</h3>
+<div class="tw"><table><thead><tr><th>Edition</th><th>What you get</th></tr></thead><tbody><tr><td><strong>Free</strong></td><td>3D + 2D builder, "Make me a game", quests, dialogue, items, multi-level games, 5 Living World Moods, 3 starter games, Pixel-Art Canvas, SFX Forge, soundtrack maker, HTML5 cartridge export, 8 interface languages</td></tr><tr><td><strong>Pro</strong> ($30)</td><td>Everything in Free, cartridges export every level with no note, + Godot 4 project export + UE5 project export + example cartridges</td></tr><tr><td><strong>Studio</strong> ($50)</td><td>Everything in Pro + creator suite for Windows: Setup Wizard, OBS setup, auto video editor, phone hub (scheduler, teleprompter, review &amp; approve), publishing helpers</td></tr></tbody></table></div>
+<hr>
+<h2 id="user-guide--2-starting-the-studio">2. Starting the studio</h2>
+<div class="tw"><table><thead><tr><th></th><th>How to start</th></tr></thead><tbody><tr><td><strong>Windows</strong></td><td>Double-click <strong><code>START_STARK_WORLD_ENGINE.bat</code></strong>. Python is built in (in the <code>runtime</code> folder), so there is nothing else to install.</td></tr><tr><td><strong>macOS</strong></td><td>Double-click <strong><code>start_stark_world_engine.command</code></strong>. The first time, right-click it &gt; <strong>Open</strong> &gt; <strong>Open</strong>, because it doesn't come from the App Store. Needs Python 3.10 or newer from python.org (see the <a href="#quickstart">Quickstart</a>).</td></tr><tr><td><strong>Linux</strong></td><td>In a terminal in the folder: <code>bash start_stark_world_engine.sh</code>. Needs Python 3.10 or newer from your package manager.</td></tr></tbody></table></div>
+<p>A small window opens. Leave it open while you work: it <em>is</em> the studio's engine. Close it (or press Ctrl+C in it) when you're done. Your browser opens the studio at <code>http://127.0.0.1:8505</code> (or the next free port up to 8520).</p>
+<h3 id="user-guide--the-setup-check">The setup check</h3>
+<p>Before the studio starts, the launcher runs a quick <strong>setup check</strong> (<code>doctor.py</code>). It looks for the usual first-install problems and tells you, in plain words, how to fix them:</p>
+<ul>
+<li>running straight from inside the zip (it offers to open the folder with the zip so you can extract it);</li>
+<li>a folder where the studio can't save, such as <code>Program Files</code> (press <strong>Y</strong> and it copies itself to your Documents folder and starts from there; the original isn't touched);</li>
+<li>a very long folder path, or a folder inside OneDrive, Dropbox, iCloud or Google Drive (a tip, not a stop);</li>
+<li>missing or damaged program files (for example, removed by an antivirus);</li>
+<li>the built-in Python on Windows (it repairs one small settings file by itself and keeps a backup);</li>
+<li>whether a port between 8505 and 8520 is free, and whether the studio is <strong>already running</strong> (then it just opens your browser to it);</li>
+<li>whether Chrome, Edge or Firefox is installed, low disk space, and a computer clock that looks wrong;</li>
+<li>whether your license key file is valid;</li>
+<li>Studio edition: whether FFmpeg and OBS are installed and whether the phone hub is allowed through the firewall.</li>
+</ul>
+<p>Problems marked <strong>[STOP]</strong> must be fixed first; <strong>[TIP ]</strong> items are advice and the studio starts anyway. Everything is also written to <code>doctor.log</code> in the folder.</p>
+<p>Inside the studio, press <strong>?</strong> (or click the <strong>?</strong> button at the top) and click <strong>Fix my setup</strong> to run the same checks at any time.</p>
+<hr>
+<h2 id="user-guide--3-the-studio-screen">3. The studio screen</h2>
+<p>When the studio opens you'll see:</p>
+<ul>
+<li><strong>Top bar:</strong> <strong>Make me a game</strong>, your games list, a level picker (shown when a game has more than one level), <strong>New 3D world</strong>, <strong>New 2D world</strong>, the <strong>Name</strong> box, <strong>Save</strong>, <strong>Undo</strong>, <strong>Redo</strong>, <strong>Build</strong>, <strong>▶ Play</strong>, the language picker and the <strong>?</strong> button. A small status text shows what just happened ("Saved", "Export ready", or "edited - autosave in a moment").</li>
+<li><strong>Mood bar:</strong> the five Living World Moods. Click one to relight the level you're editing.</li>
+<li><strong>The stage:</strong> your world, live.</li>
+<li><strong>Side panel tabs:</strong> <strong>Tools</strong>, <strong>World</strong>, <strong>Quests</strong>, <strong>Dialogue</strong>, <strong>Items</strong>, <strong>Logic</strong>, <strong>Pixel Art</strong>, <strong>SFX Forge</strong>, <strong>Tune</strong>, <strong>Assets</strong>, <strong>Learn</strong>, <strong>Export</strong>.</li>
+</ul>
+<p><strong>Languages:</strong> EN, ES, FR, DE, PT, IT, JA, ZH (English, Spanish, French, German, Portuguese, Italian, Japanese, Chinese). Pick from the drop-down at the top; the studio remembers your choice. The main buttons and tabs are translated; the tool palette, editor panels and in-game text are in English.</p>
+<p><strong>First visit:</strong> a short three-step tour offers <strong>Play a starter game now</strong> or <strong>Make me a game</strong>. Click <strong>Skip tour</strong> to hide it for good.</p>
+<hr>
+<h2 id="user-guide--4-make-me-a-game">4. Make me a game</h2>
+<p>Don't want to start from an empty world? Click <strong>Make me a game</strong> at the top left.</p>
+<ol>
+<li><strong>Pick a theme:</strong> Spooky Swamp, Sky Islands, Frozen Kingdom, Lava Fortress, Sunken City or Cozy Village.</li>
+<li><strong>Pick a size:</strong> <strong>Snack</strong> (1 level, about 15 minutes), <strong>Evening</strong> (3 levels, about an hour) or <strong>Epic</strong> (6 levels, a few hours).</li>
+<li>Optional: type a <strong>Seed</strong>. The same seed and theme always give the same game, so you can share a seed with a friend. Leave it empty for a surprise.</li>
+<li>Optional: tick <strong>2D platformer instead of 3D</strong>.</li>
+<li>Click <strong>Make it and play!</strong></li>
+</ol>
+<p>The studio builds a complete game: villages with people who give quests, monsters, treasure chests, keys and locked doors, checkpoints, portals between levels and a boss at the end (bigger games also mix in side-scrolling 2D levels). It is saved straight away and you start playing. Press <strong>Build</strong> (or <strong>Ctrl+Enter</strong>) to change anything: it's an ordinary game you can edit like any other.</p>
+<hr>
+<h2 id="user-guide--5-building-3d-worlds">5. Building 3D worlds</h2>
+<ol>
+<li>Click <strong>New 3D world</strong> (or pick a game from the list, or use <strong>Make me a game</strong>).</li>
+<li>Give it a name in the <strong>Name</strong> box.</li>
+<li>Open the <strong>Tools</strong> tab, pick something, then <strong>click the ground</strong> to place it:<ul><li><strong>Nature:</strong> <strong>Tree</strong>, <strong>Rock</strong>, <strong>Ruin</strong>, <strong>House</strong>, <strong>Lamp</strong> (glows at night), <strong>Crystal</strong> (collectible).</li><li><strong>Creatures:</strong> <strong>Slime</strong> (chases you), <strong>Archer</strong> (keeps its distance and shoots), <strong>Brute</strong> (slow, tough, smashes the ground), <strong>Wisp</strong> (fast floating spirit), <strong>Boss</strong> (a big enemy with a health bar and special attacks).</li><li><strong>Story:</strong> <strong>Person</strong> (someone to talk to), <strong>Item</strong> (something to pick up), <strong>Chest</strong> (opened with E), <strong>Locked door</strong> (needs a key), <strong>Portal</strong> (to the next level), <strong>Checkpoint</strong> (heals and saves progress), <strong>Player start</strong>.</li><li><strong>Edit:</strong> <strong>Select / move</strong> (click a thing to edit it, drag to move it) and <strong>Erase</strong>.</li></ul></li>
+<li>With <strong>Select / move</strong>, click a placed thing to edit it in the panel: a person's name, id and dialogue; an enemy's kind, name, health and wander radius; which item a chest holds and how much gold; which key opens a door; where a portal leads and which quest unlocks it; size and rotation.</li>
+</ol>
+<p><strong>Good to know</strong></p>
+<ul>
+<li>In Build mode: drag to turn the camera, mouse wheel to zoom, <strong>WASD</strong> to move the camera, <strong>Q / E</strong> to turn it, <strong>Delete</strong> removes the selected thing.</li>
+<li>A level can hold up to 5,000 objects, and a game up to 25 levels.</li>
+<li>Your games live in the <code>My_Games/</code> folder next to the studio, one folder per game, each with a <code>world.json</code> file.</li>
+</ul>
+<h3 id="user-guide--copy-paste-duplicate-and-snap">Copy, paste, duplicate and snap</h3>
+<ul>
+<li>Select a thing (Select / move), then <strong>Ctrl+C</strong> copies it, <strong>Ctrl+V</strong> pastes a copy 2 metres away and <strong>Ctrl+D</strong> duplicates it. The inspector has the same <strong>Duplicate</strong>, <strong>Copy</strong> and <strong>Paste</strong> buttons. Copies of people, doors and enemies get their own new id (and people a numbered name), so triggers and conversations still point at the right one.</li>
+<li><strong>Snap</strong> (next to Drone in the Tools tab): off, 1 m, 2 m or 4 m. Things you place or drag land on that grid (3D levels). The choice is remembered on this computer.</li>
+<li>In 2D levels only people can be copied; tiles are painted with the Tools.</li>
+</ul>
+<h3 id="user-guide--drone-mode-and-postcards">Drone mode and postcards</h3>
+<ul>
+<li><strong>Drone (P):</strong> a slow cinematic camera flight with letterbox bars. Great for screenshots and trailers. Press <strong>P</strong> again (or click the button) to stop.</li>
+<li><strong>Postcard PNG:</strong> saves a picture of the current view into <code>My_Games/&lt;game&gt;/postcards/</code>.</li>
+</ul>
+<hr>
+<h2 id="user-guide--6-building-2d-worlds">6. Building 2D worlds</h2>
+<ol>
+<li>Click <strong>New 2D world</strong>. You get a flat ground, a start point and a goal flag.</li>
+<li>In the <strong>Tools</strong> tab, pick a tile and <strong>click tiles</strong> on the stage to paint:<ul><li><strong>Tiles:</strong> <strong>Ground</strong>, <strong>Pearl</strong> (collectible), <strong>Spike</strong>, <strong>Water</strong> (swim through it), <strong>Flag</strong> (goal: next level or victory), <strong>Exit</strong> (swirling exit to the next level), <strong>Start</strong>.</li><li><strong>Creatures:</strong> <strong>Slime</strong> (stomp it), <strong>Archer</strong> (shoots at you), <strong>Boss</strong> (stomp it several times).</li><li><strong>Story:</strong> <strong>Potion</strong>, <strong>Key</strong>, <strong>Locked door</strong>, <strong>Checkpoint</strong>, <strong>Person</strong>.</li><li><strong>Edit:</strong> <strong>Select</strong> (click a person to edit them) and <strong>Erase</strong>.</li></ul></li>
+<li><strong>Save</strong>, then <strong>▶ Play</strong>. Move with A/D (or arrows), jump with Space.</li>
+</ol>
+<p>Tip: draw your own hero in the <strong>Pixel Art</strong> tab and click <strong>Use as player sprite</strong> (see <a href="#user-guide--14-pixel-art-canvas">Pixel Art Canvas</a>).</p>
+<hr>
+<h2 id="user-guide--7-moods-weather-and-the-world-tab">7. Moods, weather and the World tab</h2>
+<p><strong>Living World Moods</strong> change the sky, fog, sun, ground and leaf colours and the floating particles with one click. Each level has its own mood.</p>
+<div class="tw"><table><thead><tr><th>Mood</th><th>Feel</th><th>Particles</th></tr></thead><tbody><tr><td><strong>Bioluminescent Twilight</strong></td><td>deep blue night, glowing teal foliage</td><td>fireflies</td></tr><tr><td><strong>Alpine Sunset</strong></td><td>warm orange sky, green meadows</td><td>pollen</td></tr><tr><td><strong>Sub-Zero Aurora</strong></td><td>snowfield under a northern-lights sky</td><td>snow + aurora</td></tr><tr><td><strong>Crimson Citadel</strong></td><td>red dusk, dark stone</td><td>embers</td></tr><tr><td><strong>Sunken Ruins</strong></td><td>underwater teal light</td><td>bubbles</td></tr></tbody></table></div>
+<p>The <strong>World</strong> tab holds everything that isn't a placed object:</p>
+<ul>
+<li><strong>Game:</strong> the story text shown on the title screen, <strong>Difficulty</strong> (Easy, Normal, Hard) and <strong>Made by</strong>.</li>
+<li><strong>Soundtrack:</strong> see <a href="#user-guide--16-music-and-sound">Music and sound</a>.</li>
+<li><strong>This level:</strong> level name and intro text, <strong>Weather</strong> (mood default, clear, rain, thunderstorm, snow, embers, pollen, bubbles, fireflies) and, on 3D levels, <strong>Day and night</strong> (time stands still, or a 10-minute, 5-minute or 90-second day), <strong>Time of day</strong>, <strong>Water</strong> (lakes and rivers), <strong>Hills</strong> and <strong>World size</strong>.</li>
+<li><strong>Levels:</strong> see <a href="#user-guide--86-multi-level-games-campaigns">Multi-level games</a>.</li>
+<li><strong>Start from a template:</strong> open one of the starter games or the simple "Classic" templates as your own copy.</li>
+<li><strong>Safety net:</strong> <strong>Restore an earlier version...</strong> (see <a href="#user-guide--11-saving-undo-and-backups">Saving</a>).</li>
+</ul>
+<hr>
+<h2 id="user-guide--8-quests-people-items-xp-enemies-and-campaigns">8. Quests, people, items, XP, enemies and campaigns</h2>
+<p>Everything in this section works in the studio's <strong>▶ Play</strong> mode and in exported HTML5 cartridges.</p>
+<h3 id="user-guide--81-quests">8.1 Quests</h3>
+<p>Open the <strong>Quests</strong> tab. Click <strong>Fetch</strong>, <strong>Hunt</strong>, <strong>Talk</strong>, <strong>Explore</strong> or <strong>Escort</strong> to add a ready-made quest to the level you're editing, then change it:</p>
+<ul>
+<li><strong>Title</strong>, <strong>Description</strong> and <strong>Given by</strong> (a person, or "starts by itself").</li>
+<li><strong>starts when the level begins</strong> and <strong>finishing it wins the game</strong>.</li>
+<li><strong>Steps</strong>, each one of: <strong>Collect items</strong> (optionally "hand them over"), <strong>Defeat enemies</strong> (any, or one kind, or one named enemy), <strong>Talk to someone</strong>, <strong>Go to a place</strong> (click <strong>Pick the spot on the map</strong>), <strong>Escort someone</strong>. Add more with <strong>+ step</strong>.</li>
+<li><strong>Reward:</strong> XP, gold and an item.</li>
+</ul>
+<p>People who have a quest for the player show a gold <strong>!</strong>, and a gold beam points the player to the next objective. Tip: place a <strong>Person</strong> first, then click <strong>Fetch</strong>: you get the quest <em>and</em> that person's dialogue in one go. <strong>Write the giver's lines for me</strong> rewrites the offer and thank-you lines at any time.</p>
+<h3 id="user-guide--82-people-and-dialogue">8.2 People and dialogue</h3>
+<p>Place a <strong>Person</strong>, select it, and click <strong>Write dialogue for this person</strong> (or <strong>Give them a quest</strong>). The <strong>Dialogue</strong> tab shows the conversation:</p>
+<ul>
+<li>A conversation is a set of <strong>lines</strong>. Each line has a speaker and text, and up to 8 <strong>answers</strong>.</li>
+<li>An answer can <strong>end the talk</strong> or go to another line, and can also <strong>start quest</strong>, <strong>finish quest</strong>, <strong>give item</strong> or <strong>take item</strong>.</li>
+<li><strong>Say something different when...</strong> rules pick the first line depending on whether a quest is done, in progress or not started, or whether the player has an item.</li>
+<li><strong>+ line</strong>, <strong>+ answer</strong>, <strong>+ rule</strong>, <strong>New</strong> and <strong>Delete this dialogue</strong> do what they say.</li>
+</ul>
+<p>While playing, walk up to a person and press <strong>E</strong> to talk; press <strong>1-4</strong> to pick an answer.</p>
+<h3 id="user-guide--83-items-and-equipment">8.3 Items and equipment</h3>
+<p>The <strong>Items</strong> tab lets you make your own items with <strong>+ new item</strong>: <strong>Quest item</strong>, <strong>Potion / food</strong> (heals), <strong>Key</strong>, <strong>Equipment</strong> (weapon, armour, boots or charm, with attack, defence and max HP bonuses) or <strong>Treasure</strong> (turns into gold). There are also built-in items, such as Crystal, Potion, Elixir, Old Key, swords, armour, boots and a charm. Place items with the <strong>Item</strong> or <strong>Chest</strong> tool.</p>
+<p>While playing, press <strong>I</strong> for the bag and <strong>H</strong> to drink a potion.</p>
+<h3 id="user-guide--84-enemies-and-bosses">8.4 Enemies and bosses</h3>
+<p>Enemies wander, notice the player, chase and attack. Each kind fights differently (see the tool list above), and a <strong>Boss</strong> has its own health bar and special attacks. Hits use hit-stop and screen-shake so they feel punchy. On a quest, <strong>Defeat enemies</strong> can count any enemy, one kind, or one enemy you gave an id.</p>
+<h3 id="user-guide--85-xp-levels-and-abilities">8.5 XP, levels and abilities</h3>
+<p>Defeating enemies and finishing quests earns XP. Each new level restores health and makes the player stronger, and some levels unlock an ability:</p>
+<div class="tw"><table><thead><tr><th>Level</th><th>Ability</th><th>Key</th></tr></thead><tbody><tr><td>2</td><td>Dash</td><td>Shift</td></tr><tr><td>3</td><td>Whirl (hits everything around you)</td><td>K</td></tr><tr><td>4</td><td>Star Bolt (a ranged shot)</td><td>F</td></tr></tbody></table></div>
+<p>Falling in battle sends the player back to the last checkpoint and costs 10% of their gold.</p>
+<h3 id="user-guide--86-multi-level-games-campaigns">8.6 Multi-level games (campaigns)</h3>
+<p>A game can have several levels. In the <strong>World</strong> tab, under <strong>Levels</strong>, click <strong>+ 3D level</strong>, <strong>+ 2D level</strong> or <strong>Duplicate this level</strong>; <strong>Up</strong> moves a level earlier and <strong>X</strong> deletes it. Use the level picker at the top to choose which level you're editing.</p>
+<p>Portals (3D) and the flag or exit (2D) take the player to the next level. A portal can also lead to a specific level and stay closed until a quest is finished. XP, items and gold carry over from level to level.</p>
+<h3 id="user-guide--87-how-the-player-wins">8.7 How the player wins</h3>
+<ul>
+<li>In a game <strong>with quests:</strong> by finishing the quests marked <strong>finishing it wins the game</strong> (or, if none is marked, all quests). A dialogue answer can also end the game.</li>
+<li>In a 3D game <strong>without quests:</strong> by collecting every crystal.</li>
+<li>In 2D: by reaching the flag on the last level.</li>
+</ul>
+<h3 id="user-guide--88-the-logic-tab-when--then-blocks">8.8 The Logic tab: when / then blocks</h3>
+<p>Open the <strong>Logic</strong> tab. Each trigger is a card: <strong>WHEN</strong> something happens on this level, <strong>THEN</strong> a list of blocks runs in order. It works in Play mode and in the exported game.</p>
+<p><strong>WHEN</strong> can be: the player enters or leaves an area (type X, Z and the radius, or press <strong>Pick on map</strong>), the level starts, the player talks to someone, an enemy is defeated (a particular one by its Id, or any of a kind), the player picks up an item, a flag is set, a quest is finished, or some seconds have passed. An optional <strong>IF</strong> line adds a condition (the player has or lacks an item, a quest is finished or active, a flag is set, or a level is reached). <strong>Only once</strong> is on by default; switch it to <em>every time</em> for things like a healing spring.</p>
+<p><strong>THEN</strong> blocks: open, close or toggle a door; play a sound (with a caption for subtitles); start a conversation; show a line of text; set or clear a flag; give or take an item; change gold; give XP; heal; start or finish a quest; play a cutscene; move the player; go to another level; win the game; unlock an achievement; shake the screen; wait some seconds. Use the arrow to move a block up and <strong>x</strong> to remove it. A <em>conversation</em> or <em>cutscene</em> block makes the list wait until it is over.</p>
+<p>Tips:</p>
+<ul>
+<li>To open a door from a trigger, select the door in the Build tab and look at its <strong>Id</strong> (the Logic tab gives unnamed doors an Id for you). Setting <strong>Who can open it</strong> to <em>Only a trigger (sealed)</em> makes it ignore keys; pressing E says it will not budge.</li>
+<li>Flags are just names you invent (for example <code>met_the_smith</code>). Dialogue answers can also set flags, so a conversation can drive a trigger.</li>
+<li>In <strong>2D levels</strong> area triggers use tile columns and rows; type them in (Pick on map is 3D only).</li>
+<li>Dialogue answers can also open a door, play a cutscene, unlock an achievement or open a shop (<code>door</code>, <code>cutscene</code>, <code>achievement</code>, <code>shop</code> in the world file).</li>
+</ul>
+<h3 id="user-guide--89-cutscenes">8.9 Cutscenes</h3>
+<p>In the <strong>Logic</strong> tab, <strong>Cutscenes</strong>: press <strong>+ new</strong>, then add steps. Every step has a time in seconds and one action:</p>
+<ul>
+<li><strong>Camera move:</strong> where the camera goes (X, Z, height), what it looks at, and how long it takes. <strong>Use editor view</strong> copies the camera you are looking through in Build mode.</li>
+<li><strong>Show a line of text</strong> (a subtitle with a speaker name), <strong>Walk someone</strong> (a person, an enemy or <code>player</code>) to a spot, <strong>Play a sound</strong>, <strong>Fade the screen</strong>, <strong>Shake the screen</strong>, and the quick blocks (flag, give, take, gold, XP, heal, door, move the player, achievement).</li>
+</ul>
+<p>While a cutscene plays the player cannot move, black bars slide in, and <strong>Esc / Space / Enter</strong> skips it (turn that off per cutscene with <em>Esc skips it: no</em>). Skipping still applies what the rest of the cutscene would have done (flags, items, where people end up). Afterwards a flag named <code>cut_&lt;id&gt;</code> is set, so a trigger can follow it. <strong>Test it in Play</strong> runs it right away. Start one from a THEN block or a conversation answer.</p>
+<p>Limits: on 2D levels cutscenes play text, sounds, fades, walking and the quick blocks, but the camera steps do nothing.</p>
+<h3 id="user-guide--810-behaviours-and-shops">8.10 Behaviours and shops</h3>
+<p>Select a person or enemy in the Build tab (3D levels).</p>
+<ul>
+<li><strong>People:</strong> <em>Stands still</em>, <em>Patrols a path</em> (add points with <strong>+ add point on map</strong>), <em>Follows the player</em>, <em>Runs away from the player</em> (set the radius), or <em>Companion</em> (follows and fights nearby enemies, a little each second). Companions and followers wait in their level; they do not travel through portals.</li>
+<li><strong>Enemies:</strong> <em>Wanders</em> (the old behaviour), <em>Patrols a path</em>, <em>Guards its post</em> (never chases far from it) or <em>Runs when hurt</em>. Keep a patrol path within about 25 metres of where the enemy stands.</li>
+<li><strong>Shops</strong> (people, 2D and 3D): choose <em>Buys and sells</em>, then <strong>+ item for sale</strong>. Leave the price empty for an automatic price (from the item's <strong>Shop value</strong> in the Items tab, or its gold, heal and attack numbers). Leave stock empty for unlimited. The shop pays a share of an item's value when the player sells (default one half; keys and quest items are never bought). Talk to the person with E: a person with a shop but no conversation opens the shop at once; with a conversation, an extra answer <em>Show me your wares</em> appears at the end.</li>
+</ul>
+<h3 id="user-guide--811-variables-and-on-screen-counters">8.11 Variables and on-screen counters</h3>
+<p>A <strong>variable</strong> is a named number the game keeps, such as <code>coins</code>, <code>lives</code> or <code>keys_found</code>. In the <strong>Logic</strong> tab, under <strong>Game rules &gt; Variables</strong>, press <strong>+ variable</strong>. Each one has an <strong>Id</strong> (used by blocks), a <strong>Name shown</strong> to players, the number it <strong>Starts at</strong>, an optional <strong>Lowest</strong> and <strong>Highest</strong> (it never goes past them; empty means no limit), and <strong>On screen</strong>: hidden, <em>number</em> or <em>number / highest</em> (for example <code>Lives 3 / 5</code>). Shown variables appear in the player's corner panel. A game can have up to 30.</p>
+<ul>
+<li>Change one with the THEN block <strong>Change a variable</strong>: <em>add</em>, <em>subtract</em>, <em>set to</em>, or <em>random number from</em> (a whole number between the two you type, both included). The block also works in cutscenes, and a conversation answer can change a variable (<code>var</code>, <code>op</code>, <code>num</code> in the world file).</li>
+<li>Test one with an IF line (<strong>a variable compares</strong>: is equal to, is not, is less than, is at most, is more than, is at least) or with the WHEN <strong>a variable reaches a value</strong>.</li>
+<li>Variables are saved in the player's save slots and come back when they load. Renaming a variable's Id updates the blocks that use it.</li>
+</ul>
+<h3 id="user-guide--812-more-when-and-if-lines">8.12 More WHEN and IF lines</h3>
+<ul>
+<li><strong>Every few seconds (repeats):</strong> runs again and again while the level is played. It pauses while a menu, a conversation or a cutscene is open. At least half a second.</li>
+<li><strong>The player presses a key:</strong> a letter, a digit, Space, Enter or an arrow key. Honest note: on phones and gamepads only the keys the game already uses (moving, Space, E, J and the rest) can be pressed, so pick one of those if the game must work everywhere.</li>
+<li><strong>A variable reaches a value:</strong> fires when the test becomes true (for example <code>coins is at least 10</code>). With <em>Only once: every time</em> it fires again each time the test turns true after being false.</li>
+<li><strong>IF random chance (%):</strong> the trigger only runs that percentage of the time, for a surprise or a rare drop.</li>
+</ul>
+<hr>
+<h2 id="user-guide--9-the-look">9. The look</h2>
+<p>The 3D view is drawn with WebGL2, right in the browser (new renderer in 28.5): PBR materials (albedo, normal, roughness/metal, occlusion), image-based lighting from HDRI skies, soft cascaded sun shadows, screen-space ambient occlusion, bloom, ACES tone mapping and colour grading per mood, height fog that glows toward the sun, a textured terrain that blends grass, dirt paths, rock, sand and snow, grass and trees that sway in the wind, water with refraction, reflections and shore foam (ice in the Sub-Zero mood), point lights from lamps and crystals, and FXAA (TAA on High). Levels with a day-night cycle blend between a day, a sunset and a night HDRI sky and move the sun.</p>
+<p><strong>Graphics presets</strong> (Esc menu &gt; Graphics, or the menu on the Build performance meter): <strong>Low</strong> turns off shadows (and so soft-shadow filtering), ambient occlusion, bloom, TAA, normal maps and the image-based lighting bake (it uses a simple sky/ground light instead), draws fewer plants, renders at half resolution and loads textures lazily: small copies, after the first frames, one per frame. It is meant for older laptops and software rendering. <strong>Medium</strong> is the everyday preset; <strong>High</strong> adds a third shadow cascade, softer shadows, screen-space reflections on water and TAA. <strong>Auto</strong> starts from a hardware check made on first start (software rendering or an old integrated chip: Low; a GeForce RTX or similar card: High; anything else: Medium) and steps down after the world has loaded if it runs slowly. Picking Low, Medium or High always overrides the check.</p>
+<p><strong>Performance meter</strong> (Build mode, top right of the 3D view): the measured time to draw one frame over the last second on your computer, for the preset in use. Green is smooth (45+ fps), amber is playable (25-45 fps), red is slow: remove some objects or pick a lower preset.</p>
+<p><strong>The art.</strong> Characters, houses, trees, plants and rocks are real glTF 2.0 models made by artists and released as CC0: Quaternius (Universal Base Characters, Universal Animation Library, Medieval Village MegaKit, Stylized Nature MegaKit) and Poly Haven (HDRI skies, ground and brick textures). The characters' outfits were painted onto the Quaternius base bodies by our own tool. All of it is listed in <code>assets/library.json</code> and <code>assets/CREDITS.txt</code>, and every export credits the art it uses.</p>
+<p><strong>Your own art: the Assets tab.</strong> Drop a <code>.glb</code> (or a <code>.gltf</code> with its <code>.bin</code> and textures), PBR textures (<code>.png</code> / <code>.jpg</code>; albedo, normal, ORM/roughness, metallic and AO are recognised by their file names) or an <code>.hdr</code> sky. Give it a name, a size, the licence and who made it, then press <strong>Import</strong>. It is stored in <code>My_Assets/</code> next to <code>My_Games/</code>, and <strong>Place</strong> puts it in your world (an <code>.hdr</code> becomes the level's sky). Files that need Draco or meshopt compression are refused with a note: export them again without compression.</p>
+<p><strong>Honest note:</strong> this is a stylized look designed to run in a browser. It is not a replacement for a full engine; for complex physics or console builds, export to Godot or UE5 and continue there.</p>
+<hr>
+<h2 id="user-guide--10-playing-your-game">10. Playing your game</h2>
+<p>Click <strong>▶ Play</strong> (or press <strong>Ctrl+Enter</strong>) at any time to test. Click <strong>Build</strong> (or <strong>Ctrl+Enter</strong> again) to go back to editing; your changes are kept.</p>
+<div class="tw"><table><thead><tr><th></th><th>3D</th><th>2D</th></tr></thead><tbody><tr><td>Move</td><td>WASD or arrow keys</td><td>A/D or arrow keys</td></tr><tr><td>Jump</td><td>Space</td><td>Space</td></tr><tr><td>Attack</td><td>J or mouse click</td><td>J, or stomp enemies by landing on them</td></tr><tr><td>Talk, open, unlock</td><td>E</td><td>E</td></tr><tr><td>Pick an answer</td><td>1-4</td><td>1-4</td></tr><tr><td>Camera</td><td>drag with the mouse, or Z / C</td><td>–</td></tr><tr><td>P</td><td>drone camera</td><td>postcard picture</td></tr></tbody></table></div>
+<div class="tw"><table><thead><tr><th>In both</th><th></th></tr></thead><tbody><tr><td><strong>L</strong></td><td>quest log</td></tr><tr><td><strong>I</strong></td><td>bag (inventory and equipment)</td></tr><tr><td><strong>H</strong></td><td>drink a potion</td></tr><tr><td><strong>Shift / K / F</strong></td><td>Dash, Whirl (3D only), Star Bolt (once unlocked)</td></tr><tr><td><strong>Esc</strong></td><td>menu: save, load and options</td></tr></tbody></table></div>
+<p>The HUD shows level, health, gold, attack and defence, your abilities and the current quest. Press <strong>?</strong> in the studio to see all shortcuts on one card.</p>
+<h3 id="user-guide--the-in-game-menu-esc">The in-game menu (Esc)</h3>
+<ul>
+<li><strong>Save</strong> and <strong>Load</strong> in <strong>three save slots</strong>, plus <strong>Autosave (checkpoints)</strong>, which is written at every checkpoint.</li>
+<li><strong>Difficulty:</strong> easy, normal or hard.</li>
+<li><strong>Graphics:</strong> auto, high, medium or low, and <strong>Sound: on / off</strong>.</li>
+<li><strong>More:</strong> <strong>Accessibility &amp; controls</strong>, <strong>Achievements</strong> and <strong>High scores</strong> (see 10.1).</li>
+</ul>
+<p>Saves are kept in the browser on that computer (per game). A player of your exported cartridge can save, close the browser and continue later in the same browser.</p>
+<h3 id="user-guide--101-options-your-players-get-nothing-to-set-up">10.1 Options your players get (nothing to set up)</h3>
+<p>Every exported game has these on the title screen and in the Esc menu:</p>
+<ul>
+<li><strong>Remappable keys:</strong> click an action, press the new key. Swapping two keys works; Esc, Tab, Enter and the number keys stay fixed. Arrow keys keep working as extra movement keys.</li>
+<li><strong>Colour-blind palette:</strong> red-weak, green-weak or blue-weak. It shifts the colours the player has trouble telling apart across the whole picture and the HUD.</li>
+<li><strong>Subtitles:</strong> on, large or off. They show cutscene and event lines and name the sounds in square brackets, for example [door opens] (the caption you typed on the sound block). Conversations always show their text.</li>
+<li><strong>Slow mode:</strong> 100%, 75% or 50% game speed.</li>
+<li><strong>Achievements:</strong> 10 built in (first defeat, 25 defeats, a boss, 100 and 1000 gold, level 5, one and five quests, two levels, the finish) plus your own from the Logic tab (<strong>Game rules</strong>: unlock after N defeats, gold, a level, quests, a flag, an item, winning, levels visited, or winning within N seconds; or from a trigger). Unlocked achievements are remembered per game in that browser.</li>
+<li><strong>High scores:</strong> the top 10 for the game, kept in that browser, shown after winning (the player can type a name) and from the menu. In <strong>Game rules</strong> choose <em>Fastest time first</em> for a time trial and <strong>Show a timer</strong> to put the clock on screen. The clock runs while the game is not paused.</li>
+</ul>
+<p>Settings are stored in the player's browser. They need no account and are never sent anywhere.</p>
+<h3 id="user-guide--102-touch-controls-gamepads-and-reading-aloud-nothing-to-set-up">10.2 Touch controls, gamepads and reading aloud (nothing to set up)</h3>
+<ul>
+<li><strong>Touch:</strong> on a phone, tablet or touch laptop an on-screen joystick (left) and <strong>Jump</strong>, <strong>Hit</strong> and <strong>Use</strong> buttons (right) appear as soon as the screen is touched, with <strong>Potion</strong>, <strong>Bag</strong>, <strong>Quests</strong>, <strong>Menu</strong> and the abilities the player has unlocked above the joystick. They hide in menus and conversations (tap the answers), and a <strong>Skip</strong> button shows during cutscenes that can be skipped. Players can set them to Auto, On or Off in <strong>Accessibility &amp; controls</strong>. Dragging on the picture turns the camera in 3D.</li>
+<li><strong>Gamepads</strong> (standard layout, for example Xbox or PlayStation pads in Chrome, Edge or Firefox): left stick or D-pad moves, <strong>A</strong> jump, <strong>X</strong> attack, <strong>B</strong> talk or back, <strong>Y</strong> potion, <strong>LT</strong> dash, <strong>RT</strong> whirl, right-stick click Star Bolt, <strong>LB / RB</strong> or the right stick turn the camera, <strong>Back</strong> bag, left-stick click quests, <strong>Start</strong> menu. In menus, conversations and the title screen the D-pad picks a button and <strong>A</strong> presses it.</li>
+<li><strong>Read text aloud:</strong> in <strong>Accessibility &amp; controls</strong>, <em>Read text aloud: On</em> reads conversations and subtitles (Slow, Normal or Fast). Only voices built into the player's computer are used; online voices are never used, so on a computer without an offline voice nothing is read (the menu says so).</li>
+</ul>
+<h3 id="user-guide--103-the-watch-panel-studio-only">10.3 The Watch panel (studio only)</h3>
+<p>Tick <strong>Watch panel</strong> in the Tools tab. While you play in the studio, a small panel shows the player's level, HP, gold and XP, every variable, the flags that are set, each quest's state and the triggers that have fired. Use it to find out why a trigger does not run. It never appears in exported games.</p>
+<hr>
+<h2 id="user-guide--11-saving-undo-and-backups">11. Saving, undo and backups</h2>
+<ul>
+<li><strong>Save</strong> (or <strong>Ctrl+S</strong>) writes your game to <code>My_Games/&lt;game name&gt;/world.json</code>. The studio also <strong>autosaves</strong> about 15 seconds after your last change, and when you switch to another game.</li>
+<li><strong>Undo / Redo</strong> (Ctrl+Z / Ctrl+Y) go back and forth through your recent changes.</li>
+<li>Every save keeps the three most recent older versions in <code>My_Games/.backups/</code>. <strong>World</strong> tab &gt; <strong>Restore an earlier version...</strong> lists them; <strong>Restore this one</strong> opens that version, and <strong>Save</strong> makes it current again.</li>
+<li>Your pictures and sounds are saved in your game's folder too (<code>assets/</code> and <code>postcards/</code>).</li>
+<li>To back up everything, copy the <code>My_Games</code> folder. To move to a new computer, copy it into the new studio folder.</li>
+<li>If you try to close the tab with unsaved changes, the browser asks first.</li>
+</ul>
+<hr>
+<h2 id="user-guide--12-shortcuts-while-building">12. Shortcuts while building</h2>
+<div class="tw"><table><thead><tr><th>Key</th><th>Does</th></tr></thead><tbody><tr><td>Click</td><td>place the selected thing</td></tr><tr><td>Drag</td><td>turn the camera (or move a selected thing)</td></tr><tr><td>Wheel</td><td>zoom</td></tr><tr><td>WASD</td><td>move the camera</td></tr><tr><td>Q / E</td><td>turn the camera</td></tr><tr><td>Ctrl+Z / Ctrl+Y</td><td>undo / redo</td></tr><tr><td>Ctrl+S</td><td>save</td></tr><tr><td>Ctrl+Enter</td><td>play / back to building</td></tr><tr><td>Delete</td><td>remove the selected thing</td></tr><tr><td>Ctrl+C / Ctrl+V / Ctrl+D</td><td>copy / paste / duplicate the selected thing</td></tr><tr><td>?</td><td>the shortcuts card (with <strong>Fix my setup</strong>)</td></tr></tbody></table></div>
+<hr>
+<h2 id="user-guide--13-templates-and-starter-games">13. Templates and starter games</h2>
+<p>The studio comes with three starter games, each with several levels, quests and people to talk to:</p>
+<ul>
+<li><strong>Firefly Fen</strong> (3D, 3 levels): a glowing swamp.</li>
+<li><strong>Summit Snack Run</strong> (3D, 2 levels): a sunset mountain.</li>
+<li><strong>Lantern Leap</strong> (2D, 3 levels): a platformer through sunken ruins.</li>
+</ul>
+<p><strong>World</strong> tab &gt; <strong>Start from a template</strong> also offers <strong>Classic Crystal Hunt</strong> and <strong>Classic Platformer</strong>: the simplest games (collect every crystal, or reach the flag) without quests.</p>
+<p>Three more starters show off the Logic tab:</p>
+<ul>
+<li><strong>The Missing Bell</strong> (3D, one village): a mystery. The festival bell has vanished; question the baker, the weaver and the fisher in turn, find the miller's key, and a cutscene reveals who took it. A watchman patrols, a pedlar runs a shop, and the well heals.</li>
+<li><strong>Cinder Crypt</strong> (3D, one dungeon): buy supplies from the Quartermaster, take Mara the Sellsword along as a companion, find the crypt key past archers and guards, defeat the Crypt Captain to open the sealed warden gate (a trigger opens it), and wake the Cinder Warden in a cutscene.</li>
+<li><strong>Pennant Run</strong> (3D, a time trial on foot in Swift Boots): nine gates in order, a timer on screen, patrolling slimes crossing the course, and a fastest-first high-score table with <em>Quick Feet</em> and <em>Blazing</em> achievements.</li>
+</ul>
+<h3 id="user-guide--131-guided-tutorials-learn-tab">13.1 Guided tutorials (Learn tab)</h3>
+<p>The <strong>Learn</strong> tab starts with six short tutorials: <em>Your first world</em>, <em>Someone to talk to</em>, <em>A quest with a reward</em>, <em>A door that opens by magic</em>, <em>Count coins with a variable</em> and <em>Music and sharing</em>. Press one and a card appears on the stage with the steps. Each step ticks itself off when the studio sees you have done it (for example, three trees placed), and <strong>Show me</strong> opens the right tab or tool. Finished tutorials get a tick. Progress is kept in this browser only. Below them are the teacher lesson packs (see the Teacher Guide).</p>
+<h3 id="user-guide--132-remix-open-a-game-someone-shared">13.2 Remix: open a game someone shared</h3>
+<p>In the <strong>World</strong> tab, <strong>Open a game someone shared (remix)</strong> takes a game file (<code>.html</code>) exported from Stark World Engine, or a <code>world.json</code>. It is saved as a <strong>new</strong> game called <em>&lt;name&gt; (remix)</em> that you can play, look inside and change; the file you picked is never changed and nothing is uploaded. The World tab then shows where the remix came from.</p>
+<p>Honest notes: only the game data is read from the file (nothing in it runs). A game exported with the Free edition holds only its first level, so that is all a remix gets. Imported models or skies that lived only on the other person's computer are left out (the studio says how many), and the other person's soundtrack file is not inside a game file.</p>
+<hr>
+<h2 id="user-guide--14-pixel-art-canvas">14. Pixel Art Canvas</h2>
+<p>A 16 × 16 sprite editor in the <strong>Pixel Art</strong> tab.</p>
+<ul>
+<li>Pick a colour from the palette (the last swatch is the transparent "eraser") and click or drag on the canvas.</li>
+<li><strong>Clear</strong> wipes the canvas.</li>
+<li><strong>Use as player sprite</strong> makes your drawing the hero of your <strong>2D</strong> levels. Save the game to keep it.</li>
+<li><strong>Save PNG</strong> saves a crisp 128 × 128 PNG into <code>My_Games/&lt;game&gt;/assets/</code>.</li>
+</ul>
+<hr>
+<h2 id="user-guide--15-sfx-forge">15. SFX Forge</h2>
+<p>Make retro sound effects without any audio software, in the <strong>SFX Forge</strong> tab.</p>
+<ol>
+<li>Pick a <strong>Preset</strong>: jump, coin, hit, laser, boom, power, quest, levelup, door, portal, talk or magic.</li>
+<li>Choose a <strong>Wave</strong> (square, saw, sine or noise) and move the sliders: <strong>freq</strong> (pitch), <strong>slide</strong> (pitch bend), <strong>dur</strong> (length), <strong>decay</strong>, <strong>noise</strong> and <strong>vol</strong>.</li>
+<li>Click <strong>Play</strong> to hear it.</li>
+<li>Click <strong>Save WAV</strong>. The sound is saved to <code>My_Games/&lt;game&gt;/assets/</code> <strong>and</strong> becomes your game's in-game sound for that action. Save the game to keep it.</li>
+</ol>
+<hr>
+<h2 id="user-guide--16-music-and-sound">16. Music and sound</h2>
+<p><strong>Soundtrack:</strong> in the <strong>World</strong> tab, click <strong>Make a soundtrack</strong>. The studio composes an original looping tune (about 40 seconds) that matches the mood of the level you're editing. It's made from scratch on your computer, so it's yours to use. It takes a few seconds (up to about 20 seconds on a slower PC), is saved as <code>My_Games/&lt;game&gt;/assets/soundtrack.wav</code> and plays in <strong>▶ Play</strong> mode. <strong>Listen</strong> plays it, <strong>Make a new soundtrack</strong> replaces it and <strong>Remove</strong> takes it off the game.</p>
+<p><strong>Honest note:</strong> the soundtrack plays in the studio. Exported HTML5 cartridges stay small and do not carry the WAV file; it stays in your game's <code>assets/</code> folder for videos or for a Godot/UE5 project. For music inside the exported game, use the Tune Maker.</p>
+<p><strong>Tune Maker (Tune tab):</strong> a grid of 16 or 32 steps. The top 12 rows are notes (Cheerful pentatonic, Major or Minor, in a low, middle or high octave), the bottom rows are <strong>Kick</strong>, <strong>Snare</strong> and <strong>Hat</strong> drums. Click squares to place notes, <strong>Listen</strong> to loop it, change the speed (60 to 200 beats per minute), the sound (Retro, Soft, Flute or Bright) and the volume, or start from <strong>Example tune</strong>. The tune is stored in the game itself (a few hundred bytes), loops in <strong>▶ Play</strong> mode and <strong>inside the exported HTML5 game</strong>, and stops when the player turns sound off in the menu. While a tune is set it replaces the soundtrack file in Play mode. If you also built a game audio pack for the export, the pack's music plays in the exported game instead of the tune.</p>
+<p><strong>Sound effects</strong> for jumping, coins, hits, quests, level-ups, doors, portals, talking and magic are built in, and you can reshape each of them in the <a href="#user-guide--15-sfx-forge">SFX Forge</a>.</p>
+<hr>
+<h2 id="user-guide--17-exporting">17. Exporting</h2>
+<p><strong>Unreal Engine 5 export is a preview</strong> in 28.7: the project is generated and checked, but it has not yet been opened in a real Unreal Engine 5 install before release.</p>
+<p>Open the <strong>Export</strong> tab. Every export is written to <code>My_Games/&lt;game&gt;/export/</code>. The studio saves your game first, then lists the files it wrote.</p>
+<h3 id="user-guide--html5-cartridge-all-editions">HTML5 cartridge (all editions)</h3>
+<p><strong>What you get:</strong> one self-contained <code>.html</code> file with the engine and your whole game inside: all levels, quests, dialogue, items, XP, enemies and bosses, save slots, a title screen and credits. No internet, no install: double-click and play in a modern browser.</p>
+<ul>
+<li>Share it by email, USB stick or any file host.</li>
+<li><strong>Upload to itch.io:</strong> press <strong>itch.io zip</strong>. It writes <code>&lt;game&gt;_itch.zip</code> (the game as <code>index.html</code> plus <code>CREDITS.txt</code>) next to the cartridge. On itch.io, upload that zip as an HTML game and tick "This file will be played in the browser". The zip follows the same edition rules as the cartridge (Free: the first level with the closable note). Nothing is uploaded for you.</li>
+<li>Exported games work with touch screens and gamepads, keep variables in their save slots and play your Tune.</li>
+<li>In a cartridge, <strong>P</strong> toggles the drone camera and <strong>O</strong> saves a postcard PNG.</li>
+</ul>
+<p><strong>The gameplay lives in the cartridge.</strong> Quests, dialogue, combat, XP, saves, Logic-tab triggers, cutscenes, behaviours, shops, achievements, high scores and the player's accessibility options run in the HTML5 cartridge (and in the studio's Play mode). The Godot and UE5 exports below carry this data along in <code>world.json</code>, but do not re-create these systems in the engine.</p>
+<h3 id="user-guide--godot-4-project-pro-and-studio">Godot 4 project (Pro and Studio)</h3>
+<p><strong>What you get:</strong> a ready-to-open Godot 4 project in <code>My_Games/&lt;game&gt;/export/godot/</code>:</p>
+<ul>
+<li><strong>3D:</strong> a lit scene for the Forward+ renderer: procedural sky, global illumination (SDFGI), ambient occlusion, volumetric and distance fog, glow, ACES tone mapping and auto exposure, a sun with soft shadows in your mood's colours, hilly terrain with collision, and every object (trees, rocks, ruins, crystals, lamps, enemies, houses, people, chests, items, checkpoints, portals) as simple shapes, with lights on lamps, crystals and portals and a water plane when your level has water. You walk around with a third-person camera (WASD/arrows, Space to jump).</li>
+<li><strong>2D:</strong> your tiles as a scene with a player (A/D or arrows, Space to jump) and glow.</li>
+<li><code>world.json</code> (all your game data) and <code>README_GODOT.md</code> (these steps and how to swap shapes for real art).</li>
+</ul>
+<p><strong>How to open:</strong> in Godot 4.2 or newer: <strong>Import</strong> &gt; select <code>project.godot</code> &gt; <strong>Import &amp; Edit</strong> &gt; press <strong>F5</strong> to run. The first open imports and compiles shaders. The 3D look needs a graphics card that supports Vulkan or Direct3D 12.</p>
+<p><strong>Tested:</strong> we opened and rendered exports of the starter games and several "Make me a game" games in Godot 4.7.</p>
+<p><strong>Honest note:</strong> this is a <strong>starting scene</strong>, not a finished port. It builds the <strong>first level</strong> of your game. Objects are simple placeholder shapes (select the <code>Props</code> node to drop in your own meshes; see the README), weather particles aren't re-created (weather changes fog and grading only), and quests, dialogue and combat are not carried over: the player can walk and jump. You add real models and gameplay in Godot.</p>
+<h3 id="user-guide--ue5-project-pro-and-studio-3d-worlds-only">UE5 project (Pro and Studio, 3D worlds only)</h3>
+<p><strong>What you get:</strong> an Unreal Engine 5 project in <code>My_Games/&lt;game&gt;/export/ue5/</code> that builds your level inside the Unreal Editor with a high-end setup already switched on:</p>
+<ul>
+<li>Lumen global illumination and reflections, Nanite, Virtual Shadow Maps and Temporal Super Resolution (in <code>Config/DefaultEngine.ini</code>).</li>
+<li>A sky with a sun matched to your mood, a sky light, volumetric clouds, height fog with volumetric fog, and a post-process volume with per-mood colour grading, bloom, exposure, vignette and a little film grain.</li>
+<li>Terrain shaped from your world (plus a heightmap PNG if you want to turn it into a Landscape), every object as a clearly named placeholder, lights for lamps and crystals, a PlayerStart, three cinematic camera shots, and markers for people, items, portals and quests.</li>
+<li>A <strong>Stark World Engine</strong> menu in the editor: <strong>Build level from world.json</strong>, <strong>Swap proxies for real assets</strong> and <strong>Take hero screenshots</strong>.</li>
+</ul>
+<p><strong>How to open:</strong></p>
+<ol>
+<li>Install <strong>Unreal Engine 5.4 or newer</strong> from the Epic Games Launcher (free Epic account). Stark World Engine never downloads it for you.</li>
+<li>Open the <code>.uproject</code> file. If your engine is newer than 5.4, allow the conversion. The first open compiles shaders, which can take a while.</li>
+<li>Menu <strong>Stark World Engine &gt; Build level from world.json</strong> (or <strong>Tools &gt; Execute Python Script...</strong> &gt; <code>Content/Python/stark_build_level.py</code>). Running it again rebuilds only what it made and keeps your own work.</li>
+<li><strong>Real art:</strong> open <strong>Fab</strong> inside Unreal (Window &gt; Fab; on 5.4, Quixel Bridge) with <strong>your own Epic account</strong> and add free Quixel Megascans or other assets to the project. Paste each asset's path into <code>Content/Python/proxy_swap_map.csv</code> (tree, rock, ruin, crystal, lamp, enemy; <code>ground</code> takes a material) and click <strong>Stark World Engine &gt; Swap proxies for real assets</strong>. Stark World Engine doesn't include or download any Epic, Fab or Megascans content: those assets are licensed to you through your own account.</li>
+</ol>
+<p>The full step list, including a headless build (<code>BUILD_LEVEL_HEADLESS.bat</code>) and optional hardware ray tracing, is in <code>README_UE5.md</code> inside the export.</p>
+<p><strong>Honest notes:</strong></p>
+<ul>
+<li>UE5 export is for <strong>3D worlds only</strong> (use Godot or the cartridge for 2D). It builds the <strong>first level</strong> of your game.</li>
+<li>It is a starting point toward high-end visuals, not finished art: the look you end up with depends on the assets you swap in. Gameplay is not included; pressing Play in Unreal flies a default camera, and your quest and dialogue data stays in <code>Content/Python/world.json</code> for your own Blueprints.</li>
+<li>We have checked the generated project files and scripts, but at release we <strong>have not yet run this export in a real Unreal Engine 5 install</strong> ourselves. If something doesn't build, please tell us.</li>
+</ul>
+<h3 id="user-guide--exporting-without-opening-the-studio">Exporting without opening the studio</h3>
+<p>Advanced users can export from a terminal in the studio folder:</p>
+<pre><code>python studio_app.py --export &quot;My First Island&quot; --target cartridge</code></pre>
+<p>(<code>--target</code> can be <code>cartridge</code>, <code>godot</code> or <code>ue5</code>. On Windows, use <code>runtime\python\python.exe</code> instead of <code>python</code> if Python isn't installed separately.)</p>
+<hr>
+<h2 id="user-guide--18-activation-and-your-license">18. Activation and your license</h2>
+<ul>
+<li>Your copy works the moment you unzip it. Without a key it runs as <strong>unregistered</strong>: everything except the Godot/UE5 exporters works.</li>
+<li>Paste your <code>GS1-...</code> key in <strong>Export &gt; Activate</strong> and click <strong>Activate</strong>, or save it as <code>key.txt</code> next to <code>studio_app.py</code>.</li>
+<li>The key is checked <strong>offline</strong> on your computer. No server, no account, nothing is ever sent.</li>
+<li>A mistyped key never breaks anything: the studio just stays unregistered. Paste it again in one piece.</li>
+<li><strong>Your games are yours.</strong> Stark World Engine itself is licensed for personal use: please don't resell or redistribute the program. The full text is in <code>PERSONAL_LICENSE.txt</code> (also linked from the Export tab).</li>
+<li>Every download includes <code>GIFT_CERTIFICATE.html</code>, a printable card you can fill in if you're giving Stark World Engine as a present.</li>
+</ul>
+<hr>
+<h2 id="user-guide--19-the-creator-suite-studio-edition-windows">19. The creator suite (Studio edition, Windows)</h2>
+<p>The creator suite helps you film, edit and publish videos about your games. It needs <strong>Windows 10/11</strong>, <strong>OBS Studio 30+</strong> and <strong>FFmpeg</strong> (both free).</p>
+<p>Nothing in the creator suite uses a paid service or posts anything without you.</p>
+<h3 id="user-guide--191-setup-wizard-start-here">19.1 Setup Wizard (start here)</h3>
+<p>Double-click <strong><code>SETUP_STARK_WORLD_ENGINE.bat</code></strong>. Your browser opens a setup page with a checklist that turns green step by step (about 5 minutes; close it any time and it picks up where you left off next time):</p>
+<ol>
+<li><strong>Check your tools:</strong> Python, FFmpeg, OBS Studio and a browser. Missing FFmpeg or OBS? <strong>Install</strong> runs the official Windows installer (winget) in a window you can watch, or open the official download page.</li>
+<li><strong>Camera and microphone:</strong> pick your devices, <strong>Show me</strong> takes a test picture, <strong>Test (3 seconds)</strong> checks your mic, <strong>Use these</strong> sets up OBS with them.</li>
+<li><strong>Your phone remote:</strong> scan the QR code with your phone (same Wi-Fi). If the phone can't connect, click <strong>Allow on my home network</strong>: Windows asks you to click <strong>Yes</strong>, and one firewall rule lets devices on your home network (not the internet) reach the hub on port 8510. The wizard shows the exact command under "What exactly runs?".</li>
+<li><strong>Your first test clip:</strong> <strong>Record a 5-second test</strong> and watch it get edited automatically.</li>
+<li><strong>YouTube (optional):</strong> step-by-step help to make your own free Google "Desktop app" key and connect your channel.</li>
+</ol>
+<p>At the end you get buttons to <strong>Open Studio</strong> and to open the phone hub.</p>
+<p>After setup, <strong><code>START_CREATOR_HUB.bat</code></strong> starts everything at once: it prepares OBS, starts the auto editor in the background and starts the phone hub.</p>
+<h3 id="user-guide--192-obs-bridge">19.2 OBS bridge</h3>
+<p><code>python obs_bridge.py</code> (run for you by the Setup Wizard and <code>START_CREATOR_HUB.bat</code>) writes a <strong>new</strong> OBS profile called <strong>Stark_Profile</strong> and a scene collection <strong>Stark_Canon_R50V</strong> with a scene named <strong>Stark World Engine Studio</strong> (camera, phone, screen and microphone sources). It also turns on OBS's built-in websocket (port 4455) so the phone hub can start and stop recording.</p>
+<ul>
+<li>Recordings are saved straight into the <code>raw_clips/</code> folder, where the auto editor finds them.</li>
+<li>Your existing OBS profiles and scenes are <strong>never changed</strong>. Anything it touches is backed up first.</li>
+<li>Want to see what it would do first? Run <code>python obs_bridge.py --dry-run</code>.</li>
+<li>In OBS, choose <strong>Profile &gt; Stark_Profile</strong> and <strong>Scene Collection &gt; Stark_Canon_R50V</strong>.</li>
+</ul>
+<h3 id="user-guide--193-auto-editor">19.3 Auto editor</h3>
+<p>Drop recordings into <code>raw_clips/</code> (OBS does this for you) and the auto editor turns each recording session into:</p>
+<ul>
+<li><code>edits/&lt;session&gt;/FINAL.mp4</code>: one edited video, and</li>
+<li><code>edits/&lt;session&gt;/Social_Clips/clip_1..3.mp4</code>: three vertical 1080 × 1920 clips for Shorts, Reels and TikTok.</li>
+</ul>
+<p>What it does for you: trims silences (jump cuts), evens out loudness to a YouTube-friendly level, adds captions, colour grading, subtle punch-in zooms, transitions and beat-snapped cuts when there's music. Then it opens a <strong>review page</strong> in your browser.</p>
+<ul>
+<li><code>python auto_editor.py --watch</code> keeps watching in the background; <code>--once</code> edits what's ready and exits.</li>
+<li><strong>Captions:</strong> if a <code>.srt</code> file with the same name sits next to a clip, it's used. Otherwise, if you've installed the free <code>faster-whisper</code> package, speech is transcribed on your PC. Otherwise you get a title caption.</li>
+<li>A file is edited once it stops growing, and the same recording is never edited twice.</li>
+<li>Look and feel are adjustable in <code>config.json</code> (created on first run): <code>grade_preset</code> (<code>teal_orange</code>, <code>warm_film</code>, <code>cold_cinematic</code>, <code>punch</code>, <code>neutral_clean</code>), <code>caption_preset</code> (<code>bold_pop</code>, <code>clean_lower</code>, <code>hype</code>), <code>transition_name</code> (<code>crossfade</code>, <code>whip_pan</code>, <code>dip_to_black</code>, <code>zoom_blur</code>, <code>glitch</code> and more), <code>target_lufs</code>, silence settings and intensity knobs.</li>
+<li>Uses your graphics card's video encoder when available (NVIDIA or Intel), otherwise a standard software encoder.</li>
+</ul>
+<h3 id="user-guide--194-phone-hub-creator-command-center">19.4 Phone hub (Creator Command Center)</h3>
+<p>A web app for your phone, served from your PC on your home network (port <strong>8510</strong>), protected by a <strong>PIN</strong>.</p>
+<ul>
+<li>Start it with <code>START_CREATOR_HUB.bat</code> (or <code>python creator_hub.py --phone</code>). It prints the address to open on your phone. Started without <code>--phone</code>, the hub only answers on this PC (<code>http://127.0.0.1:8510/</code>).</li>
+<li><strong>Log in once:</strong> scan the QR code in the Setup Wizard (or make one with <code>python creator_hub.py --qr</code>, which writes <code>.claude/iphone_qr.html</code>). The QR logs your phone in one time and is valid for 15 minutes. Or open the address on your phone and type the 6-digit PIN on the login page. Your PIN is shown in the Setup Wizard; it is <code>hub_pin</code> in <code>config.json</code> (made for you on first run) unless you moved it out of the studio folder with <code>python gs_common.py --move-secrets</code> (add <code>--rotate</code> for a new PIN), which keeps it in your private app-data folder instead. The PIN is never put in a link; old links ending in <code>?pin=</code> no longer log you in.</li>
+<li>After logging in, your phone stays logged in until the hub is restarted.</li>
+<li>Five wrong PINs within 10 minutes lock out that device's PIN logins for 15 minutes.</li>
+<li>Use it on your trusted home Wi-Fi only: it is plain HTTP on your local network.</li>
+<li>Can't connect? See <a href="#troubleshooting--my-phone-cant-reach-the-hub">My phone can't reach the hub</a>.</li>
+</ul>
+<p><strong>Tabs:</strong></p>
+<ul>
+<li><strong>Shoot Scheduler:</strong> plan recording sessions and get calendar reminders. Five minutes before a shoot, OBS is armed and the teleprompter opens on your PC. Auto-record at shoot time is optional.</li>
+<li><strong>Camera:</strong> use your phone as a camera through a VDO.Ninja link (a free browser-to-browser video service; this one tab uses the internet).</li>
+<li><strong>Teleprompter:</strong> read your script; tap (or press Space) to start/stop OBS recording.</li>
+<li><strong>Review &amp; Approve:</strong> watch the finished edit, optionally pick a publish date and time, and <strong>Approve</strong>. Nothing is published without your approval.</li>
+<li><strong>Stats:</strong> your own free YouTube / itch.io numbers, only if you've set up your own credentials.</li>
+</ul>
+<h3 id="user-guide--195-review--approve-then-publishing-drafts">19.5 Review &amp; approve, then publishing drafts</h3>
+<p>After you approve an edit in the hub, the publishing helper takes over:</p>
+<ul>
+<li><strong>YouTube:</strong> uploads the video to <strong>your</strong> channel using your own free Google Cloud "Desktop app" credentials (<code>client_secrets.json</code> in the studio folder; the Setup Wizard walks you through it). Videos are uploaded as <strong>private</strong>, and scheduled when you picked a publish time. No credentials? It explains how to make them and does nothing else.</li>
+<li><strong>X, Instagram, Substack:</strong> the post text and media paths are written to <code>drafts/&lt;session&gt;/</code>, and the site's own compose page is opened. <strong>You</strong> paste and click Post. Nothing logs in or posts automatically.</li>
+<li><strong>Optional local AI captions:</strong> if you run a local Ollama server, set <code>ollama_model</code> in <code>config.json</code> to draft post text on your own PC.</li>
+<li><code>python publishers.py --setup-wizard</code> opens the official sign-up pages with a checklist; <code>--dry-run</code> checks everything and writes drafts without uploading.</li>
+</ul>
+<hr>
+<h2 id="user-guide--20-where-things-live">20. Where things live</h2>
+<div class="tw"><table><thead><tr><th>Folder / file</th><th>What's in it</th></tr></thead><tbody><tr><td><code>My_Games/&lt;game&gt;/world.json</code></td><td>your game (all levels, quests, dialogue, items)</td></tr><tr><td><code>My_Games/&lt;game&gt;/assets/</code></td><td>sprites (PNG), sounds and the soundtrack (WAV)</td></tr><tr><td><code>My_Games/&lt;game&gt;/postcards/</code></td><td>postcard screenshots</td></tr><tr><td><code>My_Games/&lt;game&gt;/export/</code></td><td>cartridges, <code>godot/</code>, <code>ue5/</code></td></tr><tr><td><code>My_Games/.backups/</code></td><td>the 3 previous versions of every saved file</td></tr><tr><td><code>key.txt</code></td><td>your license key (optional)</td></tr><tr><td><code>runtime/python/</code></td><td>the built-in Python for Windows</td></tr><tr><td><code>launcher.log</code>, <code>doctor.log</code></td><td>what the launcher and the setup check did</td></tr><tr><td><code>raw_clips/</code></td><td>recordings for the auto editor (Studio)</td></tr><tr><td><code>edits/</code></td><td>finished videos and social clips (Studio)</td></tr><tr><td><code>drafts/</code></td><td>post drafts for X / Instagram / Substack (Studio)</td></tr><tr><td><code>config.json</code></td><td>creator suite settings and hub PIN (Studio, made on first run)</td></tr></tbody></table></div>
+<hr>
+<h2 id="user-guide--21-privacy-in-one-paragraph">21. Privacy in one paragraph</h2>
+<p>The studio only answers requests from your own computer and only reads and writes inside <code>My_Games/</code>. License keys are checked offline. Nothing calls home, nothing is tracked, no paid AI is used. On Windows, the launcher only goes online if no working Python is found at all and you press <strong>Y</strong> to fetch the official one from python.org. The only other things that touch the internet are ones you start on purpose in the Studio edition: the Setup Wizard's installs and official pages, the phone camera link (VDO.Ninja), YouTube uploads with your own credentials, and opening a social site's compose page for you.</p></article>
+<article id="tutorials" data-title="Tutorials"><h1 id="tutorials--tutorials">Tutorials</h1>
+<p>Five complete projects, from your very first world to a full engine export. Each one lists what you need and roughly how long it takes.</p>
+<ol>
+<li><a href="#tutorials--tutorial-1-your-first-adventure-in-10-minutes">Your first adventure in 10 minutes</a> (all editions)</li>
+<li><a href="#tutorials--tutorial-2-a-3-level-campaign-with-a-boss">A 3-level campaign with a boss</a> (all editions)</li>
+<li><a href="#tutorials--tutorial-3-a-cozy-collect-a-thon">A cozy collect-a-thon</a> (all editions)</li>
+<li><a href="#tutorials--tutorial-4-make-a-trailer-of-your-game-with-the-auto-editor">Make a trailer of your game with the auto editor</a> (Studio, Windows)</li>
+<li><a href="#tutorials--tutorial-5-export-to-godot">Export to Godot</a> (Pro and Studio)</li>
+</ol>
+<hr>
+<h2 id="tutorials--tutorial-1-your-first-adventure-in-10-minutes">Tutorial 1: Your first adventure in 10 minutes</h2>
+<p><strong>You need:</strong> the studio running (see the <a href="#quickstart">Quickstart</a>). <strong>Time:</strong> about 10 minutes.</p>
+<p><strong>The idea:</strong> a lantern keeper's island at night. Talk to the old keeper, find the scattered crystals and avoid the swamp creatures.</p>
+<h3 id="tutorials--part-a-the-world-4-minutes">Part A: the world (4 minutes)</h3>
+<ol>
+<li>Click <strong>New 3D world</strong>. Type <strong>Lantern Isle</strong> in the Name box.</li>
+<li>Click the <strong>Bioluminescent Twilight</strong> mood. Fireflies appear and the foliage starts to glow.</li>
+<li><strong>Tools</strong> tab &gt; <strong>Tree</strong>: click around the edges to make a forest ring. About 20 trees is plenty.</li>
+<li><strong>Ruin</strong>: place 3 ruins in a triangle around the middle. They become landmarks the player can steer by.</li>
+<li><strong>Lamp</strong>: put a lamp next to each ruin, so the landmarks glow.</li>
+<li><strong>Rock</strong>: sprinkle a few rocks along paths between the ruins.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<h3 id="tutorials--part-b-the-challenge-3-minutes">Part B: the challenge (3 minutes)</h3>
+<ol>
+<li><strong>Crystal</strong>: place 6 crystals: one next to each ruin, three hidden behind trees.</li>
+<li><strong>Slime</strong>: place 2 slimes near the hidden crystals. Not on top of the start point: give the player a moment to look around.</li>
+<li>Click <strong>Save</strong>, then <strong>▶ Play</strong>. Walk with WASD, look by dragging the mouse, attack with J.</li>
+<li>Too hard? Click <strong>Build</strong>, choose <strong>Erase</strong>, and remove a slime. Too easy? Add one.</li>
+</ol>
+<h3 id="tutorials--part-c-a-story-3-minutes">Part C: a story (3 minutes)</h3>
+<ol>
+<li><strong>Tools</strong> tab &gt; <strong>Person</strong>: place one near the start. Choose <strong>Select / move</strong> and click the person. In the panel, change <strong>Name</strong> to <em>Old Keeper</em>.</li>
+<li>Still in the panel, click <strong>Give them a quest</strong>. The <strong>Quests</strong> tab opens with a new quest given by the Old Keeper, and the Keeper's dialogue is written for you.</li>
+<li>Change the quest's <strong>Title</strong> to <em>Relight the Isle</em>. In <strong>Step 1</strong> (Collect items, Item: Crystal), set <strong>How many</strong> to <strong>6</strong>. Step 2 already says <em>Talk to someone: Old Keeper</em>, so the player brings the news back.</li>
+<li>Open the <strong>Dialogue</strong> tab. Find the line that starts <em>"Could you help me?"</em> and change its text to: <em>"The lanterns went dark when the crystals scattered. Bring all six back and the isle will shine again."</em></li>
+<li><strong>Save</strong> and <strong>▶ Play</strong>: walk to the Keeper (a gold <strong>!</strong> floats above them), press <strong>E</strong>, pick <em>I will help.</em> with <strong>1</strong>, then follow the gold beam. Press <strong>L</strong> to see the quest log.</li>
+</ol>
+<p>Because the game now has a quest, finishing that quest is what wins it.</p>
+<h3 id="tutorials--finish">Finish</h3>
+<ul>
+<li>Press <strong>P</strong> while playing for a drone flyover, then click <strong>Postcard PNG</strong> for a cover picture.</li>
+<li>Optional: <strong>World</strong> tab &gt; <strong>Make a soundtrack</strong> for a looping tune while you play in the studio.</li>
+<li><strong>Export &gt; HTML5 cartridge</strong> and double-click the file in <code>My_Games/Lantern_Isle/export/</code>. You've made a game you can send to anyone.</li>
+</ul>
+<hr>
+<h2 id="tutorials--tutorial-2-a-3-level-campaign-with-a-boss">Tutorial 2: A 3-level campaign with a boss</h2>
+<p><strong>You need:</strong> the studio running. <strong>Time:</strong> about 30 minutes.</p>
+<p><strong>The idea:</strong> a short journey across three moods: a sunset meadow, a frozen pass and a burning citadel with a boss at the end. All three levels live in <strong>one game</strong>.</p>
+<h3 id="tutorials--step-1-level-1-meadow-gate-alpine-sunset">Step 1: Level 1, "Meadow Gate" (Alpine Sunset)</h3>
+<ol>
+<li><strong>New 3D world</strong>, name it <strong>The Long Road</strong>, mood <strong>Alpine Sunset</strong>. This first level is called after the game.</li>
+<li>Lots of trees, a few rocks, 5 crystals out in the open, 1 slime. This level teaches the controls, so keep it gentle.</li>
+<li><strong>Quests</strong> tab &gt; <strong>Fetch</strong>. Set the title to <em>Meadow Gate</em>, tick <strong>starts when the level begins</strong>, and make <strong>Step 1</strong> <em>Collect items: Crystal, 5</em>. Delete step 2 with its <strong>X</strong>.</li>
+<li><strong>Tools</strong> tab &gt; <strong>Portal</strong>: place it at the far end. Select it and set <strong>Opens after quest</strong> to <em>Meadow Gate</em>. Now the way on opens once the crystals are found.</li>
+<li><strong>Save</strong>.</li>
+</ol>
+<h3 id="tutorials--step-2-level-2-frost-pass-sub-zero-aurora">Step 2: Level 2, "Frost Pass" (Sub-Zero Aurora)</h3>
+<ol>
+<li><strong>World</strong> tab &gt; <strong>Levels</strong> &gt; <strong>+ 3D level</strong>. You're now editing level 2 (the level picker at the top shows it). Under <strong>This level</strong>, set <strong>Level name</strong> to <em>Frost Pass</em>. Click the <strong>Sub-Zero Aurora</strong> mood.</li>
+<li>A new 3D level already has a portal to the next level. Fewer trees, more rocks and ruins: a narrow, rocky path. 6 crystals and 3 creatures guarding them (try an <strong>Archer</strong> and a <strong>Brute</strong>).</li>
+<li><strong>Quests</strong> tab &gt; <strong>Hunt</strong>: title <em>Clear the Pass</em>, tick <strong>starts when the level begins</strong>, step <em>Defeat enemies: Any enemy, 3</em>. Lock the portal to this quest like in level 1.</li>
+<li><strong>Save</strong>.</li>
+</ol>
+<h3 id="tutorials--step-3-level-3-ember-citadel-crimson-citadel">Step 3: Level 3, "Ember Citadel" (Crimson Citadel)</h3>
+<ol>
+<li><strong>World</strong> tab &gt; <strong>+ 3D level</strong>, name it <em>Ember Citadel</em>, mood <strong>Crimson Citadel</strong>. Use <strong>Erase</strong> to remove the portal it came with: this is the last level.</li>
+<li>Build a ring of ruins as castle walls with lamps on the corners. 4 crystals inside, creatures at the gaps.</li>
+<li>In the middle, place a <strong>Boss</strong>. Select it: set <strong>Name</strong> to <em>Warden of Embers</em>, <strong>Id</strong> to <em>warden</em>, and raise its <strong>Health</strong>.</li>
+<li><strong>Quests</strong> tab &gt; <strong>Hunt</strong>: title <em>The Warden</em>, tick <strong>starts when the level begins</strong> and <strong>finishing it wins the game</strong>. In the step, set <strong>How many</strong> to 1 and <strong>Or one named enemy (id)</strong> to <em>warden</em>. Give it a big reward: <strong>Reward XP</strong> 200 and an item such as Moon Blade.</li>
+<li>Add a <strong>Person</strong> at the gate, name them <em>Gatekeeper</em>, click <strong>Write dialogue for this person</strong>, and in the <strong>Dialogue</strong> tab change the greeting to <em>"The Warden of Embers waits within."</em> (Do this after step 4: a quest added while a person exists is handed to that person, with offer lines written for them. If that happens, set the quest's <strong>Given by</strong> back to <em>(starts by itself)</em>.)</li>
+<li><strong>Save</strong>.</li>
+</ol>
+<h3 id="tutorials--step-4-play-the-whole-campaign">Step 4: Play the whole campaign</h3>
+<ol>
+<li>Pick level 1 in the level picker at the top and click <strong>▶ Play</strong>.</li>
+<li>Finish each level's quest and walk through its portal. XP, items and gold carry over, so the player arrives at the boss stronger, maybe with a new ability or two (Dash at level 2, Whirl at level 3, Star Bolt at level 4).</li>
+<li><strong>Esc</strong> opens the menu with three save slots, so players can stop and continue later. Every checkpoint you place also writes the autosave.</li>
+<li>Defeat the Warden to see the ending.</li>
+</ol>
+<h3 id="tutorials--playtesting-tips">Playtesting tips</h3>
+<ul>
+<li>Use the level picker to play each level on its own first. It's much faster to tune.</li>
+<li>Each level should be a little harder than the one before: one more enemy, one less easy crystal.</li>
+<li>Give the player a quiet moment before the boss: a lamp-lit ruin with a <strong>Checkpoint</strong> and nothing hostile nearby.</li>
+<li>Want to see how a finished campaign is built? Open <strong>Firefly Fen</strong> (3 levels) and look at its <strong>Quests</strong> and <strong>Dialogue</strong> tabs.</li>
+</ul>
+<hr>
+<h2 id="tutorials--tutorial-3-a-cozy-collect-a-thon">Tutorial 3: A cozy collect-a-thon</h2>
+<p><strong>You need:</strong> the studio running. <strong>Time:</strong> about 15 minutes. No enemies, no stress, just a pleasant world full of things to find.</p>
+<h3 id="tutorials--option-a-a-2d-seaside-platformer">Option A: a 2D seaside platformer</h3>
+<ol>
+<li>Click <strong>New 2D world</strong>, name it <strong>Pearl Cove</strong>. The mood starts on <strong>Sunken Ruins</strong> (bubbles!).</li>
+<li><strong>Pixel Art</strong> tab: draw a little hero in 16 × 16. A round body, two eyes and a hat is plenty. Click <strong>Use as player sprite</strong>.</li>
+<li><strong>Tools</strong> tab &gt; <strong>Ground</strong>: paint a few floating platforms at different heights, like stepping stones.</li>
+<li><strong>Pearl</strong>: put one on top of each platform, and a few in the air between platforms, so jumps are rewarded.</li>
+<li>Paint the <strong>Flag</strong> at the far end (you can <strong>Erase</strong> the one the new world started with). Skip spikes and creatures: this one is cozy.</li>
+<li><strong>SFX Forge</strong> tab: pick the <strong>coin</strong> preset, set the <strong>Wave</strong> to <strong>sine</strong> and nudge <strong>freq</strong> up for a softer chime. Click <strong>Play</strong> to hear it, then <strong>Save WAV</strong>: it becomes your collect sound.</li>
+<li><strong>Save</strong>, then <strong>▶ Play</strong>.</li>
+</ol>
+<h3 id="tutorials--option-b-a-3d-garden-stroll">Option B: a 3D garden stroll</h3>
+<ol>
+<li><strong>New 3D world</strong>, name it <strong>Firefly Garden</strong>, mood <strong>Bioluminescent Twilight</strong>.</li>
+<li>Plant trees in loose clusters, with lamps along winding paths. Add a <strong>House</strong> or two.</li>
+<li>Hide 12 crystals: under trees, behind ruins, one on the far edge of the map.</li>
+<li>No creatures. <strong>World</strong> tab: set <strong>Day and night</strong> to <em>Slow (10 min day)</em> and turn on <strong>Water</strong> for a little lake.</li>
+<li><strong>Save</strong> and <strong>▶ Play</strong>. Collect every crystal to finish.</li>
+</ol>
+<h3 id="tutorials--make-it-feel-cozy">Make it feel cozy</h3>
+<ul>
+<li>Gentle, rhythmic placement (paths, clusters) feels calmer than random scatter.</li>
+<li>Lamps along a route quietly guide the player without any signs.</li>
+<li>Try every mood: <strong>Alpine Sunset</strong> is warm and relaxed, <strong>Sunken Ruins</strong> is dreamy.</li>
+<li><strong>World</strong> tab &gt; <strong>Make a soundtrack</strong> adds a calm looping tune in the studio.</li>
+</ul>
+<p><strong>Shortcut:</strong> <strong>Make me a game</strong> &gt; <strong>Cozy Village</strong> &gt; <strong>Snack</strong> builds a gentle one-level adventure with villagers, easy quests and pumpkins in one click. Then hand-tune it.</p>
+<hr>
+<h2 id="tutorials--tutorial-4-make-a-trailer-of-your-game-with-the-auto-editor">Tutorial 4: Make a trailer of your game with the auto editor</h2>
+<p><strong>You need:</strong> the Studio edition and Windows 10/11. <strong>Time:</strong> about 20 minutes (plus editing time on your PC).</p>
+<h3 id="tutorials--step-1-run-the-setup-wizard-one-time-about-5-minutes">Step 1: Run the Setup Wizard (one time, about 5 minutes)</h3>
+<ol>
+<li>Double-click <strong><code>SETUP_STARK_WORLD_ENGINE.bat</code></strong> in the studio folder. A setup page opens in your browser.</li>
+<li><strong>Check your tools:</strong> if FFmpeg or OBS Studio is missing, click <strong>Install</strong> and watch the window, or use the official download page.</li>
+<li><strong>Camera and microphone:</strong> pick yours and click <strong>Use these</strong>. This writes the Stark World Engine OBS profile and scene with those devices.</li>
+<li><strong>Your phone remote:</strong> scan the QR code with your phone. If it can't connect, click <strong>Allow on my home network</strong> and click <strong>Yes</strong> on the Windows prompt.</li>
+<li><strong>Your first test clip:</strong> click <strong>Record a 5-second test</strong> to see the auto editor at work.</li>
+<li>Optional: for automatic speech captions, install the free <code>faster-whisper</code> package (<code>pip install faster-whisper</code> with an installed Python).</li>
+</ol>
+<h3 id="tutorials--step-2-get-obs-ready">Step 2: Get OBS ready</h3>
+<ol>
+<li>Double-click <strong><code>START_CREATOR_HUB.bat</code></strong>: it prepares OBS, starts the auto editor in the background, and starts the phone hub.</li>
+<li>Open OBS and pick <strong>Profile &gt; Stark_Profile</strong> and <strong>Scene Collection &gt; Stark_Canon_R50V</strong>.</li>
+<li>In the <strong>Stark World Engine Studio</strong> scene, make sure the screen capture shows the display where your browser is. Hide sources you don't need (camera, phone) by clicking their eye icons.</li>
+</ol>
+<p>OBS now records straight into <code>raw_clips/</code>.</p>
+<h3 id="tutorials--step-3-film-your-gameplay">Step 3: Film your gameplay</h3>
+<ol>
+<li>Open your game (in the studio, or the exported cartridge, full screen).</li>
+<li>Click <strong>Start Recording</strong> in OBS (or use the phone hub's <strong>Teleprompter</strong> tab).</li>
+<li>Record 3 or 4 short takes:<ul><li>a <strong>drone flyover</strong> (press <strong>P</strong>), with no talking;</li><li>30 seconds of exploring, talking to a villager and collecting;</li><li>a fight or a boss;</li><li>the ending screen.</li></ul></li>
+<li>Stop recording between takes. Talking over a take? The auto editor cuts the silences and captions your voice.</li>
+</ol>
+<h3 id="tutorials--step-4-let-the-auto-editor-cut-it">Step 4: Let the auto editor cut it</h3>
+<p>If <code>START_CREATOR_HUB.bat</code> is running, the editor is already watching. Otherwise run:</p>
+<pre><code>python auto_editor.py --once</code></pre>
+<p>Once your recordings stop growing, it edits them and opens a <strong>review page</strong> in your browser. You'll find:</p>
+<ul>
+<li><code>edits/&lt;session&gt;/FINAL.mp4</code>: your trailer;</li>
+<li><code>edits/&lt;session&gt;/Social_Clips/clip_1.mp4</code> to <code>clip_3.mp4</code>: vertical versions for Shorts, Reels and TikTok.</li>
+</ul>
+<h3 id="tutorials--step-5-tune-the-look-optional">Step 5: Tune the look (optional)</h3>
+<p>Open <code>config.json</code> and try:</p>
+<ul>
+<li><code>&quot;grade_preset&quot;: &quot;warm_film&quot;</code> (or <code>cold_cinematic</code> for icy worlds);</li>
+<li><code>&quot;caption_preset&quot;: &quot;hype&quot;</code> for trailer energy;</li>
+<li><code>&quot;transition_name&quot;: &quot;whip_pan&quot;</code>.</li>
+</ul>
+<p>The new look applies to the next recordings the editor processes. (Each recording is edited only once, even if you rename it, so record a fresh take to try a new style.)</p>
+<h3 id="tutorials--step-6-approve-and-publish">Step 6: Approve and publish</h3>
+<ol>
+<li>Open the <strong>phone hub</strong> on your phone (you logged in with the QR in the Setup Wizard; see <a href="#user-guide--194-phone-hub-creator-command-center">Phone hub</a>).</li>
+<li><strong>Review &amp; Approve</strong> tab: watch the edit, optionally choose a publish date and time, tap <strong>Approve</strong>.</li>
+<li>If you connected YouTube, the video uploads to your channel as private (scheduled if you picked a time). For X, Instagram and Substack you get ready-to-paste drafts in <code>drafts/&lt;session&gt;/</code>.</li>
+</ol>
+<hr>
+<h2 id="tutorials--tutorial-5-export-to-godot">Tutorial 5: Export to Godot</h2>
+<p><strong>You need:</strong> the Pro or Studio edition, activated, and <strong>Godot 4.2 or newer</strong> (free, from godotengine.org). <strong>Time:</strong> about 10 minutes.</p>
+<h3 id="tutorials--step-1-activate-if-you-havent">Step 1: Activate (if you haven't)</h3>
+<p><strong>Export</strong> tab &gt; paste your <code>GS1-...</code> key &gt; <strong>Activate</strong>. The <strong>Godot 4 project</strong> button becomes clickable.</p>
+<h3 id="tutorials--step-2-export">Step 2: Export</h3>
+<ol>
+<li>Open the game you want, for example <strong>Firefly Fen</strong>.</li>
+<li><strong>Export</strong> tab &gt; <strong>Godot 4 project</strong>.</li>
+<li>The file list shows what was written, in <code>My_Games/&lt;game&gt;/export/godot/</code>:<ul><li><code>project.godot</code>: the project file;</li><li><code>main.tscn</code>: the scene with your first level;</li><li><code>player.gd</code>: the player (WASD/arrows + Space, third-person camera);</li><li><code>stark_terrain.gd</code> and <code>stark_scatter.gd</code>: build the terrain and place your objects (they also run in the editor, so you see the level right away);</li><li><code>stark_plan.json</code> and <code>world.json</code>: your level layout and all your game data;</li><li><code>README_GODOT.md</code>: these steps in short.</li></ul></li>
+</ol>
+<h3 id="tutorials--step-3-open-it-in-godot">Step 3: Open it in Godot</h3>
+<ol>
+<li>Start Godot. In the Project Manager click <strong>Import</strong>.</li>
+<li>Browse to <code>My_Games/&lt;game&gt;/export/godot/</code> and select <code>project.godot</code>.</li>
+<li>Click <strong>Import &amp; Edit</strong>. The first open imports and compiles shaders. Then press <strong>F5</strong> to run and walk around your level in Godot.</li>
+</ol>
+<h3 id="tutorials--step-4-make-it-your-own">Step 4: Make it your own</h3>
+<p>What carries over: your first level's layout, terrain and water, mood lighting (sky, sun, fog, glow, colour grading), every object as a simple shape (lamps, crystals and portals glow), and a controllable player.</p>
+<p>What doesn't: the other levels, quests, dialogue, combat and scoring, and the browser's weather particles. Those run in the HTML5 cartridge; in Godot you build your own gameplay. <code>world.json</code> still lists every object, quest and line of dialogue if you want to rebuild from data.</p>
+<p>Next steps in Godot:</p>
+<ul>
+<li>Select the <code>Props</code> node. In the Inspector each kind of object has a <code>*_mesh</code> slot (fast, stays a MultiMesh) and a <code>*_scene</code> slot (for a <code>.glb</code> or <code>.tscn</code>, for example animated enemies). Drop in your own models; toggle <code>rebuild</code> to refresh. Free CC0 sources include Poly Haven, Kenney and ambientCG (check each licence).</li>
+<li>Set <code>ground_material</code> on the <code>Terrain</code> node for real ground textures.</li>
+<li>Script enemies and pickups with GDScript.</li>
+</ul>
+<p><strong>Unreal Engine instead?</strong> Use <strong>UE5 project</strong> (3D worlds only). Open the <code>.uproject</code> in UE 5.4 or newer and choose <strong>Stark World Engine &gt; Build level from world.json</strong>. Your level is built with Lumen, Nanite, a real sky, clouds, fog and per-mood post-processing; swap the placeholders for Fab / Megascans assets with your own Epic account. See <a href="#user-guide--ue5-project-pro-and-studio-3d-worlds-only">UE5 project</a>.</p></article>
+<article id="faq" data-title="FAQ"><h1 id="faq--frequently-asked-questions">Frequently Asked Questions</h1>
+<h2 id="faq--the-basics">The basics</h2>
+<h3 id="faq--do-i-need-an-internet-connection">Do I need an internet connection?</h3>
+<p>No. The studio, your games and license activation all work offline. On Windows, Python is built in, so nothing is downloaded. The only things that use the internet are ones you start yourself: fetching Python from python.org if the built-in one is missing and you say yes, and the optional Studio-edition features (the Setup Wizard's installs, the phone camera link, YouTube uploads with your own credentials, and opening social sites' compose pages).</p>
+<h3 id="faq--do-i-need-an-account-or-subscription">Do I need an account or subscription?</h3>
+<p>No. You buy once and it's yours. There is no account, login or subscription.</p>
+<h3 id="faq--is-it-really-running-in-my-browser-is-my-work-uploaded">Is it really running in my browser? Is my work uploaded?</h3>
+<p>The studio <em>displays</em> in your browser, but a small program on your computer does the saving. It only accepts connections from your own computer (<code>127.0.0.1</code>) and only writes inside the <code>My_Games</code> folder. Nothing is uploaded.</p>
+<h3 id="faq--which-computers-does-it-run-on">Which computers does it run on?</h3>
+<p>The builder runs on <strong>Windows 10/11</strong> (Python included, just double-click <code>START_STARK_WORLD_ENGINE.bat</code>), <strong>macOS</strong> and <strong>Linux</strong> (both need Python 3.10+). You also need a WebGL2 browser (current Chrome, Edge or Firefox). The <strong>creator suite</strong> (Studio edition) is <strong>Windows 10/11 only</strong>.</p>
+<h3 id="faq--do-i-need-to-install-python">Do I need to install Python?</h3>
+<p>On Windows, no: the download includes its own Python in the <code>runtime</code> folder and the launcher uses it. On macOS and Linux, yes: Python 3.10 or newer, free from python.org or your package manager. See the <a href="#quickstart">Quickstart</a>.</p>
+<h3 id="faq--do-i-need-a-powerful-pc">Do I need a powerful PC?</h3>
+<p>No. The worlds are stylized and designed for browsers, so a typical laptop from the last several years with a working graphics driver is fine. Very large worlds (thousands of objects) run smoother on a dedicated graphics card, and players can lower <strong>Graphics</strong> in the in-game menu (Esc). The auto editor (Studio) benefits from an NVIDIA or Intel GPU with a video encoder, but works without one, just slower.</p>
+<h3 id="faq--do-i-need-to-know-how-to-code">Do I need to know how to code?</h3>
+<p>No. Building, quests, dialogue, items, pixel art, sound effects, music and exporting are all point-and-click. <strong>Make me a game</strong> even builds a complete game for you. The Godot and UE5 exports are a starting point for people who <em>want</em> to go further in a full engine.</p>
+<h3 id="faq--which-languages-does-the-interface-support">Which languages does the interface support?</h3>
+<p>English, Spanish, French, German, Portuguese, Italian, Japanese and Chinese for the main buttons and tabs. Switch with the drop-down at the top (EN, ES, FR, DE, PT, IT, JA, ZH). The tool palette, editor panels and in-game text are in English.</p>
+<hr>
+<h2 id="faq--editions-and-licensing">Editions and licensing</h2>
+<p><strong>Is there a free version?</strong> Yes: Stark World Engine Free has every builder feature. Its HTML5 cartridges export the first level of a game with a small "Made with Stark World Engine" note that players can close after a few seconds. A Pro or Studio key (or an older Standard key) removes both limits in place (Export &gt; Activate).</p>
+<p><strong>Where does the art come from?</strong> From CC0 packs by Quaternius and Poly Haven (see <code>assets/CREDITS.txt</code>), plus any glTF models you import yourself in the Assets tab. Every export lists the art it uses.</p>
+<h3 id="faq--whats-the-difference-between-free-pro-and-studio">What's the difference between Free, Pro and Studio?</h3>
+<ul>
+<li><strong>Free ($0):</strong> the full 3D + 2D builder with quests, dialogue, items, multi-level games and "Make me a game", the Logic tab with variables, moods, starter games, guided tutorials, remix, pixel art, SFX Forge, Tune Maker, the soundtrack maker and HTML5 cartridge / itch.io zip export (first level, with a small closable note).</li>
+<li><strong>Pro ($30):</strong> every level with no note, + Godot 4 and UE5 project export, and example cartridges.</li>
+<li><strong>Studio ($50):</strong> + the Windows creator suite: Setup Wizard, OBS setup, auto video editor, phone hub, publishing helpers.</li>
+</ul>
+<p>Standard is no longer sold. If you already have a Standard key it keeps working as before: every level, no note (Godot and UE5 export are part of Pro and Studio).</p>
+<h3 id="faq--can-i-get-a-refund">Can I get a refund?</h3>
+<p>Studios: refunds within 2 days of purchase, on request. If you bought on itch.io, ask for the refund through itch.io. Your statutory rights in your country still apply (for example, EU and UK consumer rights on digital content depend on consent to immediate download). On Steam, refunds go through Steam.</p>
+<h3 id="faq--do-i-get-a-key-by-e-mail">Do I get a key by e-mail?</h3>
+<p>No. The Pro and Studio downloads come activated: the key (<code>key.txt</code>) is already in the folder, so there is nothing to wait for. You only paste a key (Export &gt; Activate) when you were given one as text, for example a gift or a re-issued key.</p>
+<h3 id="faq--does-it-work-without-a-key">Does it work without a key?</h3>
+<p>Yes. Without a key it runs as Free with every builder feature. A Pro or Studio key exports every level with no note and unlocks the Godot and UE5 exporters.</p>
+<h3 id="faq--can-i-upgrade-later">Can I upgrade later?</h3>
+<p>Contact the seller through the store page with your order number.</p>
+<h3 id="faq--i-lost-my-key">I lost my key.</h3>
+<p>Contact the seller with your order number; keys can be re-issued.</p>
+<h3 id="faq--can-i-use-it-on-more-than-one-computer">Can I use it on more than one computer?</h3>
+<p>The license is personal: use it on your own computers for your own projects. Please don't share your download or key with others.</p>
+<h3 id="faq--do-i-own-the-games-i-make">Do I own the games I make?</h3>
+<p>Yes. <strong>The games you make are yours</strong>: sell them, share them, put them on itch.io. That includes the soundtracks and sounds the studio makes for you: they're generated from scratch on your computer. What you may not do is resell or redistribute Stark World Engine itself. See <code>PERSONAL_LICENSE.txt</code>.</p>
+<h3 id="faq--is-there-drm-or-an-online-check">Is there DRM or an online check?</h3>
+<p>No online check, no anti-debugging, nothing that can lock you out. The key is checked with a digital signature on your computer.</p>
+<hr>
+<h2 id="faq--building-and-playing">Building and playing</h2>
+<h3 id="faq--can-it-make-a-game-for-me">Can it make a game for me?</h3>
+<p>Yes. Click <strong>Make me a game</strong>, pick a theme (Spooky Swamp, Sky Islands, Frozen Kingdom, Lava Fortress, Sunken City or Cozy Village) and a size (Snack: 1 level, Evening: 3 levels, Epic: 6 levels), and click <strong>Make it and play!</strong> You get villages, people with quests, monsters, treasure and a boss, and you can change everything afterwards. The same seed always makes the same game.</p>
+<h3 id="faq--can-my-games-have-quests-and-characters">Can my games have quests and characters?</h3>
+<p>Yes. Place a <strong>Person</strong>, then use the <strong>Quests</strong> and <strong>Dialogue</strong> tabs: quests with steps (collect, defeat, talk, go to a place, escort) and rewards, and conversations with answers that start quests or give items. Players also earn XP and level up, carry items and equipment, and fight different kinds of enemies and bosses. See <a href="#user-guide--8-quests-people-items-xp-enemies-and-campaigns">Quests, people, items</a>.</p>
+<h3 id="faq--how-does-the-player-win">How does the player win?</h3>
+<p>In a game with quests, by finishing the quests marked <strong>finishing it wins the game</strong> (or all quests, if none is marked). In a 3D game without quests, by collecting every crystal. In 2D, by reaching the flag on the last level.</p>
+<h3 id="faq--can-a-game-have-several-levels">Can a game have several levels?</h3>
+<p>Yes, up to 25. Add them in the <strong>World</strong> tab under <strong>Levels</strong>; portals (3D) and the flag or exit (2D) lead to the next one. XP, items and gold carry over.</p>
+<h3 id="faq--can-players-save-their-progress">Can players save their progress?</h3>
+<p>Yes. Press <strong>Esc</strong> while playing for <strong>three save slots</strong> plus an autosave that's written at every checkpoint. Saves are kept in the browser on that computer.</p>
+<h3 id="faq--can-i-import-my-own-3d-models">Can I import my own 3D models?</h3>
+<p>Yes, since 28.5. Open the <strong>Assets</strong> tab, drop a <code>.glb</code> (or a <code>.gltf</code> with its <code>.bin</code> and textures), PBR textures or an <code>.hdr</code> sky, fill in the name, size, licence and who made it, and press <strong>Import</strong>. <strong>Place</strong> puts it in your 3D world. Imported art is stored in <code>My_Assets/</code>, travels inside your HTML5 cartridge and is listed in its credits. Files that need Draco or meshopt compression are refused: export them again without compression.</p>
+<h3 id="faq--can-i-use-my-own-sounds-and-images">Can I use my own sounds and images?</h3>
+<p>You can make your own with the <strong>Pixel Art</strong> canvas, the <strong>SFX Forge</strong> and the soundtrack maker. Importing outside files into the builder isn't supported; in Godot/UE5 exports you can use anything you like.</p>
+<h3 id="faq--does-my-game-have-music">Does my game have music?</h3>
+<p>Two ways. <strong>Tune</strong> tab: place notes and drums on a grid; the tune plays in Play mode <strong>and inside the exported HTML5 game</strong>. <strong>World</strong> tab &gt; <strong>Make a soundtrack</strong>: the studio composes a longer original tune for the level's mood; it plays in the studio's Play mode only (the WAV file is not put inside exported games, to keep them small).</p>
+<h3 id="faq--can-people-play-my-game-on-a-phone-a-tablet-or-with-a-gamepad">Can people play my game on a phone, a tablet or with a gamepad?</h3>
+<p>Yes. Exported games show an on-screen joystick and buttons when the screen is touched, and they work with standard gamepads. 3D games need a phone or tablet with WebGL2 (most from the last few years); big worlds run slower on phones than on computers.</p>
+<h3 id="faq--i-made-a-mistake-can-i-undo">I made a mistake. Can I undo?</h3>
+<p>Yes: <strong>Undo</strong> (Ctrl+Z) and <strong>Redo</strong> (Ctrl+Y) work while you edit. And every save keeps the three previous versions: <strong>World</strong> tab &gt; <strong>Restore an earlier version...</strong>.</p>
+<h3 id="faq--how-big-can-a-world-be">How big can a world be?</h3>
+<p>Up to 5,000 objects per level, and up to 25 levels per game.</p>
+<hr>
+<h2 id="faq--exporting-and-sharing">Exporting and sharing</h2>
+<h3 id="faq--what-does-the-html5-cartridge-include">What does the HTML5 cartridge include?</h3>
+<p>Everything: the engine and your whole game (all levels, quests, dialogue, items, enemies and bosses, save slots, title screen and credits) in a single <code>.html</code> file. It runs offline in a modern browser. No install needed for your players.</p>
+<h3 id="faq--can-i-put-my-game-on-itchio">Can I put my game on itch.io?</h3>
+<p>Yes. Rename a copy of the cartridge to <code>index.html</code>, zip it, and upload it as an HTML game on itch.io with "This file will be played in the browser" ticked.</p>
+<h3 id="faq--is-the-godot--ue5-export-a-finished-game">Is the Godot / UE5 export a finished game?</h3>
+<p>No, and we want to be upfront about that. It's a <strong>starting scene</strong> for your game's first level: layout, terrain, mood lighting, sky and fog, with objects as simple placeholder shapes. The gameplay (quests, dialogue, combat, XP, saves) runs in the HTML5 cartridge and is <strong>not</strong> re-created in Godot or Unreal; your game data comes along in <code>world.json</code>. In Godot you get a walking player; in Unreal, Play flies a default camera.</p>
+<h3 id="faq--how-good-does-the-godot-export-look">How good does the Godot export look?</h3>
+<p>It opens with Godot 4's Forward+ renderer set up: sky, global illumination, ambient occlusion, volumetric fog, glow and per-mood colour grading, plus terrain and lit placeholder objects. We opened and rendered exports of several games in Godot 4.7 before release. You make it look like <em>your</em> game by swapping in real models.</p>
+<h3 id="faq--what-does-the-ue5-export-set-up">What does the UE5 export set up?</h3>
+<p>Lumen lighting and reflections, Nanite, virtual shadow maps, a physical sky with sun, clouds and fog, and per-mood post-processing, plus a <strong>Stark World Engine</strong> menu that builds the level and swaps the placeholders for Fab / Quixel Megascans assets you add with your own Epic account. It needs Unreal Engine 5.4 or newer. Honest note: we checked the generated files, but at release we have not yet run it in a real Unreal Engine 5 install ourselves.</p>
+<h3 id="faq--can-i-export-2d-worlds-to-unreal">Can I export 2D worlds to Unreal?</h3>
+<p>No. UE5 export is for 3D worlds. Export 2D worlds to Godot 4 or as an HTML5 cartridge.</p>
+<hr>
+<h2 id="faq--creator-suite-studio">Creator suite (Studio)</h2>
+<h3 id="faq--how-do-i-set-up-the-creator-suite">How do I set up the creator suite?</h3>
+<p>Double-click <code>SETUP_STARK_WORLD_ENGINE.bat</code>. A setup page walks you through tools, camera and mic, the phone remote (including the firewall, with one click and your "Yes"), a first test clip and, optionally, YouTube. About 5 minutes.</p>
+<h3 id="faq--does-the-creator-suite-post-to-my-social-accounts-automatically">Does the creator suite post to my social accounts automatically?</h3>
+<p>No. It uploads to YouTube only with <strong>your own</strong> credentials and only after you approve in the phone hub, as a private (optionally scheduled) video. For X, Instagram and Substack it writes drafts and opens the compose page: you click Post.</p>
+<h3 id="faq--does-it-use-paid-ai-services">Does it use paid AI services?</h3>
+<p>No. Captions use a local <code>.srt</code> file or the free <code>faster-whisper</code> running on your PC. Optional post-text drafting uses a local Ollama server if you have one. No paid cloud API is called anywhere.</p>
+<h3 id="faq--how-does-my-phone-log-in-to-the-hub">How does my phone log in to the hub?</h3>
+<p>Scan the QR code in the Setup Wizard: it logs your phone in once and is valid for 15 minutes. Or open the hub's address on your phone and type the 6-digit PIN (shown in the Setup Wizard). The PIN is never put in a link.</p>
+<h3 id="faq--does-the-phone-hub-work-with-android">Does the phone hub work with Android?</h3>
+<p>The hub is a web page, so it opens in any modern phone browser on the same network. It's designed with iPhone Safari in mind. The Camera tab relies on the phone browser's camera permission, which needs the HTTPS link the hub gives you.</p>
+<h3 id="faq--will-it-mess-up-my-obs-settings">Will it mess up my OBS settings?</h3>
+<p>No. It creates a new profile (<strong>Stark_Profile</strong>) and a new scene collection (<strong>Stark_Canon_R50V</strong>) and leaves your existing ones alone. Anything it touches is backed up first. Try <code>python obs_bridge.py --dry-run</code> to see exactly what it would write.</p></article>
+<article id="troubleshooting" data-title="Troubleshooting"><h1 id="troubleshooting--troubleshooting">Troubleshooting</h1>
+<p>Find your problem below. Most fixes take under a minute.</p>
+<p><strong>First stop:</strong> the setup check. It runs by itself every time you start the studio, and inside the studio you can run it any time: press <strong>?</strong> and click <strong>Fix my setup</strong>. It names the problem and the fix in plain words. Its last report is saved in <code>doctor.log</code> in the studio folder.</p>
+<hr>
+<p><strong>On Steam?</strong> Use Steam &gt; Stark World Engine &gt; Properties &gt; Installed Files &gt; Verify integrity of game files instead of downloading or extracting a zip again, and keep your games in <code>Documents\Stark World Engine\My_Games</code>. Refunds go through Steam.</p>
+<p><strong>The 3D view is slow on an older laptop?</strong> Press Esc in play mode and set Graphics to <strong>Low</strong>: it turns off shadows, ambient occlusion, bloom and normal maps, draws fewer plants and renders at half resolution.</p>
+<h2 id="troubleshooting--starting-the-studio">Starting the studio</h2>
+<h3 id="troubleshooting--what-the-setup-checks-messages-mean">What the setup check's messages mean</h3>
+<p>When you start Stark World Engine, the black window (Terminal on Mac/Linux) prints <strong>"Setup check: N of N OK."</strong> and lists anything that needs attention:</p>
+<ul>
+<li><strong>[STOP]</strong> must be fixed before the studio starts. The window says exactly how.</li>
+<li><strong>[TIP ]</strong> is advice. The studio starts anyway.</li>
+<li><strong>[FIXED]</strong> means it repaired something by itself (for example the built-in Python's settings file; a backup is kept as <code>.bak</code>).</li>
+<li><strong>[NOTE]</strong> is just information, for example "Stark World Engine is already running - opening it in your browser".</li>
+</ul>
+<p>The sections below cover each message.</p>
+<h3 id="troubleshooting--stark-world-engine-has-to-be-extracted-from-the-zip-first">"Stark World Engine has to be extracted from the zip first"</h3>
+<p>You double-clicked the launcher inside the zip preview, so Windows only gave it a temporary copy and your games would be lost. Press <strong>Y</strong> to open the folder with the zip, right-click the zip &gt; <strong>Extract All...</strong> &gt; <strong>Extract</strong>, then double-click <code>START_STARK_WORLD_ENGINE.bat</code> in the new folder.</p>
+<p>On a Mac, the same check catches macOS running the app from a hidden read-only copy: move the Stark World Engine folder out of Downloads (for example into Documents) with Finder and start again.</p>
+<h3 id="troubleshooting--stark-world-engine-is-in-program-files--this-folder-is-read-only">"Stark World Engine is in Program Files..." / "This folder is read-only..."</h3>
+<p>The studio needs to save your games next to itself. Press <strong>Y</strong> when asked: it copies itself to <code>Documents\StarkWorldEngine</code> (or your user folder if Documents is synced) and starts from there. The original folder isn't changed; delete it later if you like. Or move the folder yourself to somewhere you own, such as Documents or the Desktop.</p>
+<h3 id="troubleshooting--the-folder-path-is-very-long--inside-a-syncing-folder">"The folder path is very long" / "...inside a syncing folder"</h3>
+<p>Both are tips. Windows has trouble with very long paths, and OneDrive, Dropbox, iCloud or Google Drive can lock or pause files while you save. It works, but for a smooth ride move the folder to <code>Documents\StarkWorldEngine</code> (a folder that isn't synced).</p>
+<h3 id="troubleshooting--stark-world-engine-files-are-missing-or-damaged">"Stark World Engine files are missing or damaged"</h3>
+<p>Usually an antivirus quarantined a file right after unzipping. Restore it (Windows: <strong>Windows Security &gt; Virus &amp; threat protection &gt; Protection history</strong>, pick the Stark World Engine item &gt; <strong>Restore</strong> or <strong>Allow on device</strong>), or download the zip again from your purchase page and extract it into a <strong>new</strong> folder. Copy your <code>My_Games</code> folder across. See also <a href="#troubleshooting--my-antivirus-flagged-or-removed-a-file">My antivirus flagged or removed a file</a>.</p>
+<h3 id="troubleshooting--stark-world-engine-is-already-running---opening-it-in-your-browser">"Stark World Engine is already running - opening it in your browser"</h3>
+<p>Nothing is wrong: a studio from this folder is already open, so the launcher just opens your browser to it. To restart the studio, close its other black window first.</p>
+<h3 id="troubleshooting--all-ports-8505-8520-are-in-use-by-">"All ports 8505-8520 are in use by ..."</h3>
+<p>The studio needs one free port between 8505 and 8520. The message names the programs using them. Close them (often several old studio windows), or restart the PC, then start again. Advanced: <code>python studio_app.py --port 8600</code> picks a port yourself.</p>
+<h3 id="troubleshooting--no-chrome-edge-or-firefox-found">"No Chrome, Edge or Firefox found"</h3>
+<p>The studio opens in your web browser and works best in a current Chrome, Edge or Firefox (all free). Install one and start again.</p>
+<h3 id="troubleshooting--low-disk-space--this-computers-clock-looks-wrong">"Low disk space" / "This computer's clock looks wrong"</h3>
+<p>Free up at least 1 GB for saves and exports. A wrong clock doesn't break anything, but save dates and backups look odd: turn on <strong>Set time automatically</strong> in Windows Settings &gt; Time &amp; language (Mac: System Settings &gt; General &gt; Date &amp; Time).</p>
+<h3 id="troubleshooting--your-key-keytxt-is-not-valid-so-the-studio-runs-as-free">"Your key (key.txt) is not valid, so the studio runs as Free"</h3>
+<p>Nothing is lost. See <a href="#troubleshooting--license-keys">License keys</a> below.</p>
+<h3 id="troubleshooting--windows-this-pc-doesnt-have-it-yet-python">Windows: "This PC doesn't have it yet" (Python)</h3>
+<p>The download includes its own Python in the <code>runtime\python</code> folder, so this only appears if that folder is missing or blocked (usually by an antivirus, or because the zip wasn't fully extracted).</p>
+<ul>
+<li>Press <strong>Y</strong>: the launcher fetches the official Python 3.12.10 from python.org (about 11 MB), checks it, and keeps it inside the Stark World Engine folder only. No admin rights needed; nothing else on your PC changes.</li>
+<li>Or press <strong>N</strong> and install Python yourself: python.org &gt; Downloads, run the installer, <strong>tick "Add python.exe to PATH"</strong> on the first screen, then double-click <code>START_STARK_WORLD_ENGINE.bat</code> again.</li>
+<li>Or extract the zip again into a new folder, so the built-in Python is complete.</li>
+</ul>
+<h3 id="troubleshooting--the-bundled-python-could-not-start">"The bundled Python could not start"</h3>
+<p>The launcher then tries an installed Python instead. To fix the built-in one, extract the zip again into a new folder (and check your antivirus's quarantine).</p>
+<h3 id="troubleshooting--the-studio-stopped-unexpectedly">"The studio stopped unexpectedly"</h3>
+<p>The black window then shows the last lines of <code>launcher.log</code>. Closing other Stark World Engine windows and starting again usually fixes it. If not, send those lines to the seller (see <a href="#troubleshooting--still-stuck">Still stuck?</a>).</p>
+<h3 id="troubleshooting--macos-the-launcher-wont-open-or-says-python-isnt-installed">macOS: the launcher won't open, or says Python isn't installed</h3>
+<ul>
+<li>"Cannot be opened because it is from an unidentified developer": right-click <code>start_stark_world_engine.command</code> &gt; <strong>Open</strong> &gt; <strong>Open</strong>. You only need to do this once.</li>
+<li>"isn't installed on this Mac yet": the launcher opens python.org for you. Download the macOS installer, click through it, then double-click the launcher again. (Optional: in the Python folder in Applications, double-click <strong>Install Certificates.command</strong>; the studio itself never goes online.)</li>
+</ul>
+<h3 id="troubleshooting--linux-stark-world-engine-runs-on-python-310-or-newer">Linux: "Stark World Engine runs on Python 3.10 or newer"</h3>
+<p>Install it with your package manager (for example <code>sudo apt install python3</code>, <code>sudo dnf install python3</code> or <code>sudo pacman -S python</code>), then run <code>bash start_stark_world_engine.sh</code> again. Check your version with <code>python3 --version</code>.</p>
+<h3 id="troubleshooting--my-python-is-too-old-macos--linux">My Python is too old (macOS / Linux)</h3>
+<p>Run <code>python3 --version</code>. If it's below 3.10, install a newer version from python.org or your package manager. You can keep the old one; the launcher looks for 3.10 and newer.</p>
+<h3 id="troubleshooting--the-browser-didnt-open">The browser didn't open</h3>
+<p>Copy the address printed in the black/terminal window (like <code>http://127.0.0.1:8505</code>) into your browser.</p>
+<h3 id="troubleshooting--i-opened-the-studio-from-another-device-and-it-doesnt-load">I opened the studio from another device and it doesn't load</h3>
+<p>By design, the studio only answers on <code>127.0.0.1</code> / <code>localhost</code> on the same computer. That keeps your files private. (The <strong>phone hub</strong> is the one part made for other devices; see below.)</p>
+<h3 id="troubleshooting--i-closed-the-black-window-and-the-studio-stopped">I closed the black window and the studio stopped</h3>
+<p>The black window <em>is</em> the studio's engine. Keep it open while you work; close it when you're done.</p>
+<hr>
+<h2 id="troubleshooting--browser-and-graphics-webgl2">Browser and graphics (WebGL2)</h2>
+<h3 id="troubleshooting--the-stage-is-black-or-shows-a-webgl-error">The stage is black or shows a WebGL error</h3>
+<p>The 3D builder needs <strong>WebGL2</strong>. When it isn't available, the studio opens a help card by itself ("3D graphics are switched off in this browser"). 2D worlds still work.</p>
+<ol>
+<li>Use a current <strong>Chrome</strong>, <strong>Edge</strong> or <strong>Firefox</strong>.</li>
+<li>Turn hardware acceleration on: Chrome/Edge <strong>Settings &gt; System &gt; "Use graphics acceleration when available"</strong>, then restart the browser. Firefox: <strong>Settings &gt; General &gt; Performance</strong>, untick "Use recommended performance settings" and tick "Use hardware acceleration when available".</li>
+<li>Check WebGL2: visit <code>chrome://gpu</code> (Chrome/Edge) and look for "WebGL2: Hardware accelerated", or <code>about:support</code> in Firefox.</li>
+<li>Update your graphics driver (NVIDIA, AMD or Intel website, or Windows Update &gt; Advanced options &gt; Optional updates).</li>
+<li>Remote desktop sessions and some virtual machines don't provide WebGL2. Run the studio on the machine directly.</li>
+</ol>
+<h3 id="troubleshooting--its-slow-or-stuttery">It's slow or stuttery</h3>
+<ul>
+<li>While playing, press <strong>Esc</strong> and set <strong>Graphics</strong> to medium or low.</li>
+<li>Close other heavy tabs and apps.</li>
+<li>On laptops, plug in power and choose the high-performance graphics: <strong>Windows Settings &gt; System &gt; Display &gt; Graphics</strong>, add your browser, choose <strong>High performance</strong>.</li>
+<li>Very dense worlds: thin out trees and rocks a little. Fewer, well-placed objects often look better anyway.</li>
+</ul>
+<h3 id="troubleshooting--no-sound">No sound</h3>
+<p>Browsers block sound until you click the page. Click once on the stage, then play. Also check the tab isn't muted (right-click the tab), and that <strong>Sound: on</strong> is set in the in-game menu (<strong>Esc</strong>).</p>
+<h3 id="troubleshooting--my-soundtrack-doesnt-play">My soundtrack doesn't play</h3>
+<ul>
+<li>It plays in <strong>▶ Play</strong> mode in the studio. Click the page once first (browsers block sound until you do).</li>
+<li>Exported HTML5 cartridges don't include the soundtrack WAV. A tune made in the <strong>Tune</strong> tab does play inside exported games.</li>
+<li>While a Tune is set, it replaces the soundtrack in Play mode. Clear the Tune to hear the soundtrack again.</li>
+<li>"The soundtrack maker is not available in this copy": <code>music_engine.py</code> is missing from the folder. Extract the zip again into a new folder.</li>
+<li>Making a soundtrack can take up to about 20 seconds on a slower PC. Wait for "Soundtrack ready".</li>
+</ul>
+<h3 id="troubleshooting--the-interface-is-in-the-wrong-language">The interface is in the wrong language</h3>
+<p>Use the language drop-down at the top (EN, ES, FR, ...). Your choice is remembered.</p>
+<hr>
+<h2 id="troubleshooting--saving-and-files">Saving and files</h2>
+<h3 id="troubleshooting--saved-doesnt-appear--not-saved--shows">"Saved" doesn't appear / "Not saved: ..." shows</h3>
+<ul>
+<li>Make sure the game has a <strong>name</strong>.</li>
+<li>Don't run the studio from inside the zip: unzip it first, to a folder you can write to (Desktop or Documents, not <code>C:\Program Files</code>). The setup check warns about this.</li>
+<li>Cloud-sync folders (OneDrive, Dropbox) can briefly lock files. If saves fail there, move the studio folder somewhere local.</li>
+</ul>
+<h3 id="troubleshooting--where-are-my-games">Where are my games?</h3>
+<p>In the <code>My_Games</code> folder next to <code>studio_app.py</code>, one folder per game.</p>
+<h3 id="troubleshooting--i-need-an-older-version-of-my-game">I need an older version of my game</h3>
+<p><strong>World</strong> tab &gt; <strong>Restore an earlier version...</strong> &gt; <strong>Restore this one</strong>, then <strong>Save</strong>. The three previous versions of each saved file are kept in <code>My_Games/.backups/</code>.</p>
+<h3 id="troubleshooting--my-players-saves-are-gone">My players' saves are gone</h3>
+<p>In-game saves (the three slots and the autosave) are kept in the browser on that computer. They disappear if the browser's site data is cleared, and they don't move to another browser or computer.</p>
+<hr>
+<h2 id="troubleshooting--playing">Playing</h2>
+<h3 id="troubleshooting--the-portal-or-exit-wont-let-me-through">The portal or exit won't let me through</h3>
+<ul>
+<li>"Finish your quests first!": the game has quests still in progress. Press <strong>L</strong> to see what's left.</li>
+<li>A portal can be locked until a quest is done (<strong>Opens after quest</strong> in its settings).</li>
+</ul>
+<h3 id="troubleshooting--i-cant-use-dash-whirl-or-star-bolt">I can't use Dash, Whirl or Star Bolt</h3>
+<p>They unlock at player levels 2, 3 and 4. Earn XP by defeating enemies and finishing quests.</p>
+<h3 id="troubleshooting--a-person-wont-talk">A person won't talk</h3>
+<p>Walk right up to them until the <strong>E</strong> prompt appears, then press <strong>E</strong>.</p>
+<hr>
+<h2 id="troubleshooting--license-keys">License keys</h2>
+<h3 id="troubleshooting--activate-shows-an-error-or-the-copy-stays-unregistered">"Activate" shows an error, or the copy stays "unregistered"</h3>
+<ul>
+<li>Paste the <strong>whole key in one piece</strong>. It's one long line starting with <code>GS1-</code>. Email apps sometimes break long lines: copy it from a plain-text view if you can.</li>
+<li>No spaces or extra characters at the start or end.</li>
+<li>Using <code>key.txt</code>? It must sit in the same folder as <code>studio_app.py</code> and contain only the key. Restart the studio after creating it.</li>
+<li>A wrong key never breaks anything: the studio keeps working as unregistered.</li>
+</ul>
+<h3 id="troubleshooting--godot--ue5-buttons-are-greyed-out">Godot / UE5 buttons are greyed out</h3>
+<p>They need a valid <strong>Pro</strong> or <strong>Studio</strong> key. Check the lines under the export buttons and next to <strong>Activate</strong>: they show your tier and whether you're registered. An older Standard key doesn't include these exporters (it exports every level with no note).</p>
+<h3 id="troubleshooting--ue5-export-says-it-supports-3d-worlds-only">UE5 export says it supports 3D worlds only</h3>
+<p>That's correct: export 2D worlds to Godot 4 or as an HTML5 cartridge.</p>
+<h3 id="troubleshooting--the-godot-project-looks-dark-flat-or-wont-run">The Godot project looks dark, flat or won't run</h3>
+<ul>
+<li>Use Godot <strong>4.2 or newer</strong>. The 3D scene uses the Forward+ renderer, which needs a graphics card that supports Vulkan or Direct3D 12.</li>
+<li>The first open imports and compiles shaders; give it a moment.</li>
+<li>Only your first level is exported, and objects are simple shapes by design. See <a href="#user-guide--godot-4-project-pro-and-studio">Godot 4 project</a>.</li>
+</ul>
+<h3 id="troubleshooting--unreal-engine-the-stark-world-engine-menu-is-missing-or-the-level-is-empty">Unreal Engine: the Stark World Engine menu is missing or the level is empty</h3>
+<ul>
+<li>Use Unreal Engine <strong>5.4 or newer</strong>, and let it convert the project if your engine is newer.</li>
+<li>The project turns on Unreal's Python Editor Script Plugin; if Unreal asks to enable plugins or restart, say yes.</li>
+<li>The level isn't built until you choose <strong>Stark World Engine &gt; Build level from world.json</strong> (or <strong>Tools &gt; Execute Python Script...</strong> &gt; <code>Content/Python/stark_build_level.py</code>). What it did, with any warnings, is in <code>Saved/Stark/build_report.json</code>.</li>
+<li>Honest note: we had not yet run this export in a real Unreal Engine 5 install at release. If it fails, please send the seller <code>build_report.json</code> and the Output Log.</li>
+</ul>
+<hr>
+<h2 id="troubleshooting--antivirus-and-security-warnings">Antivirus and security warnings</h2>
+<h3 id="troubleshooting--windows-says-windows-protected-your-pc-smartscreen">Windows says "Windows protected your PC" (SmartScreen)</h3>
+<p>SmartScreen warns about any new download that hasn't built up a reputation yet. The <code>.bat</code> files are short plain-text scripts: right-click &gt; <strong>Edit</strong> (or open in Notepad) to read exactly what they do. If you're comfortable, click <strong>More info &gt; Run anyway</strong>.</p>
+<h3 id="troubleshooting--my-antivirus-flagged-or-removed-a-file">My antivirus flagged or removed a file</h3>
+<p>Some antivirus products are suspicious of new script files and zips from small sellers. Stark World Engine is plain Python and HTML you can read in any text editor. The only programs in the download are the official Python from python.org (in <code>runtime\python</code>, Windows) and its numpy library, both unchanged.</p>
+<ol>
+<li>Re-download from your purchase page to make sure the file is complete.</li>
+<li>Restore the file from quarantine and add the studio folder as an exception, if you're comfortable doing that.</li>
+<li>Still stuck? Contact the seller and mention which antivirus and which file.</li>
+</ol>
+<h3 id="troubleshooting--firewall-popup-when-starting-the-studio">Firewall popup when starting the studio</h3>
+<p>The studio itself only listens on <code>127.0.0.1</code>, which normally doesn't need firewall access. If Windows asks anyway, choosing <strong>Cancel</strong> is fine for the studio. (For the phone hub, see below.)</p>
+<hr>
+<h2 id="troubleshooting--creator-suite-studio-edition">Creator suite (Studio edition)</h2>
+<h3 id="troubleshooting--my-phone-cant-reach-the-hub">My phone can't reach the hub</h3>
+<ol>
+<li>Phone and PC must be on the <strong>same Wi-Fi / home network</strong>. Guest networks often block devices from seeing each other.</li>
+<li>Run the <strong>Setup Wizard</strong> (<code>SETUP_STARK_WORLD_ENGINE.bat</code>) and go to <strong>Your phone remote</strong>. If the hub isn't running, click <strong>Start it</strong>. If the phone says it can't connect, click <strong>Allow on my home network</strong> and click <strong>Yes</strong> on the Windows prompt (it may blink in the taskbar). This adds one firewall rule for port 8510, for devices on your home network only, not the internet. The wizard shows "Allowed on your home network" when it's done.</li>
+<li>Scan the QR code shown in the wizard, or open the address it shows and type the PIN.</li>
+<li>VPN on the PC or phone? Turn it off while using the hub.</li>
+</ol>
+<p><strong>Fallback (if the wizard can't add the rule):</strong> open <strong>PowerShell as administrator</strong> and run this one line:</p>
+<pre><code>New-NetFirewallRule -DisplayName &quot;Stark World Engine Creator Hub 8510&quot; -Direction Inbound -Protocol TCP -LocalPort 8510 -RemoteAddress LocalSubnet -Action Allow -Profile Any</code></pre>
+<p>It opens port 8510 to your local network only, not the internet.</p>
+<h3 id="troubleshooting--the-qr-code-says-it-was-already-used-or-has-expired">The QR code says it "was already used or has expired"</h3>
+<p>Each QR code logs in one phone, once, within 15 minutes. Type the PIN on the login page instead, or make a new QR code (open the wizard's <strong>Your phone remote</strong> step again, or run <code>python creator_hub.py --qr</code>).</p>
+<h3 id="troubleshooting--an-old-link-with-pin-in-it-doesnt-log-me-in">An old link with <code>?pin=</code> in it doesn't log me in</h3>
+<p>That's on purpose: the PIN is never accepted from a link any more. Scan a fresh QR code or type the PIN on the login page.</p>
+<h3 id="troubleshooting--the-hub-asks-for-the-pin-again">The hub asks for the PIN again</h3>
+<p>Your phone stays logged in until the hub is restarted. After a restart, scan a new QR code or type the PIN.</p>
+<h3 id="troubleshooting--the-hub-says-the-pin-is-wrong--im-locked-out">The hub says the PIN is wrong / I'm locked out</h3>
+<p>The PIN is shown in the Setup Wizard. It is <code>hub_pin</code> in <code>config.json</code> in the studio folder, unless you moved it to your private app-data folder with <code>python gs_common.py --move-secrets</code>. After 5 wrong tries within 10 minutes from one device, that device's PIN logins are locked for 15 minutes; wait, then try again with the right PIN.</p>
+<h3 id="troubleshooting--the-phone-camera-doesnt-work">The phone camera doesn't work</h3>
+<p>The Camera tab needs the HTTPS VDO.Ninja link the hub provides and an internet connection. Allow camera access when Safari asks.</p>
+<h3 id="troubleshooting--obs-doesnt-start-or-stop-recording-from-the-phone">OBS doesn't start or stop recording from the phone</h3>
+<ul>
+<li>OBS must be open, using <strong>Profile &gt; Stark_Profile</strong>.</li>
+<li>The websocket must be on: in OBS, <strong>Tools &gt; WebSocket Server Settings</strong> &gt; "Enable WebSocket server" on port 4455. Running the Setup Wizard's camera step (or <code>python obs_bridge.py</code>) with OBS closed sets this up for you; restart OBS afterwards.</li>
+</ul>
+<h3 id="troubleshooting--the-auto-editor-does-nothing">The auto editor does nothing</h3>
+<ul>
+<li>Is <strong>FFmpeg</strong> installed? The Setup Wizard's <strong>Check your tools</strong> step shows it and can install it. Or run <code>ffmpeg -version</code> in a new terminal; if it's not found, <code>winget install Gyan.FFmpeg</code>, then open a new terminal. You can also set the full path to <code>ffmpeg.exe</code> as <code>&quot;ffmpeg&quot;</code> in <code>config.json</code>.</li>
+<li>Are your recordings in <code>raw_clips/</code>? The editor reads only that folder.</li>
+<li>It waits until a file stops growing. Stop the recording, then give it a moment.</li>
+<li>Each recording is edited only once (even if renamed). To get a new edit, record a new take.</li>
+<li>Only one watcher runs at a time; check <code>.claude/editor.log</code> in the studio folder for details.</li>
+<li>Run <code>python auto_editor.py --probe</code> to see which video encoder it will use.</li>
+</ul>
+<h3 id="troubleshooting--captions-are-only-a-title-not-my-words">Captions are only a title, not my words</h3>
+<p>Add a <code>.srt</code> subtitle file with the same name next to the clip, or install the free local speech-to-text: <code>pip install faster-whisper</code>.</p>
+<h3 id="troubleshooting--youtube-upload-doesnt-happen">YouTube upload doesn't happen</h3>
+<ul>
+<li>You need your own free Google Cloud <strong>Desktop app</strong> OAuth client saved as <code>client_secrets.json</code> in the studio folder. The Setup Wizard's <strong>YouTube</strong> step walks you through it, or run <code>python publishers.py --setup-wizard</code> for a checklist.</li>
+<li>Uploads only happen after you <strong>Approve</strong> in the hub.</li>
+<li>Uploaded videos are <strong>private</strong> (and scheduled if you picked a time). Check YouTube Studio &gt; Content.</li>
+</ul>
+<hr>
+<h2 id="troubleshooting--still-stuck">Still stuck?</h2>
+<p>Contact the seller through the store page. Include your operating system, browser, edition, what the black window (or terminal) printed, and <code>doctor.log</code> / <code>launcher.log</code> from the studio folder if you can. Please never send your license key in public comments.</p></article>
+<article id="video-scripts" data-title="Video Scripts"><h1 id="video-scripts--tutorial-video-scripts">Tutorial Video Scripts</h1>
+<p>Three short scripts (60–90 seconds each) to record with OBS. Each has a shot list on the left of the dash and the voice-over in quotes. Timings are targets; the auto editor's silence cuts will tighten them further.</p>
+<p>Recording tips:</p>
+<ul>
+<li>Record the screen at 1920 × 1080, browser in full screen (F11), zoom at 100%.</li>
+<li>Use a starter world or a fresh one with a clear name; close other tabs.</li>
+<li>Read from the hub's <strong>Teleprompter</strong> tab; tap to start/stop recording.</li>
+<li>Keep claims to what the viewer sees on screen. No ratings, review quotes or sales numbers.</li>
+</ul>
+<hr>
+<h2 id="video-scripts--video-1-your-first-game-in-60-seconds-about-60-s">Video 1: "Your first game in 60 seconds" (about 60 s)</h2>
+<p><strong>Goal:</strong> show a non-technical viewer that they can make something playable right away.</p>
+<div class="tw"><table><thead><tr><th>Time</th><th>On screen</th><th>Voice-over</th></tr></thead><tbody><tr><td>0:00–0:05</td><td>Drone flyover of Firefly Fen (press P)</td><td>"This is Stark World Engine: a game builder that runs in your browser, on your own computer."</td></tr><tr><td>0:05–0:12</td><td>Double-click <code>START_STARK_WORLD_ENGINE.bat</code>, setup check passes, browser opens</td><td>"Unzip it, double-click Start, and the studio opens. No account, no internet, and on Windows nothing else to install."</td></tr><tr><td>0:12–0:20</td><td>Click <strong>New 3D world</strong>, type "Frost Island"</td><td>"Let's start fresh. New 3D world, give it a name."</td></tr><tr><td>0:20–0:28</td><td>Click <strong>Sub-Zero Aurora</strong>, then <strong>Crimson Citadel</strong>, settle on Aurora</td><td>"One click changes the whole mood: sky, fog, light and weather."</td></tr><tr><td>0:28–0:40</td><td>Tools: place trees, rocks, 5 crystals, 1 Slime</td><td>"Pick a tool and click to place. Crystals are what your player collects. Creatures keep it interesting."</td></tr><tr><td>0:40–0:52</td><td><strong>Save</strong>, <strong>▶ Play</strong>: walk, jump, bonk the slime, collect</td><td>"Save, hit Play, and it's a game: walk, jump, fight, collect."</td></tr><tr><td>0:52–1:00</td><td>"World complete!" then <strong>Export &gt; HTML5 cartridge</strong>, file list</td><td>"Finish it, export one HTML file, and send your game to anyone. That's it: your first game."</td></tr></tbody></table></div>
+<hr>
+<h2 id="video-scripts--video-2-pixel-hero--custom-sounds-for-a-2d-platformer-about-75-s">Video 2: "Pixel hero + custom sounds for a 2D platformer" (about 75 s)</h2>
+<p><strong>Goal:</strong> show the 2D builder, the Pixel Art canvas and the SFX Forge together.</p>
+<div class="tw"><table><thead><tr><th>Time</th><th>On screen</th><th>Voice-over</th></tr></thead><tbody><tr><td>0:00–0:06</td><td>Lantern Leap gameplay</td><td>"Stark World Engine does 2D too. Let's build a platformer with our own hero and our own sounds."</td></tr><tr><td>0:06–0:15</td><td><strong>New 2D world</strong>, name "Pearl Cove"</td><td>"New 2D world. You start with ground, a start point and a goal."</td></tr><tr><td>0:15–0:28</td><td>Paint ground platforms, pearls, a spike, a slime</td><td>"Paint tiles: ground to stand on, pearls to collect, spikes and slimes for danger."</td></tr><tr><td>0:28–0:42</td><td><strong>Pixel Art</strong> tab: draw a 16 × 16 hero, <strong>Use as player sprite</strong></td><td>"Now the hero. Sixteen by sixteen pixels, a few colors, and it's ours."</td></tr><tr><td>0:42–0:58</td><td><strong>SFX Forge</strong>: preset <em>coin</em>, wave <em>sine</em>, move freq, <strong>Play</strong>, <strong>Save WAV</strong></td><td>"Sounds next. Start from a preset, shape it with sliders, listen, and save. It becomes the in-game sound."</td></tr><tr><td>0:58–1:10</td><td><strong>Save</strong>, <strong>▶ Play</strong>: run, jump, stomp, collect (sound audible)</td><td>"Save and play. Hear that? That's the sound we just made."</td></tr><tr><td>1:10–1:15</td><td>Reach the flag</td><td>"A whole platformer, hero and sounds included, in about five minutes."</td></tr></tbody></table></div>
+<hr>
+<h2 id="video-scripts--video-3-from-browser-to-godot-4-about-85-s-pro--studio">Video 3: "From browser to Godot 4" (about 85 s, Pro / Studio)</h2>
+<p><strong>Goal:</strong> honestly show what the Godot export gives you and how to open it.</p>
+<div class="tw"><table><thead><tr><th>Time</th><th>On screen</th><th>Voice-over</th></tr></thead><tbody><tr><td>0:00–0:08</td><td>Firefly Fen in the studio, drone mode</td><td>"When you're ready for a full engine, Stark World Engine Pro and Studio can export your world to Godot 4."</td></tr><tr><td>0:08–0:16</td><td><strong>Export</strong> tab, paste key, <strong>Activate</strong></td><td>"First, activate: paste your key. It's checked right on your computer. Nothing is sent anywhere."</td></tr><tr><td>0:16–0:26</td><td>Click <strong>Godot 4 project</strong>, show the file list</td><td>"Click Godot 4 project. You get a project file, a scene, terrain and player scripts, and your world data."</td></tr><tr><td>0:26–0:42</td><td>Godot Project Manager: <strong>Import</strong> &gt; <code>project.godot</code> &gt; <strong>Import &amp; Edit</strong></td><td>"In Godot 4.2 or newer: Import, pick project dot godot, Import and Edit."</td></tr><tr><td>0:42–0:55</td><td>Godot editor showing the lit scene, press F5, walk around</td><td>"Press F5, and you're walking through your first level in Godot: same layout, with sky, fog, glow and your mood's light."</td></tr><tr><td>0:55–1:10</td><td>Select the <code>Props</code> node, drag a tree model into its tree slot</td><td>"Be clear on what this is: a starting scene. Objects arrive as simple shapes, and the quests and combat stay in the browser version. Swap in your own models, add your own gameplay."</td></tr><tr><td>1:10–1:25</td><td>Side by side: browser version vs Godot version</td><td>"So you go from idea to playable in the browser, then carry the layout into a full engine without rebuilding it by hand."</td></tr></tbody></table></div></article>
+<footer>Stark World Engine 28.4 offline help. This page works without internet: keep it with your copy.</footer>
+</main>
+</div>
+<script>
+(function(){
+'use strict';
+window.addEventListener('error',function(e){document.body.setAttribute('data-err',String(e.message).slice(0,200));});
+var arts=[].slice.call(document.querySelectorAll('article'));
+var root=document.documentElement;
+try{var t=localStorage.getItem('gs_help_theme');if(t)root.setAttribute('data-theme',t);}catch(e){}
+document.getElementById('theme').onclick=function(){
+ var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+ var n=dark?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('gs_help_theme',n);}catch(e){}
+};
+document.getElementById('menu').onclick=function(){document.body.classList.toggle('navopen');};
+// pager
+arts.forEach(function(a,i){
+ var p=document.createElement('div');p.className='pager';
+ var prev=arts[i-1],next=arts[i+1];
+ p.innerHTML=(prev?'<a href="#'+prev.id+'"><small>Previous</small>'+prev.getAttribute('data-title')+'</a>':'<span></span>')+
+  (next?'<a href="#'+next.id+'" style="text-align:right"><small>Next</small>'+next.getAttribute('data-title')+'</a>':'');
+ a.appendChild(p);
+});
+function show(id,flash){
+ var el=id&&document.getElementById(id);
+ if(!el)el=arts[0];
+ var art=el.tagName==='ARTICLE'?el:el.closest('article');
+ if(!art){art=arts[0];el=art;}
+ arts.forEach(function(a){a.classList.toggle('on',a===art);});
+ document.querySelectorAll('nav li').forEach(function(li){var d=li.querySelector('a.doc');var on=d&&d.getAttribute('href')==='#'+art.id;li.classList.toggle('open',on);if(d)d.classList.toggle('on',on);});
+ document.title=art.getAttribute('data-title')+' - Stark World Engine Help';
+ document.body.classList.remove('navopen');
+ if(el===art)window.scrollTo(0,0);else{var hd=document.querySelector('header');window.scrollTo(0,el.getBoundingClientRect().top+window.pageYOffset-(hd?hd.offsetHeight:0)-12);if(flash){el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');}}
+}
+function route(){var h='';try{h=decodeURIComponent(location.hash.slice(1));}catch(e){h=location.hash.slice(1);}show(h,true);}
+window.addEventListener('hashchange',route);
+// search index: one entry per heading section
+var idx=[];
+arts.forEach(function(a){
+ var cur={doc:a.getAttribute('data-title'),id:a.id,title:a.getAttribute('data-title'),text:''};
+ [].forEach.call(a.children,function(c){
+  if(/^H[1-4]$/.test(c.tagName)){if(cur.text||cur.title)idx.push(cur);cur={doc:a.getAttribute('data-title'),id:c.id,title:c.textContent,text:''};}
+  else if(!c.classList.contains('pager'))cur.text+=' '+c.textContent;
+ });
+ idx.push(cur);
+});
+idx.forEach(function(s){s.text=s.text.replace(/\s+/g,' ').trim();s.lt=s.title.toLowerCase();s.lx=s.text.toLowerCase();});
+var q=document.getElementById('q'),res=document.getElementById('results'),sel=-1;
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function rx(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function hi(s,terms){var t=terms.filter(Boolean).slice().sort(function(a,b){return b.length-a.length;}).map(rx);if(!t.length)return esc(s);
+ // one pass over the raw text, so a short term can never match inside an earlier <mark> tag or an &entity;
+ return s.split(new RegExp('('+t.join('|')+')','ig')).map(function(p,i){return i%2?'<mark>'+esc(p)+'</mark>':esc(p);}).join('');}
+function search(){
+ var v=q.value.trim().toLowerCase();sel=-1;
+ if(v.length<2){res.style.display='none';return;}
+ var terms=v.split(/\s+/).filter(Boolean),hits=[];
+ idx.forEach(function(s){
+  var score=0,ok=terms.every(function(t){var a=s.lt.indexOf(t)>=0,b=s.lx.indexOf(t)>=0;if(a)score+=10;if(b)score+=1;if(a||b){var re=new RegExp('\\b'+rx(t)+'\\b');if(re.test(s.lt))score+=15;if(re.test(s.lx))score+=3;}return a||b;});
+  if(ok){if(s.lt.indexOf(v)>=0)score+=20;hits.push({s:s,score:score});}
+ });
+ hits.sort(function(a,b){return b.score-a.score;});
+ if(!hits.length){res.innerHTML='<div class="none">No matches. Try a simpler word, like "export", "key" or "port".</div>';res.style.display='block';return;}
+ res.innerHTML=hits.slice(0,12).map(function(h){
+  var s=h.s,p=s.lx.indexOf(terms[0]),start=Math.max(0,p-60),snip=(start?'... ':'')+s.text.slice(start,start+170)+(s.text.length>start+170?' ...':'');
+  return '<a href="#'+s.id+'"><div class="rd">'+esc(s.doc)+'</div><div class="rt">'+hi(s.title,terms)+'</div><div class="rs">'+hi(snip,terms)+'</div></a>';
+ }).join('');
+ res.style.display='block';
+}
+q.addEventListener('input',search);
+q.addEventListener('keydown',function(e){
+ var items=res.querySelectorAll('a');
+ if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!items.length)return;sel=(sel+(e.key==='ArrowDown'?1:-1)+items.length)%items.length;items.forEach(function(a,i){a.classList.toggle('sel',i===sel);});items[sel].scrollIntoView({block:'nearest'});}
+ else if(e.key==='Enter'){var t=items[sel<0?0:sel];if(t){location.hash=t.getAttribute('href');res.style.display='none';q.blur();}}
+ else if(e.key==='Escape'){res.style.display='none';q.blur();}
+});
+res.addEventListener('click',function(e){var a=e.target.closest('a');if(a){res.style.display='none';if(location.hash===a.getAttribute('href')){e.preventDefault();route();}}});
+document.addEventListener('click',function(e){if(!e.target.closest('.search'))res.style.display='none';});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();q.select();}});
+q.addEventListener('focus',function(){if(q.value.trim().length>=2)search();});
+route();
+document.body.setAttribute('data-ready','1');
+document.body.setAttribute('data-sections',String(idx.length));
+})();
+</script>
+</body>
+</html>

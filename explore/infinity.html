@@ -1,0 +1,1308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mathematical Infinity Explorer: Cantor, Godel | Stark</title>
+<meta name="description" content="Cantor&#x27;s transfinite numbers, Godel&#x27;s incompleteness theorems and Russell&#x27;s paradox. Step through the diagonal argument yourself.">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://starkforall.com/explore/infinity.html">
+<style>
+/* Family names below are aliases: every face is self-hosted (../assets/fonts) or a local system font. */
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Cormorant";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Cormorant";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Spectral";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Spectral";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Crimson Pro";font-style:normal;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Crimson Pro";font-style:italic;font-weight:200 900;font-display:swap;src:url(../assets/fonts/source-serif-4-var-latin-italic.woff2) format("woff2")}
+@font-face{font-family:"Syne";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Sora";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/inter-var-latin.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";src:local("Cascadia Mono"),local("Consolas"),local("Menlo"),local("DejaVu Sans Mono")}
+@font-face{font-family:"JetBrains Mono";src:local("Cascadia Mono"),local("Consolas"),local("Menlo"),local("DejaVu Sans Mono")}
+html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.ps-site{position:relative;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.25rem;padding-block:1.25rem calc(1.5rem + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:#0c0d12;color:#d6d9e0;font:500 .875rem/1.5 Inter,system-ui,sans-serif;border-top:1px solid #23262f}.ps-site a{color:inherit;text-underline-offset:3px}.ps-site a:focus-visible{outline:2px solid #d6d9e0;outline-offset:2px}
+</style>
+<style>
+/* Dark-first: the mathematical void, gold-illuminated */
+:root {
+  color-scheme: dark;
+
+  --bg-void: #0a0a0a;
+  --bg-surface: #111110;
+  --bg-raised: #191816;
+  --bg-elevated: #222120;
+
+  --text: #d9dce1;
+  --text-secondary: #969ba1;
+  --text-muted: #606469;
+
+  --gold: #7a8594;
+  --gold-bright: #7a8594;
+  --gold-dim: rgba(122,133,148,0.15);
+  --gold-glow: rgba(122,133,148,0.06);
+  --silver: #94a3b8;
+  --red: #9cc4ff;
+  --red-dim: rgba(156,196,255,0.12);
+
+  --border: rgba(122,133,148,0.10);
+  --border-hover: rgba(122,133,148,0.25);
+
+  --font-display: 'Cormorant', 'Garamond', 'Georgia', serif;
+  --font-body: 'Crimson Pro', 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'Courier New', Courier, monospace;
+
+  --measure: 66ch;
+  --gap-section: clamp(4rem, 8vw, 7rem);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg-void: #ebedef;
+    --bg-surface: #dee1e5;
+    --bg-raised: #d1d4d9;
+    --bg-elevated: #c4c9d0;
+    --text: #0b0c0e;
+    --text-secondary: #3c424a;
+    --text-muted: #6b717a;
+    --gold: #2a5c9a;
+    --gold-bright: #7a8594;
+    --gold-dim: rgba(42,92,154,0.12);
+    --gold-glow: rgba(42,92,154,0.05);
+    --silver: #64748b;
+    --red: #7a8594;
+    --red-dim: rgba(122,133,148,0.10);
+    --border: rgba(42,92,154,0.14);
+    --border-hover: rgba(42,92,154,0.30);
+  }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg-void: #ebedef;
+  --bg-surface: #dee1e5;
+  --bg-raised: #d1d4d9;
+  --bg-elevated: #c4c9d0;
+  --text: #0b0c0e;
+  --text-secondary: #3c424a;
+  --text-muted: #6b717a;
+  --gold: #2a5c9a;
+  --gold-bright: #7a8594;
+  --gold-dim: rgba(42,92,154,0.12);
+  --gold-glow: rgba(42,92,154,0.05);
+  --silver: #64748b;
+  --red: #7a8594;
+  --red-dim: rgba(122,133,148,0.10);
+  --border: rgba(42,92,154,0.14);
+  --border-hover: rgba(42,92,154,0.30);
+}
+
+/* Reset & base */
+* { margin: 0; box-sizing: border-box; }
+body {
+  background: var(--bg-void);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.72;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.18;
+  text-wrap: balance;
+  color: var(--text);
+}
+a { color: var(--gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+::selection { background: var(--gold-dim); color: var(--gold-bright); }
+
+/* Layout */
+.page-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-block: 0;
+}
+section {
+  padding-block: var(--gap-section);
+  border-top: 1px solid var(--border);
+}
+section:first-of-type { border-top: none; }
+.section-inner { max-width: var(--measure); margin: 0 auto; }
+.section-label {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  margin-bottom: 1.25rem;
+}
+.section-title .math { color: var(--gold); }
+.body-text { color: var(--text-secondary); margin-bottom: 1.5rem; }
+.body-text strong { color: var(--text); font-weight: 600; }
+.math-inline {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 500;
+}
+.math-block {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--gold);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin: 1.5rem 0;
+  background: var(--gold-glow);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+/* ---- HERO ---- */
+.hero {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, 4.5rem);
+  text-align: center;
+  position: relative;
+}
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.55;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-symbol {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 14vw, 9rem);
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 60px rgba(122,133,148,0.3), 0 0 120px rgba(122,133,148,0.1);
+}
+.hero h1 {
+  font-size: clamp(1.5rem, 3.5vw, 2.3rem);
+  font-weight: 500;
+  max-width: 20em;
+  margin: 0 auto 1rem;
+}
+.hero-sub {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  font-style: italic;
+  max-width: 36em;
+  margin: 0 auto 2rem;
+}
+.hero-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+}
+.hero-nav a {
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  padding: 0.25rem 0;
+}
+.hero-nav a:hover { color: var(--gold); text-decoration: none; }
+
+/* ---- DIAGONAL ARGUMENT ---- */
+.diagonal-viz {
+  margin: 2rem 0;
+  overflow-x: auto;
+}
+.diagonal-grid {
+  display: grid;
+  grid-template-columns: auto repeat(8, minmax(2rem, 1fr)) auto;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 320px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.dg-label {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.5rem 0.3rem 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+}
+.dg-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border-radius: 3px;
+  transition: background 0.3s, color 0.3s;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+}
+.dg-cell.diagonal {
+  background: var(--gold-dim);
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+.dg-cell.flipped {
+  background: var(--red-dim);
+  color: var(--red);
+  font-weight: 700;
+}
+.dg-ellipsis {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding-left: 0.3rem;
+  font-size: 0.85rem;
+}
+.dg-new-row {
+  display: none;
+  grid-column: 1 / -1;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border-hover);
+}
+.dg-new-row.visible { display: grid; grid-template-columns: auto repeat(8, minmax(2rem, 1fr)) auto; gap: 2px; }
+.dg-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+.dg-step-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  flex: 1;
+  min-width: 200px;
+}
+.btn {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--border-hover);
+  border-radius: 3px;
+  background: var(--bg-raised);
+  color: var(--gold);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--gold-dim); border-color: var(--gold); }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+/* ---- TOWER ---- */
+.tower {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 2rem 0;
+  position: relative;
+}
+.tower::before {
+  content: '';
+  position: absolute;
+  left: 1.5rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--border), var(--gold), var(--border));
+}
+.tower-level {
+  position: relative;
+  padding-left: 3.5rem;
+  padding-block: 0.75rem;
+  cursor: pointer;
+}
+.tower-level::before {
+  content: '';
+  position: absolute;
+  left: calc(1.5rem - 4px);
+  top: 1.1rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg-raised);
+  border: 1.5px solid var(--gold);
+  transition: background 0.3s;
+  z-index: 1;
+}
+.tower-level.open::before { background: var(--gold); }
+.tower-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.tower-symbol {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  min-width: 3.5rem;
+}
+.tower-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.tower-hint {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-left: auto;
+  font-style: italic;
+}
+.tower-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s ease, opacity 0.35s ease;
+  opacity: 0;
+}
+.tower-level.open .tower-body {
+  max-height: 500px;
+  opacity: 1;
+}
+.tower-body-inner {
+  padding: 0.75rem 0 0.5rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+.tower-body-inner strong { color: var(--text); }
+.tower-body-inner .math-inline { font-size: 1.05rem; }
+
+/* ---- GODEL GENERATOR ---- */
+.godel-gen {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+.godel-input-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.godel-input-row label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.godel-input {
+  flex: 1;
+  min-width: 160px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-hover);
+  border-radius: 3px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.godel-input::placeholder { color: var(--text-muted); }
+.godel-input:focus { border-color: var(--gold); }
+.godel-output {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--red);
+  min-height: 1.5em;
+}
+.godel-explain {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ---- RUSSELL'S PARADOX ---- */
+.russell-stage {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+.russell-sets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.russell-set {
+  padding: 0.75rem 1rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  min-width: 140px;
+  transition: border-color 0.3s, background 0.3s;
+}
+.russell-set.in-r { border-color: var(--gold); background: var(--gold-dim); }
+.russell-set.paradox { border-color: var(--red); background: var(--red-dim); animation: paradox-pulse 1.2s infinite; }
+.russell-set-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+.russell-set-members {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+.russell-set-status {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  font-family: var(--font-display);
+  font-style: italic;
+}
+.russell-set-status.yes { color: var(--gold); }
+.russell-set-status.no { color: var(--text-secondary); }
+.russell-narration {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  min-height: 1.5em;
+  line-height: 1.6;
+}
+.russell-narration .highlight { color: var(--red); font-style: normal; font-weight: 600; }
+@keyframes paradox-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(156,196,255,0); }
+  50% { box-shadow: 0 0 12px 2px rgba(156,196,255,0.2); }
+}
+
+/* ---- QUIZ ---- */
+.quiz { margin: 2rem 0; }
+.quiz-question {
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.quiz-q-text {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+.quiz-option:hover { background: var(--gold-glow); }
+.quiz-option input[type="radio"] {
+  margin-top: 0.3rem;
+  accent-color: var(--gold);
+}
+.quiz-option.correct { background: rgba(122,133,148,0.1); color: var(--text); }
+.quiz-option.wrong { background: var(--red-dim); color: var(--red); }
+.quiz-option.correct-reveal { background: rgba(122,133,148,0.08); color: rgba(122,133,148,0.9); }
+.quiz-explain {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.6;
+}
+.quiz-score {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-top: 1.5rem;
+}
+.quiz-score-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+.quiz-score-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* ---- FOOTER ---- */
+.site-footer {
+  padding: 3rem 0 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--gold); }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 600px) {
+  body { font-size: 1.0625rem; }
+  .hero-symbol { text-shadow: 0 0 40px rgba(122,133,148,0.25); }
+  .tower-level { padding-left: 2.75rem; }
+  .tower::before { left: 1rem; }
+  .tower-level::before { left: calc(1rem - 4px); }
+  .tower-hint { display: none; }
+  .dg-cell { padding: 0.3rem 0.2rem; font-size: 0.85rem; }
+  .godel-gen, .russell-stage, .quiz-question { padding: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hero-canvas { display: none; }
+}
+</style>
+<!-- stark-share-meta -->
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stark">
+<meta property="og:title" content="Mathematical Infinity Explorer: Cantor, Godel | Stark">
+<meta property="og:description" content="Cantor&#x27;s transfinite numbers, Godel&#x27;s incompleteness theorems and Russell&#x27;s paradox. Step through the diagonal argument yourself.">
+<meta property="og:url" content="https://starkforall.com/explore/infinity.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mathematical Infinity Explorer: Cantor, Godel | Stark">
+<meta name="twitter:description" content="Cantor&#x27;s transfinite numbers, Godel&#x27;s incompleteness theorems and Russell&#x27;s paradox. Step through the diagonal argument yourself.">
+<meta property="og:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://starkforall.com/assets/og/stark-1200x630.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://starkforall.com/#organization", "name": "Stark", "url": "https://starkforall.com/", "logo": "https://starkforall.com/assets/brand/icon-512.png", "sameAs": ["https://ams513.itch.io/", "https://bsky.app/profile/did:plc:lhodhwljl2wi762f3t6wic7c", "https://github.com/ams513", "https://www.youtube.com/@starkforall"], "description": "Stark makes local-first software that helps people build, write and care for others on their own computers, with their work kept in their own hands."}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Stark", "item": "https://starkforall.com/"}, {"@type": "ListItem", "position": 2, "name": "Explore", "item": "https://starkforall.com/explore/index.html"}, {"@type": "ListItem", "position": 3, "name": "An Interactive Journey Through Mathematical Infinity", "item": "https://starkforall.com/explore/infinity.html"}]}]}</script>
+<!-- /stark-share-meta -->
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-content">
+    <span class="hero-symbol" aria-hidden="true">&#8734;</span>
+    <h1>An Interactive Journey Through Mathematical Infinity</h1>
+    <p class="hero-sub">From Cantor's paradise to the edges of what mathematics can say about itself</p>
+    <nav class="hero-nav" aria-label="Page sections">
+      <a href="#counting">The Uncountable</a>
+      <a href="#tower">The Tower</a>
+      <a href="#walls">Walls of Logic</a>
+      <a href="#beyond">Beyond Consistency</a>
+      <a href="#quiz">The Quiz</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ==================== COUNTING THE UNCOUNTABLE ==================== -->
+<section id="counting">
+  <div class="section-inner">
+    <div class="section-label">I</div>
+    <h2 class="section-title">Counting the <span class="math">Uncountable</span></h2>
+
+    <p class="body-text">In 1874, Georg Cantor proved something that disturbed the mathematical establishment: <strong>not all infinities are the same size.</strong> The natural numbers 1, 2, 3, ... are infinite, but they can be listed. The real numbers, every point on a continuous line, are also infinite, and they cannot.</p>
+
+    <p class="body-text">The difference is not about quantity but about structure. You can assign every even number to a natural number (2&#8594;1, 4&#8594;2, 6&#8594;3, ...) and run out of neither. The even numbers and the natural numbers are the same infinity: <span class="math-inline">&alefsym;<sub>0</sub></span>, the first transfinite cardinal. But no such pairing works between the naturals and the reals.</p>
+
+    <p class="body-text">Cantor proved this with an argument of devastating simplicity. Suppose someone hands you a list claiming to contain every infinite binary sequence. You can always construct a sequence that is not on the list.</p>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;margin:2rem 0 0.75rem;color:var(--text)">The Diagonal Argument</h3>
+
+    <div class="diagonal-viz">
+      <div class="diagonal-grid" id="diagGrid"></div>
+      <div class="dg-new-row" id="diagNewRow"></div>
+      <div class="dg-controls">
+        <button class="btn" id="diagPrev" disabled>Previous</button>
+        <button class="btn" id="diagNext">Next Step</button>
+        <button class="btn" id="diagReset" hidden>Reset</button>
+        <div class="dg-step-text" id="diagText">Suppose we can list every infinite binary sequence.</div>
+      </div>
+    </div>
+
+    <div class="math-block">
+      |&#8477;| = 2<sup>&alefsym;<sub>0</sub></sup> &gt; &alefsym;<sub>0</sub> = |&#8469;|
+    </div>
+    <p class="body-text">The cardinality of the continuum strictly exceeds the cardinality of the natural numbers. Whether anything lies between them is the <strong>Continuum Hypothesis</strong>: a question that Paul Cohen and Kurt G&ouml;del together showed to be independent of the standard axioms. ZFC set theory can neither prove nor refute it.</p>
+  </div>
+</section>
+
+<!-- ==================== THE TOWER ==================== -->
+<section id="tower">
+  <div class="section-inner">
+    <div class="section-label">II</div>
+    <h2 class="section-title">The <span class="math">Tower</span> of Infinities</h2>
+    <p class="body-text">If some infinities are larger than others, how far does the hierarchy go? The answer is itself a kind of infinity that no single infinity can capture. Click each level to see what lives there.</p>
+
+    <div class="tower" id="tower" role="list">
+
+      <div class="tower-level" role="listitem" tabindex="0">
+        <div class="tower-head">
+          <span class="tower-symbol">&alefsym;<sub>0</sub></span>
+          <span class="tower-name">The Countable</span>
+          <span class="tower-hint">click to expand</span>
+        </div>
+        <div class="tower-body"><div class="tower-body-inner">
+          The first infinite cardinal. Everything you can put in a list lives here: the natural numbers, the integers, the rationals, the algebraic numbers, all computable numbers, every finite string, every computer program ever written or possible. <strong>Countably infinite</strong> means there exists a bijection with <span class="math-inline">&#8469;</span>. Despite containing infinitely many rationals between any two integers, <span class="math-inline">&#8474;</span> is no larger than <span class="math-inline">&#8469;</span> itself.
+        </div></div>
+      </div>
+
+      <div class="tower-level" role="listitem" tabindex="0">
+        <div class="tower-head">
+          <span class="tower-symbol">&#119888;</span>
+          <span class="tower-name">The Continuum</span>
+        </div>
+        <div class="tower-body"><div class="tower-body-inner">
+          <span class="math-inline">&#119888; = 2<sup>&alefsym;<sub>0</sub></sup></span>: the cardinality of the real line. Every point on a line segment, every possible path through an infinite binary tree, the set of all subsets of the naturals. Cantor's diagonal argument proves this is strictly larger than <span class="math-inline">&alefsym;<sub>0</sub></span>. Whether <span class="math-inline">&#119888; = &alefsym;<sub>1</sub></span> (the next aleph after <span class="math-inline">&alefsym;<sub>0</sub></span>) is the Continuum Hypothesis.
+        </div></div>
+      </div>
+
+      <div class="tower-level" role="listitem" tabindex="0">
+        <div class="tower-head">
+          <span class="tower-symbol">&#8502;<sub>2</sub></span>
+          <span class="tower-name">The Beth Numbers</span>
+        </div>
+        <div class="tower-body"><div class="tower-body-inner">
+          <span class="math-inline">&#8502;<sub>2</sub> = 2<sup>2<sup>&alefsym;<sub>0</sub></sup></sup></span>: the power set of the reals. This is the number of curves, regions, and arbitrary subsets of the continuum. Cantor's theorem guarantees each power set is strictly larger: the hierarchy <span class="math-inline">&#8502;<sub>0</sub>, &#8502;<sub>1</sub>, &#8502;<sub>2</sub>, ...</span> never collapses. For every set, there are strictly more subsets of it than elements in it.
+        </div></div>
+      </div>
+
+      <div class="tower-level" role="listitem" tabindex="0">
+        <div class="tower-head">
+          <span class="tower-symbol">&alefsym;<sub>&omega;</sub></span>
+          <span class="tower-name">The First Limit Cardinal</span>
+        </div>
+        <div class="tower-body"><div class="tower-body-inner">
+          Beyond <span class="math-inline">&alefsym;<sub>0</sub>, &alefsym;<sub>1</sub>, &alefsym;<sub>2</sub>, ...</span> comes their supremum: <span class="math-inline">&alefsym;<sub>&omega;</sub></span>, the first cardinal you cannot reach by taking successors. It is a <strong>limit cardinal</strong>, and you can keep going: <span class="math-inline">&alefsym;<sub>&omega;+1</sub>, &alefsym;<sub>&omega; &middot; 2</sub>, &alefsym;<sub>&omega;<sup>2</sup></sub>, &alefsym;<sub>&omega;<sup>&omega;</sup></sub></span>... Each is an infinite cardinal strictly larger than all those before it.
+        </div></div>
+      </div>
+
+      <div class="tower-level" role="listitem" tabindex="0">
+        <div class="tower-head">
+          <span class="tower-symbol">&kappa;</span>
+          <span class="tower-name">Inaccessible Cardinals</span>
+        </div>
+        <div class="tower-body"><div class="tower-body-inner">
+          A cardinal is <strong>inaccessible</strong> if it cannot be reached from below by any combination of successor and power set operations, taken fewer-than-&kappa; times. If one exists, it is a model of ZFC within ZFC, a universe so large that standard set theory cannot prove it exists. Its existence is the first step into <strong>large cardinal axioms</strong>, axioms that assert the existence of infinities too vast for ZFC to construct.
+        </div></div>
+      </div>
+
+      <div class="tower-level" role="listitem" tabindex="0">
+        <div class="tower-head">
+          <span class="tower-symbol">M</span>
+          <span class="tower-name">Mahlo Cardinals</span>
+        </div>
+        <div class="tower-body"><div class="tower-body-inner">
+          A <strong>Mahlo cardinal</strong> is so large that the set of inaccessible cardinals below it is a stationary set, it intersects every closed unbounded subset. Inaccessible cardinals are common below a Mahlo. The jump from inaccessible to Mahlo is the first of many similar leaps: each new large cardinal axiom dwarfs the previous one in a way that the previous one cannot express.
+        </div></div>
+      </div>
+
+      <div class="tower-level" role="listitem" tabindex="0">
+        <div class="tower-head">
+          <span class="tower-symbol">&#x1D702;</span>
+          <span class="tower-name">Measurable Cardinals</span>
+        </div>
+        <div class="tower-body"><div class="tower-body-inner">
+          A cardinal <span class="math-inline">&kappa;</span> is <strong>measurable</strong> if there exists a non-trivial &kappa;-complete ultrafilter on it. Measurable cardinals are so large that they carry their own notion of &ldquo;almost all.&rdquo; Their existence implies the consistency of ZFC (and much more), so by G&ouml;del's second incompleteness theorem, ZFC alone can never prove they exist. This is where the large cardinal hierarchy begins to interact deeply with the foundations.
+        </div></div>
+      </div>
+
+      <div class="tower-level" role="listitem" tabindex="0">
+        <div class="tower-head">
+          <span class="tower-symbol">&#x1D6C5;</span>
+          <span class="tower-name">Berkeley Cardinals</span>
+        </div>
+        <div class="tower-body"><div class="tower-body-inner">
+          At the outer edge of the large cardinal hierarchy. A cardinal <span class="math-inline">&delta;</span> is <strong>Berkeley</strong> if for every transitive set <span class="math-inline">M</span> with <span class="math-inline">&delta; &isin; M</span>, and every ordinal <span class="math-inline">&alpha; &lt; &delta;</span>, there is a non-trivial elementary embedding <span class="math-inline">j: M &rarr; M</span> with critical point between <span class="math-inline">&alpha;</span> and <span class="math-inline">&delta;</span>. Berkeley cardinals are <strong>inconsistent with the Axiom of Choice</strong>. They live in ZF without Choice, challenging the very framework we use to reason about infinity.
+        </div></div>
+      </div>
+
+      <div class="tower-level" role="listitem" tabindex="0">
+        <div class="tower-head">
+          <span class="tower-symbol">&Omega;</span>
+          <span class="tower-name">The Absolute Infinite</span>
+        </div>
+        <div class="tower-body"><div class="tower-body-inner">
+          Cantor himself conceived of <span class="math-inline">&Omega;</span>: a magnitude so vast it transcends all transfinite cardinals. It is not a set and not a number. It is the totality of all ordinals, which, by Burali-Forti's paradox, cannot itself be an ordinal. Cantor identified it with God and considered it fundamentally beyond mathematical comprehension. In modern terms, <span class="math-inline">&Omega;</span> corresponds to a <strong>proper class</strong>: a collection too large to be a set, the horizon of the set-theoretic universe.
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WALLS OF LOGIC ==================== -->
+<section id="walls">
+  <div class="section-inner">
+    <div class="section-label">III</div>
+    <h2 class="section-title">The Walls of <span class="math">Logic</span></h2>
+
+    <p class="body-text">Mathematics discovers not just truths, but its own limits. In the early twentieth century, three results drew hard boundaries around what formal systems can know about themselves.</p>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;margin:2rem 0 0.75rem;color:var(--text)">G&ouml;del's Incompleteness Theorems (1931)</h3>
+
+    <p class="body-text"><strong>First theorem:</strong> Any consistent formal system powerful enough to express basic arithmetic contains statements that are true but unprovable within that system. <strong>Second theorem:</strong> No such system can prove its own consistency. These are not bugs in particular axiom systems. They are structural features of sufficiency: the moment a system can talk about itself, it discovers sentences it cannot decide.</p>
+
+    <div class="godel-gen">
+      <div class="godel-input-row">
+        <label for="godelInput">Name a formal system:</label>
+        <input type="text" id="godelInput" class="godel-input" placeholder="e.g. Peano Arithmetic" maxlength="80">
+        <button class="btn" id="godelBtn">Generate</button>
+      </div>
+      <div class="godel-output" id="godelOutput"></div>
+      <div class="godel-explain" id="godelExplain"></div>
+    </div>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;margin:2.5rem 0 0.75rem;color:var(--text)">The Halting Problem (1936)</h3>
+
+    <p class="body-text">Alan Turing proved that no general algorithm can determine, for every possible program and input, whether that program will halt or run forever. This is not an engineering limitation; it is a theorem. The proof is a diagonal argument in disguise: assume a halting-decider <span class="math-inline">H</span> exists, then construct a program <span class="math-inline">D</span> that runs <span class="math-inline">H</span> on itself and does the opposite of what <span class="math-inline">H</span> predicts. <span class="math-inline">D</span> halts if and only if it doesn't.</p>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;margin:2.5rem 0 0.75rem;color:var(--text)">Chaitin's &Omega; (1975)</h3>
+
+    <p class="body-text">Gregory Chaitin defined a real number <span class="math-inline">&Omega;</span> as the probability that a random Turing machine halts. Each bit of <span class="math-inline">&Omega;</span> encodes the answer to a halting question. <span class="math-inline">&Omega;</span> is <strong>well-defined</strong>, <strong>uncomputable</strong>, and <strong>algorithmically random</strong>: no finite set of axioms can determine more than finitely many of its digits. It concentrates the entire halting problem into a single constant, a number that exists but can never be fully known.</p>
+
+    <div class="math-block">&Omega; = &sum;<sub>p halts</sub> 2<sup>&minus;|p|</sup></div>
+  </div>
+</section>
+
+<!-- ==================== BEYOND CONSISTENCY ==================== -->
+<section id="beyond">
+  <div class="section-inner">
+    <div class="section-label">IV</div>
+    <h2 class="section-title">Beyond <span class="math">Consistency</span></h2>
+
+    <p class="body-text">What happens when we push past the standard foundations? Several directions lead into territory where the conventional rules of mathematics begin to dissolve.</p>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;margin:2rem 0 0.75rem;color:var(--text)">Non-Well-Founded Sets</h3>
+
+    <p class="body-text">The Axiom of Foundation says no set contains itself: every chain of membership eventually hits bottom. Peter Aczel's <strong>Anti-Foundation Axiom</strong> (AFA) replaces this with the opposite: for every directed graph, there exists a unique set whose membership structure matches that graph. This gives us sets like <span class="math-inline">x = {x}</span>, circular reference chains, and infinite descending membership. The resulting universe is consistent with ZFC minus Foundation, and it models processes, streams, and self-referential structures naturally.</p>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;margin:2rem 0 0.75rem;color:var(--text)">Russell's Paradox</h3>
+    <p class="body-text">Consider <span class="math-inline">R</span>, the set of all sets that do not contain themselves. Does <span class="math-inline">R</span> contain itself? Either answer contradicts itself. This paradox, discovered in 1901, destroyed naive set theory and forced the creation of axiomatic foundations like ZFC.</p>
+
+    <div class="russell-stage" id="russellStage">
+      <div class="russell-narration" id="russellNarration">We have several sets. Let us build <span class="math-inline">R</span>, the set of all sets that do not contain themselves.</div>
+      <div class="russell-sets" id="russellSets"></div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+        <button class="btn" id="russellNext">Next Step</button>
+        <button class="btn" id="russellReset" hidden>Reset</button>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;margin:2.5rem 0 0.75rem;color:var(--text)">The Ruliad</h3>
+
+    <p class="body-text">Stephen Wolfram defines the <strong>Ruliad</strong> as the entangled limit of all possible computations, every Turing machine, every rewriting system, every cellular automaton, run on every possible input, forever. It is unique by construction: the ultimate object that contains all formally expressible structure. Within it, observers like us sample only a thin slice, defined by our computational boundedness. Physics, mathematics, and logic are views of the same Ruliad, filtered through different observational constraints.</p>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;margin:2.5rem 0 0.75rem;color:var(--text)">Tegmark's Level IV Multiverse</h3>
+
+    <p class="body-text">Max Tegmark's <strong>Mathematical Universe Hypothesis</strong> takes a radical position: every consistent mathematical structure is a physical universe. Our universe is not merely <em>described</em> by mathematics; it <em>is</em> a mathematical structure. The Level IV multiverse is the ensemble of all such structures. If two mathematical objects are isomorphic, they are the same universe. This is the ultimate extrapolation of mathematical platonism: existence and mathematical consistency become synonymous.</p>
+
+    <div class="math-block">&forall; consistent structures S: S exists physically</div>
+  </div>
+</section>
+
+<!-- ==================== THE QUIZ ==================== -->
+<section id="quiz">
+  <div class="section-inner">
+    <div class="section-label">V</div>
+    <h2 class="section-title">How Big Is Your <span class="math">Infinity?</span></h2>
+    <p class="body-text">Five questions about the size of things. Select your answer, then see the result.</p>
+
+    <div class="quiz" id="quizContainer"></div>
+
+    <div class="quiz-score" id="quizScore" hidden>
+      <div class="quiz-score-num" id="quizScoreNum"></div>
+      <div class="quiz-score-label" id="quizScoreLabel"></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <div class="page-wrap">
+    <div class="footer-brand">Built by Stark, tools for creators who think beyond limits</div>
+    <div class="footer-links">
+      <a href="https://ams513.itch.io/stark-world-engine?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=infinity" target="_blank" rel="noopener noreferrer">Stark World Engine</a>
+    </div>
+  <p class="trust-foot" data-tc="foot"><a href="../trust.html" lang="en">Trust Center</a></p></div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ========== HERO PARTICLES ========== */
+  var canvas = document.getElementById('heroCanvas');
+  if (canvas) {
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var symbols = ['∞','ℵ','ω','Ω','∈','∅','∀','∃','⊆','ℝ','ℕ','ℤ','κ','δ','⊂'];
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resizeCanvas() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    }
+
+    function initParticles() {
+      particles = [];
+      if (reducedMotion) return;
+      var count = Math.min(35, Math.floor(canvas.width / 28));
+      for (var i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: -Math.random() * 0.25 - 0.05,
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
+          size: 10 + Math.random() * 14,
+          alpha: 0.08 + Math.random() * 0.18,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function drawParticles(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var gold = getComputedStyle(document.documentElement).getPropertyValue('--gold').trim() || '#f59e0b';
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx + Math.sin(t * 0.0005 + p.phase) * 0.15;
+        p.y += p.vy;
+        if (p.y < -20) { p.y = canvas.height + 20; p.x = Math.random() * canvas.width; }
+        if (p.x < -20) p.x = canvas.width + 20;
+        if (p.x > canvas.width + 20) p.x = -20;
+        ctx.globalAlpha = p.alpha;
+        ctx.font = p.size + 'px Cormorant, Georgia, serif';
+        ctx.fillStyle = gold;
+        ctx.textAlign = 'center';
+        ctx.fillText(p.symbol, p.x, p.y);
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(drawParticles);
+    }
+
+    resizeCanvas();
+    initParticles();
+    if (!reducedMotion) requestAnimationFrame(drawParticles);
+    window.addEventListener('resize', function() { resizeCanvas(); initParticles(); });
+  }
+
+  /* ========== DIAGONAL ARGUMENT ========== */
+  var diagData = [
+    [0,1,1,0,1,0,0,1],
+    [1,1,0,1,0,1,1,0],
+    [0,0,1,1,1,0,1,0],
+    [1,0,0,0,1,1,0,1],
+    [0,1,1,1,0,0,1,0],
+    [1,0,0,1,0,1,1,1]
+  ];
+  var diagStep = 0;
+  var diagMaxStep = 4;
+  var diagSteps = [
+    'Suppose we can list every infinite binary sequence.',
+    'Look at the diagonal entries, position i of sequence i.',
+    'Flip each diagonal bit to build a new sequence.',
+    'This new sequence differs from every row in at least one position.',
+    'Contradiction. The list was supposed to be complete, but we just built a sequence not on it. The reals are uncountable.'
+  ];
+
+  function buildDiagGrid() {
+    var grid = document.getElementById('diagGrid');
+    var newRow = document.getElementById('diagNewRow');
+    grid.innerHTML = '';
+    newRow.innerHTML = '';
+    newRow.classList.remove('visible');
+
+    for (var r = 0; r < diagData.length; r++) {
+      var label = document.createElement('div');
+      label.className = 'dg-label';
+      label.textContent = 's₀' .replace('₀', String.fromCharCode(0x2081 + r));
+      grid.appendChild(label);
+
+      for (var c = 0; c < diagData[r].length; c++) {
+        var cell = document.createElement('div');
+        cell.className = 'dg-cell';
+        cell.dataset.row = r;
+        cell.dataset.col = c;
+        cell.textContent = diagData[r][c];
+        grid.appendChild(cell);
+      }
+
+      var ell = document.createElement('div');
+      ell.className = 'dg-ellipsis';
+      ell.textContent = '…';
+      grid.appendChild(ell);
+    }
+  }
+
+  function updateDiag() {
+    var cells = document.querySelectorAll('.dg-cell');
+    var newRow = document.getElementById('diagNewRow');
+    cells.forEach(function(c) { c.classList.remove('diagonal', 'flipped'); });
+    newRow.classList.remove('visible');
+    newRow.innerHTML = '';
+
+    if (diagStep >= 1) {
+      cells.forEach(function(c) {
+        if (c.dataset.row === c.dataset.col) c.classList.add('diagonal');
+      });
+    }
+
+    if (diagStep >= 2) {
+      newRow.classList.add('visible');
+      var label = document.createElement('div');
+      label.className = 'dg-label';
+      label.textContent = 'd';
+      label.style.color = 'var(--red)';
+      label.style.fontWeight = '700';
+      newRow.appendChild(label);
+      for (var i = 0; i < diagData.length; i++) {
+        var cell = document.createElement('div');
+        cell.className = 'dg-cell flipped';
+        cell.textContent = 1 - diagData[i][i];
+        newRow.appendChild(cell);
+      }
+      for (var j = diagData.length; j < 8; j++) {
+        var pad = document.createElement('div');
+        pad.className = 'dg-cell';
+        pad.textContent = '?';
+        pad.style.color = 'var(--text-muted)';
+        newRow.appendChild(pad);
+      }
+      var ell = document.createElement('div');
+      ell.className = 'dg-ellipsis';
+      ell.textContent = '…';
+      newRow.appendChild(ell);
+    }
+
+    document.getElementById('diagText').textContent = diagSteps[diagStep];
+    document.getElementById('diagPrev').disabled = diagStep === 0;
+    document.getElementById('diagNext').disabled = diagStep === diagMaxStep;
+    document.getElementById('diagReset').hidden = diagStep < diagMaxStep;
+    document.getElementById('diagNext').hidden = diagStep >= diagMaxStep;
+  }
+
+  buildDiagGrid();
+  updateDiag();
+  document.getElementById('diagNext').addEventListener('click', function() {
+    if (diagStep < diagMaxStep) { diagStep++; updateDiag(); }
+  });
+  document.getElementById('diagPrev').addEventListener('click', function() {
+    if (diagStep > 0) { diagStep--; updateDiag(); }
+  });
+  document.getElementById('diagReset').addEventListener('click', function() {
+    diagStep = 0; updateDiag();
+  });
+
+  /* ========== TOWER ========== */
+  document.querySelectorAll('.tower-level').forEach(function(level) {
+    function toggle() {
+      var wasOpen = level.classList.contains('open');
+      level.classList.toggle('open');
+      if (!wasOpen) {
+        var hint = level.querySelector('.tower-hint');
+        if (hint) hint.style.display = 'none';
+      }
+    }
+    level.addEventListener('click', toggle);
+    level.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  /* ========== GODEL GENERATOR ========== */
+  var godelInput = document.getElementById('godelInput');
+  var godelOutput = document.getElementById('godelOutput');
+  var godelExplain = document.getElementById('godelExplain');
+  var godelBtn = document.getElementById('godelBtn');
+
+  var godelExplanations = {
+    'default': 'By Gödel\'s first incompleteness theorem, if {system} is consistent and sufficiently powerful (able to express basic arithmetic), there exist statements in {system}\'s language that are true but cannot be proven within {system}. The sentence above is a simplified version of such a Gödel sentence, a statement that, via arithmetization, encodes its own unprovability.',
+    'peano arithmetic': 'Peano Arithmetic (PA) is the standard axiomatization of the natural numbers. Gödel showed that PA, if consistent, contains true arithmetic statements it cannot prove. The Paris–Harrington theorem is a natural example: a combinatorial truth unprovable in PA.',
+    'zfc': 'Zermelo–Fraenkel set theory with Choice is the standard foundation of mathematics. If ZFC is consistent, it cannot prove its own consistency (second incompleteness theorem), and sentences like the Continuum Hypothesis are independent of it.',
+    'zf': 'ZF without the Axiom of Choice still falls under Gödel\'s theorems. The Axiom of Choice itself is independent of ZF, it can be neither proved nor refuted, as Gödel and Cohen showed.'
+  };
+
+  function generateGodel() {
+    var sys = godelInput.value.trim();
+    if (!sys) { sys = 'Your System'; godelInput.value = sys; }
+    godelOutput.innerHTML = '“This statement cannot be proven in <strong>' + escapeHtml(sys) + '</strong>.”';
+    var key = sys.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
+    var explain = godelExplanations[key] || godelExplanations['default'];
+    godelExplain.textContent = explain.replace(/\{system\}/g, sys);
+  }
+
+  godelBtn.addEventListener('click', generateGodel);
+  godelInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') generateGodel();
+  });
+
+  function escapeHtml(s) {
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  /* ========== RUSSELL'S PARADOX ========== */
+  var russellStep = 0;
+  var russellMaxStep = 5;
+  var setsData = [
+    { name: 'A', members: '{1, 2, 3}', containsSelf: false },
+    { name: 'B', members: '{A}', containsSelf: false },
+    { name: 'C', members: '{C, 7}', containsSelf: true },
+    { name: 'D', members: '{∅}', containsSelf: false }
+  ];
+
+  var russellNarrations = [
+    'We have several sets. Let us build <span class="math-inline">R</span>, the set of all sets that do not contain themselves.',
+    'Sets <strong>A</strong>, <strong>B</strong>, and <strong>D</strong> do not contain themselves. Set <strong>C</strong> does, its own definition includes itself.',
+    '<span class="math-inline">R</span> collects every set that does not contain itself. So <strong>A</strong>, <strong>B</strong>, and <strong>D</strong> are in <span class="math-inline">R</span>. <strong>C</strong> is not.',
+    'Now the critical question: <strong>does <span class="math-inline">R</span> contain itself?</strong>',
+    'Suppose <span class="math-inline">R &isin; R</span>. Then <span class="math-inline">R</span> contains itself, so by definition it should <em>not</em> be in <span class="math-inline">R</span>. <span class="highlight">Contradiction.</span>',
+    'Suppose <span class="math-inline">R &notin; R</span>. Then <span class="math-inline">R</span> does not contain itself, so by definition it <em>should</em> be in <span class="math-inline">R</span>. <span class="highlight">Contradiction again.</span> There is no consistent answer. This is Russell\'s Paradox.'
+  ];
+
+  function renderRussell() {
+    var container = document.getElementById('russellSets');
+    container.innerHTML = '';
+
+    var showR = russellStep >= 2;
+
+    setsData.forEach(function(s) {
+      var div = document.createElement('div');
+      div.className = 'russell-set';
+      if (russellStep >= 2 && !s.containsSelf) div.classList.add('in-r');
+      div.innerHTML = '<div class="russell-set-name">' + escapeHtml(s.name) + '</div>'
+        + '<div class="russell-set-members">' + s.members + '</div>';
+      if (russellStep >= 1) {
+        var status = document.createElement('div');
+        status.className = 'russell-set-status ' + (s.containsSelf ? 'yes' : 'no');
+        status.textContent = s.containsSelf ? 'Contains itself' : 'Does not contain itself';
+        div.appendChild(status);
+      }
+      container.appendChild(div);
+    });
+
+    if (showR) {
+      var rDiv = document.createElement('div');
+      rDiv.className = 'russell-set';
+      if (russellStep >= 3) rDiv.classList.add('paradox');
+      var members = setsData.filter(function(s){ return !s.containsSelf; }).map(function(s){ return s.name; }).join(', ');
+      rDiv.innerHTML = '<div class="russell-set-name" style="color:var(--red)">R</div>'
+        + '<div class="russell-set-members">{' + members + ', ...}</div>';
+      if (russellStep >= 3) {
+        var status = document.createElement('div');
+        status.className = 'russell-set-status';
+        status.style.color = 'var(--red)';
+        status.textContent = russellStep >= 4 ? 'R ∈ R → contradiction' : 'Contains itself?';
+        if (russellStep >= 5) status.textContent = 'R ∉ R → also contradiction';
+        rDiv.appendChild(status);
+      }
+      container.appendChild(rDiv);
+    }
+
+    document.getElementById('russellNarration').innerHTML = russellNarrations[russellStep];
+    document.getElementById('russellNext').disabled = russellStep >= russellMaxStep;
+    document.getElementById('russellReset').hidden = russellStep < russellMaxStep;
+    document.getElementById('russellNext').hidden = russellStep >= russellMaxStep;
+  }
+
+  renderRussell();
+  document.getElementById('russellNext').addEventListener('click', function() {
+    if (russellStep < russellMaxStep) { russellStep++; renderRussell(); }
+  });
+  document.getElementById('russellReset').addEventListener('click', function() {
+    russellStep = 0; renderRussell();
+  });
+
+  /* ========== QUIZ ========== */
+  var quizData = [
+    {
+      q: 'Which set is larger: the natural numbers {1, 2, 3, …} or the even numbers {2, 4, 6, …}?',
+      options: ['The natural numbers, there are twice as many', 'They are the same size', 'The even numbers, they grow faster', 'Neither, they are both infinite so comparison is meaningless'],
+      correct: 1,
+      explain: 'They are the same cardinality, ℵ₀. The function n → 2n is a bijection between them. For infinite sets, "size" is about whether a one-to-one correspondence exists, not about density or rate of growth.'
+    },
+    {
+      q: 'Which is larger: the set of all rational numbers or the set of all real numbers?',
+      options: ['The rationals, they are dense in the reals', 'They are the same size', 'The reals are larger', 'It depends on the axiom system'],
+      correct: 2,
+      explain: 'The rationals are countable (ℵ₀) and the reals are uncountable (at least ℵ₁). Cantor\'s diagonal argument proves no bijection exists. Density is irrelevant to cardinality.'
+    },
+    {
+      q: 'Is there a set whose cardinality lies strictly between the natural numbers and the real numbers?',
+      options: ['Yes, the irrationals', 'No, this was proven impossible', 'Unknown, it is independent of ZFC', 'Yes, the power set of the naturals'],
+      correct: 2,
+      explain: 'This is the Continuum Hypothesis. Gödel (1940) showed it is consistent with ZFC, and Cohen (1963) showed its negation is also consistent. No standard axiom system resolves it.'
+    },
+    {
+      q: 'In standard (ZFC) set theory, can a set contain itself?',
+      options: ['Yes, the universal set contains everything', 'No, the Axiom of Foundation forbids it', 'Only if it is infinite', 'Only the empty set can'],
+      correct: 1,
+      explain: 'The Axiom of Foundation (Regularity) requires every non-empty set to have an element disjoint from itself, which prevents any set from being a member of itself. Alternative foundations like Aczel\'s AFA permit self-membership.'
+    },
+    {
+      q: 'Is there a largest infinity?',
+      options: ['Yes, the Absolute Infinite, Ω', 'Yes, the class of all ordinals', 'No, for any set S, its power set P(S) is strictly larger', 'No, but only because infinity is not a number'],
+      correct: 2,
+      explain: 'Cantor\'s theorem: for any set S, the power set P(S) has strictly greater cardinality. There is no largest cardinal number. Cantor\'s Absolute Infinite Ω is a proper class, not a set, and lies outside the cardinal hierarchy.'
+    }
+  ];
+
+  var quizAnswered = 0;
+  var quizCorrect = 0;
+
+  function buildQuiz() {
+    var container = document.getElementById('quizContainer');
+    container.innerHTML = '';
+    quizAnswered = 0;
+    quizCorrect = 0;
+    document.getElementById('quizScore').hidden = true;
+
+    quizData.forEach(function(q, qi) {
+      var div = document.createElement('div');
+      div.className = 'quiz-question';
+      div.id = 'qq-' + qi;
+
+      var qText = document.createElement('div');
+      qText.className = 'quiz-q-text';
+      qText.textContent = (qi + 1) + '. ' + q.q;
+      div.appendChild(qText);
+
+      var opts = document.createElement('div');
+      opts.className = 'quiz-options';
+
+      q.options.forEach(function(opt, oi) {
+        var label = document.createElement('label');
+        label.className = 'quiz-option';
+        var radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'q' + qi;
+        radio.id = 'q' + qi + 'o' + oi;
+        radio.value = oi;
+        var span = document.createElement('span');
+        span.textContent = opt;
+        label.appendChild(radio);
+        label.appendChild(span);
+
+        radio.addEventListener('change', function() {
+          handleQuizAnswer(qi, oi);
+        });
+
+        opts.appendChild(label);
+      });
+
+      div.appendChild(opts);
+      container.appendChild(div);
+    });
+  }
+
+  function handleQuizAnswer(qi, oi) {
+    var q = quizData[qi];
+    var container = document.getElementById('qq-' + qi);
+    var options = container.querySelectorAll('.quiz-option');
+    var radios = container.querySelectorAll('input[type="radio"]');
+    radios.forEach(function(r) { r.disabled = true; });
+
+    options.forEach(function(opt, i) {
+      if (i === q.correct) opt.classList.add(i === oi ? 'correct' : 'correct-reveal');
+      else if (i === oi) opt.classList.add('wrong');
+    });
+
+    var explain = document.createElement('div');
+    explain.className = 'quiz-explain';
+    explain.textContent = q.explain;
+    container.appendChild(explain);
+
+    quizAnswered++;
+    if (oi === q.correct) quizCorrect++;
+
+    if (quizAnswered === quizData.length) {
+      var score = document.getElementById('quizScore');
+      score.hidden = false;
+      document.getElementById('quizScoreNum').textContent = quizCorrect + ' / ' + quizData.length;
+      var messages = [
+        'The finite mind encounters its limits.',
+        'Cantor would nod approvingly.',
+        'A respectable grasp of the transfinite.',
+        'You think in cardinals.',
+        'You have stared into the abyss, and it flinched.'
+      ];
+      document.getElementById('quizScoreLabel').textContent = messages[quizCorrect] || messages[0];
+    }
+  }
+
+  buildQuiz();
+
+})();
+</script>
+<nav class="ps-site" aria-label="Stark"><a href="index.html">All explorers</a><a href="../index.html">Stark</a><a href="https://ams513.itch.io/stark-world-engine?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=infinity" rel="noopener noreferrer">Stark World Engine</a><a href="https://ams513.itch.io/stark-quill?utm_source=stark_site&amp;utm_medium=explore&amp;utm_campaign=infinity" rel="noopener noreferrer">Stark Quill</a></nav>
+</body>
+</html>
